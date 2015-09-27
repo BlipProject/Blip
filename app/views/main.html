@@ -9,7 +9,7 @@
   </form>
 
   <div ng-repeat="venue in searchCtrl.results track by venue.id" | filter:location >
-    <div class="panel panel-default" >
+    <div class="panel panel-info" >
       <div class="panel-heading">{{venue.name}}</div>
         <div class="panel-body">
           <p>{{venue.location}}</p>
