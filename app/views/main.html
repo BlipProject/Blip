@@ -1,23 +1,20 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
+<div ng-controller="LocationSearchCtrl as searchCtrl">
+  <form action="" role="form" >
+    <legend>Search by location</legend>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+    <div class="form-group">
+      <label for=""></label>
+      <input ng-change="searchCtrl.setLocation(location)" ng-model="location" type="text" class="form-control" id="" placeholder="Location">
+    </div>
+  </form>
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+  <div ng-repeat="venue in searchCtrl.results track by venue.id" | filter:location >
+    <div class="panel panel-info" >
+      <div class="panel-heading">{{venue.name}}</div>
+        <div class="panel-body">
+          <p>{{venue.location}}</p>
+          <p>{{venue.description}}</p>
+        </div>
+    </div>
+  </div>
 </div>
