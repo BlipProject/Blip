@@ -1,18 +1,28 @@
 <?php
-	/*$servername = "localhost";
+	
+	//TEST DATABASE
+	$servername = "localhost";
 	$username = "root";
 	$password = "";
-	$db = "search_test";*/
-
+	$db = "search_test";
+	
+	/*
+	//LIVE DATABASE
 	$servername = "eu-cdbr-azure-north-d.cloudapp.net";
 	$username = "bd90192c1a23ec";
 	$password = "bfbfe307";
 	$db = "as_64dd0e9989faa02";
+	*/
 
+	//Input variable from Angular
+	$postdata = file_get_contents("php://input");
+	
 	$conn = mysqli_connect($servername, $username, $password, $db);
 
-	function searchLocation($location) {
+	$searchResults = searchLocation($postdata);
 
+	function searchLocation($location) {
+		$resultsArray = "";
 		global $conn;
 
 		$search = mysqli_query($conn, 
@@ -22,11 +32,12 @@
             $resultsArray[] = $row;
 	    }
 
-	    $jsonResults = json_encode($resultsArray);
-
-	    return $jsonResults;
+	    $results = json_encode($resultsArray,true);
+	    return $results;
 	}
 
-	$searchResults = searchLocation("sligo");
+	//Return Query Result to Frontend
 	echo $searchResults;
+	
 ?>
+
