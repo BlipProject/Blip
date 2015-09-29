@@ -5,7 +5,9 @@ angular.module('blipApp')
 	.controller('LocationSearchCtrl', ['$http','$scope', function ($http,$scope) {
 		var setLocation = "";
 		var searchResult;
+
 		this.searchResult="";
+
 
 		//TODO Change post URL to reletive link
 		this.setLocation = function(searchCity){

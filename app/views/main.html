@@ -7,7 +7,8 @@
     </div>
   </form>
 
-  <div ng-repeat="venue in searchCtrl.searchResult track by $index" ng-change="searchCity">
+
+  <div ng-repeat="venue in searchCtrl.searchResult track by $index">
     <div class="panel panel-info" >
       <div class="panel-heading">{{venue.LocName}}</div>
         <div class="panel-body">
