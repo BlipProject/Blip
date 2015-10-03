@@ -3,19 +3,18 @@
     <legend>Search by location</legend>
     <div class="form-group">
       <label for=""></label>
-      <input ng-change="searchCtrl.setLocation(searchCity)" ng-model="searchCity" type="text" class="form-control" id="" placeholder="Location">
+      <input ng-model="searchCity" type="text" class="form-control" id="" placeholder="Location">
     </div>
   </form>
 
-
   <div ng-repeat="venue in searchCtrl.searchResult track by $index">
     <div class="panel panel-info" >
-      <div class="panel-heading">{{venue.LocName}}</div>
+      <div class="panel-heading">{{venue.LocationName}}</div>
         <div class="panel-body">
           <p>{{venue.LocationID}}</p>
           <p>{{venue.LocationDescription}}</p>
-          <p>{{venue.LocationLat + " " + venue.LocationLat}}</p>
-          <p>{{venue.Name}}</p>
+          <p>{{"Location Latitude : " + venue.LocationLat + " " + "Location Longitude : " + venue.LocationLat}}</p>
+          <p>{{venue.City}}</p>
         </div>
     </div>
   </div>

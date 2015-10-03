@@ -3,20 +3,36 @@
 angular.module('blipApp')
 	
 	.controller('LocationSearchCtrl', ['$http','$scope', function ($http,$scope) {
-		var setLocation = "";
+
+		//Stores geolocation data to send to phph script
+		var data;
+		//Store search result returned from server
 		var searchResult;
 
-		this.searchResult="";
+		if (navigator.geolocation) {
+		    navigator.geolocation.getCurrentPosition(function(position){
+		      $scope.$apply(function(){
+		        $scope.position = position;
+		        data = [{
+		        	longitude:position.coords.longitude,
+		        	latitudelatitude:position.coords.latitude
+		        }];
 
+		        getLocationResults(data);
+
+		        console.log(data);
+		      });
+		    });
+		}
 
 		//TODO Change post URL to reletive link
-		this.setLocation = function(searchCity){
-			var search = $http.post('http://localhost/blip/app/phpCore/search.php', searchCity)
+		var getLocationResults = function(data){
+			searchResult = $http.post('http://localhost/blip/app/phpCore/search.php', data)
 		        .success(function(data, status, headers, config)
 		        {
 				    console.log( status + ' - ' + "Success");
 		            searchResult = JSON.stringify(data);
-		            console.log(searchResult);            
+		            //console.log(searchResult);          
 	            })
 		        .error(function(data, status, headers, config)
 		        {
