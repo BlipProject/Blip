@@ -31,7 +31,7 @@
 	$searchResults = searchLocation($latitude,$longitude);
 
 	function searchLocation($lat,$long) {
-		$resultsArray = "";
+		$resultsArray;
 		global $conn;
 
 		$search = mysqli_query($conn, 
