@@ -7,7 +7,6 @@ angular.module('blipApp')
 		//Stores geolocation data to send to php script
 		var data;
 		//Store search result returned from server
-		//var searchResult;
 		$scope.searchResult;
 		
 		$scope.getLocation = function(){
@@ -26,6 +25,7 @@ angular.module('blipApp')
 				        	longitude : position.coords.longitude,
 				        	latitude : position.coords.latitude
 				        };
+
 			        	getLocationResults(data);
 			        	console.log(data);
 			        	//alert(data.longitude + " " + data.latitude);
@@ -34,19 +34,38 @@ angular.module('blipApp')
 			}
 		};
 
-
-		//TODO Change post URL to reletive link ... ../phpCore/search.php
+		///////////
+		//IMPORTANT Change post URL to reletive link before build... '../phpCore/search.php'
+		///////////
 		var getLocationResults = function(data){
 			var callSearch = $http.post('http://localhost/blip/app/phpCore/search.php', data)
 		        .success(function(data, status, headers, config)
 		        {
 		        	$scope.searchResult = data;
-				    console.log(status + ' - ' + "Success");          
+				    console.log(status + ' - ' + "Success"); 
+				    console.log($scope.searchResult);         
 	            })
 		        .error(function(data, status, headers, config)
 		        {
 		            console.log(status + ' - ' + 'Error');
 		        });
+		};
+
+
+		$scope.filterSearchResult = [];
+
+		$scope.getFilter = function(filter){
+			if(filter != "All")
+			{
+				$scope.filterSearchResult = []
+				angular.forEach($scope.searchResult, function(value){
+					if(value.CategoryName == filter)
+						$scope.filterSearchResult.push(value);
+				});
+				console.log($scope.filterSearchResult);
+			}
+			else
+				$scope.filterSearchResult = $scope.searchResult;
 		};
 }]);
 
