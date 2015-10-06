@@ -1,9 +1,12 @@
 <div ng-controller="LocationSearchCtrl" ng-init="getFilter('All')">
-  <button type="button" class="btn btn-default" ng-click="getFilter('All')">ALL</button>
-  <button type="button" class="btn btn-default" ng-click="getFilter('Bar')">BAR</button>
-  <button type="button" class="btn btn-default" ng-click="getFilter('Restaurant')">RESTAURANT</button>
-  <button type="button" class="btn btn-default" ng-click="getFilter('Other')">OTHER</button>
-  {{searchQuery}}
+  <div class="quickBTNContainer">
+    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('All')">ALL</button>
+    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('Bar')"><i class="fa fa-glass fa-2x"></i></button>
+    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('Restaurant')"><i class="fa fa-cutlery fa-2x"></i></button>
+    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('Supermarket')"><i class="fa fa-shopping-cart fa-2x"></i></button>
+    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('Other')">OTHER</button>
+  </div>
+
   <div ng-init="getLocation()">
     <div ng-repeat="venue in filterSearchResult track by $index">
       <div class="panel panel-info" >

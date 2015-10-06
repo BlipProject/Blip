@@ -2,7 +2,7 @@
 
 angular.module('blipApp')
 	
-	.controller('LocationSearchCtrl', ['$http','$scope','$timeout', function ($http,$scope,$timeout) {
+	.controller('LocationSearchCtrl', ['$http','$scope', function ($http,$scope) {
 
 		//Stores geolocation data to send to php script
 		var data;
@@ -37,11 +37,13 @@ angular.module('blipApp')
 		///////////
 		//IMPORTANT Change post URL to reletive link before build... '../phpCore/search.php'
 		///////////
+		//TESTING URL http://localhost/blip/app/phpCore/search.php
 		var getLocationResults = function(data){
 			var callSearch = $http.post('http://localhost/blip/app/phpCore/search.php', data)
 		        .success(function(data, status, headers, config)
 		        {
 		        	$scope.searchResult = data;
+		        	$scope.filterSearchResult = $scope.searchResult;
 				    console.log(status + ' - ' + "Success"); 
 				    console.log($scope.searchResult);         
 	            })
@@ -55,17 +57,21 @@ angular.module('blipApp')
 		$scope.filterSearchResult = [];
 
 		$scope.getFilter = function(filter){
-			if(filter != "All")
+			if(filter !== "All")
 			{
-				$scope.filterSearchResult = []
+				$scope.filterSearchResult = [];
 				angular.forEach($scope.searchResult, function(value){
-					if(value.CategoryName == filter)
+					if(value.CategoryName === filter)
+					{
 						$scope.filterSearchResult.push(value);
+					}
 				});
 				console.log($scope.filterSearchResult);
 			}
 			else
+			{
 				$scope.filterSearchResult = $scope.searchResult;
+			}
 		};
 }]);
 

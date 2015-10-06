@@ -12,21 +12,30 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- endbuild -->
+
   </head>
   <body ng-app="blipApp">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+
+
+
     <!-- Add your site or application content here -->
     <div ng-include="'views/componants/nav.html'" scope="" onload=""></div>
-
-    <div class="container">
-      <div ng-view=""></div>
+    <div id="page-content-wrapper">
+      <div class="container">
+        <div ng-view=""></div>
+      </div>
+      <div ng-include="'views/componants/footer.html'" scope="" onload=""></div>
     </div>
+    
 
-    <div ng-include="'views/componants/footer.html'" scope="" onload=""></div>
+
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -53,11 +62,12 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/search.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/search.js"></script>
+    <script src="scripts/controllers/nav.js"></script>
+    <!-- endbuild --> 
 </body>
 </html>

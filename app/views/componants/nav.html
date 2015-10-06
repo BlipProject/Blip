@@ -1,20 +1,21 @@
+<!--///////
+TOP NAV
+////////-->
+
+<div ng-controller="NavCtrl">
 <div class="header">
     <div class="navbar navbar-default" role="navigation">
+      <a class="navbar-brand" href="#/">blip</a>
       <div class="container">
-        <div class="navbar-header">
-
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+        <div class="pull-right">
+          <button ng-click="setSideClass()"  type="button" class="navbar-toggle collapsed" >
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
-
-          <a class="navbar-brand" href="#/">blip</a>
+          </button>      
         </div>
-
         <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
           <ul class="nav navbar-nav">
             <li class="active"><a href="#/">Home</a></li>
             <li><a ng-href="#/about">About</a></li>
@@ -24,3 +25,39 @@
       </div>
     </div>
 </div>
+
+
+<!--///////
+Side NAV
+////////-->
+
+
+<wrapper ng-class="{'toggled' : classCheck === true, '' : classCheck === false}">
+  <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+          <li class="sidebar-brand hidden-md hidden-lg">
+              <a>
+                  Menu
+              </a>
+          </li>
+          <li>
+              <a href="#/" class="hidden-md hidden-lg">Home</a>
+          </li>
+          <li>
+              <a href="#/about" class="hidden-md hidden-lg">About</a>
+          </li>
+          <li class="sidebar-brand">
+              <a>
+                  <i class="fa fa-cogs"></i> Quick Settings
+              </a>
+          </li>
+          <li>
+              <a href="#/">Map View</a>
+          </li>
+          <li>
+              <a href="#/about">Ehhh ???</a>
+          </li>
+      </ul>
+  </div>
+</wrapper>
+<div>
