@@ -2,12 +2,14 @@
 
 angular.module('blipApp')
 	
-	.controller('LocationSearchCtrl', ['$http','$scope', function ($http,$scope) {
+	.controller('MapCtrl', ['$http','$scope', 'uiGmapGoogleMapApi', function ($http,$scope,uiGmapGoogleMapApi) {
 
 		//Stores geolocation data to send to php script
 		var data;
 		//Store search result returned from server
 		$scope.searchResult;
+		$scope.marker;
+		$scope.map;
 		
 		$scope.getLocation = function(){
 
@@ -29,9 +31,28 @@ angular.module('blipApp')
 			        	getLocationResults(data);
 			        	console.log(data);
 			        	//alert(data.longitude + " " + data.latitude);
+
+			        	$scope.map = { 
+							center: { latitude: data.latitude, longitude: data.longitude }, 
+							zoom: 14 
+						}
+
+						$scope.marker = {
+							id: 1,
+							coords: {
+								latitude: data.latitude,
+								longitude: data.longitude
+							}
+						
+						}
+						
 					});
 			    });
 			}
+
+
+		
+
 		};
 
 		///////////
@@ -53,7 +74,6 @@ angular.module('blipApp')
 		        });
 		};
 
-
 		$scope.filterSearchResult = [];
 
 		$scope.getFilter = function(filter){
@@ -73,5 +93,11 @@ angular.module('blipApp')
 				$scope.filterSearchResult = $scope.searchResult;
 			}
 		};
+
+
+
+		uiGmapGoogleMapApi.then(function(maps) {
+
+    });
 }]);
 
