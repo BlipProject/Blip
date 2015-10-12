@@ -12,7 +12,43 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/flags.css">
     <!-- endbuild -->
+
+
+  <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/search.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/dropdown.js"></script>
+        <!-- endbuild -->
+
+<!-- Start Artur test with cendo UI-->
+        <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.3.930/styles/kendo.common.min.css">
+        <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.3.930/styles/kendo.default.min.css">
+        <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.3.930/styles/kendo.mobile.all.min.css">
+        <script src="http://kendo.cdn.telerik.com/2015.3.930/js/kendo.all.min.js"></script>
+  <!-- End of Artur test with cendo UI -->
+
+
+
+
   </head>
   <body ng-app="blipApp">
     <!--[if lte IE 8]>
@@ -46,11 +82,73 @@
         </div>
       </div>
     </div>
+<a ng-href="#/signIn">Sign In</a> <a ng-href="#/login" >Login</a>
+
+<div class="container">
+<!-- SIGN IN-->
+  <form  role="form" name="registrationForm" action="phpCore/signIn.php" method="post">
+    <div><!-- NAME-->
+      <label>Name</label></br>
+      <input type="text" name="name" ng-model="user.name" required ng-minlength="3" placeholder="min 3 characters"/>
+      <span ng-show="registrationForm.name.$dirty && registrationForm.name.$error.required">Required</span>
+      <span ng-show="registrationForm.name.$dirty &&    registrationForm.name.$error.minlength">Minimum 3 characters</span>
+    </div>
+    <div><!-- COUNTRY-->
+      <label>Country</label></br>
+      <input id="my_dropdown" type="text" name="country" ng-model="user.country" required placeholder="COUNTRY"/>
+      <span ng-show="registrationForm.name.$dirty && registrationForm.country.$error.required">Required</span>
+
+    </div>
+    <div><!-- EMAIL-->
+      <label>Email</label></br>
+      <input type="email" name="email" ng-model="user.email" required placeholder="a@a.com"/>
+      <span ng-show="registrationForm.email.$dirty && registrationForm.email.$error.required">Required</span>
+      <span ng-show="registrationForm.email.$dirty  &&   registrationForm.email.$error.email">Not an email!</span>
+    </div>
+    <div><!-- PASSWORD-->
+      <label>Password</label></br>
+      <input type="password" name="password" ng-model="user.password" required ng-minlength="8" placeholder="min 8 characters"/>
+      <span ng-show="registrationForm.password.$dirty && registrationForm.password.$error.required">Required</span>
+      <span ng-show="registrationForm.password.$dirty &&    registrationForm.password.$error.minlength">Minimum 8 characters</span>
+    </div></br>
+    <button  ng-disabled="registrationForm.$invalid">Sign In</button>
+  </form>
+</div>
+
+
+
+
+
+
+
+<!-- Start Artur test with cendo UI-->
+ <script>
+                $(document).ready(function () {
+                    $("#my_dropdown").kendoComboBox({
+                        dataTextField: "CountryName",
+                        dataValueField: "Country_ID",
+                        template: '<span class="k-state-default"><i class="flagstrap-icon flagstrap-#= CountryCode #"></i>#= CountryName #</span>',
+                        dataSource: {
+                            transport: {
+                                read: {
+                                    dataType: "json",
+                                    url: "http://localhost/blip/app/phpCore/dropdown.php"
+                                }
+                            }
+                        },
+                        filter: "contains",
+                        suggest: true,
+                        index: -1
+                    });
+                });
+</script>           
+<!-- STOP Artur test with cendo UI-->
+
+
 
     <div class="container">
     <div ng-view=""></div>
     </div>
-
     <div class="footer">
       <div class="container">
         <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
@@ -69,25 +167,6 @@
        ga('send', 'pageview');
     </script>
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/search.js"></script>
-        <!-- endbuild -->
+  
 </body>
 </html>
