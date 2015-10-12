@@ -20,6 +20,17 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 	}	
 }
 
+@media(max-width:767px){
+	.container{
+		padding:0px;
+		margin:0px;
+	}
+	.btn .btn-default{
+		padding:0px;
+		margin:0px;
+	}
+}	
+
 .quickBTN{
 	width:auto !important;
 	min-width:60px;
@@ -34,3 +45,4 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 body{
 	padding-top:50px;
 }
+
