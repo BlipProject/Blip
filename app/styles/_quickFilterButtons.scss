@@ -1,0 +1,25 @@
+////////////////////////
+//Quick Filter Buttons//
+////////////////////////
+
+.quickBTNContainer{
+	margin-bottom:20px;
+	
+	@media(max-width:767px){
+		width:100% !important;
+		height:60px !important;
+	}	
+}
+
+.quickBTN{
+	width:auto !important;
+	min-width:60px;
+	height:60px !important;
+	margin-top:20px;
+
+	@media(max-width:767px){
+		margin-top:0px;
+		width:19% !important;
+		height:60px !important;
+	}	
+}

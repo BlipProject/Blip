@@ -1,36 +1,19 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 
+
+//Do not import any styles "before customVariables"
+@import "_customVariables";
+
 @import "_variablesOverride.scss";
 @import "_simple-sidebar.scss";
-
+@import "_quickFilterButtons";
+@import "_searchResultDisplay";
 
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
-////////////////////////
-//Quick Filter Buttons//
-////////////////////////
 
-.quickBTNContainer{
-	margin-bottom:20px;
-	
-	@media(max-width:767px){
-		width:100% !important;
-		height:60px !important;
-	}	
-}
-
-.quickBTN{
-	width:auto !important;
-	min-width:60px;
-	height:60px !important;
-
-	@media(max-width:767px){
-		width:19% !important;
-		height:60px !important;
-	}	
-}
 
 body{
 	padding-top:50px;
@@ -41,59 +24,3 @@ body{
 ///////////
 
 //Insert navBar styling
-
-
-
-/////////////////////////
-//Search Result Display//
-/////////////////////////
-
-.result-wrapper{
-	height:auto;
-	min-height:150px;
-	overflow:auto;
-	box-shadow: 0px 0px 2px 0px #9E9E9E;
-	margin-bottom:20px;
-}
-
-//Result Headers
-
-.result-header{
-	width:100%;
-	height:40px;
-	padding:5px;
-	float:left;
-	color:#2F3C4F;
-	font-size:20px;
-	background-color:#9E9E9E;
-}
-
-.result-header-bar{
-	background-color:#FF6961;
-}
-
-.result-header-restaurant{
-	background-color:#AEC6CF;
-}
-
-.result-header-shop{
-	background-color:#77DD77;
-}
-
-.result-header-other{
-	background-color:#FFB347;
-}
-
-.result-header-other{
-	background-color:#B39EB5;
-}
-
-//Result Content
-
-.result-content{
-	width:100%;
-	height:auto;
-	padding:10px;
-	height:auto;
-	float:left;
-}

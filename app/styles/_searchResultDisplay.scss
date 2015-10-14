@@ -1,0 +1,50 @@
+/////////////////////////
+//Search Result Display//
+/////////////////////////
+
+.result-wrapper{
+	height:auto;
+	min-height:150px;
+	overflow:auto;
+	box-shadow: 0px 0px 2px 0px $box-shadow-colour;
+	margin-bottom:20px;
+}
+
+//Result Headers
+//See "SearchResultDisply"
+
+.result-header{
+	width:$resultHeaderWidth;
+	height:$resultHeaderHeight;
+	padding:$resultHeaderPadding;
+	float:left;
+	color:$fontColour;
+	font-size:$fontMain;
+	background-color:$box-shadow-colour;
+}
+
+.result-header-bar{
+	background-color:$bar-colour;
+}
+
+.result-header-restaurant{
+	background-color:$restaurant-colour;
+}
+
+.result-header-shop{
+	background-color:$shop-colour;
+}
+
+.result-header-other{
+	background-color:$other-colour;
+}
+
+//Result Content
+
+.result-content{
+	width:100%;
+	height:auto;
+	padding:10px;
+	height:auto;
+	float:left;
+}
