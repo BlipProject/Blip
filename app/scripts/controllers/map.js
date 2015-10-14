@@ -2,12 +2,14 @@
 
 angular.module('blipApp')
 	
-	.controller('LocationSearchCtrl', ['$http','$scope', function ($http,$scope) {
+	.controller('MapCtrl', ['$http','$scope', 'uiGmapGoogleMapApi', function ($http,$scope,uiGmapGoogleMapApi) {
 
 		//Stores geolocation data to send to php script
 		var data;
 		//Store search result returned from server
 		$scope.searchResult;
+		$scope.marker;
+		$scope.map;
 		
 		$scope.getLocation = function(){
 
@@ -29,9 +31,28 @@ angular.module('blipApp')
 			        	getLocationResults(data);
 			        	console.log(data);
 			        	//alert(data.longitude + " " + data.latitude);
+
+			        	$scope.map = { 
+							center: { latitude: data.latitude, longitude: data.longitude }, 
+							zoom: 14 
+						}
+
+						$scope.marker = {
+							id: 1,
+							coords: {
+								latitude: data.latitude,
+								longitude: data.longitude
+							}
+						
+						}
+						
 					});
 			    });
 			}
+
+
+		
+
 		};
 
 		///////////
@@ -52,7 +73,6 @@ angular.module('blipApp')
 		            console.log(status + ' - ' + 'Error');
 		        });
 		};
-
 
 		$scope.filterSearchResult = [];
 
@@ -75,31 +95,9 @@ angular.module('blipApp')
 		};
 
 
-		//Set class for individual search locations based off location type
-		$scope.setResultClass = function (classIn){
-			switch(classIn)
-			{
-				case 'Bar':
-				{
-					return "result-header-bar";
-				}
-				case 'Restaurant':
-				{
-					return "result-header-restaurant";
-				}
-				case 'Supermarket':
-				{
-					return "result-header-shop";
-				}
-				case 'Other':
-				{
-					return "result-header-other";
-				}
-				default:
-				{
-					return "";
-				}
-			}
-		};
+
+		uiGmapGoogleMapApi.then(function(maps) {
+
+    });
 }]);
 
