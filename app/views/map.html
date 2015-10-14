@@ -12,8 +12,22 @@
   <div ng-init="getLocation()"></div>
 
   <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-  <ui-gmap-marker coords='marker.coords' idKey='marker.id'></ui-gmap-marker>
+    <ui-gmap-marker coords='youarehere.coords' idKey='youarehere.id'>
+      
+    </ui-gmap-marker>
+
+    <ui-gmap-window coords="markers.coords" show="windowOptions.show" closeClick="closeClick()">
+                <div>Hello</div>
+            </ui-gmap-window>
+            <ui-gmap-markers models="markers" idkey="markers.id" coords="'coords'" click="'onClick'" events="markers.events" >
+            </ui-gmap-markers>
 
   </ui-gmap-google-map>
+  <form novalidate>
+    BusinessAddress:<br>
+    <input type="text" id="busaddress"><br>
+    <input type="submit" class="btn btn-default" ng-click="getCoordinates()" />
+  </form>
+
 
 </div>
