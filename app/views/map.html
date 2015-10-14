@@ -1,0 +1,19 @@
+<style>.angular-google-map-container { height: 400px; }</style>
+
+<div ng-controller="MapCtrl">
+  <div class="quickBTNContainer">
+    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('All')">ALL</button>
+    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('Bar')"><i class="fa fa-glass fa-2x"></i></button>
+    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('Restaurant')"><i class="fa fa-cutlery fa-2x"></i></button>
+    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('Supermarket')"><i class="fa fa-shopping-cart fa-2x"></i></button>
+    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('Other')">OTHER</button>
+  </div>
+  
+  <div ng-init="getLocation()"></div>
+
+  <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+  <ui-gmap-marker coords='marker.coords' idKey='marker.id'></ui-gmap-marker>
+
+  </ui-gmap-google-map>
+
+</div>

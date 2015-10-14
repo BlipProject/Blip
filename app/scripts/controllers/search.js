@@ -73,5 +73,33 @@ angular.module('blipApp')
 				$scope.filterSearchResult = $scope.searchResult;
 			}
 		};
+
+
+		//Set class for individual search locations based off location type
+		$scope.setResultClass = function (classIn){
+			switch(classIn)
+			{
+				case 'Bar':
+				{
+					return "result-header-bar";
+				}
+				case 'Restaurant':
+				{
+					return "result-header-restaurant";
+				}
+				case 'Supermarket':
+				{
+					return "result-header-shop";
+				}
+				case 'Other':
+				{
+					return "result-header-other";
+				}
+				default:
+				{
+					return "";
+				}
+			}
+		};
 }]);
 

@@ -8,14 +8,17 @@
   </div>
 
   <div ng-init="getLocation()">
-    <div ng-repeat="venue in filterSearchResult track by $index">
-      <div class="panel panel-info" >
-        <div class="panel-heading">{{venue.LocationName}}<span class="pull-right">Type : {{venue.CategoryName}}</span></div>
-          <div class="panel-body">  
-            <p>Description : {{venue.LocationDescription}}</p>
-            <p>City : {{venue.City}}</p>
-            <p>Distance : {{venue.distance | number : 1}}km</p>
-          </div>
+    <div ng-repeat="venue in filterSearchResult track by $index" >
+      <div class="result-wrapper">
+        <div class="result-header" ng-class="setResultClass(venue.CategoryName)">{{venue.LocationName}}<span class="pull-right">Type : {{venue.CategoryName}}</span></div>
+        <div class="result-content"> 
+          <p>Description : {{venue.LocationDescription}}</p>
+          <p>City : {{venue.City}}</p>
+          <p>Distance : {{venue.distance | number : 1}}km</p>
+
+          <p> ipsum dolor sit amet, consectetur adipisicing elit. Sint animi distinctio, odit voluptas necessitatibus amet facere quaerat. Commodi amet ad ullam corporis, quae consequatur voluptates ipsam atque dolor hic iste illo temporibus exercitationem obcaecati repellat est, nostrum similique necessitatibus ipsum quam velit! Laboriosam quae facere, tenetur animi rem corrupti assumenda, cumque explicabo voluptas ullam laborum veniam in aspernatur asperiores odit ab magni voluptatum quam? Nihil perspiciatis dicta delectus repellat quam. Doloremque voluptas facere ab modi, voluptatibus commodi ad dolore vel quas amet eveniet voluptatem vero ullam id asperiores placeat, dolores et, dignissimos voluptatum non minima voluptates! Laboriosam sunt vero rem.</p>
+          
+        </div>
       </div>
     </div>
   </div>
