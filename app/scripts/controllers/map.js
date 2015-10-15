@@ -46,6 +46,16 @@ angular.module('blipApp')
 							}
 						
 						}
+
+						    $scope.busmarker =  {
+        					id: 5,
+        					coords: {
+            						latitude: data.latitude,
+            						longitude: data.longitude
+        							},
+        					data: 'newbusinesslocation',
+       	 					animation: google.maps.Animation.DROP//not working
+    						};
 						
 					});
 			    });
@@ -84,6 +94,7 @@ $scope.addMarkerClickFunction = function(markersArray){
                 $scope.onClick(value.data);
             };
     });
+
 }; 
 
 $scope.windowOptions = {
@@ -158,6 +169,7 @@ $scope.closeClick = function() {
     });
 
 
+
 //trying to get latlng from address - for the business registration page
 $scope.getCoordinates = function(){
   $scope.geodata = {};
@@ -186,7 +198,6 @@ $scope.getCoordinates = function(){
         data: 'newbusinesslocation',
         animation: google.maps.Animation.DROP//not working
     	};
-    	$scope.markers.push($scope.busmarker);
 
 
      }, 

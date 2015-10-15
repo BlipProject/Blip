@@ -37,7 +37,16 @@ angular
       })
       .otherwise({
         redirectTo: '/'
+      })
+      .when('/registerbusiness', {
+        templateUrl: 'views/registerbusiness.html',
+        controller: 'MapCtrl',
+        controllerAs: 'map'
+      })
+      .otherwise({
+        redirectTo: '/'
       });
+
   })
  .config(function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
