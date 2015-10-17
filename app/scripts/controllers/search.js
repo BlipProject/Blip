@@ -7,7 +7,12 @@ angular.module('blipApp')
 		//Stores geolocation data to send to php script
 		var data;
 		//Store search result returned from server
-		$scope.searchResult;
+		$scope.searchResult="";
+		//Stores filtered data (Quick filter buttons)
+		$scope.filterSearchResult = [];
+		//Variable to set the number of results displayed initialy
+		//Modify to show more/less results
+		$scope.showAmountFilter = 30;
 		
 		$scope.getLocation = function(){
 
@@ -27,8 +32,6 @@ angular.module('blipApp')
 				        };
 
 			        	getLocationResults(data);
-			        	console.log(data);
-			        	//alert(data.longitude + " " + data.latitude);
 					});
 			    });
 			}
@@ -39,13 +42,12 @@ angular.module('blipApp')
 		///////////
 		//TESTING URL http://localhost/blip/app/phpCore/search.php
 		var getLocationResults = function(data){
-			var callSearch = $http.post('../phpCore/search.php', data)
+			var callSearch = $http.post('http://localhost/blip/app/phpCore/search.php', data)
 		        .success(function(data, status, headers, config)
 		        {
 		        	$scope.searchResult = data;
 		        	$scope.filterSearchResult = $scope.searchResult;
-				    console.log(status + ' - ' + "Success"); 
-				    console.log($scope.searchResult);         
+				    console.log(status + ' - ' + "Success");        
 	            })
 		        .error(function(data, status, headers, config)
 		        {
@@ -53,9 +55,7 @@ angular.module('blipApp')
 		        });
 		};
 
-
-		$scope.filterSearchResult = [];
-
+		//Called to return filtered content if butten is pressed on main UI
 		$scope.getFilter = function(filter){
 			if(filter !== "All")
 			{
@@ -66,7 +66,6 @@ angular.module('blipApp')
 						$scope.filterSearchResult.push(value);
 					}
 				});
-				console.log($scope.filterSearchResult);
 			}
 			else
 			{
@@ -75,25 +74,30 @@ angular.module('blipApp')
 		};
 
 
+		$scope.typeHeadClass;
 		//Set class for individual search locations based off location type
 		$scope.setResultClass = function (classIn){
 			switch(classIn)
 			{
 				case 'Bar':
 				{
-					return "result-header-bar";
+					$scope.typeHeadClass = "result-header-bar";
+					return 'fa fa-glass fa-lg';
 				}
 				case 'Restaurant':
 				{
-					return "result-header-restaurant";
+					$scope.typeHeadClass = "result-header-restaurant";
+					return 'fa fa-cutlery fa-lg';
 				}
 				case 'Supermarket':
 				{
-					return "result-header-shop";
+					$scope.typeHeadClass = "result-header-shop";
+					return 'fa fa-shopping-cart fa-lg';
 				}
 				case 'Other':
 				{
-					return "result-header-other";
+					$scope.typeHeadClass = "result-header-other";
+					return "";
 				}
 				default:
 				{

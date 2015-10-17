@@ -3,10 +3,10 @@
 ///////////
 //Variables for custom colours
 
-$bar-colour: #FF6961;
-$restaurant-colour:#AEC6CF;
-$shop-colour:#77DD77;
-$other-colour:#EDF798;
+$bar-colour: #FFECEC;
+$restaurant-colour:#ECF4FF;
+$shop-colour:#EAFFEF;
+$other-colour:#FFFFE3;
 
 $box-shadow-colour:#9E9E9E;
 
@@ -19,7 +19,26 @@ $box-shadow-colour:#9E9E9E;
 $fontHeadeing: 26px;
 $fontMain: 20px;
 
-$fontColour:#7f8c8d;
+$fontColour:#000;
+
+
+
+/////////////////
+//Media Queries//
+/////////////////
+
+
+//screen-xs (xtra small)
+$screen-xs : 480px;
+
+//screen sm (small)
+$screen-sm: 768px;
+
+//screen-md (medium)
+$screen-md : 992px;
+
+//screen-lg (large)
+$screen-lg : 1200px;
 
 
 
@@ -30,7 +49,9 @@ $fontColour:#7f8c8d;
 //header//
 $resultHeaderWidth: 100%;
 $resultHeaderHeight: 40px;
-$resultHeaderPadding: 5px;
+$resultHeaderPadding: 6px;
+
+
 
 
 ///////////////////////
@@ -41,4 +62,7 @@ $resultHeaderPadding: 5px;
 $navbar-default-bg:#3498db;
 $navbar-default-link-color:#fff;
 $navbar-default-link-active-color:#fff;
+
+//Gutter
+$grid-gutter-width: 10px;
 

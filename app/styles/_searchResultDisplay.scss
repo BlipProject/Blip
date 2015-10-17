@@ -6,12 +6,19 @@
 	height:auto;
 	min-height:150px;
 	overflow:auto;
+	background-color:#fff;
 	box-shadow: 0px 0px 2px 0px $box-shadow-colour;
 	margin-bottom:20px;
+	border-radius:1px;
 }
 
 //Result Headers
 //See "SearchResultDisply"
+
+.location-icon{
+	margin:5px 5px 0px 0px; 
+	color:#9E9E9E;
+}
 
 .result-header{
 	width:$resultHeaderWidth;
@@ -21,30 +28,39 @@
 	color:$fontColour;
 	font-size:$fontMain;
 	background-color:$box-shadow-colour;
+	box-shadow: 0px 1px 1px -1px $box-shadow-colour;
 }
 
 .result-header-bar{
-	background-color:$bar-colour;
+	background-color:$bar-colour !important;
 }
 
 .result-header-restaurant{
-	background-color:$restaurant-colour;
+	background-color:$restaurant-colour !important;
 }
 
 .result-header-shop{
-	background-color:$shop-colour;
+	background-color:$shop-colour !important;
 }
 
 .result-header-other{
-	background-color:$other-colour;
+	background-color:$other-colour !important;
 }
 
 //Result Content
 
 .result-content{
-	width:100%;
+	width:60%;
 	height:auto;
-	padding:10px;
+	padding:10px 10px 0px 10px;
 	height:auto;
 	float:left;
+
+	@media(max-width:$screen-sm){
+		width:100%;
+	}
+}
+
+.result-content-image{
+	float:right;
 }

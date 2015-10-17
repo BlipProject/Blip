@@ -5,7 +5,7 @@
 .quickBTNContainer{
 	margin-bottom:20px;
 	
-	@media(max-width:767px){
+	@media(max-width:$screen-sm){
 		width:100% !important;
 		height:60px !important;
 	}	
@@ -17,7 +17,7 @@
 	height:60px !important;
 	margin-top:20px;
 
-	@media(max-width:767px){
+	@media(max-width:$screen-sm){
 		margin-top:0px;
 		width:19% !important;
 		height:60px !important;

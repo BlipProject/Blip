@@ -21,6 +21,9 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
+        templateUrl: 'views/landing.html',
+      })
+      .when('/searchResult', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
@@ -36,7 +39,7 @@ angular
         controllerAs: 'map'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: 'views/landing.html'
       });
   })
  .config(function(uiGmapGoogleMapApiProvider) {
@@ -45,6 +48,6 @@ angular
         v: '3.20', //defaults to latest 3.X anyhow
         libraries: 'weather,geometry,visualization'
     });
-})
+});
 
 

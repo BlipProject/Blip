@@ -1,24 +1,18 @@
 <div ng-controller="LocationSearchCtrl" ng-init="getFilter('All')">
-  <div class="quickBTNContainer">
-    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('All')">ALL</button>
-    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('Bar')"><i class="fa fa-glass fa-2x"></i></button>
-    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('Restaurant')"><i class="fa fa-cutlery fa-2x"></i></button>
-    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('Supermarket')"><i class="fa fa-shopping-cart fa-2x"></i></button>
-    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('Other')">OTHER</button>
-  </div>
+
+  <div ng-include="'views/componants/quickButtons.html'"></div>
 
   <div ng-init="getLocation()">
-    <div ng-repeat="venue in filterSearchResult track by $index" >
+    <div ng-repeat="venue in filterSearchResult | limitTo:showAmountFilter track by $index" >
       <div class="result-wrapper">
-        <div class="result-header" ng-class="setResultClass(venue.CategoryName)">{{venue.LocationName}}<span class="pull-right">Type : {{venue.CategoryName}}</span></div>
+        <div class="result-header" ng-class="typeHeadClass">{{venue.LocationName}}<span class="pull-right location-icon" ng-class="setResultClass(venue.CategoryName)"></span></div>
         <div class="result-content"> 
+          <p>{{$index}}</p>
           <p>Description : {{venue.LocationDescription}}</p>
           <p>City : {{venue.City}}</p>
           <p>Distance : {{venue.distance | number : 1}}km</p>
-
-          <p> ipsum dolor sit amet, consectetur adipisicing elit. Sint animi distinctio, odit voluptas necessitatibus amet facere quaerat. Commodi amet ad ullam corporis, quae consequatur voluptates ipsam atque dolor hic iste illo temporibus exercitationem obcaecati repellat est, nostrum similique necessitatibus ipsum quam velit! Laboriosam quae facere, tenetur animi rem corrupti assumenda, cumque explicabo voluptas ullam laborum veniam in aspernatur asperiores odit ab magni voluptatum quam? Nihil perspiciatis dicta delectus repellat quam. Doloremque voluptas facere ab modi, voluptatibus commodi ad dolore vel quas amet eveniet voluptatem vero ullam id asperiores placeat, dolores et, dignissimos voluptatum non minima voluptates! Laboriosam sunt vero rem.</p>
-          
         </div>
+        <div class="result-content-image image-responsive"><img class="" src="http://lorempixel.com/400/130/city"/></div>
       </div>
     </div>
   </div>
