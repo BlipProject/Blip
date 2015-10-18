@@ -38,14 +38,15 @@ angular
         controller: 'MapCtrl',
         controllerAs: 'map'
       })
-      .when('/register_business', {
-        templateUrl: 'views/register_business.html',
-        controller: 'RegisterBusinessCtrl',
-        controllerAs: 'register_business'
+      .when('/registerbusiness', {
+        templateUrl: 'views/registerbusiness.html',
+        controller: 'MapCtrl',
+        controllerAs: 'map'
       })
       .otherwise({
         redirectTo: 'views/landing.html'
       });
+
   })
  .config(function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
@@ -54,5 +55,8 @@ angular
         libraries: 'weather,geometry,visualization'
     });
 });
+
+
+ 
 
 

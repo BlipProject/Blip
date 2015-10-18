@@ -1,19 +1,18 @@
 <style>.angular-google-map-container { height: 400px; }</style>
 
-<div ng-controller="MapCtrl">
-  <div class="quickBTNContainer">
-    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('All')">ALL</button>
-    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('Bar')"><i class="fa fa-glass fa-2x"></i></button>
-    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('Restaurant')"><i class="fa fa-cutlery fa-2x"></i></button>
-    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('Supermarket')"><i class="fa fa-shopping-cart fa-2x"></i></button>
-    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('Other')">OTHER</button>
+<div>
+  <div class="quick-filter-wrapper" ng-controller="LocationSearchCtrl">
+    <div ng-include="'views/componants/quickButtons.html'"></div>
   </div>
-  
-  <div ng-init="getLocation()"></div>
-
-  <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-  <ui-gmap-marker coords='marker.coords' idKey='marker.id'></ui-gmap-marker>
-
-  </ui-gmap-google-map>
-
+  <div ng-controller="MapCtrl" ng-init="getLocation()" class="container content-wrapper">
+    <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+      <ui-gmap-marker coords='youarehere.coords' idKey='youarehere.id'>    
+      </ui-gmap-marker>
+      <ui-gmap-window coords="markers.coords" show="windowOptions.show" closeClick="closeClick()">
+        <div>Hello</div>
+      </ui-gmap-window>
+      <ui-gmap-markers models="markers" idkey="markers.id" coords="'coords'" click="'onClick'" events="markers.events" >
+      </ui-gmap-markers>
+    </ui-gmap-google-map>
+  </div>
 </div>
