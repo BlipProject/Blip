@@ -38,6 +38,11 @@ angular
         controller: 'MapCtrl',
         controllerAs: 'map'
       })
+      .when('/register_business', {
+        templateUrl: 'views/register_business.html',
+        controller: 'RegisterBusinessCtrl',
+        controllerAs: 'register_business'
+      })
       .otherwise({
         redirectTo: 'views/landing.html'
       });
