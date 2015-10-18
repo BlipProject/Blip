@@ -21,6 +21,9 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
+        templateUrl: 'views/landing.html',
+      })
+      .when('/searchResult', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
@@ -35,16 +38,13 @@ angular
         controller: 'MapCtrl',
         controllerAs: 'map'
       })
-      .otherwise({
-        redirectTo: '/'
-      })
       .when('/registerbusiness', {
         templateUrl: 'views/registerbusiness.html',
         controller: 'MapCtrl',
         controllerAs: 'map'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: 'views/landing.html'
       });
 
   })
@@ -54,9 +54,8 @@ angular
         v: '3.20', //defaults to latest 3.X anyhow
         libraries: 'weather,geometry,visualization'
     });
+});
 
-
-})
 
  
 

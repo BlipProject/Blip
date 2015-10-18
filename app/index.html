@@ -27,13 +27,14 @@
 
 
     <!-- Add your site or application content here -->
-    <div ng-include="'views/componants/nav.html'" scope="" onload=""></div>
-    <div id="page-content-wrapper">
-      <div class="container">
+    <div class="container-fluid">    
+      <div ng-include="'views/componants/nav.html'" scope="" onload=""></div>
+      <div>
         <div ng-view=""></div>
       </div>
-      <div ng-include="'views/componants/footer.html'" scope="" onload=""></div>
     </div>
+    <div ng-include="'views/componants/footer.html'" scope="" onload=""></div>
+
     
 
 

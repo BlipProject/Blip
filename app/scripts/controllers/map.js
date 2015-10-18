@@ -60,6 +60,7 @@ angular.module('blipApp')
 					});
 			    });
 			}
+<<<<<<< HEAD
 
 			$scope.markers = [
     {
@@ -111,6 +112,7 @@ $scope.closeClick = function() {
     $scope.windowOptions.show = false;
 };
 
+/*
 		};
 
 		///////////
@@ -168,8 +170,7 @@ $scope.closeClick = function() {
 
     });
 
-
-
+*/
 //trying to get latlng from address - for the business registration page
 $scope.getCoordinates = function(){
   $scope.geodata = {};

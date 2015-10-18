@@ -5,7 +5,7 @@ TOP NAV
 <div ng-controller="NavCtrl">
 <div class="header">
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <a class="navbar-brand" href="#/">blip</a>
+    <img class="navbar-brand" src="/images/blip_logo.png" />
       <div class="container">
         <div class="pull-right">
           <button id="menu-toggle" type="button" class="navbar-toggle collapsed" >
@@ -29,8 +29,9 @@ TOP NAV
 
 <!--///////
 Side NAV
+///////////
+http://startbootstrap.com/template-overviews/simple-sidebar/
 ////////-->
-
 
 <div id="wrapper">
   <div id="sidebar-wrapper">
@@ -51,9 +52,14 @@ Side NAV
                   <i class="fa fa-cogs"></i> Quick Settings
               </a>
           </li>
-          <li>
-              <a href="#/map">Map View</a>
-          </li>
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select View
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><a href="#/searchResult">Result View</a></li>
+              <li><a href="#/map">Map View</a></li>
+            </ul>
+          </div>
           <li>
               <a href="#/registerbusiness">Register Your Business</a>
           </li>
