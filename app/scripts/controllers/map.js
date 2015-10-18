@@ -60,7 +60,7 @@ angular.module('blipApp')
 					});
 			    });
 			}
-<<<<<<< HEAD
+
 
 			$scope.markers = [
     {
@@ -89,30 +89,30 @@ angular.module('blipApp')
     }
 ];
 
-$scope.addMarkerClickFunction = function(markersArray){
-    angular.forEach(markersArray, function(value, key) {
-        value.onClick = function(){
-                $scope.onClick(value.data);
-            };
-    });
+		$scope.addMarkerClickFunction = function(markersArray){
+		    angular.forEach(markersArray, function(value, key) {
+		        value.onClick = function(){
+		                $scope.onClick(value.data);
+		            };
+		    });
 
-}; 
+		}; 
 
-$scope.windowOptions = {
-    show: false
-};
+		$scope.windowOptions = {
+		    show: false
+		};
 
-$scope.onClick = function(data) {
-    $scope.windowOptions.show = !$scope.windowOptions.show;
-    console.log('$scope.windowOptions.show: ', $scope.windowOptions.show);
-    console.log('This is a ' + data);
-};
+		$scope.onClick = function(data) {
+		    $scope.windowOptions.show = !$scope.windowOptions.show;
+		    console.log('$scope.windowOptions.show: ', $scope.windowOptions.show);
+		    console.log('This is a ' + data);
+		};
 
-$scope.closeClick = function() {
-    $scope.windowOptions.show = false;
-};
+		$scope.closeClick = function() {
+		    $scope.windowOptions.show = false;
+		};
 
-/*
+
 		};
 
 		///////////
@@ -127,7 +127,7 @@ $scope.closeClick = function() {
 		        	$scope.filterSearchResult = $scope.searchResult;
 				    console.log(status + ' - ' + "Success"); 
 				    console.log($scope.searchResult);         
-	            })
+		        })
 		        .error(function(data, status, headers, config)
 		        {
 		            console.log(status + ' - ' + 'Error');
@@ -147,13 +147,13 @@ $scope.closeClick = function() {
 
 						//something like this to create a marker for each filtered result???
 						// var mrk = {
-      //   					id: This.value,
-      //   						coords: {
-      //       					latitude: this.value.latitude,
-      //       					longitude: this.value.longitude
-      //   						}
-      //   					}
-      						//$scope.markers.push(mrk);
+		//   					id: This.value,
+		//   						coords: {
+		//       					latitude: this.value.latitude,
+		//       					longitude: this.value.longitude
+		//   						}
+		//   					}
+								//$scope.markers.push(mrk);
 					}
 				});
 				console.log($scope.filterSearchResult);
@@ -168,46 +168,46 @@ $scope.closeClick = function() {
 
 		uiGmapGoogleMapApi.then(function(maps) {
 
-    });
-
-*/
-//trying to get latlng from address - for the business registration page
-$scope.getCoordinates = function(){
-  $scope.geodata = {};
-  $scope.queryResults = {};
-  $scope.queryError = {};
-  $scope.address = document.getElementById('busaddress').value;
-  console.log($scope.address);
-
-  $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + 
-            $scope.address + '&key=AIzaSyCn9zl42b2gnUt92A7v_OcAJB4OUem-zbM')
-    .then(function(_results){
-       console.log(_results.data);
-
-       $scope.queryResults = _results.data.results;
-       $scope.geodata = $scope.queryResults[0].geometry;
-
-         var buslatlng = $scope.queryResults[0].geometry.location;
-  		console.log(buslatlng);
-
-  		$scope.busmarker =  {
-        id: 5,
-        coords: {
-            latitude: buslatlng.lat,
-            longitude: buslatlng.lng
-        	},
-        data: 'newbusinesslocation',
-        animation: google.maps.Animation.DROP//not working
-    	};
+		});
 
 
-     }, 
-     function error(_error){
-        $scope.queryError = _error;
-        console.log($scope.queryError);
-     })
+		//trying to get latlng from address - for the business registration page
+		$scope.getCoordinates = function(){
+		  $scope.geodata = {};
+		  $scope.queryResults = {};
+		  $scope.queryError = {};
+		  $scope.address = document.getElementById('busaddress').value;
+		  console.log($scope.address);
 
-}
+		  $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + 
+		            $scope.address + '&key=AIzaSyCn9zl42b2gnUt92A7v_OcAJB4OUem-zbM')
+		    .then(function(_results){
+		       console.log(_results.data);
 
-}]);
+		       $scope.queryResults = _results.data.results;
+		       $scope.geodata = $scope.queryResults[0].geometry;
+
+		         var buslatlng = $scope.queryResults[0].geometry.location;
+		  		console.log(buslatlng);
+
+		  		$scope.busmarker =  {
+		        id: 5,
+		        coords: {
+		            latitude: buslatlng.lat,
+		            longitude: buslatlng.lng
+		        	},
+		        data: 'newbusinesslocation',
+		        animation: google.maps.Animation.DROP//not working
+		    	};
+
+
+		     }, 
+		     function error(_error){
+		        $scope.queryError = _error;
+		        console.log($scope.queryError);
+		     })
+
+		}
+
+		}]);
 
