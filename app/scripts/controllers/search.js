@@ -55,8 +55,15 @@ angular.module('blipApp')
 		        });
 		};
 
+
+		//Called from front-end to set filtered results and set active class on button
+		$scope.setFilterSetClass = function(filter,index){
+			getFilter(filter);
+			setQuickFilterClass(index);
+		};
+
 		//Called to return filtered content if butten is pressed on main UI
-		$scope.getFilter = function(filter){
+		var getFilter = function(filter){
 			if(filter !== "All")
 			{
 				$scope.filterSearchResult = [];
@@ -73,9 +80,16 @@ angular.module('blipApp')
 			}
 		};
 
+		//Sets active class on selected filter button
+		$scope.activeFilter=0;
+		var setQuickFilterClass = function(type){
+			$scope.activeFilter = type;
+		};
+
+
 
 		$scope.typeHeadClass;
-		//Set class for individual search locations based off location type
+		//Set class for individual search results based off location type
 		$scope.setResultClass = function (classIn){
 			switch(classIn)
 			{
@@ -83,6 +97,7 @@ angular.module('blipApp')
 				{
 					$scope.typeHeadClass = "result-header-bar";
 					return 'fa fa-glass fa-lg';
+					console.log($scope.activeFilter);
 				}
 				case 'Restaurant':
 				{
@@ -97,7 +112,7 @@ angular.module('blipApp')
 				case 'Other':
 				{
 					$scope.typeHeadClass = "result-header-other";
-					return "";
+					return "fa fa-plus-circle fa-lg";
 				}
 				default:
 				{

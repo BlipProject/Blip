@@ -1,8 +1,9 @@
 <div ng-controller="LocationSearchCtrl" ng-init="getFilter('All')">
-
-  <div ng-include="'views/componants/quickButtons.html'"></div>
-
-  <div ng-init="getLocation()">
+  <!--Include quick filter buttons-->
+  <div class="quick-filter-wrapper">
+    <div ng-include="'views/componants/quickButtons.html'"></div>
+  </div>
+  <div class="container content-wrapper" ng-init="getLocation()">
     <div ng-repeat="venue in filterSearchResult | limitTo:showAmountFilter track by $index" >
       <div class="result-wrapper">
         <div class="result-header" ng-class="typeHeadClass">{{venue.LocationName}}<span class="pull-right location-icon" ng-class="setResultClass(venue.CategoryName)"></span></div>

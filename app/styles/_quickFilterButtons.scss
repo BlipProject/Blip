@@ -2,20 +2,27 @@
 //Quick Filter Buttons//
 ////////////////////////
 
-.quickBTNContainer{
+.quick-filter-wrapper{
+	position:fixed;
+	left:0px;
+	top:50px;
+	width:100%;
+	background-color:#fff;
+	height:auto;
 	margin-bottom:20px;
-	
-	@media(max-width:$screen-sm){
-		width:100% !important;
-		height:60px !important;
-	}	
+	box-shadow: 0px 1px 1px -1px $box-shadow-colour;
 }
 
+
+button,i {outline: 0; border:none;} 
+
 .quickBTN{
+	background-color:#fff;
+	float:left;
 	width:auto !important;
 	min-width:60px;
 	height:60px !important;
-	margin-top:20px;
+	margin-top:0px;
 
 	@media(max-width:$screen-sm){
 		margin-top:0px;
@@ -23,3 +30,9 @@
 		height:60px !important;
 	}	
 }
+
+.quick-button-all:hover, .quick-button-all-active{border-bottom: 5px solid $box-shadow-colour;height:55px;}
+.quick-button-bar:hover, .quick-button-bar-active{border-bottom: 5px solid $bar-colour;height:55px;}
+.quick-button-restaurant:hover,.quick-button-restaurant-active{border-bottom: 5px solid $restaurant-colour;height:55px;}
+.quick-button-shop:hover, .quick-button-shop-active{border-bottom: 5px solid $shop-colour;height:55px;}
+.quick-button-other:hover, .quick-button-other-active{border-bottom: 5px solid $other-colour;height:55px;}

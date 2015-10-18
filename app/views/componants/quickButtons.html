@@ -1,7 +1,13 @@
-<div class="quickBTNContainer">
-    <button type="button" class="btn btn-default quickBTN" ng-click="getFilter('All')">ALL</button>
-    <button type="button" class="btn btn-default quickBTN result-header-bar" ng-click="getFilter('Bar')"><i class="fa fa-glass fa-2x"></i></button>
-    <button type="button" class="btn btn-default quickBTN result-header-restaurant" ng-click="getFilter('Restaurant')"><i class="fa fa-cutlery fa-2x"></i></button>
-    <button type="button" class="btn btn-default quickBTN result-header-shop" ng-click="getFilter('Supermarket')"><i class="fa fa-shopping-cart fa-2x"></i></button>
-    <button type="button" class="btn btn-default quickBTN result-header-other" ng-click="getFilter('Other')">OTHER</button>
+<div class="container ">
+
+    <button type="button" ng-class="{'quick-button-all-active': activeFilter == 0}" class="quickBTN quick-button-all" ng-click="setFilterSetClass('All',0)">ALL</button>
+
+    <button type="button" ng-class="{'quick-button-bar-active': activeFilter == 1}" class="quickBTN quick-button-bar" ng-click="setFilterSetClass('Bar',1)"><i class="fa fa-glass fa-2x"></i></button>
+
+    <button type="button" ng-class="{'quick-button-restaurant-active': activeFilter == 2}" class="quickBTN quick-button-restaurant" ng-click="setFilterSetClass('Restaurant',2)"><i class="fa fa-cutlery fa-2x"></i></button>
+
+    <button type="button" ng-class="{'quick-button-shop-active': activeFilter == 3}" class="quickBTN quick-button-shop" ng-click="setFilterSetClass('Supermarket',3)"><i class="fa fa-shopping-cart fa-2x"></i></button>
+
+    <button type="button" ng-class="{'quick-button-other-active': activeFilter == 4}" class="quickBTN quick-button-other" ng-click="setFilterSetClass('Other',4)"><i class="fa fa-plus-circle fa-2x"></i></button>
+
 </div>

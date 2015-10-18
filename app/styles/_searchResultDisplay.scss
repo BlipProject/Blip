@@ -2,7 +2,10 @@
 //Search Result Display//
 /////////////////////////
 
+.content-wrapper{margin-top:80px;}
+
 .result-wrapper{
+	clear:both;
 	height:auto;
 	min-height:150px;
 	overflow:auto;
@@ -32,19 +35,31 @@
 }
 
 .result-header-bar{
-	background-color:$bar-colour !important;
+	border-top: 5px solid $bar-colour;
+	background-color:$result-header-bg;
+
+	.fa{color:$bar-colour;}
 }
 
 .result-header-restaurant{
-	background-color:$restaurant-colour !important;
+	border-top: 5px solid $restaurant-colour;
+	background-color:$result-header-bg;
+
+	.fa{color:$restaurant-colour;}
 }
 
 .result-header-shop{
-	background-color:$shop-colour !important;
+	border-top: 5px solid $shop-colour;
+	background-color:$result-header-bg;
+
+	.fa{color:$shop-colour;}
 }
 
 .result-header-other{
-	background-color:$other-colour !important;
+	border-top: 5px solid $other-colour;
+	background-color:$result-header-bg;
+
+	.fa{color:$other-colour;}
 }
 
 //Result Content

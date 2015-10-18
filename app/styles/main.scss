@@ -15,6 +15,10 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // endbower
 
 
+html {
+	//Show scrollbar (chrome) to stop site moving when content is less than height of screen (Annoying)
+    overflow-y: scroll;
+}
 
 body{
 	padding-top:50px;
