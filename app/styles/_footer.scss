@@ -1,0 +1,38 @@
+//////////
+//Footer//
+//////////
+
+.footer{
+	margin-top:30px;
+	position:relative;
+	min-height:200px;
+	height:auto;
+	color:#fff;
+	background-color:$navbar-default-bg;
+	ul{
+		list-style-type: none;
+	}
+}
+
+.foot-box{
+	padding: 10px;
+	margin-top:50px;
+	height:100px;
+	@media(max-width:$screen-sm){
+		margin-top:20px;
+	}
+}
+
+.foot-border-right{
+	box-shadow: 3px 0px 5px -4px #fff;
+	@media(max-width:$screen-sm){
+		box-shadow: 0px 3px 5px -4px #fff;
+	}
+}
+
+.footer-avatar{
+	position:absolute;
+	top:-390px;
+	left:77%;
+	margin-left:100px;
+}
