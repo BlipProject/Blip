@@ -1,14 +1,50 @@
 <style>.angular-google-map-container { height: 400px; }</style>
 <div ng-controller="RegisterBusinessCtrl" class="container">
-	<div ng-controller="MapCtrl" class="container">
-		<form novalidate  ng-init="getLocation()">
-		    <label>Enter Address</label>
-		    <input type="text" id="busaddress"><br>
-		    <input type="submit" ng-click="getCoordinates()" value="Go" />
+	<div>
+		<form novalidate>
+			<label>Name</label>
+		    <input type="text" ng-model="busName">
+		    <br><br>
+
+		    <label>Category</label>
+		    <select id="busCategory">
+		    	<!--Will work when db max connections is fixed.. question if necessary-->
+		    	<!--<option ng-repeat="item in categories track by $index">{{item.CategoryName}}</option>-->
+		    	<option value="11">Supermarket</option>
+		    	<option value="21">Bar</option>
+		    	<option value="31">Resturant</option>
+		    	<option value="41">Other</option>
+		    </select>
+			<br><br>
+
+		    <label>Address 1</label>
+		    <input type="text" ng-model="busAddress">
+		    <br>
+		    <label>Address 2</label>
+		    <input type="text" ng-model="busAddress2">
+		    <br>
+		    <label>City</label>
+		    <input type="text" ng-model="busCity">
+		    <br>
+		    <label>Country</label>
+		    <input type="text" ng-model="busCountry">
+		    <br><br>
+
+		    <label>Description</label>
+		    <input type="text" ng-model="busDescription">
+		    <!--<input type="text" id="busaddress">
+		    <input type="button" class="btn btn-default" ng-click="getCoordinates()" value="Find Me" />-->
+		    <input type="button" class="btn btn-default" ng-click="getCoordinates(busAddress, busAddress2, busCity, busCountry)" value="Continue" />
+
+		    <div id="mapLocation">
+			  	<label>Is this your location?</label>
+				<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+				    <ui-gmap-marker coords='busmarker.coords' idKey='busmarker.id'>
+				</ui-gmap-google-map>
+				<input type="button" class="btn btn-success" ng-click="registerBusiness(busName, busCity, busDescription)" value="Yes">
+				<input type="button" class="btn btn-danger" value="No">
+			</div>
 		</form>
-	  	<label>Is this your location?</label>
-		<ui-gmap-google-map center='busmarker.coords' zoom='14'>
-		    <ui-gmap-marker coords='busmarker.coords' idKey='busmarker.id'>
-		</ui-gmap-google-map>
+
 	</div>
 </div>
