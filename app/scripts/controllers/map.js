@@ -30,7 +30,7 @@ angular.module('blipApp')
 				        };
 
 			        	getLocationResults(data);
-			        	console.log(data);
+			        	//console.log(data);
 			        	//alert(data.longitude + " " + data.latitude);
 
 			        	$scope.map = { 
@@ -43,7 +43,13 @@ angular.module('blipApp')
 							coords: {
 								latitude: data.latitude,
 								longitude: data.longitude
-							}
+							},
+							options: {
+                            labelContent: 'YOU ARE HERE',
+                            labelAnchor: '22 0',
+                            labelClass: 'marker-labels',
+                            labelVisible: true
+                        }
 						
 						}
 
@@ -54,7 +60,6 @@ angular.module('blipApp')
             						longitude: data.longitude
         							},
         					data: 'newbusinesslocation',
-       	 					animation: google.maps.Animation.DROP//not working
     						};
 						
 					});
@@ -66,7 +71,13 @@ angular.module('blipApp')
         id: 0,
         coords: {
             latitude: 54.274679,
-            longitude: -8.471354
+            longitude: -8.471354,
+            options: {
+                            labelContent: 'Hardcoded location',
+                            labelAnchor: '22 0',
+                            labelClass: 'marker-labels',
+                            labelVisible: true
+                        }
         },
         data: 'random'
     },
@@ -74,7 +85,13 @@ angular.module('blipApp')
         id: 1,
         coords: {
             latitude: 53.354497,
-            longitude:  -6.318959
+            longitude:  -6.318959,
+            options: {
+                            labelContent: 'Hardcoded location',
+                            labelAnchor: '22 0',
+                            labelClass: 'marker-labels',
+                            labelVisible: true
+                        }
         },
         data: 'random'
     },
@@ -82,7 +99,13 @@ angular.module('blipApp')
         id: 2,
         coords: {
             latitude: 53.361545,
-            longitude: -6.308740
+            longitude: -6.308740,
+            options: {
+                            labelContent: 'Hardcoded location',
+                            labelAnchor: '22 0',
+                            labelClass: 'marker-labels',
+                            labelVisible: true
+                        }
         },
         data: 'random'
     }
@@ -143,23 +166,50 @@ $scope.closeClick = function() {
 					{
 						$scope.filterSearchResult.push(value);
 
-						//something like this to create a marker for each filtered result???
-						// var mrk = {
-      //   					id: This.value,
-      //   						coords: {
-      //       					latitude: this.value.latitude,
-      //       					longitude: this.value.longitude
-      //   						}
-      //   					}
-      						//$scope.markers.push(mrk);
 					}
 				});
+				angular.forEach($scope.filterSearchResult, function(value){
+				console.log("got here");//not getting here - why????
+				//console.log(value);
+						var marker =  {
+        					id: value.LocationID,
+        					coords: {
+            					latitude: value.Latitude,
+            					longitude: value.Longitude
+        						}
+        					};
+
+        					console.log(marker);
+
+        					$scope.markers.push(marker);
+				});
+
 				console.log($scope.filterSearchResult);
+
 			}
 			else
 			{
 				$scope.filterSearchResult = $scope.searchResult;
+				angular.forEach($scope.filterSearchResult, function(value){
+				console.log("got here");//not getting here - why????
+				console.log(value);
+						var marker =  {
+        					id: value.LocationID,
+        					coords: {
+            					latitude: value.MapLat,
+            					longitude: value.MapLong
+        						}
+        					};
+
+        					console.log(marker);
+
+        					$scope.markers.push(marker);
+				});
+				
 			}
+
+			
+
 		};
 
 
@@ -170,7 +220,7 @@ $scope.closeClick = function() {
 
 
 
-//trying to get latlng from address - for the business registration page
+//get latlng from address - for the business registration page
 $scope.getCoordinates = function(){
   $scope.geodata = {};
   $scope.queryResults = {};

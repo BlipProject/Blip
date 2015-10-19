@@ -48,3 +48,4 @@
 	//Return Query Result to Frontend
 	echo $searchResults;
 	
+?>
