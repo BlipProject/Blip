@@ -36,7 +36,8 @@
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/search.js"></script>
         <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/dropdown.js"></script>
+       
+        <script src="scripts/controllers/userRegistration.js"></script>
         <!-- endbuild -->
 
 <!-- Start Artur test with cendo UI-->
@@ -82,55 +83,56 @@
         </div>
       </div>
     </div>
-<a ng-href="#/signIn">Sign In</a> <a ng-href="#/login" >Login</a>
 
-<div class="container">
+
+<div class="container" ng-controller="UserRegistrationCtrl" >
 <!-- SIGN IN-->
-  <form  role="form" name="registrationForm" action="phpCore/signIn.php" method="post">
+  <form  role="form"  name="registrationForm">
     <div><!-- NAME-->
       <label>Name</label></br>
-      <input type="text" name="name" ng-model="user.name" required ng-minlength="3" placeholder="min 3 characters"/>
+      <input type="text" name="name" ng-model="userName" />
+      <!-- 
       <span ng-show="registrationForm.name.$dirty && registrationForm.name.$error.required">Required</span>
-      <span ng-show="registrationForm.name.$dirty &&    registrationForm.name.$error.minlength">Minimum 3 characters</span>
+      <span ng-show="registrationForm.name.$dirty &&    registrationForm.name.$error.minlength">Minimum 3 characters</span>-->
     </div>
-    <div><!-- COUNTRY-->
+    <div><!-- COUNTRY id="my_dropdown"-->
       <label>Country..</label></br>
-      <input id="my_dropdown" type="text" name="country" ng-model="user.country" required placeholder="COUNTRY"/>
-      <span ng-show="registrationForm.name.$dirty && registrationForm.country.$error.required">Required</span>
+      <input  type="text" name="country" ng-model="userCountry" />
+      <!-- <span ng-show="registrationForm.name.$dirty && registrationForm.country.$error.required">Required</span>-->
 
     </div>
     <div><!-- EMAIL-->
       <label>Email</label></br>
-      <input type="email" name="email" ng-model="user.email" required placeholder="a@a.com"/>
-      <span ng-show="registrationForm.email.$dirty && registrationForm.email.$error.required">Required</span>
-      <span ng-show="registrationForm.email.$dirty  &&   registrationForm.email.$error.email">Not an email!</span>
+      <input type="email" name="email" ng-model="userEmail" />
+      <!-- <span ng-show="registrationForm.email.$dirty && registrationForm.email.$error.required">Required</span>
+      <span ng-show="registrationForm.email.$dirty  &&   registrationForm.email.$error.email">Not an email!</span>-->
     </div>
     <div><!-- PASSWORD-->
       <label>Password</label></br>
-      <input type="password" name="password" ng-model="user.password" required ng-minlength="8" placeholder="min 8 characters"/>
-      <span ng-show="registrationForm.password.$dirty && registrationForm.password.$error.required">Required</span>
-      <span ng-show="registrationForm.password.$dirty &&    registrationForm.password.$error.minlength">Minimum 8 characters</span>
+      <input type="password" name="password" ng-model="userPassword" />
+      <!-- <span ng-show="registrationForm.password.$dirty && registrationForm.password.$error.required">Required</span>
+      <span ng-show="registrationForm.password.$dirty &&    registrationForm.password.$error.minlength">Minimum 8 characters</span>-->
     </div></br>
-    <button  ng-disabled="registrationForm.$invalid">Sign In</button>
+    <button   ng-click='createRegistration(userName, userCountry, userEmail, userPassword)'  >Sign In</button>
   </form>
 </div>
 
 
 
-<!-- LOGIN-->
+<!-- LOGIN ng-disabled="registrationForm.$invalid"
 <div class="container">
-  <form action="phpCore/login.php" method="post">
+  <form action="../phpCore/login.php" method="post">
     <label>User Email</label></br>
     <input type="text" name="userEmail" /></br>
     <label>Password</label></br>
     <input type="password" name="userPassword"/></br></br>
     <input type="submit" value="LOGIN" />
   </form>
-</div>
+</div>-->
 
 
 
-<!-- Start Artur test with cendo UI-->
+<!-- Start Artur test with cendo UI
  <script>
                 $(document).ready(function () {
                     $("#my_dropdown").kendoComboBox({
@@ -150,10 +152,10 @@
                         index: -1
                     });
                 });
-</script>           
+</script> -->          
 <!-- STOP Artur test with cendo UI-->
 
-<!-- Start Artur test with Facebook-->
+<!-- Start Artur test with Facebook
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -264,7 +266,7 @@
         'Thanks for logging in, ' + response.name + '!';
     });
   }
-</script>
+</script>-->
 
 <!--
   Below we include the Login Button social plugin. This button uses
