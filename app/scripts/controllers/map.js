@@ -7,13 +7,11 @@ angular.module('blipApp')
 		//Stores geolocation data to send to php script
 		var data;
 		//Store search result returned from server
-		$scope.searchResult;
+		var searchResult = "";
 		$scope.youarehere;
 		$scope.map;
-		$scope.markers = [];
 		
 		$scope.getLocation = function(){
-
 			var positionOptions = {
 			  enableHighAccuracy: true,
 			  timeout: 1000,
@@ -21,6 +19,7 @@ angular.module('blipApp')
 			};
 
 			if (navigator.geolocation) {
+				console.log("got to getlocation function");
 			    navigator.geolocation.getCurrentPosition(function(position,positionOptions){
 					$scope.$apply(function(){
 			        	$scope.position = position;
@@ -29,9 +28,9 @@ angular.module('blipApp')
 				        	latitude : position.coords.latitude
 				        };
 
-			        	getLocationResults(data);
-			        	//console.log(data);
+			        	 getLocationResults(data);
 			        	//alert(data.longitude + " " + data.latitude);
+			    
 
 			        	$scope.map = { 
 							center: { latitude: data.latitude, longitude: data.longitude }, 
@@ -58,62 +57,17 @@ angular.module('blipApp')
         					coords: {
             						latitude: data.latitude,
             						longitude: data.longitude
-        							},
-        					data: 'newbusinesslocation',
+        							}
     						};
 						
 					});
 			    });
 			}
 
+			$scope.markers = [];
 
-			$scope.markers = [
-    {
-        id: 0,
-        coords: {
-            latitude: 54.274679,
-            longitude: -8.471354,
-            options: {
-                            labelContent: 'Hardcoded location',
-                            labelAnchor: '22 0',
-                            labelClass: 'marker-labels',
-                            labelVisible: true
-                        }
-        },
-        data: 'random'
-    },
-    {
-        id: 1,
-        coords: {
-            latitude: 53.354497,
-            longitude:  -6.318959,
-            options: {
-                            labelContent: 'Hardcoded location',
-                            labelAnchor: '22 0',
-                            labelClass: 'marker-labels',
-                            labelVisible: true
-                        }
-        },
-        data: 'random'
-    },
-    {
-        id: 2,
-        coords: {
-            latitude: 53.361545,
-            longitude: -6.308740,
-            options: {
-                            labelContent: 'Hardcoded location',
-                            labelAnchor: '22 0',
-                            labelClass: 'marker-labels',
-                            labelVisible: true
-                        }
-        },
-        data: 'random'
-    }
-];
-
-		$scope.addMarkerClickFunction = function(markersArray){
-		    angular.forEach(markersArray, function(value, key) {
+		$scope.addMarkerClickFunction = function(markers){
+		    angular.forEach(markers, function(value, key) {
 		        value.onClick = function(){
 		                $scope.onClick(value.data);
 		            };
@@ -128,7 +82,6 @@ angular.module('blipApp')
 		$scope.onClick = function(data) {
 		    $scope.windowOptions.show = !$scope.windowOptions.show;
 		    console.log('$scope.windowOptions.show: ', $scope.windowOptions.show);
-		    console.log('This is a ' + data);
 		};
 
 		$scope.closeClick = function() {
@@ -143,73 +96,87 @@ angular.module('blipApp')
 		///////////
 		//TESTING URL http://localhost/blip/app/phpCore/search.php
 		var getLocationResults = function(data){
+			console.log("got here - getlocationresults function");
+			var searchResults;
 			var callSearch = $http.post('http://localhost/Blip/app/phpCore/search.php', data)
 		        .success(function(data, status, headers, config)
 		        {
-		        	$scope.searchResult = data;
-		        	$scope.filterSearchResult = $scope.searchResult;
+		        	console.log(data);
+		        	searchResults = data;
+		        angular.forEach(data, function(value, key){
+						var marker =  {
+        					id: key,
+        					coords: {
+            					latitude: value.MapLat,
+            					longitude: value.MapLong
+        						},
+        					options: {
+                            	labelContent: 'database location',
+                            	labelAnchor: '22 0',
+                            	labelClass: 'marker-labels',
+                            	labelVisible: true
+                        	}
+
+        					};
+
+        					$scope.markers.push(marker);
+				});
+
+		        	        					console.log($scope.markers);
+
+
+		        	$scope.filterSearchResult = searchResult;
 				    console.log(status + ' - ' + "Success"); 
-				    console.log($scope.searchResult);         
+				    console.log(searchResult);  
 		        })
 		        .error(function(data, status, headers, config)
 		        {
 		            console.log(status + ' - ' + 'Error');
 		        });
+
 		};
+
 
 		$scope.filterSearchResult = [];
 
 		$scope.getFilter = function(filter){
+			console.log("got to getfilter function");
 			if(filter !== "All")
 			{
+				console.log("got here - filtering");
 				$scope.filterSearchResult = [];
-				angular.forEach($scope.searchResult, function(value){
+				angular.forEach(searchResult, function(value){
 					if(value.CategoryName === filter)
 					{
 						$scope.filterSearchResult.push(value);
 					}
 				});
-				angular.forEach($scope.filterSearchResult, function(value){
-				console.log("got here");//not getting here - why????
-				//console.log(value);
-						var marker =  {
-        					id: value.LocationID,
-        					coords: {
-            					latitude: value.Latitude,
-            					longitude: value.Longitude
-        						}
-        					};
-
-        					console.log(marker);
-
-        					$scope.markers.push(marker);
-				});
-
-				console.log($scope.filterSearchResult);
 
 			}
 			else
 			{
-				$scope.filterSearchResult = $scope.searchResult;
-				angular.forEach($scope.filterSearchResult, function(value){
-				console.log("got here");//not getting here - why????
-				console.log(value);
-						var marker =  {
-        					id: value.LocationID,
-        					coords: {
-            					latitude: value.MapLat,
-            					longitude: value.MapLong
-        						}
-        					};
-
-        					console.log(marker);
-
-        					$scope.markers.push(marker);
-				});
+				console.log("got here - unfiltered");
+				$scope.filterSearchResult = searchResult;
+				console.log(searchResult);//undefined?
 				
 			}
 
-			
+				// angular.forEach($scope.filterSearchResult, function(value){
+				// console.log("got here");
+				// console.log(value);
+				// 		var marker =  {
+    //     					id: value.LocationID,
+    //     					coords: {
+    //         					latitude: value.MapLat,
+    //         					longitude: value.MapLong
+    //     						}
+    //     					};
+
+    //     					console.log(marker);
+
+    //     					$scope.markers.push(marker);
+
+				// });
 
 		};
 
@@ -258,6 +225,20 @@ $scope.getCoordinates = function(){
 		     })
 
 		}
+
+		
+
+		$scope.$watch($scope.active, function() {
+        return $scope.markers;
+
+    }, function(newValue, oldValue) {
+        console.log('markers changed in $watch');
+        console.log($scope.markers);
+    }, 
+    true
+);
+
+		console.log($scope.markers);
 
 		}]);
 
