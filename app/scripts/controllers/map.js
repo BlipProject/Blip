@@ -111,7 +111,7 @@ angular.module('blipApp')
             					longitude: value.MapLong
         						},
         					options: {
-                            	labelContent: 'database location',
+                            	labelContent: value.LocationName,
                             	labelAnchor: '22 0',
                             	labelClass: 'marker-labels',
                             	labelVisible: true
@@ -122,7 +122,7 @@ angular.module('blipApp')
         					$scope.markers.push(marker);
 				});
 
-		        	        					console.log($scope.markers);
+		        console.log($scope.markers);
 
 
 		        	$scope.filterSearchResult = searchResult;
