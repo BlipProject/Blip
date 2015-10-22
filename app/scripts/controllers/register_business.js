@@ -13,7 +13,7 @@ angular.module('blipApp')
   	//Store categories for dropdown
   	$scope.categories;
   	//Store data about business to send to php script
-  	var busData = {};
+  	//var busData = {};
   	//Store business latitude and longtitude
   	var busLat;
   	var busLng;
@@ -40,9 +40,9 @@ angular.module('blipApp')
   		var catEl = document.getElementById("busCategory");
   		var busCategory = catEl.options[catEl.selectedIndex].value;
 
-  		busData = {
+  		var busData = {
   			name: busName,
-  			latitude: parseFloat(busLat).toFixed(5),
+  			latitude: parseFloat(busLat),
   			longtude: busLng,
   			city: busCity,
   			description: busDescription,
@@ -51,26 +51,6 @@ angular.module('blipApp')
   		};
 
   		console.log(busData);
-
-  		/*var request = $http({
-  			method: 'POST',
-  			url: 'http://localhost/blip/app/phpCore/register_business.php',
-  			data: busName,
-  			headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-  		});
-
-  		/*$http({
-  			method: 'POST',
-  			url: 'http://localhost/blip/app/phpCore/register_business.php',
-  			data: busData,
-  			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-  		}).
-            success(function(data, status, headers, config) {
-                console.log(data);
-            }).
-            error(function(data, status, headers, config) {
-
-            });*/
 
   		var insertBus = $http.post('http://localhost/blip/app/phpCore/register_business.php', busData)
 	        .success(function(data, status, headers, config)
@@ -115,7 +95,7 @@ angular.module('blipApp')
 		$scope.busmarker =  {
 			id: 5,
 			coords: {
-				latitude: buslatlng.lat,
+				latitude: buslatlng.lat.toFixed(5),
 				longitude: buslatlng.lng
 			}
 		};

@@ -12,7 +12,7 @@
 	$business = json_decode(file_get_contents("php://input"));
 	$busName = $business->name;
 	$busLat = $business->latitude;
-	$busLng = $business->longitude;
+	$busLng = $business->longtude;
 	$busCity = $business->city;
 	$busDescription = $business->description;
 	$busCategory = $business->category;
