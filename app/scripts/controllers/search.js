@@ -14,6 +14,10 @@ angular.module('blipApp')
 		//Modify to show more/less results
 		$scope.showAmountFilter = 30;
 		
+
+		//TODO : Move getLocation function to a service
+		//TODO : Move getLocationResults function to a service
+
 		$scope.getLocation = function(){
 
 			var positionOptions = {
@@ -62,7 +66,7 @@ angular.module('blipApp')
 			setQuickFilterClass(index);
 		};
 
-		//Called to return filtered content if butten is pressed on main UI
+		//Called to return filtered content
 		var getFilter = function(filter){
 			if(filter !== "All")
 			{
@@ -86,9 +90,7 @@ angular.module('blipApp')
 			$scope.activeFilter = type;
 		};
 
-
-
-		$scope.typeHeadClass;
+		$scope.typeHeadClass=" ";
 		//Set class for individual search results based off location type
 		$scope.setResultClass = function (classIn){
 			switch(classIn)
@@ -97,7 +99,6 @@ angular.module('blipApp')
 				{
 					$scope.typeHeadClass = "result-header-bar";
 					return 'fa fa-glass fa-lg';
-					console.log($scope.activeFilter);
 				}
 				case 'Restaurant':
 				{
