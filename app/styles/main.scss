@@ -9,6 +9,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "_quickFilterButtons";
 @import "_searchResultDisplay";
 @import "_footer.scss";
+@import "_settingsPannel.scss";
 
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
@@ -32,14 +33,4 @@ body{
 //Insert navBar styling
 
 
-
-
-////////////////
-//SidebarImage//
-
-.sidebarImg{
-	width:100%;
-	float:left;
-	margin-top:90%;
-}
 

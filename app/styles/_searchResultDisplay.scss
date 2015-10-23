@@ -2,9 +2,10 @@
 //Search Result Display//
 /////////////////////////
 
-.content-wrapper{margin-top:80px;}
+.content-wrapper{margin-top:80px; position:relative; min-height:500px;}
 
 .result-wrapper{
+	width:100%;
 	clear:both;
 	height:auto;
 	min-height:150px;
@@ -13,6 +14,7 @@
 	box-shadow: 0px 0px 2px 0px $box-shadow-colour;
 	margin-bottom:20px;
 	border-radius:1px;
+	float:left;
 }
 
 //Result Headers
@@ -78,4 +80,28 @@
 
 .result-content-image{
 	float:right;
+}
+
+
+//Search Result page 
+//Left $ right columns
+
+.content-left{
+	width:70%;
+	float:left;
+	@media(max-width:$screen-sm)
+	{
+		width:100%
+	}
+}
+.content-right{
+	width:25%;
+	margin-left:20px;
+	float:left;
+	position:absolute;
+	left:70%;
+	@media(max-width:$screen-sm)
+	{
+		display:none;
+	}
 }

@@ -1,3 +1,16 @@
+///////////////////////
+//Bootstrap Overrides//
+///////////////////////
+
+//NavBar
+$navbar-default-bg:#3498db;
+$navbar-default-link-color:#fff;
+$navbar-default-link-active-color:#fff;
+
+//Gutter
+$grid-gutter-width: 10px;
+
+
 ///////////
 //COLOURS//
 ///////////
@@ -55,15 +68,11 @@ $result-header-bg:#fff;
 
 
 
-///////////////////////
-//Bootstrap Overrides//
-///////////////////////
 
-//NavBar
-$navbar-default-bg:#3498db;
-$navbar-default-link-color:#fff;
-$navbar-default-link-active-color:#fff;
 
-//Gutter
-$grid-gutter-width: 10px;
 
+///////////////////
+//Settings Pannel//
+///////////////////
+
+$settings-header-colour:$navbar-default-bg;

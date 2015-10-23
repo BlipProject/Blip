@@ -2,7 +2,7 @@
 
 angular.module('blipApp')
 	
-	.controller('LocationSearchCtrl', ['$http','$scope', function ($http,$scope) {
+	.controller('LocationSearchCtrl', ['$http','$scope','GeoLocationService', function ($http,$scope,GeoLocationService) {
 
 		//Stores geolocation data to send to php script
 		var data;
@@ -17,6 +17,14 @@ angular.module('blipApp')
 
 		//TODO : Move getLocation function to a service
 		//TODO : Move getLocationResults function to a service
+		/*
+		$scope.getLocation = function(){
+			$scope.geoData = GeoLocationService.getGeoCoordinates();
+			getLocationResults($scope.geoData)
+			console.log($scope.geoData);
+		};
+		*/
+		
 
 		$scope.getLocation = function(){
 
@@ -40,7 +48,7 @@ angular.module('blipApp')
 			    });
 			}
 		};
-
+		
 		///////////
 		//IMPORTANT Change post URL to reletive link before build... '../phpCore/search.php'
 		///////////
