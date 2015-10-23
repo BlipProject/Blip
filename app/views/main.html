@@ -1,13 +1,16 @@
 <div ng-controller="LocationSearchCtrl" ng-init="getFilter('All')">
   <!--Include quick filter buttons-->
   <div class="quick-filter-wrapper">
+    <!--includes filter buttons at top of page-->
     <div ng-include="'views/componants/quickButtons.html'"></div>
   </div>
   <div class="container content-wrapper" ng-init="getLocation()">
     <div class="content-left">
+      <!--includes search results-->
       <div ng-include="'views/componants/searchResults.html'"></div>
     </div>
     <div class="content-right">
+      <!--includes settings pannel-->
       <div ng-include="'views/componants/settingsPannel.html'"></div>
     </div>
   </div>
