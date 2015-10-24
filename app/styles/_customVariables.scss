@@ -1,12 +1,15 @@
+
 ///////////
 //COLOURS//
 ///////////
-//Variables for custom colours
+//Variables for custom colours:
+
+$main-brand-colour:#3498db;
 
 $bar-colour: #e74c3c;
-$restaurant-colour:#3498db;
+$restaurant-colour:#883C82;
 $shop-colour:#2ecc71;
-$other-colour:#F4EC09;
+$other-colour:#FCED25;
 
 $box-shadow-colour:#9E9E9E;
 
@@ -15,7 +18,7 @@ $box-shadow-colour:#9E9E9E;
 /////////
 //Variables for custom fonts
 
-//$fontFamily:;
+$fontFamily:'Lato';
 $fontHeadeing: 26px;
 $fontMain: 20px;
 
@@ -53,17 +56,21 @@ $resultHeaderPadding: 3px;
 $result-header-bg:#fff;
 
 
+///////////////////
+//Settings Pannel//
+///////////////////
 
+$settings-header-colour:$main-brand-colour;
 
 ///////////////////////
 //Bootstrap Overrides//
 ///////////////////////
 
+
 //NavBar
-$navbar-default-bg:#3498db;
+$navbar-default-bg:$main-brand-colour;
 $navbar-default-link-color:#fff;
 $navbar-default-link-active-color:#fff;
 
 //Gutter
 $grid-gutter-width: 10px;
-
