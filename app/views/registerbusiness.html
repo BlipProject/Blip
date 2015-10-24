@@ -2,8 +2,10 @@
 <div ng-controller="RegisterBusinessCtrl" class="container">
 	<div>
 		<form novalidate>
-			<label>Name</label>
-		    <input type="text" ng-model="busName">
+			<div class="form-field">
+				<label class="form-label">Name</label>
+			    <input type="text" ng-model="busName">
+			<div/>
 		    <br><br>
 
 		    <label>Category</label>
@@ -39,7 +41,7 @@
 		    <div id="mapLocation">
 			  	<label>Is this your location?</label>
 				<ui-gmap-google-map center='map.center' zoom='map.zoom'>
-				    <ui-gmap-marker coords='busmarker.coords' idKey='busmarker.id'>
+				    <ui-gmap-marker coords='busmarker.coords' idKey='busmarker.id' options="{icon: '/images/blip_marker2.png'}">
 				</ui-gmap-google-map>
 				<input type="button" class="btn btn-success" ng-click="registerBusiness(busName, busCity, busDescription)" value="Yes">
 				<input type="button" class="btn btn-danger" value="No">
