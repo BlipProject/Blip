@@ -2,7 +2,7 @@
 
 angular.module('blipApp')
 	
-	.controller('MapCtrl', ['$http','$scope', 'uiGmapGoogleMapApi', function ($http,$scope,uiGmapGoogleMapApi) {
+	.controller('MapCtrl', ['$http','$scope', 'uiGmapGoogleMapApi', 'uiGmapIsReady', function ($http,$scope,uiGmapGoogleMapApi, uiGmapIsReady) {
 
 		//Stores geolocation data to send to php script
 		var data;
@@ -34,8 +34,13 @@ angular.module('blipApp')
 
 			        	$scope.map = { 
 							center: { latitude: data.latitude, longitude: data.longitude }, 
+							options: $scope.mapOptions,
 							zoom: 14 
-						}
+						};
+
+						$scope.mapOptions={
+
+						};
 
 						$scope.youarehere = {
 							id: 1,
@@ -50,7 +55,7 @@ angular.module('blipApp')
                             labelVisible: true
                         }
 						
-						}
+						};
 
 						    $scope.busmarker =  {
         					id: 5,
@@ -63,6 +68,11 @@ angular.module('blipApp')
 					});
 			    });
 			}
+
+		$scope.onClick = function(data) {
+			console.log("Got Here - onclick");
+		$scope.windowOptions.show = !$scope.windowOptions.show;
+		};
 
 			$scope.markers = [];
 
@@ -79,14 +89,56 @@ angular.module('blipApp')
 		    show: false
 		};
 
-		$scope.onClick = function(data) {
-		    $scope.windowOptions.show = !$scope.windowOptions.show;
-		    console.log('$scope.windowOptions.show: ', $scope.windowOptions.show);
-		};
 
 		$scope.closeClick = function() {
 		    $scope.windowOptions.show = false;
 		};
+
+		uiGmapIsReady.promise() // if no value is put in promise() it defaults to promise(1)
+    .then(function (instances) {
+        console.log(instances[0].map); // get the current map
+    })
+        .then(function () {
+        $scope.addMarkerClickFunction($scope.markers);
+    });
+
+
+    $scope.addMarkerClickFunction = function (markers) {
+        angular.forEach(markers, function (value, key) {
+            value.onClick = function () {
+                $scope.onClick(value.data);
+                $scope.MapOptions.markers.selected = value;
+            };
+        });
+    };
+
+    $scope.MapOptions = {
+        minZoom: 3,
+        zoomControl: false,
+        draggable: true,
+        navigationControl: false,
+        mapTypeControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        disableDoubleClickZoom: false,
+        keyboardShortcuts: true,
+        markers: {
+            selected: {}
+        },
+        styles: [{
+            featureType: "poi",
+            elementType: "labels",
+            stylers: [{
+                visibility: "off"
+            }]
+        }, {
+            featureType: "transit",
+            elementType: "all",
+            stylers: [{
+                visibility: "off"
+            }]
+        }],
+    };
 
 
 		};
@@ -115,7 +167,8 @@ angular.module('blipApp')
                             	labelAnchor: '22 0',
                             	labelClass: 'marker-labels',
                             	labelVisible: true
-                        	}
+                        	},
+                        	data: 'here is the data'
 
         					};
 
