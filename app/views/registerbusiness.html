@@ -1,52 +1,99 @@
-<style>.angular-google-map-container { height: 400px; }</style>
-<div ng-controller="RegisterBusinessCtrl" class="container">
-	<div>
-		<form novalidate>
-			<div class="form-field">
-				<label class="form-label">Name</label>
-			    <input type="text" ng-model="busName">
-			<div/>
-		    <br><br>
-
-		    <label>Category</label>
-		    <select id="busCategory">
-		    	<!--Will work when db max connections is fixed.. question if necessary-->
-		    	<!--<option ng-repeat="item in categories track by $index">{{item.CategoryName}}</option>-->
-		    	<option value="11">Supermarket</option>
-		    	<option value="21">Bar</option>
-		    	<option value="31">Resturant</option>
-		    	<option value="41">Other</option>
-		    </select>
-			<br><br>
-
-		    <label>Address 1</label>
-		    <input type="text" ng-model="busAddress">
-		    <br>
-		    <label>Address 2</label>
-		    <input type="text" ng-model="busAddress2">
-		    <br>
-		    <label>City</label>
-		    <input type="text" ng-model="busCity">
-		    <br>
-		    <label>Country</label>
-		    <input type="text" ng-model="busCountry">
-		    <br><br>
-
-		    <label>Description</label>
-		    <input type="text" ng-model="busDescription">
-		    <!--<input type="text" id="busaddress">
-		    <input type="button" class="btn btn-default" ng-click="getCoordinates()" value="Find Me" />-->
-		    <input type="button" class="btn btn-default" ng-click="getCoordinates(busAddress, busAddress2, busCity, busCountry)" value="Continue" />
-
-		    <div id="mapLocation">
-			  	<label>Is this your location?</label>
-				<ui-gmap-google-map center='map.center' zoom='map.zoom'>
-				    <ui-gmap-marker coords='busmarker.coords' idKey='busmarker.id' options="{icon: '/images/blip_marker2.png'}">
-				</ui-gmap-google-map>
-				<input type="button" class="btn btn-success" ng-click="registerBusiness(busName, busCity, busDescription)" value="Yes">
-				<input type="button" class="btn btn-danger" value="No">
+<div ng-controller="RegisterBusinessCtrl">
+  	<div class="container bus-reg-content-wrapper">
+		<div class="content-left">
+			<div class="bus-reg-tabs">
+				<div>
+					<p>Details</p>
+				</div>
+				<div>
+					<p>Location</p>
+				</div>
+				<div>
+					<p>Personalize</p>
+				</div>
 			</div>
-		</form>
-
-	</div>
+			<div class="bus-reg-form">
+				<div id="bus-reg-details" class="bus-reg-container bus-reg-details">
+					<form>
+						<div class="form-left">
+							<div class="form-field">
+								<label class="form-label">Name</label>
+								<input type="text" ng-model="busName" placeholder="eg. The Little Pizza">
+							</div>
+							<div class="form-field">
+								<label>Category</label>
+								<select>
+									<option value="0" disabled selected>Select Category</option>
+									<option value="21">Bar</option>
+									<option value="31">Resturant</option>
+									<option value="11">Supermarket</option>
+									<option value="41">Other</option>
+								</select>
+							</div>					
+							<div class="form-field">
+								<label>Description</label>
+								<textarea maxlength="145" ng-model="busDescription" placeholder="eg. Family friendly, tradiontal Italian pizzeria"></textarea>
+							</div>
+							<div class="form-field">
+								<label>Phone</label>
+								<input type="text" ng-model="busPhone" placeholder="eg. 071 914 2342">
+							</div>
+							<div class="form-field">
+								<label>Website</label>
+								<input type="text" ng-model="busWebsite" placeholder="eg. www.littlepizza.ie">
+							</div>
+						</div>
+						<div class="form-right">
+							<div class="form-field">
+								<label>Address</label>
+								<input class="form-address-padding" type="text" ng-model="busAddress" placeholder="eg. 23 Swan Island">
+								<input type="text" ng-model="busAddress2" placeholder="eg. Main St.">
+							</div>
+							<div class="form-field">
+								<label>City</label>
+								<input type="text" ng-model="busCity" placeholder="eg. Sligo">
+							</div>
+							<div class="form-field">
+								<label>Country</label>
+								<input type="text" ng-model="busCountry" ng-blur="getCoordinates(busAddress, busAddress2, busCity, busCountry)" placeholder="eg. Ireland">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div id="bus-reg-location" class="bus-reg-container bus-reg-location">
+					<div id="mapLocation">
+					  	<label>Is this your location?</label>
+						<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+						    <ui-gmap-marker coords='busmarker.coords' idKey='busmarker.id' options="{icon: '/images/blip_marker3.png'}"></ui-gmap-marker>
+						</ui-gmap-google-map>
+					</div>
+				</div>
+			</div>
+			<div class="bus-reg-buttons-container">
+				<!--<input type="button" class="btn btn-default" ng-click="getCoordinates(busAddress, busAddress2, busCity, busCountry)" value="Continue">-->
+				<input type="button" class="bus-reg-button bus-reg-button-yes" onclick="slide()" value="Continue">
+				<input type="button" class="bus-reg-button bus-reg-button-no" value="Back">
+			</div>
+		</div>
+		<div class="content-right">
+	    	<!--includes settings pannel-->
+	    	<div ng-include="'views/componants/settingsPannel.html'"></div>
+	    </div>
+    </div>
 </div>
+<script>
+	function slide()
+    {
+        var toSlide = document.getElementById("bus-reg-details");
+
+        toSlide.style.transform = "translateX(-100%)";
+        toSlide.style.transitionProperty = "all";
+        toSlide.style.transitionDuration = "1s";
+
+        var sliding = document.getElementById("bus-reg-location");
+
+        sliding.style.transform = "translateX(0px)";
+        sliding.style.transitionProperty = "all";
+        sliding.style.transitionDuration = "1s";
+    }
+</script>
