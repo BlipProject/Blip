@@ -2,7 +2,6 @@
 
 
 .settings-pannel-wrapper{
-	width:300px;
 	float:left;
 	height:auto;
 	min-height:100px;
@@ -11,6 +10,49 @@
 	box-shadow: 0px 0px 2px 0px $box-shadow-colour;
 	margin-bottom:20px;
 	border-radius:1px;
+
+	//Lock settings pannel
+	position: fixed;
+    top: 130px;
+	
+
+	//PLEASE DO NOT JUDGE ME FOR THIS ... THIS IS PAINFUL, I KNOW, I WROTE IT.
+	//MAYBE IL FIND ANOTHER WAY ...
+	//MAYBE IT WILL FOREVER BE LOST TO THE GRAVEYARD OF SHATERED DREAMS AND UGLY MEDIA QUERYS
+	//FOR NOW IT KINDA WORKS
+	
+	//Caters for most common screen sizes
+	//http://www.w3schools.com/browsers/browsers_display.asp
+
+	@media(min-width:768px)
+	{
+		width:220px;
+		left: 70%;
+	}	
+
+	@media(min-width:1024px)
+	{
+		width:200px;
+		left: 69.5%;
+	}	
+
+	@media(min-width:1280px)
+	{
+		width:300px;
+		left: 69.5%;
+	}	
+
+	@media(min-width:1366px)
+	{
+		width:300px;
+		left: 68%;
+	}
+
+	@media(min-width:1920px)
+	{
+		width:300px;
+		left: 63%;
+	}
 }
 
 .settings-pannel-header{
