@@ -2,7 +2,7 @@
 
 angular.module('blipApp')
 	
-	.controller('LocationSearchCtrl', ['$http','$scope', function ($http,$scope) {
+	.controller('LocationSearchCtrl', ['$http','$scope','GeoLocationService','SearchServices', function ($http,$scope,GeoLocationService,SearchServices) {
 
 		//Stores geolocation data to send to php script
 		var data;
@@ -13,6 +13,21 @@ angular.module('blipApp')
 		//Variable to set the number of results displayed initialy
 		//Modify to show more/less results
 		$scope.showAmountFilter = 30;
+		
+
+		//TODO : Move getLocation function to a service
+		//TODO : Move getLocationResults function to a service
+		
+
+		/*
+		$scope.getLocation = function(){
+			data = GeoLocationService.getGeoCoordinates();
+			getLocationResults(data)
+			console.log(data);
+		};
+		*/
+
+		
 		
 		$scope.getLocation = function(){
 
@@ -30,13 +45,12 @@ angular.module('blipApp')
 				        	longitude : position.coords.longitude,
 				        	latitude : position.coords.latitude
 				        };
-
-			        	getLocationResults(data);
+			        	getLocationResults(data)
 					});
 			    });
 			}
 		};
-
+	
 		///////////
 		//IMPORTANT Change post URL to reletive link before build... '../phpCore/search.php'
 		///////////
@@ -55,14 +69,14 @@ angular.module('blipApp')
 		        });
 		};
 
-
+		
 		//Called from front-end to set filtered results and set active class on button
 		$scope.setFilterSetClass = function(filter,index){
 			getFilter(filter);
 			setQuickFilterClass(index);
 		};
 
-		//Called to return filtered content if butten is pressed on main UI
+		//Called to return filtered content
 		var getFilter = function(filter){
 			if(filter !== "All")
 			{
@@ -86,9 +100,7 @@ angular.module('blipApp')
 			$scope.activeFilter = type;
 		};
 
-
-
-		$scope.typeHeadClass;
+		$scope.typeHeadClass=" ";
 		//Set class for individual search results based off location type
 		$scope.setResultClass = function (classIn){
 			switch(classIn)
@@ -97,7 +109,6 @@ angular.module('blipApp')
 				{
 					$scope.typeHeadClass = "result-header-bar";
 					return 'fa fa-glass fa-lg';
-					console.log($scope.activeFilter);
 				}
 				case 'Restaurant':
 				{
@@ -112,7 +123,7 @@ angular.module('blipApp')
 				case 'Other':
 				{
 					$scope.typeHeadClass = "result-header-other";
-					return "fa fa-plus-circle fa-lg";
+					return "fa fa-ellipsis-h fa-lg";
 				}
 				default:
 				{

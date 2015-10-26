@@ -1,7 +1,7 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 
 
-//Do not import any styles "before customVariables"
+//Do not import any styles before "customVariables"
 @import "_customVariables";
 
 @import "_variablesOverride.scss";
@@ -9,6 +9,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "_quickFilterButtons";
 @import "_searchResultDisplay";
 @import "_footer.scss";
+@import "_settingsPannel.scss";
 
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
@@ -17,12 +18,13 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 html {
 	//Show scrollbar (chrome) to stop site moving when content is less than height of screen (Annoying)
-    overflow-y: scroll;
+    overflow-y: scroll; 
 }
 
 body{
 	padding-top:50px;
 	background-color:#ecf0f1;
+	font-family:$fontFamily;
 }
 
 ///////////
@@ -32,14 +34,4 @@ body{
 //Insert navBar styling
 
 
-
-
-////////////////
-//SidebarImage//
-
-.sidebarImg{
-	width:100%;
-	float:left;
-	margin-top:90%;
-}
 
