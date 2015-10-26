@@ -11,17 +11,27 @@ $db = "as_64dd0e9989faa02";
 //$db = "search_test";
 
 //getting info from textboxes
+$postdata = file_get_contents("php://input");
+$request = json_decode($postdata);
+$userName = $request->userName;
+$userCountry = $request->userCountry;
+$userEmail = $request->userEmail;
+$userPassword = $request->userPassword;
+
+/*
 $userName = $_POST['name'];
 $userCountry = $_POST['country'];
 $userEmail = $_POST['email'];
 $userPassword = $_POST['password'];	
+*/
+
 //testing and display
 //echo $userName."  ".$userPassword;
 // ENCRIPTING PASSWORD
 $cost =10;
 $salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
 $salt = sprintf("$2a$%02d$", $cost) . $salt;
-$hash = crypt($password, $salt);
+$hash = crypt($userPassword, $salt);
 //testing hash
 //echo $hash;
 
@@ -33,7 +43,7 @@ if ($conn->connect_error) {
 } 
 //creating sprock and executing 
 $sql = mysqli_query($conn, 
-	     "Call RegisterUserArtur($userCountry, '$userName', '$hash', '$salt', '$userEmail' )") or die("Query fail: " . mysqli_error($conn));
+	     "Call RegisterUserArtur( $userCountry , '$userName', '$hash', '$salt', '$userEmail' )") or die("Query fail: " . mysqli_error($conn));
 //checking sprock
 if ($conn->query($sql) === TRUE) 
 {

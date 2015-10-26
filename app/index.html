@@ -34,9 +34,6 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-
-
-
     <!-- Add your site or application content here -->
     <div class="container-fluid">    
       <div ng-include="'views/componants/nav.html'" scope="" onload=""></div>
@@ -47,40 +44,6 @@
     <div ng-include="'views/componants/footer.html'" scope="" onload=""></div>
 
     
-<div class="container" ng-controller="UserRegistrationCtrl" >
-<!-- SIGN IN-->
-  <form  role="form"  name="registrationForm">
-    <div><!-- NAME-->
-      <label>Name</label></br>
-      <input type="text" name="name" ng-model="userName" />
-      <!-- 
-      <span ng-show="registrationForm.name.$dirty && registrationForm.name.$error.required">Required</span>
-      <span ng-show="registrationForm.name.$dirty &&    registrationForm.name.$error.minlength">Minimum 3 characters</span>-->
-    </div>
-    <div><!-- COUNTRY id="my_dropdown"-->
-      <label>Country..</label></br>
-      <input  type="text" name="country" ng-model="userCountry" />
-      <!-- <span ng-show="registrationForm.name.$dirty && registrationForm.country.$error.required">Required</span>-->
-
-    </div>
-    <div><!-- EMAIL-->
-      <label>Email</label></br>
-      <input type="email" name="email" ng-model="userEmail" />
-      <!-- <span ng-show="registrationForm.email.$dirty && registrationForm.email.$error.required">Required</span>
-      <span ng-show="registrationForm.email.$dirty  &&   registrationForm.email.$error.email">Not an email!</span>-->
-    </div>
-    <div><!-- PASSWORD-->
-      <label>Password</label></br>
-      <input type="password" name="password" ng-model="userPassword" />
-      <!-- <span ng-show="registrationForm.password.$dirty && registrationForm.password.$error.required">Required</span>
-      <span ng-show="registrationForm.password.$dirty &&    registrationForm.password.$error.minlength">Minimum 8 characters</span>-->
-    </div></br>
-    <button   ng-click='createRegistration(userName, userCountry, userEmail, userPassword)'  >Sign In</button>
-  </form>
-</div>
-
-
-
 <!-- LOGIN ng-disabled="registrationForm.$invalid"
 <div class="container">
   <form action="../phpCore/login.php" method="post">
@@ -243,15 +206,7 @@
 
 
 
-    <div class="container">
-    <div ng-view=""></div>
-    </div>
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
-    </div>
-
+    
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -289,6 +244,7 @@
     <script src="scripts/controllers/search.js"></script>
     <script src="scripts/controllers/nav.js"></script>
     <script src="scripts/controllers/map.js"></script>
+    <script src="scripts/controllers/userRegistration.js"></script>
     <!-- endbuild --> 
 </body>
 </html>

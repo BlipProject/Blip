@@ -43,6 +43,11 @@ angular
         controller: 'MapCtrl',
         controllerAs: 'map'
       })
+      .when('/registerUser', {
+        templateUrl: 'views/registerUser.html',
+        controller: 'UserRegistrationCtrl',
+        controllerAs: 'userReg'
+      })
       .otherwise({
         redirectTo: 'views/landing.html'
       });

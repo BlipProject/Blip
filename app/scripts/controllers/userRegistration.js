@@ -8,18 +8,26 @@
  * Controller of the blipApp
  */
 angular.module('blipApp')
-  .controller('UserRegistrationCtrl', ['$scope' ,function ($scope) {
+  .controller('UserRegistrationCtrl', ['$http','$scope' ,function ($http,$scope) {
 
-  	$scope.userDetails;
+  $scope.userDetails;
 
-
-   $scope.createRegistration = function (name, country, email, password) {
-   	$scope.userDetails = {
-   		userName:name, 
-   		userCountery:country,
-   		userEmail:email,
-   		userPassword:password
-   	}
-   	console.log($scope.userDetails);
-   };
-  }]);
+  $scope.createRegistration = function (name, country, email, password) {
+  	$scope.userDetails = {
+  		userName:name, 
+  		userCountry:country,
+  		userEmail:email,
+  		userPassword:password
+  	}
+  	//$scope.userDetails
+  var postReg = $http.post('http://localhost/blip/app/phpCore/userReg.php', $scope.userDetails)
+      .success(function(data, status, headers, config)
+      {
+        console.log(status + ' - ' + "Success");        
+      })
+      .error(function(data, status, headers, config)
+      {
+          console.log(status + ' - ' + 'Error');
+      });
+  };
+}]);
