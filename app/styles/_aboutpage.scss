@@ -1,5 +1,7 @@
 //About page//
 
+//TODO: Sort media querries for small screens
+
 .bio-block-container{
 	padding:30px 0px;
 	min-height:240px;
@@ -7,22 +9,27 @@
 }
 
 
-//hide images desktop images on mobile screens
+//hide desktop images on mobile screens
 .bio-block-image-desktop{
-	@media(max-width:$screen-xs)
+	@media(max-width:$screen-xs) and (max-width:$screen-sm)
 	{
 		display:none;
 	}
 }
 
+//Classes for individual bio's (one for each because of colour changes)
 .bio-katie{
 	img{
 		margin-left:20px;
-		border: 3px solid $other-colour;
+		border: 3px solid $main-brand-colour;
 	}
 
 	h3,p{
 		text-align:right;
+	}
+
+	h3{
+		color:$main-brand-colour;
 	}
 
 	@media(max-width:$screen-xs)
@@ -39,6 +46,10 @@
 		border: 3px solid $shop-colour;
 		float:right;
 	}
+
+	h3{
+		color:$shop-colour;
+	}
 }
 
 .bio-artur{
@@ -49,6 +60,10 @@
 
 	h3,p{
 		text-align:right;
+	}
+
+	h3{
+		color:$bar-colour;
 	}
 
 	@media(max-width:$screen-xs)
@@ -64,5 +79,9 @@
 		margin-right:20px;
 		border: 3px solid $restaurant-colour;
 		float:right;
+	}
+
+	h3{
+		color:$restaurant-colour;
 	}
 }
