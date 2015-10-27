@@ -22,8 +22,8 @@ Fergal Gaffney
 [Install Ruby](http://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.2.3-x64.exe)
 
 
-Run `npm install grunt-cli` to install grunt
-Run `gem install compass` to install compass
+Run `npm install grunt-cli` to install grunt,
+ Run `gem install compass` to install compass
 
 Clone project to local machine
 
