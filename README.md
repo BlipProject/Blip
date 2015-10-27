@@ -6,15 +6,21 @@ Developed for a 3rd year collage project.
 ##Team
 
 Brian Geraghty
+
 Katie Morris
+
 Artur Kadziel
+
 Fergal Gaffney
 
-##installation
+##Installation
 
 [Install Wamp](http://www.wampserver.com/en/)
+
 [Install Node](https://nodejs.org/en/)
+
 [Install Ruby](http://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.2.3-x64.exe)
+
 
 Run `npm install grunt-cli` to install grunt
 Run `gem install compass` to install compass
