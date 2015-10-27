@@ -10,6 +10,7 @@ angular.module('blipApp')
 		var searchResult = "";
 		$scope.youarehere;
 		$scope.map;
+
 		
 		$scope.getLocation = function(){
 			var positionOptions = {
@@ -69,21 +70,20 @@ angular.module('blipApp')
 			    });
 			}
 
+			$scope.selectedmarker = {};
+
+
 		$scope.onClick = function(data) {
 			console.log("Got Here - onclick");
+			$scope.selectedmarker = data;
+			console.log($scope.selectedmarker);
+			$scope.$apply();
 		$scope.windowOptions.show = !$scope.windowOptions.show;
-		};
+		$scope.$apply();
+		};    
 
 			$scope.markers = [];
 
-		$scope.addMarkerClickFunction = function(markers){
-		    angular.forEach(markers, function(value, key) {
-		        value.onClick = function(){
-		                $scope.onClick(value.data);
-		            };
-		    });
-
-		}; 
 
 		$scope.windowOptions = {
 		    show: false
@@ -102,15 +102,18 @@ angular.module('blipApp')
         $scope.addMarkerClickFunction($scope.markers);
     });
 
+     
 
     $scope.addMarkerClickFunction = function (markers) {
         angular.forEach(markers, function (value, key) {
             value.onClick = function () {
-                $scope.onClick(value.data);
+                $scope.onClick(value);
                 $scope.MapOptions.markers.selected = value;
             };
         });
     };
+
+   
 
     $scope.MapOptions = {
         minZoom: 3,
@@ -290,8 +293,6 @@ $scope.getCoordinates = function(){
     }, 
     true
 );
-
-		console.log($scope.markers);
 
 		}]);
 

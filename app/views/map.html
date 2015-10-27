@@ -18,12 +18,9 @@
       <ui-gmap-marker coords='youarehere.coords' idKey='youarehere.id' options='youarehere.options'>    
       </ui-gmap-marker>
       <ui-gmap-window coords="MapOptions.markers.selected.coords" show="windowOptions.show" options="windowOptions" closeClick="closeClick()">
-                <div>Hello</div>
+                <div>{{selectedmarker.data}}</div>
             </ui-gmap-window>
       <ui-gmap-markers models="markers" idkey="'id'" coords="'coords'" options="'options'" click="onClick" events="markers.events" >
-      <ui-gmap-window show="show">
-        <div>Hi</div>
-    </ui-gmap-window>
       </ui-gmap-markers>
     </ui-gmap-google-map>
   </div>
