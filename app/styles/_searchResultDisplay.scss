@@ -37,6 +37,8 @@
 	@include box-shadow (0px 1px 1px -1px $box-shadow-colour);
 }
 
+//Headers for individual content types
+
 .result-header-bar{
 	border-top: 5px solid $bar-colour;
 	background-color:$result-header-bg;
