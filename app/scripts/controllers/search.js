@@ -15,36 +15,26 @@ angular.module('blipApp')
 		
 		//TODO : Move getLocationResults function to a service
 		
-
-		//TODO: Investigate strange bug. Search page view doessnt update when view is switched 
-		//to another view and back to search, unless tab is changed (chrome)... possible missing $scope.apply()
-
+		//Calls geoServices to return the current coordinates
+		//navigator must be passed to service (dont no why ??)
 		$scope.getLocation = function(){
 			GeoLocationService.getGeoCoordinates(navigator).then(function(data){
 				geoData = data;
-				getLocationResults(geoData);
+				console.log("GeoServices called succesfully");
+				returnSearchResults(geoData);
 			});
 		};
 		
-		///////////
-		//IMPORTANT Change post URL to reletive link before build... '../phpCore/search.php'
-		///////////
-		//TESTING URL http://localhost/blip/app/phpCore/search.php
-		var getLocationResults = function(data){
-			var callSearch = $http.post('http://localhost/blip/app/phpCore/search.php', data)
-		        .success(function(data, status, headers, config)
-		        {
-		        	$scope.searchResult = data;
-		        	$scope.filterSearchResult = $scope.searchResult;
-				    console.log(status + ' - ' + "Success");        
-	            })
-		        .error(function(data, status, headers, config)
-		        {
-		            console.log(status + ' - ' + 'Error');
-		        });
+		//Calls SearchServices to return search results
+		//Takes 1 argument ([current coordinates])
+		var returnSearchResults = function(geoData){
+			SearchServices.getLocationResults(geoData).then(function(data){
+				$scope.filterSearchResult = data;
+				console.log("SearchServices called succesfully");
+			});
 		};
 
-		
+
 		//Called from front-end to set filtered results and set active class on button
 		$scope.setFilterSetClass = function(filter,index){
 			getFilter(filter);
