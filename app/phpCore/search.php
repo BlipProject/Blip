@@ -13,8 +13,8 @@
 	//Input variables from Angular
 	$postdata = file_get_contents("php://input");
 	$request = json_decode($postdata);
-	$longitude = $request->longitude;
 	$latitude = $request->latitude;
+	$longitude = $request->longitude;
 
 	$conn = mysqli_connect($servername, $username, $password, $db);
 

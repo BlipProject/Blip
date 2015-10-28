@@ -21,7 +21,11 @@
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;
-    left: 250px;
+    left: 0px;
+    @media(max-width:$screen-sm)
+    {
+       left: 250px; 
+    }
     width: 0;
     height: 100%;
     margin-left: -250px;
@@ -35,7 +39,7 @@
 }
 
 #wrapper.toggled #sidebar-wrapper {
-    width: 400px;
+    width: 70%;
 }
 
 #page-content-wrapper {

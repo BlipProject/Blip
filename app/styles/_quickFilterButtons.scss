@@ -11,6 +11,8 @@
 	height:auto;
 	margin-bottom:20px;
 	box-shadow: 0px 1px 1px -1px $box-shadow-colour;
+	opacity:0.95;
+	z-index:1;
 }
 
 
@@ -20,8 +22,8 @@ button,i {outline: 0; border:none;}
 	background-color:#fff;
 	float:left;
 	width:auto !important;
-	min-width:60px;
-	height:60px !important;
+	min-width:55px;
+	height:55px !important;
 	margin-top:0px;
 
 	@media(max-width:$screen-sm){
@@ -32,7 +34,7 @@ button,i {outline: 0; border:none;}
 }
 
 .quick-button-all:hover, .quick-button-all-active{border-bottom: 5px solid $box-shadow-colour;height:55px;}
-.quick-button-bar:hover, .quick-button-bar-active{border-bottom: 5px solid $bar-colour;height:55px;}
-.quick-button-restaurant:hover,.quick-button-restaurant-active{border-bottom: 5px solid $restaurant-colour;height:55px;}
-.quick-button-shop:hover, .quick-button-shop-active{border-bottom: 5px solid $shop-colour;height:55px;}
-.quick-button-other:hover, .quick-button-other-active{border-bottom: 5px solid $other-colour;height:55px;}
+.quick-button-bar:hover, .quick-button-bar-active{border-bottom: 5px solid $bar-colour;height:55px; .fa{color:$bar-colour;}}
+.quick-button-restaurant:hover,.quick-button-restaurant-active{border-bottom: 5px solid $restaurant-colour;height:55px; .fa{color:$restaurant-colour;}}
+.quick-button-shop:hover, .quick-button-shop-active{border-bottom: 5px solid $shop-colour;height:55px; .fa{color:$shop-colour;}}
+.quick-button-other:hover, .quick-button-other-active{border-bottom: 5px solid $other-colour;height:55px; .fa{color:$other-colour;}}
