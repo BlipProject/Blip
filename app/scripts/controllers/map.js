@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('blipApp')
-	
+.controller('templateController',function(){})
+
 	.controller('MapCtrl', ['$http','$scope', 'uiGmapGoogleMapApi', 'uiGmapIsReady', function ($http,$scope,uiGmapGoogleMapApi, uiGmapIsReady) {
 
 		//Stores geolocation data to send to php script
@@ -10,6 +11,7 @@ angular.module('blipApp')
 		var searchResult = "";
 		$scope.youarehere;
 		$scope.map;
+
 
 		
 		$scope.getLocation = function(){
@@ -36,7 +38,7 @@ angular.module('blipApp')
 			        	$scope.map = { 
 							center: { latitude: data.latitude, longitude: data.longitude }, 
 							options: $scope.mapOptions,
-							zoom: 14 
+							zoom: 14
 						};
 
 						$scope.mapOptions={
@@ -70,6 +72,7 @@ angular.module('blipApp')
 			    });
 			}
 
+			//initialising the selected marker as a marker object
 			$scope.selectedmarker = {};
 
 
@@ -82,11 +85,12 @@ angular.module('blipApp')
 		$scope.$apply();
 		};    
 
-			$scope.markers = [];
+		$scope.markers = [];
 
 
 		$scope.windowOptions = {
-		    show: false
+		    show: false,
+		    pixelOffset: {width:-1,height:-20}
 		};
 
 
@@ -99,11 +103,11 @@ angular.module('blipApp')
         console.log(instances[0].map); // get the current map
     })
         .then(function () {
-        $scope.addMarkerClickFunction($scope.markers);
+        //$scope.addMarkerClickFunction($scope.markers);
+        //console.log($scope.markers);
     });
 
      
-
     $scope.addMarkerClickFunction = function (markers) {
         angular.forEach(markers, function (value, key) {
             value.onClick = function () {
@@ -159,7 +163,7 @@ angular.module('blipApp')
 		        	console.log(data);
 		        	searchResults = data;
 		        angular.forEach(data, function(value, key){
-						var marker =  {
+						var marker = {
         					id: key,
         					coords: {
             					latitude: value.MapLat,
@@ -169,9 +173,13 @@ angular.module('blipApp')
                             	labelContent: value.LocationName,
                             	labelAnchor: '22 0',
                             	labelClass: 'marker-labels',
-                            	labelVisible: true
+                            	labelVisible: true,
+                            	animation: 2
                         	},
-                        	data: 'here is the data'
+                        	data: {
+                        		name: value.LocationName,
+                        		category: value.CategoryName
+                        	}
 
         					};
 
@@ -179,6 +187,7 @@ angular.module('blipApp')
 				});
 
 		        console.log($scope.markers);
+		        $scope.addMarkerClickFunction($scope.markers);
 
 
 		        	$scope.filterSearchResult = searchResult;
@@ -293,6 +302,8 @@ $scope.getCoordinates = function(){
     }, 
     true
 );
+			
 
 		}]);
+
 
