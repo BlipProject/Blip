@@ -158,7 +158,7 @@ angular.module('blipApp')
 
 			console.log("got here - getlocationresults function");
 			var searchResults;
-			var callSearch = $http.post('http://localhost/Blip/app/phpCore/search.php', data)
+			var callSearch = $http.post('http://localhost/blip/app/phpCore/search.php', data)
 
 		        .success(function(data, status, headers, config)
 		        {

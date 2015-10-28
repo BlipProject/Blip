@@ -29,7 +29,8 @@ angular.module('blipApp')
 		//Takes 1 argument ([current coordinates])
 		var returnSearchResults = function(geoData){
 			SearchServices.getLocationResults(geoData).then(function(data){
-				$scope.filterSearchResult = data;
+				$scope.searchResult = data;
+				$scope.filterSearchResult = $scope.searchResult;
 				console.log("SearchServices called succesfully");
 			});
 		};
