@@ -4,6 +4,7 @@ angular.module('blipApp')
 	
 	.controller('LocationSearchCtrl', ['$http','$scope','GeoLocationService','SearchServices', function ($http,$scope,GeoLocationService,SearchServices) {
 
+		var geoData={};
 		//Store search result returned from server
 		$scope.searchResult="";
 		//Stores filtered data (Quick filter buttons)
@@ -12,43 +13,19 @@ angular.module('blipApp')
 		//Modify to show more/less results
 		$scope.showAmountFilter = 30;
 		
-
-		//TODO : Move getLocation function to a service
 		//TODO : Move getLocationResults function to a service
 		
 
-		
+		//TODO: Investigate strange bug. Search page view doessnt update when view is switched 
+		//to another view and back to search, unless tab is changed (chrome)... possible missing $scope.apply()
+
 		$scope.getLocation = function(){
 			GeoLocationService.getGeoCoordinates(navigator).then(function(data){
-				getLocationResults(data)
-			});	
+				geoData = data;
+				getLocationResults(geoData);
+			});
 		};
 		
-		
-		
-		/*
-		$scope.getLocation = function(){
-
-			var positionOptions = {
-			  enableHighAccuracy: true,
-			  timeout: 1000,
-			  maximumAge: 500
-			};
-
-			if (navigator.geolocation) {
-			    navigator.geolocation.watchPosition(function(position,positionOptions){
-					$scope.$apply(function(){
-			        	$scope.position = position;
-				        data = {
-				        	longitude : position.coords.longitude,
-				        	latitude : position.coords.latitude
-				        };
-			        	getLocationResults(data);
-					});
-			    });
-			}
-		};
-		*/
 		///////////
 		//IMPORTANT Change post URL to reletive link before build... '../phpCore/search.php'
 		///////////

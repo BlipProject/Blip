@@ -20,8 +20,7 @@ angular.module('blipApp')
 				  maximumAge: 500
 				};
 				if (navigator.geolocation) {
-				    navigator.geolocation.watchPosition(function(position,positionOptions){
-			        	position = position;
+				    navigator.geolocation.getCurrentPosition(function(position,positionOptions){
 				        deferred.resolve ({
 				        	longitude : position.coords.longitude,
 				        	latitude : position.coords.latitude
