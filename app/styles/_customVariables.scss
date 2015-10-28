@@ -19,17 +19,24 @@ $box-shadow-colour:#9E9E9E;
 //Variables for custom fonts
 
 $fontFamily:'Lato';
-$fontHeadeing: 26px;
+$fontHeading: 26px;
 $fontMain: 20px;
 
 $fontColour:#000;
 
+//////////
+//Mixins//
+//////////
 
+@mixin box-shadow($box-shadow){
+	box-shadow: $box-shadow;
+	-webkit-box-shadow: $box-shadow;
+	-moz-box-shadow: $box-shadow;
+}
 
 /////////////////
 //Media Queries//
 /////////////////
-
 
 //screen-xs (xtra small)
 $screen-xs : 480px;
@@ -43,8 +50,6 @@ $screen-md : 992px;
 //screen-lg (large)
 $screen-lg : 1200px;
 
-
-
 //////////////////////
 //SearchResultDisply//
 //////////////////////
@@ -54,7 +59,6 @@ $resultHeaderWidth: 100%;
 $resultHeaderHeight: 40px;
 $resultHeaderPadding: 3px;
 $result-header-bg:#fff;
-
 
 ///////////////////
 //Settings Pannel//
@@ -66,11 +70,18 @@ $settings-header-colour:$main-brand-colour;
 //Bootstrap Overrides//
 ///////////////////////
 
-
 //NavBar
 $navbar-default-bg:$main-brand-colour;
 $navbar-default-link-color:#fff;
 $navbar-default-link-active-color:#fff;
 
+$navbar-default-link-color:#fff;
+$navbar-default-link-hover-bg:#fff;
+$navbar-default-link-active-color:$main-brand-colour;
+$navbar-default-link-active-bg:#fff;
+
 //Gutter
 $grid-gutter-width: 10px;
+
+//Border Radius
+$border-radius-base:0px;

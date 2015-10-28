@@ -1,15 +1,16 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 
 
-//Do not import any styles before "customVariables"
+//DO NOT import any styles before "customVariables"
 @import "_customVariables";
 
 @import "_variablesOverride.scss";
 @import "_simple-sidebar.scss";
-@import "_quickFilterButtons";
-@import "_searchResultDisplay";
+@import "_quickFilterButtons.scss";
+@import "_searchResultDisplay.scss";
 @import "_footer.scss";
 @import "_settingsPannel.scss";
+@import "_aboutPage.scss";
 
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
