@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('blipApp')
-	.factory('GeoLocationService', function () {
-		return {
-			getGeoCoordinates: function(){
-				var geoData ={};
+	.service('GeoLocationService', function () {
+		return{
+			getGeoCoordinates: function(navigator){
+				var data ={};
 				var positionOptions = {
 				  enableHighAccuracy: true,
 				  timeout: 1000,
@@ -12,16 +12,17 @@ angular.module('blipApp')
 				};
 
 				if (navigator.geolocation) {
-				    navigator.geolocation.getCurrentPosition(function(position,positionOptions){
+				    navigator.geolocation.watchPosition(function(position,positionOptions){
 			        	position = position;
-				        geoData = {
+				        var geoData = {
 				        	longitude : position.coords.longitude,
 				        	latitude : position.coords.latitude
 			        	};
 			        	//?? Unreachable code Uhhh??
+			        	console.log(geoData);
+			        	return geoData;
 					});
 			    }
-			    return geoData;
 			}
 		};
 	});

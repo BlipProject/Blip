@@ -19,16 +19,19 @@ angular.module('blipApp')
 		//TODO : Move getLocationResults function to a service
 		
 
-		/*
+		
 		$scope.getLocation = function(){
-			data = GeoLocationService.getGeoCoordinates();
-			getLocationResults(data)
+			//TODO: Need to figure out promises // service not being executed untill controller has loaded
+			data = GeoLocationService.getGeoCoordinates(navigator);
 			console.log(data);
-		};
-		*/
 
+			//getLocationResults(data)
+			
+		};
 		
 		
+		
+		/*
 		$scope.getLocation = function(){
 
 			var positionOptions = {
@@ -38,7 +41,7 @@ angular.module('blipApp')
 			};
 
 			if (navigator.geolocation) {
-			    navigator.geolocation.getCurrentPosition(function(position,positionOptions){
+			    navigator.geolocation.watchPosition(function(position,positionOptions){
 					$scope.$apply(function(){
 			        	$scope.position = position;
 				        data = {
@@ -50,7 +53,7 @@ angular.module('blipApp')
 			    });
 			}
 		};
-	
+		*/
 		///////////
 		//IMPORTANT Change post URL to reletive link before build... '../phpCore/search.php'
 		///////////
