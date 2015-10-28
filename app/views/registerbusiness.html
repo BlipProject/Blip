@@ -1,27 +1,31 @@
 <div ng-controller="RegisterBusinessCtrl">
   	<div class="container bus-reg-content-wrapper">
 		<div class="content-left">
-			<div class="bus-reg-tabs">
-				<div>
-					<p>Details</p>
-				</div>
-				<div>
-					<p>Location</p>
-				</div>
-				<div>
-					<p>Personalize</p>
-				</div>
-			</div>
 			<div class="bus-reg-form">
-				<div id="bus-reg-details" class="bus-reg-container bus-reg-details">
-					<form>
+				<form>
+					<div class="bus-reg-container bus-reg-details">
+						<div class="bus-reg-tabs">
+							<div>
+								<p>Details</p>
+							</div>
+						</div>
 						<div class="form-left">
 							<div class="form-field">
 								<label class="form-label">Name</label>
-								<input type="text" ng-model="busName" placeholder="eg. The Little Pizza">
+								<input type="text" ng-model="busName" placeholder="e.g. The Little Pizza">
 							</div>
 							<div class="form-field">
-								<label>Category</label>
+								<label class="form-label">Nationality</label>
+								<select>
+									<option value="0" disabled selected>Select Nationality</option>
+									<option value="1">Irish</option>
+									<option value="2">Polish</option>
+									<option value="3">Italian</option>
+									<option value="4">Chinese</option>
+								</select>
+							</div>	
+							<div class="form-field">
+								<label class="form-label">Category</label>
 								<select>
 									<option value="0" disabled selected>Select Category</option>
 									<option value="21">Bar</option>
@@ -29,50 +33,77 @@
 									<option value="11">Supermarket</option>
 									<option value="41">Other</option>
 								</select>
-							</div>					
+							</div>
+							<div class="form-field">
+								<label class="form-label">Phone</label>
+								<input type="text" ng-model="busPhone" placeholder="e.g. 071 914 2342">
+							</div>
+							<div class="form-field">
+								<label class="form-label">Website</label>
+								<input type="text" ng-model="busWebsite" placeholder="e.g. www.littlepizza.ie">
+							</div>
 							<div class="form-field">
 								<label>Description</label>
-								<textarea maxlength="145" ng-model="busDescription" placeholder="eg. Family friendly, tradiontal Italian pizzeria"></textarea>
-							</div>
-							<div class="form-field">
-								<label>Phone</label>
-								<input type="text" ng-model="busPhone" placeholder="eg. 071 914 2342">
-							</div>
-							<div class="form-field">
-								<label>Website</label>
-								<input type="text" ng-model="busWebsite" placeholder="eg. www.littlepizza.ie">
+								<textarea maxlength="145" ng-model="busDescription" placeholder="e.g. Family friendly, tradiontal Italian pizzeria"></textarea>
 							</div>
 						</div>
 						<div class="form-right">
 							<div class="form-field">
-								<label>Address</label>
-								<input class="form-address-padding" type="text" ng-model="busAddress" placeholder="eg. 23 Swan Island">
-								<input type="text" ng-model="busAddress2" placeholder="eg. Main St.">
-							</div>
-							<div class="form-field">
-								<label>City</label>
-								<input type="text" ng-model="busCity" placeholder="eg. Sligo">
-							</div>
-							<div class="form-field">
-								<label>Country</label>
-								<input type="text" ng-model="busCountry" ng-blur="getCoordinates(busAddress, busAddress2, busCity, busCountry)" placeholder="eg. Ireland">
+								<label class="form-label">Opening Hours</label>
+								<div class="opening-hours">
+									<div><p>Mon</p></div>
+									<div><p>Tue</p></div>
+									<div><p>Wed</p></div>
+									<div><p>Thu</p></div>
+									<div><p>Fri</p></div>
+									<div><p>Sat</p></div>
+									<div><p>Sun</p></div>
+								</div>
 							</div>
 						</div>
-					</form>
-				</div>
-				<div id="bus-reg-location" class="bus-reg-container bus-reg-location">
-					<div id="mapLocation">
-					  	<label>Is this your location?</label>
-						<ui-gmap-google-map center='map.center' zoom='map.zoom'>
-						    <ui-gmap-marker coords='busmarker.coords' idKey='busmarker.id' options="{icon: '/images/blip_marker3.png'}"></ui-gmap-marker>
-						</ui-gmap-google-map>
 					</div>
-				</div>
-			</div>
-			<div class="bus-reg-buttons-container">
-				<!--<input type="button" class="btn btn-default" ng-click="getCoordinates(busAddress, busAddress2, busCity, busCountry)" value="Continue">-->
-				<input type="button" class="bus-reg-button bus-reg-button-yes" onclick="slide()" value="Continue">
-				<input type="button" class="bus-reg-button bus-reg-button-no" value="Back">
+					<div class="bus-reg-container bus-reg-location">
+						<div class="bus-reg-tabs">
+							<div>
+								<p>Location</p>
+							</div>
+						</div>
+						<div class="form-left">
+							<div class="form-field">
+								<label class="form-label">Address</label>
+								<input class="form-address-padding" type="text" ng-model="busAddress" placeholder="e.g. 23 Swan Island">
+								<input type="text" ng-model="busAddress2" placeholder="e.g. Main St.">
+							</div>
+							<div class="form-field">
+								<label class="form-label">City</label>
+								<input type="text" ng-model="busCity" placeholder="e.g. Sligo">
+							</div>
+							<div class="form-field">
+								<label class="form-label">Country</label>
+								<input type="text" ng-model="busCountry" placeholder="e.g. Ireland">
+							</div>
+							<input type="button" class="bus-reg-find-me-button" ng-click="getCoordinates(busAddress, busAddress2, busCity, busCountry)" value="Find My Location">
+						</div>
+						<div class="form-right">
+							<div id="mapLocation">
+								<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+								    <ui-gmap-marker coords='busmarker.coords' idKey='busmarker.id' options="{icon: '/images/map_icons/your_location_icon.png'}"></ui-gmap-marker>
+								</ui-gmap-google-map>
+							</div>
+						</div>
+					</div>
+					<div class="bus-reg-container bus-reg-personalize">
+						<div class="bus-reg-tabs">
+							<div>
+								<p>Personalize</p>
+							</div>
+						</div>
+						<div class="form-left">
+						</div>
+						<div class="form-right">
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 		<div class="content-right">
@@ -81,19 +112,3 @@
 	    </div>
     </div>
 </div>
-<script>
-	function slide()
-    {
-        var toSlide = document.getElementById("bus-reg-details");
-
-        toSlide.style.transform = "translateX(-100%)";
-        toSlide.style.transitionProperty = "all";
-        toSlide.style.transitionDuration = "1s";
-
-        var sliding = document.getElementById("bus-reg-location");
-
-        sliding.style.transform = "translateX(0px)";
-        sliding.style.transitionProperty = "all";
-        sliding.style.transitionDuration = "1s";
-    }
-</script>
