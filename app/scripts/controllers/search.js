@@ -4,8 +4,6 @@ angular.module('blipApp')
 	
 	.controller('LocationSearchCtrl', ['$http','$scope','GeoLocationService','SearchServices', function ($http,$scope,GeoLocationService,SearchServices) {
 
-		//Stores geolocation data to send to php script
-		var data;
 		//Store search result returned from server
 		$scope.searchResult="";
 		//Stores filtered data (Quick filter buttons)
@@ -21,12 +19,9 @@ angular.module('blipApp')
 
 		
 		$scope.getLocation = function(){
-			//TODO: Need to figure out promises // service not being executed untill controller has loaded
-			data = GeoLocationService.getGeoCoordinates(navigator);
-			console.log(data);
-
-			//getLocationResults(data)
-			
+			GeoLocationService.getGeoCoordinates(navigator).then(function(data){
+				getLocationResults(data)
+			});	
 		};
 		
 		
