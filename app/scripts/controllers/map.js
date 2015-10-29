@@ -252,5 +252,6 @@ angular.module('blipApp')
 		uiGmapGoogleMapApi.then(function(maps) {
 
 		});
+}]);
 
 

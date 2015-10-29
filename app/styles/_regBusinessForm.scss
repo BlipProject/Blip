@@ -3,7 +3,7 @@
 //////////////////////////////
 
 .bus-reg-content-wrapper{
-	margin-top:20px; 
+	margin-top:80px; 
 	position:relative; 
 	min-height:500px;
 }
@@ -11,6 +11,7 @@
 .bus-reg-container{
 	width:100%;
 	float:left;
+	margin-bottom:10px;
 }
 
 .bus-reg-tabs{
@@ -18,7 +19,7 @@
 	height:$resultHeaderHeight;
 	border-top:5px solid $restaurant-colour;
 	background-color:$result-header-bg;
-	box-shadow:0px 0px 2px 0px $box-shadow-colour;
+	@include box-shadow(0px 0px 2px 0px $box-shadow-colour);
 	float:left;
 
 	div{
@@ -33,7 +34,7 @@
 .bus-reg-buttons-container{
 	float:left;
 	background-color:$result-header-bg;
-	box-shadow:0px 0px 2px 0px $box-shadow-colour;
+	@include box-shadow(0px 0px 2px 0px $box-shadow-colour);
 	width:100%;
 }
 
@@ -70,7 +71,7 @@
 
 .bus-reg-form{
 	background-color:$result-header-bg;
-	box-shadow: 0px 0px 2px 0px $box-shadow-colour;
+	@include box-shadow(0px 0px 2px 0px $box-shadow-colour);
 	width:100%;
 	height:auto;
 	overflow:hidden;
@@ -89,7 +90,7 @@
 }
 
 .form-field{
-	margin-bottom:15px;
+	margin-bottom:20px;
 
 	label{
 		width:100%;
@@ -115,24 +116,138 @@
 }
 
 .opening-hours{
-	div{
-		float:left;
-		width:14%;
-		text-align:center;
+	width:100%;
+}
+
+.opening-hours-day-tabs-mobile{
+	@media(min-width:$screen-md){
+		width:100%;
+		height:34px;
+		margin-bottom:15px;
+
+		div{
+			float:left;
+			text-align:center;
+			height:34px;
+			line-height:30px;
+		}
+		div:hover{
+			@media(min-width:$screen-md){
+				background-color:$restaurant-colour;
+				color:#fff;
+				cursor:pointer;
+			}
+		}
+	}
+
+	@media(max-width:$screen-sm){
+		width:100%;
+		height:68px;
+		margin-bottom:15px;
+
+		div{
+			float:left;
+			text-align:center;
+			height:34px;
+			line-height:30px;
+		}
 	}
 }
 
-.bus-reg-find-me-button{
+.opening-hours-day-top{
+	@media(min-width:$screen-md){
+		width:14%;
+		border-width:1px 0px;
+		border-style:solid;
+		border-color:$restaurant-colour;
+	}
+
+	@media(max-width:$screen-sm){
+		width:33.3%;
+		border-width:1px 0px;
+		border-style:solid;
+		border-color:$restaurant-colour;
+	}
+}
+
+.opening-hours-day-bottom{
+	@media(min-width:$screen-md){
+		width:14%;
+		border-width:1px 0px;
+		border-style:solid;
+		border-color:$restaurant-colour;
+	}
+
+	@media(max-width:$screen-sm){
+		width:25%;
+		border-width:0px 0px 1px 0px;;
+		border-style:solid;
+		border-color:$restaurant-colour;
+	}
+}
+
+.opening-hours-day-selected{
+	background-color:$restaurant-colour;
+	color:#fff;
+}
+
+.opening-hours-time-capsule{
+	width:100%;
+}
+
+.opening-hours-time-input{
+	width:50%;
+	float:left;
+	padding-right:8px;
+
+	label{
+		float:left;
+		width:50%;
+		height:34px;
+		line-height:32px;
+	}
+	input[type="time"]{
+		float:left;
+		width:50%;
+		height:34px;
+	}
+
+	@media(max-width:$screen-sm){
+		width:100%;
+	}
+}
+
+.opening-hours-added-time{
+	width:100%;
+	height:34px;
+
+	label{
+		float:left;
+		width:50%;
+	}
+	p{
+		float:left;
+		width:50%;
+	}
+}
+
+.bus-reg-form-button{
 	height:34px;
 	width:100%;
 	margin:10px 10px 10px 0px;
 	outline: 0; 
-	border:none;
+	border:1px solid $restaurant-colour;
+	background-color:lighten($box-shadow-colour, 10%);
+}
+
+.bus-reg-form-button:hover{
+	color:#fff;
+	background-color:$box-shadow-colour;
 }
 
 .angular-google-map-container{
 	width:100%;
-	height:310px;
+	height:324px;
 	border:1px solid $restaurant-colour;
 
 	@media(max-width:$screen-sm){
@@ -140,3 +255,13 @@
 	}
 }
 
+.reg-form-error-message{
+	padding:5px;
+	color:#e74c3c;
+}
+
+.reg-form-error-outline{
+	border:1px solid #fff;
+	@include box-shadow(0px 0px 4px 0px #e74c3c);
+	outline:none;
+}
