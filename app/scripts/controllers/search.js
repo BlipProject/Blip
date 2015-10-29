@@ -4,7 +4,6 @@ angular.module('blipApp')
 	
 	.controller('LocationSearchCtrl', ['$http','$scope','GeoLocationService','SearchServices', function ($http,$scope,GeoLocationService,SearchServices) {
 
-		var geoData={};
 		//Store search result returned from server
 		$scope.searchResult="";
 		//Stores filtered data (Quick filter buttons)
@@ -19,9 +18,8 @@ angular.module('blipApp')
 		//navigator must be passed to service (dont no why ??)
 		$scope.getLocation = function(){
 			GeoLocationService.getGeoCoordinates(navigator).then(function(data){
-				geoData = data;
 				console.log("GeoServices called succesfully");
-				returnSearchResults(geoData);
+				returnSearchResults(data);
 			});
 		};
 		
@@ -66,8 +64,8 @@ angular.module('blipApp')
 			$scope.activeFilter = type;
 		};
 
-		$scope.typeHeadClass=" ";
 		//Set class for individual search results based off location type
+		$scope.typeHeadClass=" ";
 		$scope.setResultClass = function (classIn){
 			switch(classIn)
 			{
