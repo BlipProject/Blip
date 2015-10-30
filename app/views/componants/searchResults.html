@@ -1,5 +1,12 @@
 <div ng-repeat="venue in filterSearchResult | limitTo:showAmountFilter track by $index" >
   <div class="result-wrapper">
+    <!--Hidden div for on hover-->
+    <div class="result-wrapper-hover">
+      <div>
+        <p>{{venue.LocationName}}</p>
+        <button class="btn btn-default">Visit Page</button>
+      </div>
+    </div>
     <div class="result-header" ng-class="typeHeadClass">{{venue.LocationName}}<span class="pull-right location-icon" ng-class="setResultClass(venue.CategoryName)"></span></div>
     <div class="result-content"> 
       <div class="result-content-description"><p>{{venue.LocationDescription | limitTo:145}} ...</p></div><!--Cause screw you twitter-->

@@ -12,11 +12,64 @@
 	min-height:150px;
 	overflow:auto;
 	background-color:#fff;
-	@include box-shadow (0px 0px 2px 1px $box-shadow-colour);
+	@include box-shadow (0px 0px 3px 1px $box-shadow-colour);
 	margin-bottom:30px;
 	border-radius:1px;
 	float:left;
+	position: relative;
 }
+
+//.result-wrapper Hover Styling
+.result-wrapper-hover{
+	display: none;
+	height:100%;
+	width:100%;
+	z-index: 2;
+	background-color: #ecf0f1;
+	position: absolute;
+	left:0px;
+	top:0px;
+	opacity: .6;
+
+	p{
+		text-align: center;
+		font-size: $fontHeading;
+		color: $fontColour;
+	}
+
+	input[type=button]{
+		z-index: 10;
+		
+	}
+	input[type=button]:hover{
+		cursor: pointer;
+		background-color: #000;
+		color: #fff;
+	}
+}
+
+.result-wrapper:hover{
+	@include box-shadow (0px 0px 3px 1px $box-shadow-colour);
+	
+	
+	.result-wrapper-hover{
+		display: block;
+
+		@media(max-width:$screen-sm){
+			display: none;
+		}
+	}
+
+	.result-header, .result-content, .result-content-image{
+		@include blur(blur(2px));
+
+		@media(max-width:$screen-sm){
+			@include blur(blur(0px));
+		}
+	}
+}
+
+
 
 //Result Headers
 //See "SearchResultDisply"
@@ -114,6 +167,10 @@
 	
 	@media(max-width:$screen-sm){
 		width:100%;
+	}
+
+	@media(min-width:$screen-lg){
+		@include box-shadow(-1px 0px 1px 0px $box-shadow-colour);
 	}
 }
 

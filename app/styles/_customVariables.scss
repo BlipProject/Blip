@@ -34,6 +34,12 @@ $fontColour:#000;
 	-moz-box-shadow: $box-shadow;
 }
 
+@mixin blur($blur){
+	filter: $blur;
+	-webkit-filter: $blur;
+  	-moz-filter: $blur;
+}
+
 /////////////////
 //Media Queries//
 /////////////////
