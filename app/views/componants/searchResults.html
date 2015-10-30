@@ -2,11 +2,12 @@
   <div class="result-wrapper">
     <div class="result-header" ng-class="typeHeadClass">{{venue.LocationName}}<span class="pull-right location-icon" ng-class="setResultClass(venue.CategoryName)"></span></div>
     <div class="result-content"> 
-      <p>{{$index}}</p>
-      <p>Description : {{venue.LocationDescription}}</p>
-      <p>City : {{venue.City}}</p>
-      <p>Distance : {{venue.distance | number : 1}}km</p>
+      <div class="result-content-description"><p>{{venue.LocationDescription | limitTo:145}} ...</p></div><!--Cause screw you twitter-->
+      <div class="result-content-aux-info">
+        <div class="aux-city"><p>City : {{venue.City}}</p></div>
+        <div class="aux-distance"><p>Distance : {{venue.distance | number : 1}}km</p></div>
+      </div>
     </div>
-    <div class="result-content-image"><img class="img-responsive" src="{{venue.LocationPic}}"/></div>
+    <div class="result-content-image"><img class="img-responsive" ng-src="{{venue.LocationPic}}"/></div>
   </div>
 </div>

@@ -12,8 +12,8 @@
 	min-height:150px;
 	overflow:auto;
 	background-color:#fff;
-	@include box-shadow (0px 0px 2px 0px $box-shadow-colour);
-	margin-bottom:20px;
+	@include box-shadow (0px 0px 2px 1px $box-shadow-colour);
+	margin-bottom:30px;
 	border-radius:1px;
 	float:left;
 }
@@ -71,7 +71,7 @@
 
 .result-content{
 	width:60%;
-	height:auto;
+	height:150px;
 	padding:10px 10px 0px 10px;
 	height:auto;
 	float:left;
@@ -81,8 +81,35 @@
 	}
 }
 
+.result-content-description{
+	float:left;
+	height:100px;
+	width:100%;
+}
+
+.result-content-aux-info{
+	width:100%;
+	height: 100%;
+
+	div{
+		float:left;
+		width:50%;
+		float:left;
+	}
+
+	.aux-city{
+		text-align: left;
+	}
+
+	.aux-distance{
+		text-align: right;
+	}
+}
+
 .result-content-image{
 	width:40%;
+	height:150px;
+	overflow: hidden;
 	float:left;
 	
 	@media(max-width:$screen-sm){
@@ -103,11 +130,6 @@
 	}
 }
 .content-right{
-	width:25%;
-	margin-left:20px;
-	float:left;
-	position:absolute;
-	left:70%;
 	@media(max-width:$screen-sm)
 	{
 		display:none;
