@@ -66,28 +66,33 @@ angular.module('blipApp')
 
 		//Set class for individual search results based off location type
 		$scope.typeHeadClass=" ";
+		$scope.setIconClass= " ";
 		$scope.setResultClass = function (classIn){
 			switch(classIn)
 			{
 				case 'Bar':
 				{
 					$scope.typeHeadClass = "result-header-bar";
-					return 'fa fa-glass fa-lg';
+					$scope.setIconClass = "fa fa-glass fa-lg";
+					return "result-hover-button-bar";
 				}
 				case 'Restaurant':
 				{
 					$scope.typeHeadClass = "result-header-restaurant";
-					return 'fa fa-cutlery fa-lg';
+					$scope.setIconClass = 'fa fa-cutlery fa-lg';
+					return "result-hover-button-restaurant";
 				}
 				case 'Supermarket':
 				{
 					$scope.typeHeadClass = "result-header-shop";
-					return 'fa fa-shopping-cart fa-lg';
+					$scope.setIconClass = 'fa fa-shopping-cart fa-lg';
+					return "result-hover-button-shop";
 				}
 				case 'Other':
 				{
 					$scope.typeHeadClass = "result-header-other";
-					return "fa fa-ellipsis-h fa-lg";
+					$scope.setIconClass = "fa fa-ellipsis-h fa-lg";
+					return "result-hover-button-other";
 				}
 				default:
 				{

@@ -2,12 +2,12 @@
   <div class="result-wrapper">
     <!--Hidden div for on hover-->
     <div class="result-wrapper-hover">
-      <div>
+      <div class="result-wrapper-hover-content">
         <p>{{venue.LocationName}}</p>
-        <button class="btn btn-default">Visit Page</button>
+        <div class="result-hover-button" ng-class="setResultClass(venue.CategoryName)"><button class="">Visit Page</button></div>
       </div>
     </div>
-    <div class="result-header" ng-class="typeHeadClass">{{venue.LocationName}}<span class="pull-right location-icon" ng-class="setResultClass(venue.CategoryName)"></span></div>
+    <div class="result-header" ng-class="typeHeadClass">{{venue.LocationName}}<span ng-class="setIconClass" class="pull-right location-icon"></span></div>
     <div class="result-content"> 
       <div class="result-content-description"><p>{{venue.LocationDescription | limitTo:145}} ...</p></div><!--Cause screw you twitter-->
       <div class="result-content-aux-info">

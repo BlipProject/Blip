@@ -19,38 +19,23 @@
 	position: relative;
 }
 
+/////////////////////
+//WORK IN PROGRESS/////
+///////////////////////
+
 //.result-wrapper Hover Styling
 .result-wrapper-hover{
 	display: none;
 	height:100%;
 	width:100%;
 	z-index: 2;
-	background-color: #ecf0f1;
+	background-color: rgba(255,255,255,0.7);
 	position: absolute;
 	left:0px;
 	top:0px;
-	opacity: .6;
-
-	p{
-		text-align: center;
-		font-size: $fontHeading;
-		color: $fontColour;
-	}
-
-	input[type=button]{
-		z-index: 10;
-		
-	}
-	input[type=button]:hover{
-		cursor: pointer;
-		background-color: #000;
-		color: #fff;
-	}
 }
 
 .result-wrapper:hover{
-	@include box-shadow (0px 0px 3px 1px $box-shadow-colour);
-	
 	
 	.result-wrapper-hover{
 		display: block;
@@ -61,14 +46,68 @@
 	}
 
 	.result-header, .result-content, .result-content-image{
-		@include blur(blur(2px));
+		//fix for small white fliker on transition
+		-webkit-backface-visibility: hidden;
+
+		@include transition(0.7s filter linear);
+		@include filter(blur(3px) grayscale(100%));
 
 		@media(max-width:$screen-sm){
-			@include blur(blur(0px));
+			@include filter(blur(0px));
 		}
 	}
 }
 
+.result-wrapper-hover-content{
+	width:300px;
+	height:150px;
+	padding:30px;
+	margin: auto;
+	text-align: center;
+
+	p{
+		height:50%;
+		font-size: $fontHeading;
+		color: $fontColour;
+		margin-bottom: 40px;
+	}
+
+	button{
+		width:80%;
+		height:30px;
+		z-index: 10;
+		margin: auto;
+	}
+}
+
+.result-hover-button{
+	@include box-shadow (0px 0px 3px 1px $box-shadow-colour);
+
+	button{
+		background-color:#fff;
+		width:100%;
+		height:30px;
+		z-index: 10;
+		margin: auto;
+		border-top: 0px;
+	}
+}
+
+.result-hover-button-bar{
+	border-top: 5px solid $bar-colour;
+}
+
+.result-hover-button-restaurant{
+	border-top: 5px solid $restaurant-colour;
+}
+
+.result-hover-button-shop{
+	border-top: 5px solid $shop-colour;
+}
+
+.result-hover-button-other{
+	border-top: 5px solid $other-colour;
+}
 
 
 //Result Headers
@@ -164,13 +203,11 @@
 	height:150px;
 	overflow: hidden;
 	float:left;
+	@include box-shadow(-1px 0px 1px 0px $box-shadow-colour);
 	
 	@media(max-width:$screen-sm){
 		width:100%;
-	}
-
-	@media(min-width:$screen-lg){
-		@include box-shadow(-1px 0px 1px 0px $box-shadow-colour);
+		@include box-shadow(0px 0px 0px 0px #fff);
 	}
 }
 

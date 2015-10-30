@@ -34,10 +34,16 @@ $fontColour:#000;
 	-moz-box-shadow: $box-shadow;
 }
 
-@mixin blur($blur){
-	filter: $blur;
-	-webkit-filter: $blur;
-  	-moz-filter: $blur;
+@mixin filter($filter){
+	filter: $filter;
+	-webkit-filter: $filter;
+  	-moz-filter: $filter;
+}
+
+@mixin transition($transition){
+	transition: $transition;
+	-webkit-transition: $transition;
+	-moz-transition: $transition;
 }
 
 /////////////////
