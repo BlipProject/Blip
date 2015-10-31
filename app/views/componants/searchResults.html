@@ -1,5 +1,5 @@
 <!--
-ng-repeat creats search results based of the data returned from the server -- contained in controller variable 'filterSearchResult'
+ng-repeat creates search results based of the data returned from the server -- contained in controller variable 'filterSearchResult'
 ng-class sets up classes for indiviual results based off result type
 -->
 
@@ -8,9 +8,10 @@ ng-class sets up classes for indiviual results based off result type
     <!--Hidden div for on hover-->
     <div class="result-wrapper-hover">
       <div class="result-wrapper-hover-content">
-        <div></div>
         <p>{{venue.LocationName}}</p>
-        <div class="result-hover-button" ng-class="setResultClass(venue.CategoryName)"><button class="">Visit Page</button></div>
+        <!--breaks if a class, (even an empty one) is not present-->
+        <!--FIND OUT WHY, OR DONT, ... YOUR CHOICE-->
+        <div class="" ng-class="setResultClass(venue.CategoryName)"><button>Visit Page</button></div>
       </div>
     </div>
     <div class="result-header" ng-class="typeHeadClass">{{venue.LocationName}}<span ng-class="setIconClass" class="pull-right location-icon"></span></div>
@@ -24,4 +25,5 @@ ng-class sets up classes for indiviual results based off result type
     <div class="result-content-image"><img class="img-responsive" ng-src="{{venue.LocationPic}}"/></div>
   </div>
 </div>
+
 
