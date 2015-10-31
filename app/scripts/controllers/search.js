@@ -11,8 +11,7 @@ angular.module('blipApp')
 		//Variable to set the number of results displayed initialy
 		//Modify to show more/less results
 		$scope.showAmountFilter = 30;
-		
-		//TODO : Move getLocationResults function to a service
+
 		
 		//Calls geoServices to return the current coordinates
 		//navigator must be passed to service (dont no why ??)
@@ -41,6 +40,8 @@ angular.module('blipApp')
 		};
 
 		//Called to return filtered content
+		//If search result matches the filter button it gets pushed into 'filterSearchResult' array
+		//else 'filterSearchResult' equals the content that was origionaly returned from the server
 		var getFilter = function(filter){
 			if(filter !== "All")
 			{
@@ -65,6 +66,9 @@ angular.module('blipApp')
 		};
 
 		//Set class for individual search results based off location type
+		//typeHeadClass -- controls the serarch result header
+		//setIconClass -- controls the icon that is displayed on the header
+		//return class controls the styles for the hover action on each result
 		$scope.typeHeadClass=" ";
 		$scope.setIconClass= " ";
 		$scope.setResultClass = function (classIn){

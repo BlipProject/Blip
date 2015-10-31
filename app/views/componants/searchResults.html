@@ -1,8 +1,14 @@
+<!--
+ng-repeat creats search results based of the data returned from the server -- contained in controller variable 'filterSearchResult'
+ng-class sets up classes for indiviual results based off result type
+-->
+
 <div ng-repeat="venue in filterSearchResult | limitTo:showAmountFilter track by $index" >
   <div class="result-wrapper">
     <!--Hidden div for on hover-->
     <div class="result-wrapper-hover">
       <div class="result-wrapper-hover-content">
+        <div></div>
         <p>{{venue.LocationName}}</p>
         <div class="result-hover-button" ng-class="setResultClass(venue.CategoryName)"><button class="">Visit Page</button></div>
       </div>
@@ -18,3 +24,4 @@
     <div class="result-content-image"><img class="img-responsive" ng-src="{{venue.LocationPic}}"/></div>
   </div>
 </div>
+
