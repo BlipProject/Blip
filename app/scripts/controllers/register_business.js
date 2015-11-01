@@ -31,15 +31,15 @@ angular.module('blipApp')
 		}
 	};
 
-	$scope.openingHours = {
-		mon: "Closed",
-		tue: "Closed",
-		wed: "Closed",
-		thu: "Closed",
-		fri: "Closed",
-		sat: "Closed",
-		sunday: "Closed"
-	}
+	$scope.openingHours = [
+		{day:"mon",open:"null",close:"null"},
+		{day:"tue",open:"null",close:"null"},
+		{day:"wed",open:"null",close:"null"},
+		{day:"thu",open:"null",close:"null"},
+		{day:"fri",open:"null",close:"null"},
+		{day:"sat",open:"null",close:"null"},
+		{day:"sun",open:"null",close:"null"},
+	];
 
 	///////////
 	//IMPORTANT Change post URL to reletive link before build... '../phpCore/get_categories.php'
@@ -50,6 +50,7 @@ angular.module('blipApp')
 	        .success(function(data, status, headers, config)
 	        {
 	        	$scope.categories = data;
+	        	console.log($scope.categories);
 			    console.log(data + ' - ' + "Success");
             })
 	        .error(function(data, status, headers, config)
@@ -57,6 +58,8 @@ angular.module('blipApp')
 	            console.log(status + ' - ' + 'Error');
 	        });
 	};
+
+	$scope.loadCategories();
 
   	uiGmapGoogleMapApi.then(function(maps) {
   	});
@@ -73,38 +76,48 @@ angular.module('blipApp')
   	$scope.addOpeningHours = function(openTime, closeTime) {
 
   		if(openTime != undefined || closeTime != undefined){
-  			var format = String(openTime).slice(16, 21) + " - " + String(closeTime).slice(16, 21);
-  			loopSelectedDays(format);
+  			openTime = String(openTime).slice(16, 21);
+  			closeTime = String(closeTime).slice(16, 21);
+  			loopSelectedDays(openTime, closeTime);
   		}
-  		else{loopSelectedDays("Closed");}
+  		else{
+  			openTime = "null";
+  			closeTime = "null";
+  			loopSelectedDays(openTime, closeTime);
+  		}
   	};
 
-  	var loopSelectedDays = function(formated) {
+  	var loopSelectedDays = function(openTime, closeTime) {
   		$('.opening-hours-day-selected').each(function(i, obj) {
   			switch(obj.innerHTML){
   				case "Mon":
-  					$scope.openingHours.mon = formated;
+  					setOpenCloseHours(openTime, closeTime, 0);
   					break;
   				case "Tue":
-  					$scope.openingHours.tue = formated;
+  					setOpenCloseHours(openTime, closeTime, 1);
   					break;
   				case "Wed":
-  					$scope.openingHours.wed = formated;
+  					setOpenCloseHours(openTime, closeTime, 2);
   					break;
   				case "Thu":
-  					$scope.openingHours.thu = formated;
+  					setOpenCloseHours(openTime, closeTime, 3);
   					break;
   				case "Fri":
-  					$scope.openingHours.fri = formated;
+  					setOpenCloseHours(openTime, closeTime, 4);
   					break;
   				case "Sat":
-  					$scope.openingHours.sat = formated;
+  					setOpenCloseHours(openTime, closeTime, 5);
   					break;
   				case "Sun":
-  					$scope.openingHours.sunday = formated;
+  					setOpenCloseHours(openTime, closeTime, 6);
   					break;
   			}
   		});	
+  	};
+
+  	var setOpenCloseHours = function(openTime, closeTime, index) {
+  		$scope.openingHours[index].open = openTime;
+  		$scope.openingHours[index].close = closeTime;
   	};
 
   	$scope.getCoordinates = function(busAddress, busAddress2, busCity, busCountry){

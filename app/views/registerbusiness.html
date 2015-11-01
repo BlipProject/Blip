@@ -31,12 +31,16 @@
 							</div>	
 							<div class="form-field">
 								<label for="lstCat" class="form-label">Category</label>
-								<select id="lstCat" name="cat" ng-class="{'reg-form-error-outline' : submitted && business_reg_form.cat.$invalid || business_reg_form.cat.$dirty && business_reg_form.cat.$invalid}" ng-model="busCategory" required>
+								<!--<select id="lstCat" name="cat" ng-class="{'reg-form-error-outline' : submitted && business_reg_form.cat.$invalid || business_reg_form.cat.$dirty && business_reg_form.cat.$invalid}" ng-model="busCategory" required>
 									<option value="" disabled selected>Select Category</option>
 									<option value="21">Bar</option>
 									<option value="31">Resturant</option>
 									<option value="11">Supermarket</option>
 									<option value="41">Other</option>
+								</select>-->
+								<select id="lstCat" name="cat" ng-class="{'reg-form-error-outline' : submitted && business_reg_form.cat.$invalid || business_reg_form.cat.$dirty && business_reg_form.cat.$invalid}" ng-model="busCategory" required>
+									<option value="" disabled selected>Select Category</option>
+									<option ng-repeat="option in categories | limitTo:4 track by $index" value="{{option.CategoryID}}">{{option.CategoryName}}</option>
 								</select>
 								<div class="reg-form-error-message" ng-show="submitted && business_reg_form.cat.$invalid || business_reg_form.cat.$dirty && business_reg_form.cat.$invalid"><i class="fa fa-exclamation fa-lg"></i> Category is required</div>
 							</div>
@@ -80,32 +84,39 @@
 									<input type="button" class="bus-reg-form-button" ng-click="addOpeningHours(openTime, closeTime)" value="Add Hours">
 									<div>
 										<div class="opening-hours-added-time">
-										<label>Monday:</label>
-										<p>{{openingHours.mon}}</p>
+											<label>Monday:</label>
+											<p ng-show="openingHours[0].open == 'null'">Closed</p>
+											<p ng-show="openingHours[0].open != 'null'">{{openingHours[0].open}} - {{openingHours[0].close}}</p>
 										</div>
 										<div class="opening-hours-added-time">
-										<label>Tuesday:</label>
-										<p>{{openingHours.tue}}</p>
+											<label>Tuesday:</label>
+											<p ng-show="openingHours[1].open == 'null'">Closed</p>
+											<p ng-show="openingHours[1].open != 'null'">{{openingHours[1].open}} - {{openingHours[0].close}}</p>
 										</div>
 										<div class="opening-hours-added-time">
-										<label>Wednesday:</label>
-										<p>{{openingHours.wed}}</p>
+											<label>Wednesday:</label>
+											<p ng-show="openingHours[2].open == 'null'">Closed</p>
+											<p ng-show="openingHours[2].open != 'null'">{{openingHours[2].open}} - {{openingHours[0].close}}</p>
 										</div>
 										<div class="opening-hours-added-time">
-										<label>Thursday:</label>
-										<p>{{openingHours.thu}}</p>
+											<label>Thursday:</label>
+											<p ng-show="openingHours[3].open == 'null'">Closed</p>
+											<p ng-show="openingHours[3].open != 'null'">{{openingHours[3].open}} - {{openingHours[0].close}}</p>
 										</div>
 										<div class="opening-hours-added-time">
-										<label>Friday:</label>
-										<p>{{openingHours.fri}}</p>
+											<label>Friday:</label>
+											<p ng-show="openingHours[4].open == 'null'">Closed</p>
+											<p ng-show="openingHours[4].open != 'null'">{{openingHours[4].open}} - {{openingHours[0].close}}</p>
 										</div>
 										<div class="opening-hours-added-time">
-										<label>Saturday:</label>
-										<p>{{openingHours.sat}}</p>
+											<label>Saturday:</label>
+											<p ng-show="openingHours[5].open == 'null'">Closed</p>
+											<p ng-show="openingHours[5].open != 'null'">{{openingHours[5].open}} - {{openingHours[0].close}}</p>
 										</div>
 										<div class="opening-hours-added-time">
-										<label>Sunday:</label>
-										<p>{{openingHours.sunday}}</p>
+											<label>Sunday:</label>
+											<p ng-show="openingHours[6].open == 'null'">Closed</p>
+											<p ng-show="openingHours[6].open != 'null'">{{openingHours[6].open}} - {{openingHours[0].close}}</p>
 										</div>
 									</div>
 								</div>
