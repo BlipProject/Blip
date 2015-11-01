@@ -11,7 +11,8 @@ angular.module('blipApp')
   .controller('RegisterBusinessCtrl', ['$http','$scope', 'uiGmapGoogleMapApi', function ($http,$scope,uiGmapGoogleMapApi) {
 
   	$scope.pageHeading = "Register Your Business";
-  	//Store categories for dropdown
+  	//Store nationalities & categories for dropdowns
+  	$scope.nationalities;
   	$scope.categories;
   	//Store data about business to send to php script
   	//var busData = {};
@@ -45,6 +46,20 @@ angular.module('blipApp')
 	//IMPORTANT Change post URL to reletive link before build... '../phpCore/get_categories.php'
 	///////////
 	//TESTING URL http://localhost/blip/app/phpCore/get_categories.php
+	$scope.loadNationalities = function(){
+		var getNationalities = $http.post('http://localhost/blip/app/phpCore/get_nationalities.php')
+	        .success(function(data, status, headers, config)
+	        {
+	        	$scope.nationalities = data;
+	        	console.log($scope.nationalities);
+			    console.log(data + ' - ' + "Success");
+            })
+	        .error(function(data, status, headers, config)
+	        {
+	            console.log(status + ' - ' + 'Error');
+	        });
+	};
+
   	$scope.loadCategories = function(){
 		var getCategories = $http.post('http://localhost/blip/app/phpCore/get_categories.php')
 	        .success(function(data, status, headers, config)
@@ -58,8 +73,6 @@ angular.module('blipApp')
 	            console.log(status + ' - ' + 'Error');
 	        });
 	};
-
-	$scope.loadCategories();
 
   	uiGmapGoogleMapApi.then(function(maps) {
   	});
