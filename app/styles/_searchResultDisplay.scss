@@ -3,7 +3,6 @@
 /////////////////////////
 //for searchresults.html
 
-//TODO: add mixins for transitions
 //TODO: Blur, greyscale & opacity not working in microsoft browsers (ie, edge)
 
 
@@ -125,19 +124,20 @@
 	padding-top: 20px;
 	position:relative;
 	margin: auto;
+	border-top:5px solid;
 }
 
 .result-hover-icon-properties{
 	font-family: FontAwesome;
 	position: absolute;
-	left:42%;
+	left:45%;
 	top:-55px;
 	font-size: 25px;
 }
 
 .result-hover-button-bar{
 	@extend .result-hover-bar-properties;
-	border-top: 5px solid $bar-colour;
+	border-color: $bar-colour;
 	
 	::before{
 		@extend .result-hover-icon-properties;
@@ -148,7 +148,7 @@
 
 .result-hover-button-restaurant{
 	@extend .result-hover-bar-properties;
-	border-top: 5px solid $restaurant-colour;
+	border-color: $restaurant-colour;
 
 	::before{
 		@extend .result-hover-icon-properties;
@@ -159,7 +159,7 @@
 
 .result-hover-button-shop{
 	@extend .result-hover-bar-properties;
-	border-top: 5px solid $shop-colour;
+	border-color: $shop-colour;
 
 	::before{
 		@extend .result-hover-icon-properties;
@@ -170,7 +170,7 @@
 
 .result-hover-button-other{
 	@extend .result-hover-bar-properties;
-	border-top: 5px solid $other-colour;
+	border-color: $other-colour;
 
 	::before{
 		@extend .result-hover-icon-properties;
