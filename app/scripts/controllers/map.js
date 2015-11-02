@@ -180,7 +180,9 @@ angular.module('blipApp')
                         	},
                         	data: {
                         		name: value.LocationName,
-                        		category: value.CategoryName
+                        		category: value.CategoryName,
+                        		description: value.LocationDescription,
+                        		picture: value.LocationPic
                         	}
 
         					};
