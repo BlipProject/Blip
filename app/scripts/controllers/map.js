@@ -239,6 +239,7 @@ angular.module('blipApp')
     //         					latitude: value.MapLat,
     //         					longitude: value.MapLong
     //     						}
+    							//etc....
     //     					};
 
     //     					console.log(marker);
