@@ -34,7 +34,11 @@ module.exports = function(config) {
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js',
+<<<<<<< HEAD
       'bower_components/kendo-ui/js/kendo.ui.core.min.js',
+=======
+      'bower_components/parsleyjs/dist/parsley.js',
+>>>>>>> master
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

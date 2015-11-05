@@ -1,0 +1,87 @@
+//About page//
+
+//TODO: Sort media querries for small screens
+
+.bio-block-container{
+	padding:30px 0px;
+	min-height:240px;
+	box-shadow: 0px 1px 1px -1px $box-shadow-colour;
+}
+
+
+//hide desktop images on mobile screens
+.bio-block-image-desktop{
+	@media(max-width:$screen-xs) and (max-width:$screen-sm)
+	{
+		display:none;
+	}
+}
+
+//Classes for individual bio's (one for each because of colour changes)
+.bio-katie{
+	img{
+		margin-left:20px;
+		border: 3px solid $main-brand-colour;
+	}
+
+	h3,p{
+		text-align:right;
+	}
+
+	h3{
+		color:$main-brand-colour;
+	}
+
+	@media(max-width:$screen-xs)
+	{
+		h3,p{
+			text-align:left;
+		}
+	}
+}
+
+.bio-fergal{
+	img{
+		margin-right:20px;
+		border: 3px solid $shop-colour;
+		float:right;
+	}
+
+	h3{
+		color:$shop-colour;
+	}
+}
+
+.bio-artur{
+	img{
+		margin-left:20px;
+		border: 3px solid $bar-colour;
+	}
+
+	h3,p{
+		text-align:right;
+	}
+
+	h3{
+		color:$bar-colour;
+	}
+
+	@media(max-width:$screen-xs)
+	{
+		h3,p{
+			text-align:left;
+		}
+	}
+}
+
+.bio-brian{
+	img{
+		margin-right:20px;
+		border: 3px solid $restaurant-colour;
+		float:right;
+	}
+
+	h3{
+		color:$restaurant-colour;
+	}
+}

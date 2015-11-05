@@ -9,12 +9,15 @@
 
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/lato/css/lato.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/flags.css">
     <!-- endbuild -->
+
     
    
     
@@ -22,6 +25,7 @@
     <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.3.930/styles/kendo.default.min.css">
     <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.3.930/styles/kendo.mobile.all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
   </head>
   <body ng-app="blipApp">
 
@@ -29,7 +33,12 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
+
+
+
+
+    <!--Site Content-->
+
     <div class="container-fluid">    
       <div ng-include="'views/componants/nav.html'" scope="" onload=""></div>
       <div>
@@ -38,7 +47,12 @@
     </div>
     <div ng-include="'views/componants/footer.html'" scope="" onload=""></div>
 
+
  
+
+    <!--End Site Content-->
+    
+
 
 
 <!-- Start Artur test with cendo UI -->
@@ -93,6 +107,8 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
     <script src="bower_components/kendo-ui/js/kendo.ui.core.min.js"></script>
+    <script src="bower_components/parsleyjs/dist/parsley.js"></script>
+
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -105,6 +121,9 @@
     <script src="scripts/controllers/map.js"></script>
     <script src="scripts/controllers/userRegistration.js"></script>
     <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/register_business.js"></script>
+    <script src="scripts/services/geoServices.js"></script>
+    <script src="scripts/services/searchServices.js"></script>
 
     <!-- endbuild --> 
 </body>

@@ -1,20 +1,17 @@
 <div ng-controller="LocationSearchCtrl" ng-init="getFilter('All')">
   <!--Include quick filter buttons-->
   <div class="quick-filter-wrapper">
+    <!--includes filter buttons at top of page-->
     <div ng-include="'views/componants/quickButtons.html'"></div>
   </div>
   <div class="container content-wrapper" ng-init="getLocation()">
-    <div ng-repeat="venue in filterSearchResult | limitTo:showAmountFilter track by $index" >
-      <div class="result-wrapper">
-        <div class="result-header" ng-class="typeHeadClass">{{venue.LocationName}}<span class="pull-right location-icon" ng-class="setResultClass(venue.CategoryName)"></span></div>
-        <div class="result-content"> 
-          <p>{{$index}}</p>
-          <p>Description : {{venue.LocationDescription}}</p>
-          <p>City : {{venue.City}}</p>
-          <p>Distance : {{venue.distance | number : 1}}km</p>
-        </div>
-        <div class="result-content-image image-responsive"><img class="" src="http://lorempixel.com/400/130/city"/></div>
-      </div>
+    <div class="content-left">
+      <!--includes search results-->
+      <div ng-include="'views/componants/searchResults.html'"></div>
+    </div>
+    <div class="content-right">
+      <!--includes settings pannel-->
+      <div ng-include="'views/componants/settingsPannel.html'"></div>
     </div>
   </div>
 </div>

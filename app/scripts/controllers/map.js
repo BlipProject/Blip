@@ -1,19 +1,20 @@
 'use strict';
 
 angular.module('blipApp')
-	
-	.controller('MapCtrl', ['$http','$scope', 'uiGmapGoogleMapApi', function ($http,$scope,uiGmapGoogleMapApi) {
+.controller('templateController',function(){})
+
+	.controller('MapCtrl', ['$http','$scope', 'uiGmapGoogleMapApi', 'uiGmapIsReady', function ($http,$scope,uiGmapGoogleMapApi, uiGmapIsReady) {
 
 		//Stores geolocation data to send to php script
 		var data;
 		//Store search result returned from server
-		$scope.searchResult;
+		var searchResult = "";
 		$scope.youarehere;
 		$scope.map;
-		$scope.markers = [];
+
+
 		
 		$scope.getLocation = function(){
-
 			var positionOptions = {
 			  enableHighAccuracy: true,
 			  timeout: 1000,
@@ -21,6 +22,7 @@ angular.module('blipApp')
 			};
 
 			if (navigator.geolocation) {
+				console.log("got to getlocation function");
 			    navigator.geolocation.getCurrentPosition(function(position,positionOptions){
 					$scope.$apply(function(){
 			        	$scope.position = position;
@@ -29,88 +31,121 @@ angular.module('blipApp')
 				        	latitude : position.coords.latitude
 				        };
 
-			        	getLocationResults(data);
-			        	console.log(data);
+			        	 getLocationResults(data);
 			        	//alert(data.longitude + " " + data.latitude);
+			    
 
 			        	$scope.map = { 
 							center: { latitude: data.latitude, longitude: data.longitude }, 
-							zoom: 14 
-						}
+							options: $scope.mapOptions,
+							zoom: 14
+						};
+
+						$scope.mapOptions={
+
+						};
 
 						$scope.youarehere = {
 							id: 1,
 							coords: {
 								latitude: data.latitude,
 								longitude: data.longitude
-							}
+							},
+							options: {
+                            labelContent: 'YOU ARE HERE',
+                            labelAnchor: '22 0',
+                            labelClass: 'marker-labels',
+                            labelVisible: true
+                        }
 						
-						}
+						};
 
 						    $scope.busmarker =  {
         					id: 5,
         					coords: {
             						latitude: data.latitude,
             						longitude: data.longitude
-        							},
-        					data: 'newbusinesslocation',
-       	 					animation: google.maps.Animation.DROP//not working
+        							}
     						};
 						
 					});
 			    });
 			}
 
+			//initialising the selected marker as a marker object
+			$scope.selectedmarker = {};
 
-			$scope.markers = [
-    {
-        id: 0,
-        coords: {
-            latitude: 54.274679,
-            longitude: -8.471354
-        },
-        data: 'random'
-    },
-    {
-        id: 1,
-        coords: {
-            latitude: 53.354497,
-            longitude:  -6.318959
-        },
-        data: 'random'
-    },
-    {
-        id: 2,
-        coords: {
-            latitude: 53.361545,
-            longitude: -6.308740
-        },
-        data: 'random'
-    }
-];
-
-		$scope.addMarkerClickFunction = function(markersArray){
-		    angular.forEach(markersArray, function(value, key) {
-		        value.onClick = function(){
-		                $scope.onClick(value.data);
-		            };
-		    });
-
-		}; 
-
-		$scope.windowOptions = {
-		    show: false
-		};
 
 		$scope.onClick = function(data) {
-		    $scope.windowOptions.show = !$scope.windowOptions.show;
-		    console.log('$scope.windowOptions.show: ', $scope.windowOptions.show);
-		    console.log('This is a ' + data);
+			console.log("Got Here - onclick");
+			$scope.selectedmarker = data;
+			console.log($scope.selectedmarker);
+			$scope.$apply();
+		$scope.windowOptions.show = !$scope.windowOptions.show;
+		$scope.$apply();
+		};    
+
+		$scope.markers = [];
+
+
+		$scope.windowOptions = {
+		    show: false,
+		    pixelOffset: {width:-1,height:-20}
 		};
+
 
 		$scope.closeClick = function() {
 		    $scope.windowOptions.show = false;
 		};
+
+		uiGmapIsReady.promise() // if no value is put in promise() it defaults to promise(1)
+    .then(function (instances) {
+        console.log(instances[0].map); // get the current map
+    })
+        .then(function () {
+        //$scope.addMarkerClickFunction($scope.markers);
+        //console.log($scope.markers);
+    });
+
+     
+    $scope.addMarkerClickFunction = function (markers) {
+        angular.forEach(markers, function (value, key) {
+            value.onClick = function () {
+                $scope.onClick(value);
+                $scope.MapOptions.markers.selected = value;
+            };
+        });
+    };
+
+   
+
+    $scope.MapOptions = {
+        minZoom: 3,
+        zoomControl: false,
+        draggable: true,
+        navigationControl: false,
+        mapTypeControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        disableDoubleClickZoom: false,
+        keyboardShortcuts: true,
+        markers: {
+            selected: {}
+        },
+        styles: [{
+            featureType: "poi",
+            elementType: "labels",
+            stylers: [{
+                visibility: "off"
+            }]
+        }, {
+            featureType: "transit",
+            elementType: "all",
+            stylers: [{
+                visibility: "off"
+            }]
+        }],
+    };
 
 
 		};
@@ -120,48 +155,99 @@ angular.module('blipApp')
 		///////////
 		//TESTING URL http://localhost/blip/app/phpCore/search.php
 		var getLocationResults = function(data){
-			var callSearch = $http.post('../phpCore/search.php', data)
+
+			console.log("got here - getlocationresults function");
+			var searchResults;
+			var callSearch = $http.post('http://localhost/blip/app/phpCore/search.php', data)
+
 		        .success(function(data, status, headers, config)
 		        {
-		        	$scope.searchResult = data;
-		        	$scope.filterSearchResult = $scope.searchResult;
+		        	console.log(data);
+		        	searchResults = data;
+		        angular.forEach(data, function(value, key){
+						var marker = {
+        					id: key,
+        					coords: {
+            					latitude: value.MapLat,
+            					longitude: value.MapLong
+        						},
+        					options: {
+                            	labelContent: value.LocationName,
+                            	labelAnchor: '22 0',
+                            	labelClass: 'marker-labels',
+                            	labelVisible: true,
+                            	animation: 2
+                        	},
+                        	data: {
+                        		name: value.LocationName,
+                        		category: value.CategoryName,
+                        		description: value.LocationDescription,
+                        		picture: value.LocationPic
+                        	}
+
+        					};
+
+        					$scope.markers.push(marker);
+				});
+
+		        console.log($scope.markers);
+		        $scope.addMarkerClickFunction($scope.markers);
+
+
+		        	$scope.filterSearchResult = searchResult;
 				    console.log(status + ' - ' + "Success"); 
-				    console.log($scope.searchResult);         
+				    console.log(searchResult);  
 		        })
 		        .error(function(data, status, headers, config)
 		        {
 		            console.log(status + ' - ' + 'Error');
 		        });
+
 		};
+
 
 		$scope.filterSearchResult = [];
 
 		$scope.getFilter = function(filter){
+			console.log("got to getfilter function");
 			if(filter !== "All")
 			{
+				console.log("got here - filtering");
 				$scope.filterSearchResult = [];
-				angular.forEach($scope.searchResult, function(value){
+				angular.forEach(searchResult, function(value){
 					if(value.CategoryName === filter)
 					{
 						$scope.filterSearchResult.push(value);
-
-						//something like this to create a marker for each filtered result???
-						// var mrk = {
-		//   					id: This.value,
-		//   						coords: {
-		//       					latitude: this.value.latitude,
-		//       					longitude: this.value.longitude
-		//   						}
-		//   					}
-								//$scope.markers.push(mrk);
 					}
 				});
-				console.log($scope.filterSearchResult);
+
 			}
 			else
 			{
-				$scope.filterSearchResult = $scope.searchResult;
+				console.log("got here - unfiltered");
+				$scope.filterSearchResult = searchResult;
+				console.log(searchResult);//undefined?
+				
 			}
+
+				// angular.forEach($scope.filterSearchResult, function(value){
+				// console.log("got here");
+				// console.log(value);
+				// 		var marker =  {
+    //     					id: value.LocationID,
+    //     					coords: {
+    //         					latitude: value.MapLat,
+    //         					longitude: value.MapLong
+    //     						}
+    							//etc....
+    //     					};
+
+    //     					console.log(marker);
+
+    //     					$scope.markers.push(marker);
+
+				// });
+
 		};
 
 
@@ -169,45 +255,6 @@ angular.module('blipApp')
 		uiGmapGoogleMapApi.then(function(maps) {
 
 		});
+}]);
 
-
-		//trying to get latlng from address - for the business registration page
-		$scope.getCoordinates = function(){
-		  $scope.geodata = {};
-		  $scope.queryResults = {};
-		  $scope.queryError = {};
-		  $scope.address = document.getElementById('busaddress').value;
-		  console.log($scope.address);
-
-		  $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + 
-		            $scope.address + '&key=AIzaSyCn9zl42b2gnUt92A7v_OcAJB4OUem-zbM')
-		    .then(function(_results){
-		       console.log(_results.data);
-
-		       $scope.queryResults = _results.data.results;
-		       $scope.geodata = $scope.queryResults[0].geometry;
-
-		         var buslatlng = $scope.queryResults[0].geometry.location;
-		  		console.log(buslatlng);
-
-		  		$scope.busmarker =  {
-		        id: 5,
-		        coords: {
-		            latitude: buslatlng.lat,
-		            longitude: buslatlng.lng
-		        	},
-		        data: 'newbusinesslocation',
-		        animation: google.maps.Animation.DROP//not working
-		    	};
-
-
-		     }, 
-		     function error(_error){
-		        $scope.queryError = _error;
-		        console.log($scope.queryError);
-		     })
-
-		}
-
-		}]);
 
