@@ -8,7 +8,7 @@
  * Controller of the blipApp
  */
 angular.module('blipApp')
-  .controller('RegisterBusinessCtrl', ['$http','$scope', 'uiGmapGoogleMapApi', function ($http,$scope,uiGmapGoogleMapApi) {
+  .controller('RegisterBusinessCtrl', ['$http','$scope','NationalityService','uiGmapGoogleMapApi', function ($http,$scope,NationalityService,uiGmapGoogleMapApi) {
 
   	$scope.pageHeading = "Register Your Business";
   	//Store nationalities & categories for dropdowns
@@ -42,11 +42,7 @@ angular.module('blipApp')
 		{day:"sun",open:"null",close:"null"}
 	];
 
-	///////////
-	//IMPORTANT Change post URL to reletive link before build... '../phpCore/get_categories.php'
-	///////////
-	//TESTING URL http://localhost/blip/app/phpCore/get_categories.php
-	$scope.loadNationalities = function(){
+	/*$scope.loadNationalities = function(){
 		var getNationalities = $http.post('http://localhost/blip/app/phpCore/get_nationalities.php')
 	        .success(function(data, status, headers, config)
 	        {
@@ -58,7 +54,19 @@ angular.module('blipApp')
 	        {
 	            console.log(status + ' - ' + 'Error');
 	        });
-	};
+	};*/
+
+	$scope.loadNationalities = function(){
+			NationalityService.getNationalities().then(function(data){
+				console.log("NationalityService called succesfully");
+				$scope.nationalities = data;
+			});
+		};
+
+	///////////
+	//IMPORTANT Change post URL to reletive link before build... '../phpCore/get_categories.php'
+	///////////
+	//TESTING URL http://localhost/blip/app/phpCore/get_categories.php
 
   	$scope.loadCategories = function(){
 		var getCategories = $http.post('http://localhost/blip/app/phpCore/get_categories.php')
@@ -174,7 +182,6 @@ angular.module('blipApp')
 	};
 
 	$scope.registerBusiness = function(busName, busCity, busDescription) {
-		alert("got here");
 		//May have broke.. revert to get element by id to fix
   		var catEl = $("#busCategory");
   		var busCategory = catEl.options[catEl.selectedIndex].value;
