@@ -1,6 +1,5 @@
-/////////////////////////
-//Search Result Display//
-/////////////////////////
+//Search Result Display
+//-----------------------
 //for searchresults.html
 
 //TODO: Blur, greyscale & opacity not working in microsoft browsers (ie, edge)
@@ -17,47 +16,30 @@
 	min-height:150px;
 	overflow:auto;
 	background-color:#fff;
-	@include box-shadow (0px 0px 3px 1px $box-shadow-colour);
-	margin-bottom:30px;
+	@include transition(all .4s ease);
+	@include box-shadow (0px 0px 10px 1px $box-shadow-colour);
+	margin-bottom:25px;
 	border-radius:1px;
 	float:left;
 	position: relative;
+	border:1px solid $box-shadow-colour;
 
 	//transition out of scale effect on image
 	img{
 		@include transition(all 1s ease);
 	}
-}
 
-//Transition out of blur and greyscale effects
-.result-header, .result-content, .result-content-image{
-	@include transition(0.3s filter linear);
-	@include filter(blur(0px) grayscale(0%));
-}
-
-//.result-wrapper Hover Styling
-.result-wrapper-hover{
-	visibility:hidden;
-	opacity: 0;
-	@include transition(visibility 0s linear 0.4s, opacity 0.4s linear);
-	height:100%;
-	width:100%;
-	z-index: 2;
-	//'a' value controls opacity of hover box
-	background-color: rgba(255,255,255,0.6);
-	position: absolute;
-	left:0px;
-	top:0px;
-}
-
-.result-wrapper:hover{
-	//transition into scale effect on image
-	img{
+	&:hover{
 		@include transition(all .7s ease);
-		@include transform(scale(1.3));
+		@include box-shadow (0px 0px 6px 1px $box-shadow-colour);
 
-		@media(max-width:$screen-sm){
-			transform: none;
+		//transition into scale effect on image
+		img{
+			@include transition(all .7s ease);
+			@include transform(scale(1.3));
+
+			@media(max-width:$screen-sm){
+				transform: none;
 		}
 	}
 	
@@ -72,7 +54,7 @@
 	}
 	
 	//transition into blur and greyscale effect
-	.result-header, .result-content, .result-content-image{
+	.result-content, .result-content-image{
 		//fix for small white fliker on transition
 		-webkit-backface-visibility: hidden;
 
@@ -83,6 +65,38 @@
 			@include filter(blur(0px));
 		}
 	}
+	
+	//TODO: Not sure whether to greyscale header colour. Come back too
+	.result-header{
+		@include transition(0.4s filter linear);
+		@include filter(blur(3px));
+
+		@media(max-width:$screen-sm){
+			@include filter(blur(0px));
+		}
+	}
+}
+}
+
+//Transition out of blur and greyscale effects
+.result-header, .result-content, .result-content-image{
+	@include transition(0.1s filter linear);
+	@include filter(blur(0px) grayscale(0%));
+}
+
+//.result-wrapper Hover Styling
+.result-wrapper-hover{
+	visibility:hidden;
+	opacity: 0;
+	@include transition(visibility 0s ease 0.4s, opacity 0.4s ease);
+	height:100%;
+	width:100%;
+	z-index: 2;
+	//'a' value controls opacity of hover box
+	background-color: rgba(255,255,255,0.7);
+	position: absolute;
+	left:0px;
+	top:0px;
 }
 
 //Wrapper for content in the hover event of result wrapper
@@ -96,7 +110,7 @@
 	p{
 		height:50%;
 		font-size: $fontHeading;
-		color: $fontColour;
+		color: $font-colour;
 		margin-bottom: 40px;
 	}
 
@@ -105,20 +119,20 @@
 		height:30px;
 		z-index: 10;
 		margin: auto;
-		@include box-shadow (0px 0px 3px 1px $box-shadow-colour);
+		border:1px solid $box-shadow-colour;
 		background-color:#fff;
-	}
+		color:$font-colour;
 
-	button:hover{
-		background-color:#ecf0f1;
-		color:#000;
+		&:hover{
+			@include transition(background-color 0.8s ease);
+			background-color:#ecf0f1;
+		}
 	}
-
 }
 
 //Global properties for -- ::before elements & .result-hover-bar
 //Inherited using SASS extend property
-
+//--
 .result-hover-bar-properties{
 	width:60%;
 	padding-top: 20px;
@@ -134,7 +148,7 @@
 	top:-55px;
 	font-size: 25px;
 }
-
+//--
 .result-hover-button-bar{
 	@extend .result-hover-bar-properties;
 	border-color: $bar-colour;
@@ -180,7 +194,6 @@
 }
 
 //Result Headers
-//See "SearchResultDisply"
 
 .location-icon{
 	margin:5px 5px 0px 0px; 
@@ -192,7 +205,7 @@
 	height:$resultHeaderHeight;
 	padding:$resultHeaderPadding;
 	float:left;
-	color:$fontColour;
+	color:$font-colour;
 	font-size:$fontMain;
 	background-color:$box-shadow-colour;
 	@include box-shadow (0px 1px 1px -1px $box-shadow-colour);
@@ -244,7 +257,7 @@
 
 .result-content-description{
 	float:left;
-	height:100px;
+	height:110px;
 	width:100%;
 }
 
@@ -270,8 +283,8 @@
 	width:40%;
 	height:150px;
 	overflow: hidden;
-	float:left;
-	@include box-shadow(-1px 0px 1px 0px $box-shadow-colour);
+	
+	@include box-shadow(-1px 0px 0px 0px $box-shadow-colour);
 	
 	@media(max-width:$screen-sm){
 		width:100%;
@@ -294,6 +307,7 @@
 
 //Hide settings pannel when on mobile view
 .content-right{
+	width:30%;
 	@media(max-width:$screen-sm)
 	{
 		display:none;

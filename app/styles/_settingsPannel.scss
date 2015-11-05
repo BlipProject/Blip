@@ -61,7 +61,7 @@
 	padding:$resultHeaderPadding;
 	margin-bottom:10px;
 	float:left;
-	color:$fontColour;
+	color:$font-colour;
 	font-size:$fontMain;
 	@include box-shadow(0px 1px 1px -1px $box-shadow-colour);
 }

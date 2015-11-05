@@ -1,10 +1,14 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+$fa-font-path: "../bower_components/componants-font-awesome/fonts/";
 
 
 //DO NOT import any styles before "customVariables"
 @import "_customVariables";
 
+//Copy of bootstraps variable file //To be deleted
 @import "_variablesOverride.scss";
+
+@import "_global.scss";
 @import "_simple-sidebar.scss";
 @import "_quickFilterButtons.scss";
 @import "_searchResultDisplay.scss";
@@ -18,6 +22,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // endbower
 
 
+//TODO: Needs to be moved to "global.scss"
 html {
 	//Show scrollbar (chrome) to stop site moving when content is less than height of screen (Annoying)
     overflow-y: scroll; 
@@ -28,12 +33,3 @@ body{
 	background-color:#ecf0f1;
 	font-family:$fontFamily;
 }
-
-///////////
-//Nav Bar//
-///////////
-
-//Insert navBar styling
-
-
-
