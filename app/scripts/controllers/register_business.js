@@ -39,7 +39,7 @@ angular.module('blipApp')
 		{day:"thu",open:"null",close:"null"},
 		{day:"fri",open:"null",close:"null"},
 		{day:"sat",open:"null",close:"null"},
-		{day:"sun",open:"null",close:"null"},
+		{day:"sun",open:"null",close:"null"}
 	];
 
 	///////////
@@ -87,7 +87,6 @@ angular.module('blipApp')
   	};
 
   	$scope.addOpeningHours = function(openTime, closeTime) {
-
   		if(openTime != undefined || closeTime != undefined){
   			openTime = String(openTime).slice(16, 21);
   			closeTime = String(closeTime).slice(16, 21);
@@ -134,7 +133,6 @@ angular.module('blipApp')
   	};
 
   	$scope.getCoordinates = function(busAddress, busAddress2, busCity, busCountry){
-
 		$scope.geodata = {};
 		$scope.queryResults = {};
 		$scope.queryError = {};
@@ -172,8 +170,8 @@ angular.module('blipApp')
 		function error(_error){
 			$scope.queryError = _error;
 			console.log($scope.queryError);
-		})
-	}
+		});
+	};
 
 	$scope.registerBusiness = function(busName, busCity, busDescription) {
 		alert("got here");
