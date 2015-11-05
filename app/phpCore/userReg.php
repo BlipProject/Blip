@@ -4,19 +4,12 @@ $servername = "eu-cdbr-azure-north-d.cloudapp.net";
 $username = "bd90192c1a23ec";
 $password = "bfbfe307";
 $db = "as_64dd0e9989faa02";
-//LOCAL DATABASE
-//$servername = "localhost";
-//$username = "root";
-//$password = "";
-//$db = "search_test";
 
-//getting info from textboxes
-$postdata = file_get_contents("php://input");
-$request = json_decode($postdata);
-$userName = $request->userName;
-$userCountry = $request->userCountry;
-$userEmail = $request->userEmail;
-$userPassword = $request->userPassword;
+$user = json_decode(file_get_contents("php://input"));
+$userName = $user->name;
+$userCountry = $user->country;
+$userEmail = $user->email;
+$userPassword = $user->password;
 
 /*
 $userName = $_POST['name'];

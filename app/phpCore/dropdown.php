@@ -1,11 +1,9 @@
 <?php
-	
-	
-
 
 	$allCountries = get_allCountries();
 
-	function get_allCountries() {
+	function get_allCountries() 
+	{
 			$dat = array(
         array("CountryName" => "Brazil", "Country_ID" => 9, 'CountryCode' => 'br'), 
         array("CountryName" => "Germany", "Country_ID" => 10, 'CountryCode' => 'de'), 
@@ -22,5 +20,4 @@
 
 	//Return Query Result to Frontend
 	echo $allCountries;
-	
 ?>

@@ -1,31 +1,35 @@
 <div class="container" ng-controller="UserRegistrationCtrl" >
-<!-- SIGN IN-->
+<!-- REGISTER USER-->
   <form  role="form"  name="registrationForm">
     <div><!-- NAME-->
       <label>Name</label></br>
       <input type="text" name="name" ng-model="userName" />
-      <!-- 
+      
       <span ng-show="registrationForm.name.$dirty && registrationForm.name.$error.required">Required</span>
-      <span ng-show="registrationForm.name.$dirty &&    registrationForm.name.$error.minlength">Minimum 3 characters</span>-->
+      <span ng-show="registrationForm.name.$dirty &&    registrationForm.name.$error.minlength">Minimum 3 characters</span>
     </div>
-    <div><!-- COUNTRY id="my_dropdown"-->
-      <label>Country..</label></br>
-      <input  type="text" name="country" ng-model="userCountry" />
-      <!-- <span ng-show="registrationForm.name.$dirty && registrationForm.country.$error.required">Required</span>-->
+    <div>
+      <label>Country</label></br>
+      <input id="my_dropdown" type="text" name="country" ng-model="userCountry" />
+      <span ng-show="registrationForm.name.$dirty && registrationForm.country.$error.required">Required</span>
+      
 
     </div>
     <div><!-- EMAIL-->
       <label>Email</label></br>
       <input type="email" name="email" ng-model="userEmail" />
-      <!-- <span ng-show="registrationForm.email.$dirty && registrationForm.email.$error.required">Required</span>
-      <span ng-show="registrationForm.email.$dirty  &&   registrationForm.email.$error.email">Not an email!</span>-->
+      <span ng-show="registrationForm.email.$dirty && registrationForm.email.$error.required">Required</span>
+      <span ng-show="registrationForm.email.$dirty  &&   registrationForm.email.$error.email">Not an email!</span>
     </div>
     <div><!-- PASSWORD-->
       <label>Password</label></br>
       <input type="password" name="password" ng-model="userPassword" />
-      <!-- <span ng-show="registrationForm.password.$dirty && registrationForm.password.$error.required">Required</span>
-      <span ng-show="registrationForm.password.$dirty &&    registrationForm.password.$error.minlength">Minimum 8 characters</span>-->
+      <span ng-show="registrationForm.password.$dirty && registrationForm.password.$error.required">Required</span>
+      <span ng-show="registrationForm.password.$dirty && registrationForm.password.$error.minlength">Minimum 8 characters</span>
     </div></br>
-    <button   ng-click='createRegistration(userName, userCountry, userEmail, userPassword)'  >Sign In</button>
+    <button  type="submit"  ng-disabled="registrationForm.$invalid"  ng-click='createRegistration(userName, userCountry, userEmail, userPassword)' >Sign In</button>
   </form>
+  <script type="text/javascript">
+      createDDL();
+  </script>  
 </div>

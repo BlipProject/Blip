@@ -8,25 +8,22 @@
  * Controller of the blipApp
  */
 angular.module('blipApp')
-  .controller('UserRegistrationCtrl', ['$http','$scope' ,function ($http,$scope) {
+  .controller('LoginCtrl', ['$http','$scope' ,function ($http,$scope) {
 
     //$scope.userDetails;
 //name, country, email, password
-  $scope.createRegistration = function (userName, userCountry, userEmail, userPassword) {
-    var c = $('#my_dropdown');
+  $scope.loginUser = function (userEmail, userPassword) {
+    
 
-    if(!isNaN(c.data('kendoComboBox').value()) && isNaN(c.data('kendoComboBox').text()))
-    {
+    
         //all ok
       var userDetails = {
-      name:userName, 
-      country:userCountry,
       email:userEmail,
       password:userPassword
     };
     //console.log(userDetails)
     
-  var postReg = $http.post('http://localhost/blip/app/phpCore/userReg.php', userDetails)
+  var postReg = $http.post('http://localhost/blip/app/phpCore/login.php', userDetails)
       .success(function(data, status, headers, config)
       {
         //console.log(status + ' - ' + "Success");        
@@ -37,10 +34,7 @@ angular.module('blipApp')
       });
  
 
-    }
-      else 
-      {
-        // country validation failed
-      }  
+    
     };
 }]);
+

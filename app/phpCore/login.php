@@ -6,6 +6,13 @@ $username = "bd90192c1a23ec";
 $password = "bfbfe307";
 $db = "as_64dd0e9989faa02";
 
+
+$user = json_decode(file_get_contents("php://input"));
+$userEmail = $user->email;
+$userPassword = $user->password;
+
+
+
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $db);
 // Check connection
@@ -13,13 +20,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 //getting info from textboxes
-$userEmail = $_POST['userEmail'];
-$userPassword = $_POST['userPassword'];
-//
-
-
-
-//testing and display
+//$userEmail = $_POST['userEmail'];
+//$userPassword = $_POST['userPassword'];
+////testing and display
 //echo $userName."  ".$userPassword;
 
 //variables from db
@@ -38,13 +41,10 @@ while ($row = mysqli_fetch_row($get))
 $db_pass = $row[0];
 $db_salt = $row[1];
 } 
-
-	
-	
 $hash = crypt($userPassword, $db_salt);
 if ($hash==$db_pass) 
 {
-	echo "pasword corest";
+	echo "pasword corect";
 }
 else
 {
@@ -52,9 +52,4 @@ else
 }
 //closing connection
 $conn->close();
-
-
-
-
-
 ?>
