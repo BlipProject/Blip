@@ -7,12 +7,11 @@
 	left:0px;
 	top:50px;
 	width:100%;
-	background-color:#fff;
+	background-color:rgba(255,255,255,0.95);
 	height:auto;
 	margin-bottom:20px;
-	box-shadow: 0px 1px 1px -1px $box-shadow-colour;
-	opacity:0.95;
-	z-index:1;
+	@include box-shadow(0px 1px 1px -1px $box-shadow-colour);
+	z-index:5;
 }
 
 
@@ -38,3 +37,4 @@ button,i {outline: 0; border:none;}
 .quick-button-restaurant:hover,.quick-button-restaurant-active{border-bottom: 5px solid $restaurant-colour;height:55px; .fa{color:$restaurant-colour;}}
 .quick-button-shop:hover, .quick-button-shop-active{border-bottom: 5px solid $shop-colour;height:55px; .fa{color:$shop-colour;}}
 .quick-button-other:hover, .quick-button-other-active{border-bottom: 5px solid $other-colour;height:55px; .fa{color:$other-colour;}}
+

@@ -12,8 +12,12 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "_settingsPannel.scss";
 @import "_aboutPage.scss";
 
+
+@import "_regBusinessForm.scss";
+
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "components-font-awesome/scss/font-awesome.scss";
 // endbower
 
 
@@ -28,11 +32,35 @@ body{
 	font-family:$fontFamily;
 }
 
+h1{
+	font-size:$fontHeading;
+
+}
+
 ///////////
 //Nav Bar//
 ///////////
 
 //Insert navBar styling
 
+///////////////////
+//Heading Bar////
+///////////////
+.page-heading-bar{
+	position:fixed;
+	left:0px;
+	top:50px;
+	width:100%;
+	background-color:#fff;
+	height:55px;
+	margin-bottom:20px;
+	@include box-shadow(0px 1px 1px -1px $box-shadow-colour);
+	opacity:0.95;
+	z-index:1;
+
+	h1{
+		margin-top:14px;
+	}
+}
 
 
