@@ -4,8 +4,6 @@ angular.module('blipApp')
 	
 	.controller('LocationSearchCtrl', ['$http','$scope','GeoLocationService','SearchServices', function ($http,$scope,GeoLocationService,SearchServices) {
 
-		//Stores geolocation data to send to php script
-		var data;
 		//Store search result returned from server
 		$scope.searchResult="";
 		//Stores filtered data (Quick filter buttons)
@@ -13,63 +11,28 @@ angular.module('blipApp')
 		//Variable to set the number of results displayed initialy
 		//Modify to show more/less results
 		$scope.showAmountFilter = 30;
-		
 
-		//TODO : Move getLocation function to a service
-		//TODO : Move getLocationResults function to a service
 		
-
-		/*
+		//Calls geoServices to return the current coordinates
+		//navigator must be passed to service (dont no why ??)
 		$scope.getLocation = function(){
-			data = GeoLocationService.getGeoCoordinates();
-			getLocationResults(data)
-			console.log(data);
+			GeoLocationService.getGeoCoordinates(navigator).then(function(data){
+				console.log("GeoServices called succesfully");
+				returnSearchResults(data);
+			});
 		};
-		*/
-
 		
-		
-		$scope.getLocation = function(){
-
-			var positionOptions = {
-			  enableHighAccuracy: true,
-			  timeout: 1000,
-			  maximumAge: 500
-			};
-
-			if (navigator.geolocation) {
-			    navigator.geolocation.getCurrentPosition(function(position,positionOptions){
-					$scope.$apply(function(){
-			        	$scope.position = position;
-				        data = {
-				        	longitude : position.coords.longitude,
-				        	latitude : position.coords.latitude
-				        };
-			        	getLocationResults(data)
-					});
-			    });
-			}
-		};
-	
-		///////////
-		//IMPORTANT Change post URL to reletive link before build... '../phpCore/search.php'
-		///////////
-		//TESTING URL http://localhost/blip/app/phpCore/search.php
-		var getLocationResults = function(data){
-			var callSearch = $http.post('http://localhost/blip/app/phpCore/search.php', data)
-		        .success(function(data, status, headers, config)
-		        {
-		        	$scope.searchResult = data;
-		        	$scope.filterSearchResult = $scope.searchResult;
-				    console.log(status + ' - ' + "Success");        
-	            })
-		        .error(function(data, status, headers, config)
-		        {
-		            console.log(status + ' - ' + 'Error');
-		        });
+		//Calls SearchServices to return search results
+		//Takes 1 argument ([current coordinates])
+		var returnSearchResults = function(geoData){
+			SearchServices.getLocationResults(geoData).then(function(data){
+				$scope.searchResult = data;
+				$scope.filterSearchResult = $scope.searchResult;
+				console.log("SearchServices called succesfully");
+			});
 		};
 
-		
+
 		//Called from front-end to set filtered results and set active class on button
 		$scope.setFilterSetClass = function(filter,index){
 			getFilter(filter);
@@ -77,6 +40,8 @@ angular.module('blipApp')
 		};
 
 		//Called to return filtered content
+		//If search result matches the filter button it gets pushed into 'filterSearchResult' array
+		//else 'filterSearchResult' equals the content that was origionaly returned from the server
 		var getFilter = function(filter){
 			if(filter !== "All")
 			{
@@ -100,30 +65,38 @@ angular.module('blipApp')
 			$scope.activeFilter = type;
 		};
 
-		$scope.typeHeadClass=" ";
 		//Set class for individual search results based off location type
+		//typeHeadClass -- controls the serarch result header
+		//setIconClass -- controls the icon that is displayed on the header
+		//return class controls the styles for the hover action on each result
+		$scope.typeHeadClass=" ";
+		$scope.setIconClass= " ";
 		$scope.setResultClass = function (classIn){
 			switch(classIn)
 			{
 				case 'Bar':
 				{
 					$scope.typeHeadClass = "result-header-bar";
-					return 'fa fa-glass fa-lg';
+					$scope.setIconClass = "fa fa-glass fa-lg";
+					return "result-hover-button-bar";
 				}
 				case 'Restaurant':
 				{
 					$scope.typeHeadClass = "result-header-restaurant";
-					return 'fa fa-cutlery fa-lg';
+					$scope.setIconClass = 'fa fa-cutlery fa-lg';
+					return "result-hover-button-restaurant";
 				}
 				case 'Supermarket':
 				{
 					$scope.typeHeadClass = "result-header-shop";
-					return 'fa fa-shopping-cart fa-lg';
+					$scope.setIconClass = 'fa fa-shopping-cart fa-lg';
+					return "result-hover-button-shop";
 				}
 				case 'Other':
 				{
 					$scope.typeHeadClass = "result-header-other";
-					return "fa fa-ellipsis-h fa-lg";
+					$scope.setIconClass = "fa fa-ellipsis-h fa-lg";
+					return "result-hover-button-other";
 				}
 				default:
 				{

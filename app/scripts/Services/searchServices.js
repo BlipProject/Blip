@@ -1,25 +1,33 @@
 'use strict';
 
+//Inject "SearchServices" service into controller
+
+//Call service --
+//SearchServices.getLocationResults([variable with coordinates]).then(function(data){
+	//Logic here
+//});
+
+//Variable data stores returned searchreults
+
 angular.module('blipApp')
-	.service('SearchServices',['$http', function ($http,data) {
-		///////////
-		//IMPORTANT Change post URL to reletive link before build... '../phpCore/search.php'
-		///////////
-		//TESTING URL http://localhost/blip/app/phpCore/search.php
-		var searchResults;
-		this.getLocationResults = function(data){
-			var callSearch = $http.post('http://localhost/blip/app/phpCore/search.php', data)
-		        .success(function(data, status, headers, config)
-		        {
-		        	console.log(status + ' - ' + "Success");
-		        	console.log(data);
-		        	searchResults = data; 
-		        	return searchResults;     
-	            })
-		        .error(function(data, status, headers, config)
-		        {
-		            console.log(status + ' - ' + 'Error');
-		        });
+	.service('SearchServices',['$http', function ($http,data,$q) {
+		return{
+
+			///////////
+			//IMPORTANT Change post URL to reletive link before build... '../phpCore/search.php'
+			///////////
+			//TESTING URL http://localhost/blip/app/phpCore/search.php
+			
+			getLocationResults: function(data){
+				return $http.post('http://localhost/blip/app/phpCore/search.php', data)
+			        .then(function(response)
+			        {
+			        	console.log("Success");
+			        	return response.data;     
+		            });
+			}
 		};
-		
 	}]);
+
+
+	//TODO implement error checking
