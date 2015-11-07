@@ -1,12 +1,12 @@
 <style>
 .angular-google-map-container { height: 400px;}
-.marker-labels{ padding-top:10px;
-    padding-left:2px;
-    color:#000; 
+.marker-labels{ 
+    color:#0066FF; 
     height:61px; 
-    width:50px;
+    width:auto;
     font-size:9px;
-    line-height: 12px;
+    font-family: helvetica;
+    font-weight: bold;
 
      }
 </style>
@@ -19,7 +19,7 @@
   <div class="content-left">
     <div ng-controller="MapCtrl">
       <ui-gmap-google-map center="map.center" zoom="map.zoom" ng-init="getFilter('All')">
-      <ui-gmap-marker coords='youarehere.coords' idKey='youarehere.id' options='youarehere.options'>    
+      <ui-gmap-marker coords='youarehere.coords' idKey='youarehere.id' options='youarehere.options' click="onClick">    
       </ui-gmap-marker>
       <ui-gmap-window coords="MapOptions.markers.selected.coords" show="windowOptions.show" options="windowOptions" closeClick="closeClick()" templateUrl="'infowindow.tpl'"  templateParameter="selectedmarker" >
       </ui-gmap-window>

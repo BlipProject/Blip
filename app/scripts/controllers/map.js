@@ -52,8 +52,8 @@ angular.module('blipApp')
 								longitude: data.longitude
 							},
 							options: {
-                            labelContent: 'YOU ARE HERE',
-                            labelAnchor: '22 0',
+                            labelContent: 'You',
+                            labelAnchor: '10 0',
                             labelClass: 'marker-labels',
                             labelVisible: true,
                             icon: 'images/map_icons/your_location_icon.png',
@@ -196,10 +196,6 @@ angular.module('blipApp')
             					longitude: value.MapLong
         						},
         					options: {
-                            	labelContent: value.LocationName,
-                            	labelAnchor: '22 0',
-                            	labelClass: 'marker-labels',
-                            	labelVisible: true,
                             	icon: iconImage,
                             	animation: 2
                         	},
