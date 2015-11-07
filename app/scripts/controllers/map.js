@@ -55,7 +55,9 @@ angular.module('blipApp')
                             labelContent: 'YOU ARE HERE',
                             labelAnchor: '22 0',
                             labelClass: 'marker-labels',
-                            labelVisible: true
+                            labelVisible: true,
+                            icon: 'images/map_icons/your_location_icon.png',
+                            animation: 1
                         }
 						
 						};
@@ -165,6 +167,28 @@ angular.module('blipApp')
 		        	console.log(data);
 		        	searchResults = data;
 		        angular.forEach(data, function(value, key){
+					
+					var iconImage;
+					switch(value.CategoryName)
+					{
+						case 'Bar':
+						iconImage = 'images/map_icons/bar_icon.png';
+						break;
+						case 'Restaurant':
+						iconImage = 'images/map_icons/resturant_icon.png';
+						break;
+						case 'Supermarket':
+						iconImage = 'images/map_icons/shopping_icon.png';
+						break;
+						case 'Other':
+						iconImage = 'images/map_icons/other_icon.png';
+						break;
+						default:
+						iconImage = 'images/map_icons/other_icon.png';
+
+					}
+
+
 						var marker = {
         					id: key,
         					coords: {
@@ -176,6 +200,7 @@ angular.module('blipApp')
                             	labelAnchor: '22 0',
                             	labelClass: 'marker-labels',
                             	labelVisible: true,
+                            	icon: iconImage,
                             	animation: 2
                         	},
                         	data: {
