@@ -1,6 +1,6 @@
 
-<div class="container" ng-controller="LoginCtrl">
-  <form role="form"  name="loginForm">
+<div   class="container" ng-controller="LoginCtrl">
+  <form  role="form"  name="loginForm">
     <div>
         <label>User Email</label></br>
         <input type="email" name="email" ng-model="userEmail" /></br>
@@ -14,5 +14,6 @@
         <span ng-show="loginForm.password.$dirty && loginForm.password.$error.minlength">Minimum 8 characters</span>
     </div></br>
     <button  type="submit"  ng-disabled="loginForm.$invalid"  ng-click='loginUser(userEmail, userPassword)' >LOGIN</button>
+    
   </form>
 </div>
