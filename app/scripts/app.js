@@ -43,6 +43,16 @@ angular
         controller: 'MapCtrl',
         controllerAs: 'map'
       })
+      .when('/registerUser', {
+        templateUrl: 'views/registerUser.html',
+        controller: 'UserRegistrationCtrl',
+        controllerAs: 'userReg'
+      })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'login'
+      })
       .otherwise({
         redirectTo: 'views/landing.html'
       });
