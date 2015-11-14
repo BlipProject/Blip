@@ -102,7 +102,6 @@ angular.module('blipApp')
 
 		uiGmapIsReady.promise() // if no value is put in promise() it defaults to promise(1)
     .then(function (instances) {
-        console.log(instances[0].map); // get the current map
     })
         .then(function () {
         //$scope.addMarkerClickFunction($scope.markers);
