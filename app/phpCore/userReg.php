@@ -6,7 +6,8 @@ $userCountry = $user->country;
 $userEmail = $user->email;
 $userPassword = $user->password;
 // ENCRIPTING PASSWORD
-
+///////////////////////////////////
+//pamietaj wstawic tak zeby sprawdzalo najpierw czy jest taki email w tabelce usaers!!!
 //$emailvailable = false
 //$get = mysqli_query($conn, 
  //      "CALL CheckUsername('$userEmail' , '$emailvailable')") or die("Query fail: " . mysqli_error($conn));
@@ -19,15 +20,17 @@ $cost =10;
 $salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
 $salt = sprintf("$2a$%02d$", $cost) . $salt;
 $hash = crypt($userPassword, $salt);
+$activationCode = crypt($userEmail, $salt);
+
 //creating sprock and executing 
 $sql = mysqli_query($conn, 
-       "Call RegisterUserArtur( $userCountry , '$userName', '$hash', '$salt', '$userEmail' )") or die("Query fail: " . mysqli_error($conn));
-//////////////////////////////////////////////
+       "Call RegisterTempUserArtur( $userCountry , '$userName', '$hash', '$salt', '$userEmail' , '$activationCode')") or die("Query fail: " . mysqli_error($conn));
+
 $db_pass;
 $db_salt;
-$senderEmail = "noreply.blip@gmail.com";
+$mailer = "noreply.blip@gmail.com";
 $get = mysqli_query($conn, 
-	     "Call CheckPassArtur('$senderEmail')") or die("Query fail: " . mysqli_error($conn));
+	     "Call CheckPassArtur('$mailer')") or die("Query fail: " . mysqli_error($conn));
   
 while ($row = mysqli_fetch_row($get))
 { 
@@ -42,20 +45,26 @@ $mail = new PHPMailer();
 $mail->SMTPAuth = true;
 $mail->Host = "smtp.gmail.com";
 $mail->SMTPSecure = "ssl";
-$mail->Username = $senderEmail;
+$mail->Username = $mailer;
 $mail->Password = $db_pass;
 $mail->Port = "465";
 $mail->isSMTP();
 $mail->AddAddress($userEmail);
 $mail->Subject  = "Email verification";
 $mail->Body     = "
-Hi! 
-We need to make sure you are human. Please verify your email and get started using your Website account.
+Thanks for signing up!
+
+Your account has been created.
+Please verify your email and get started using your Website account. 
+Please click this link to activate your account:
+http://localhost/blip/app/phpCore/activationUser.php?lkjhgv=$userEmail&asxcv=$activationCode
+
+Regards
+
+Blip Team
 ";
 $mail->WordWrap = 200;
 $mail->Send();
-///////////////////////////////////////////////
-
 //checking sprock
 /*
 if ($conn->query($sql) === TRUE) 
