@@ -40,12 +40,14 @@
 
 .bus-reg-button{
 	height:34px;
-	width:24.4%;
+	width:50%;
 	float:right;
-	margin:10px 10px 10px 0px;
+	margin:10px;
 	outline: 0; 
 	border:none;
 	color:#fff;
+	border-radius:0px;
+	position:relative;
 
 	@media(max-width:$screen-sm){
 		margin:0px;
@@ -55,19 +57,20 @@
 
 .bus-reg-button-yes{
 	background-color:$reg-button-yes-colour;
+
+	&:hover{
+		background-color:$reg-button-yes-colour-hover;
+	}
 }
 
 .bus-reg-button-no{
 	background-color:$reg-button-no-colour;
+
+	&:hover{
+		background-color:$reg-button-no-colour-hover;
+	}
 }
 
-.bus-reg-button-yes:hover{
-	background-color:$reg-button-yes-colour-hover;
-}
-
-.bus-reg-button-no:hover{
-	background-color:$reg-button-no-colour-hover;
-}
 
 .bus-reg-form{
 	background-color:$result-header-bg;
@@ -237,12 +240,11 @@
 	margin:10px 10px 10px 0px;
 	outline: 0; 
 	border:1px solid $restaurant-colour;
-	background-color:lighten($box-shadow-colour, 10%);
+	background-color:lighten(#bdc3c7, 10%);
 }
 
 .bus-reg-form-button:hover{
-	color:#fff;
-	background-color:$box-shadow-colour;
+	background-color:#bdc3c7;
 }
 
 .angular-google-map-container{
