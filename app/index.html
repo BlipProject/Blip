@@ -10,21 +10,29 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="bower_components/lato/css/lato.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/flags.css">
     <!-- endbuild -->
-
-    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    
+    <!--Remove if Kendo-UI not being used-->
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.3.930/styles/kendo.common.min.css">
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.3.930/styles/kendo.default.min.css">
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2015.3.930/styles/kendo.mobile.all.min.css">
+    
 
   </head>
   <body ng-app="blipApp">
+
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+
 
 
 
@@ -41,6 +49,31 @@
     
 
 
+
+<!-- Start Artur test with cendo UI -->
+ <script>
+  function createDDL()
+  {
+    $("#my_dropdown").kendoComboBox({
+        dataTextField: "CountryName",
+        dataValueField: "Country_ID",
+        template: '<span class="k-state-default"><i class="flagstrap-icon flagstrap-#= CountryCode #"></i>#= CountryName #</span>',
+        dataSource: {
+            transport: {
+                read: {
+                    dataType: "json",
+                    url: "http://localhost/blip/app/phpCore/dropdown.php"
+                }
+            }
+        },
+        filter: "contains",
+        suggest: true,
+        index: -1
+    });
+  }
+                
+</script>          
+<!-- STOP Artur test with cendo UI-->
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -78,8 +111,12 @@
     <script src="scripts/controllers/search.js"></script>
     <script src="scripts/controllers/nav.js"></script>
     <script src="scripts/controllers/map.js"></script>
+    <script src="scripts/controllers/userRegistration.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/register_business.js"></script>
     <script src="scripts/services/geoServices.js"></script>
     <script src="scripts/services/searchServices.js"></script>
+
     <!-- endbuild --> 
 </body>
 </html>

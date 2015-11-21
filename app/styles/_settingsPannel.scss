@@ -24,32 +24,32 @@
 	//Caters for most common screen sizes
 	//http://www.w3schools.com/browsers/browsers_display.asp
 
-	@media(min-width:768px)
-	{
+	@media(min-width:768px){
 		width:220px;
 		left: 70%;
 	}	
 
-	@media(min-width:1024px)
-	{
+	@media(min-width:1024px){
 		width:290px;
 		left: 70%;
 	}
 
-	@media(min-width:1280px)
-	{
+	@media(min-width:1280px){
 		width:300px;
 		left: 69.5%;
 	}	
 
-	@media(min-width:1366px)
-	{
+	@media(min-width:1366px){
 		width:300px;
 		left: 68%;
 	}
+	
+	@media(min-width:1679px){
+		width:320px;
+		left: 65%;
+	}
 
-	@media(min-width:1920px)
-	{
+	@media(min-width:1920px){
 		width:320px;
 		left: 63%;
 	}
