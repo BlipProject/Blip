@@ -11,6 +11,7 @@ angular.module('blipApp')
 		//Variable to set the number of results displayed initialy
 		//Modify to show more/less results
 		$scope.showAmountFilter = 30;
+		$scope.userNationality = "41";
 
 		
 		//Calls geoServices to return the current coordinates
@@ -18,6 +19,8 @@ angular.module('blipApp')
 		$scope.getLocation = function(){
 			GeoLocationService.getGeoCoordinates(navigator).then(function(data){
 				console.log("GeoServices called succesfully");
+				data.nationality = $scope.userNationality;
+				console.log(data);
 				returnSearchResults(data);
 			});
 		};
