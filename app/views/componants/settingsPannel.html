@@ -1,4 +1,4 @@
-<div class="settings-pannel-wrapper">
+<div ng-controller="SettingsPannel" class="settings-pannel-wrapper" ng-init="getNationalities()">
 	<div class="settings-pannel-header settings-pannel-header-settings">
 		<p>Settings</p>
 	</div>
@@ -9,6 +9,13 @@
             <ul class="dropdown-menu">
               <li><a href="#/searchResult">Result View</a></li>
               <li><a href="#/map">Map View</a></li>
+            </ul>
+      	</div>
+      	<div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select Nationality
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li ng-repeat="nation in nationalities" value="{{nation.NationalityID}}"><a ng-click="getLocationNewCountry(nation.NationalityID)">{{nation.NationalityName}}</a></li>
             </ul>
       	</div>
 	</div>

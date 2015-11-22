@@ -11,9 +11,16 @@ angular.module('blipApp')
 		//Variable to set the number of results displayed initialy
 		//Modify to show more/less results
 		$scope.showAmountFilter = 30;
-		$scope.userNationality = "41";
+		//Stores users nationality to pass to server
+		//Hardcoded currently for testing
+		$scope.userNationality = "671";
 
 		
+		$scope.getLocationNewCountry = function(newCountry){
+			$scope.userNationality = newCountry;
+			$scope.getLocation();
+		};
+
 		//Calls geoServices to return the current coordinates
 		//navigator must be passed to service (dont no why ??)
 		$scope.getLocation = function(){
@@ -34,7 +41,6 @@ angular.module('blipApp')
 				console.log("SearchServices called succesfully");
 			});
 		};
-
 
 		//Called from front-end to set filtered results and set active class on button
 		$scope.setFilterSetClass = function(filter,index){
