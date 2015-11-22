@@ -1,4 +1,6 @@
 <div ng-controller="SettingsPannel" class="settings-pannel-wrapper" ng-init="getNationalities()">
+	 <!--includes filter buttons at top of page-->
+    <div ng-include="'views/componants/quickButtons.html'"></div>
 	<div class="settings-pannel-header settings-pannel-header-settings">
 		<p>Settings</p>
 	</div>
@@ -15,7 +17,7 @@
             <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select Nationality
             <span class="caret"></span></button>
             <ul class="dropdown-menu">
-              <li ng-repeat="nation in nationalities" value="{{nation.NationalityID}}"><a ng-click="getLocationNewCountry(nation.NationalityID)">{{nation.NationalityName}}</a></li>
+              <li ng-repeat="nation in nationalities track by $index" value="{{nation.NationalityID}}" ng-click="getLocationNewCountry(nation.NationalityID)"><a>{{nation.NationalityName}}</a></li>
             </ul>
       	</div>
 	</div>
