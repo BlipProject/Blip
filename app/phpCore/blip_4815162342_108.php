@@ -2,7 +2,6 @@
 
 	//Configure DATABASE
 
-<<<<<<< HEAD
 	//LIVE DATABASE
 	//NEW DATABASE
 	$servername = "eu-cdbr-azure-west-c.cloudapp.net";
