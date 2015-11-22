@@ -5,12 +5,10 @@
 	float:left;
 	height:auto;
 	min-height:100px;
-	overflow:auto;
 	background-color:#fff;
 	@include box-shadow(0px 0px 2px 0px $box-shadow-colour);
 	margin-bottom:20px;
 	border-radius:1px;
-
 	//Lock settings pannel
 	position: fixed;
     top: 130px;
@@ -53,6 +51,17 @@
 		width:320px;
 		left: 63%;
 	}
+}
+
+//--Dropdowns
+//-------------
+.dropdown a{
+	cursor:pointer;
+}
+//--Sets max height and scroll for dropdown menu items
+.dropdown .dropdown-menu{
+	max-height: 300px;
+	overflow-y: scroll;
 }
 
 .settings-pannel-header{

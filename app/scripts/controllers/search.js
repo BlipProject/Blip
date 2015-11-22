@@ -18,6 +18,7 @@ angular.module('blipApp')
 		
 		$scope.getLocationNewCountry = function(newCountry){
 			$scope.userNationality = newCountry;
+			console.log(newCountry);
 			$scope.getLocation();
 		};
 
