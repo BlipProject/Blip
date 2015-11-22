@@ -22,7 +22,6 @@ angular.module('blipApp')
 			};
 
 			if (navigator.geolocation) {
-				console.log("got to getlocation function");
 			    navigator.geolocation.getCurrentPosition(function(position,positionOptions){
 					$scope.$apply(function(){
 			        	$scope.position = position;
@@ -52,10 +51,12 @@ angular.module('blipApp')
 								longitude: data.longitude
 							},
 							options: {
-                            labelContent: 'YOU ARE HERE',
-                            labelAnchor: '22 0',
+                            labelContent: 'You',
+                            labelAnchor: '10 0',
                             labelClass: 'marker-labels',
-                            labelVisible: true
+                            labelVisible: true,
+                            icon: 'images/map_icons/your_location_icon.png',
+                            animation: 1
                         }
 						
 						};
@@ -77,9 +78,7 @@ angular.module('blipApp')
 
 
 		$scope.onClick = function(data) {
-			console.log("Got Here - onclick");
 			$scope.selectedmarker = data;
-			console.log($scope.selectedmarker);
 			$scope.$apply();
 		$scope.windowOptions.show = !$scope.windowOptions.show;
 		$scope.$apply();
@@ -98,14 +97,6 @@ angular.module('blipApp')
 		    $scope.windowOptions.show = false;
 		};
 
-		uiGmapIsReady.promise() // if no value is put in promise() it defaults to promise(1)
-    .then(function (instances) {
-        console.log(instances[0].map); // get the current map
-    })
-        .then(function () {
-        //$scope.addMarkerClickFunction($scope.markers);
-        //console.log($scope.markers);
-    });
 
      
     $scope.addMarkerClickFunction = function (markers) {
@@ -156,15 +147,64 @@ angular.module('blipApp')
 		//TESTING URL http://localhost/blip/app/phpCore/search.php
 		var getLocationResults = function(data){
 
-			console.log("got here - getlocationresults function");
 			var searchResults;
-			var callSearch = $http.post('../phpCore/search.php', data)
+			var callSearch = $http.post('http://localhost/blip/app/phpCore/search.php', data)
 
 		        .success(function(data, status, headers, config)
 		        {
-		        	console.log(data);
-		        	searchResults = data;
+		        	searchResult = data;
 		        angular.forEach(data, function(value, key){
+			
+        					var marker = makeMarker(value, key);
+
+        					$scope.markers.push(marker);
+				});
+
+		        $scope.addMarkerClickFunction($scope.markers);
+
+		        	$scope.filterSearchResult = searchResult;
+				    console.log(status + ' - ' + "Success"); 
+		        })
+		        .error(function(data, status, headers, config)
+		        {
+		            console.log(status + ' - ' + 'Error');
+		        });
+
+		};
+
+		$scope.setFilterSetClass = function(filter,index){
+			$scope.getFilter(filter);
+			setQuickFilterClass(index);
+		};
+
+		$scope.activeFilter=0;
+		var setQuickFilterClass = function(type){
+			$scope.activeFilter = type;
+		};
+
+		var makeMarker = function(value, key)
+		{
+			var iconImage;
+					switch(value.CategoryName)
+					{
+						case 'Bar':
+						iconImage = 'images/map_icons/bar_icon.png';
+						break;
+						case 'Restaurant':
+						iconImage = 'images/map_icons/resturant_icon.png';
+						break;
+						case 'Supermarket':
+						iconImage = 'images/map_icons/shopping_icon.png';
+						break;
+						case 'Other':
+						iconImage = 'images/map_icons/other_icon.png';
+						break;
+						default:
+						iconImage = 'images/map_icons/other_icon.png';
+
+					}
+
+
 						var marker = {
         					id: key,
         					coords: {
@@ -172,10 +212,7 @@ angular.module('blipApp')
             					longitude: value.MapLong
         						},
         					options: {
-                            	labelContent: value.LocationName,
-                            	labelAnchor: '22 0',
-                            	labelClass: 'marker-labels',
-                            	labelVisible: true,
+                            	icon: iconImage,
                             	animation: 2
                         	},
                         	data: {
@@ -187,66 +224,43 @@ angular.module('blipApp')
 
         					};
 
-        					$scope.markers.push(marker);
-				});
-
-		        console.log($scope.markers);
-		        $scope.addMarkerClickFunction($scope.markers);
-
-
-		        	$scope.filterSearchResult = searchResult;
-				    console.log(status + ' - ' + "Success"); 
-				    console.log(searchResult);  
-		        })
-		        .error(function(data, status, headers, config)
-		        {
-		            console.log(status + ' - ' + 'Error');
-		        });
-
-		};
-
-
-		$scope.filterSearchResult = [];
+        					
+        					return marker;
+		}
+		
 
 		$scope.getFilter = function(filter){
-			console.log("got to getfilter function");
 			if(filter !== "All")
 			{
-				console.log("got here - filtering");
 				$scope.filterSearchResult = [];
-				angular.forEach(searchResult, function(value){
+				$scope.markers = [];
+				angular.forEach(searchResult, function(value, key){
 					if(value.CategoryName === filter)
 					{
 						$scope.filterSearchResult.push(value);
+						
+        					var marker = makeMarker(value, key);
+        					$scope.markers.push(marker);
+        					$scope.addMarkerClickFunction($scope.markers);
+
 					}
 				});
 
 			}
 			else
 			{
-				console.log("got here - unfiltered");
 				$scope.filterSearchResult = searchResult;
-				console.log(searchResult);//undefined?
+		        angular.forEach(searchResult, function(value, key){
+        					var marker = makeMarker(value, key);
+
+        					$scope.markers.push(marker);
+				});
+
+		        $scope.addMarkerClickFunction($scope.markers);
+
 				
 			}
 
-				// angular.forEach($scope.filterSearchResult, function(value){
-				// console.log("got here");
-				// console.log(value);
-				// 		var marker =  {
-    //     					id: value.LocationID,
-    //     					coords: {
-    //         					latitude: value.MapLat,
-    //         					longitude: value.MapLong
-    //     						}
-    							//etc....
-    //     					};
-
-    //     					console.log(marker);
-
-    //     					$scope.markers.push(marker);
-
-				// });
 
 		};
 

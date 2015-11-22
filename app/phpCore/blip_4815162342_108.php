@@ -2,18 +2,15 @@
 
 //Configure DATABASE
 
-//LIVE DATABASE
+//OLD DATABASE
+//$servername = "eu-cdbr-azure-north-d.cloudapp.net";
+//$username = "bd90192c1a23ec";
+//$password = "bfbfe307";
+//$db = "as_64dd0e9989faa02";
 
-/*
-//--External
-$servername = "mysql2640int.cp.blacknight.com";
-$username = "u1398012_admin";
-$password = "zI662V|a>q";
-$db = "db1398012_blipdata";
-*/
-
-//--Internal (for build version)
+//NEW DATABASE
 $servername = "eu-cdbr-azure-west-c.cloudapp.net";
 $username = "b4f8e872978aae";
 $password = "b894d25c";
 $db = "blipdata";
+
