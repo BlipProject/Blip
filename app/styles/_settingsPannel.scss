@@ -11,7 +11,8 @@
 	border-radius:1px;
 	//Lock settings pannel
 	position: fixed;
-    top: 130px;
+	top:80px;
+
 	
 
 	//PLEASE DO NOT JUDGE ME FOR THIS ... THIS IS PAINFUL, I KNOW, I WROTE IT.
@@ -62,6 +63,10 @@
 .dropdown .dropdown-menu{
 	max-height: 300px;
 	overflow-y: scroll;
+}
+
+.dropdown .dropdown-toggle{
+	width:100%;
 }
 
 .settings-pannel-header{

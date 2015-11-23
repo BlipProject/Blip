@@ -1,0 +1,25 @@
+.m-nav-wrapper{
+	width:75%;
+	position:fixed;
+	left:0px;
+	top:50px;
+	bottom:0px;
+	background-color: #fff;
+	z-index:5;
+	color: #000;
+
+	@media (min-width:$screen-sm){
+		display:none;
+	}
+}
+
+.m-nav-wrapper-show{
+	display:block;
+}
+.m-nav-wrapper-hide.ng-hide{
+	display: none;
+}
+
+.m-nav{
+
+}

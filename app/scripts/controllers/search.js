@@ -12,13 +12,14 @@ angular.module('blipApp')
 		//Modify to show more/less results
 		$scope.showAmountFilter = 30;
 		//Stores users nationality to pass to server
-		//Hardcoded currently for testing
-		$scope.userNationality = "671";
+		//Hardcoded currently for testing -- 671 == France
+		$scope.userNationality = 671;
 
-		
+		//Called from Nationality dropdown in "settingsPannel.html" to set "userNationality"
+		//Then calls getLocation and which passes new country to database sproc
 		$scope.getLocationNewCountry = function(newCountry){
 			$scope.userNationality = newCountry;
-			console.log(newCountry);
+			console.log("New country - " + newCountry + " - set");
 			$scope.getLocation();
 		};
 
@@ -28,7 +29,7 @@ angular.module('blipApp')
 			GeoLocationService.getGeoCoordinates(navigator).then(function(data){
 				console.log("GeoServices called succesfully");
 				data.nationality = $scope.userNationality;
-				console.log(data);
+				data.showLimit = $scope.showAmountFilter;
 				returnSearchResults(data);
 			});
 		};

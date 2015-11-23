@@ -11,18 +11,19 @@
 	$request = json_decode($postdata);
 	$latitude = $request->latitude;
 	$longitude = $request->longitude;
+	$showLimit = $request->showLimit;
 	$nationality = $request->nationality;
 
 	$conn = mysqli_connect($servername, $username, $password, $db);
 
-	$searchResults = searchLocation($latitude,$longitude,$nationality);
+	$searchResults = searchLocation($latitude,$longitude,$nationality,$showLimit);
 
-	function searchLocation($lat,$long,$nationality) {
+	function searchLocation($lat,$long,$nationality,$showLimit) {
 		$resultsArray;
 		global $conn;
 
 		$search = mysqli_query($conn, 
-	    "CALL 30Nearest('$lat','$long','$nationality')") or die("Query fail: " . mysqli_error($conn));
+	    "CALL 30Nearest('$lat','$long','$nationality','$showLimit')") or die("Query fail: " . mysqli_error($conn));
 
 		while($row = $search->fetch_array(MYSQL_ASSOC)) {
             $resultsArray[] = $row;
