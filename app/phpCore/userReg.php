@@ -1,5 +1,6 @@
  <?php
-include('config.php');
+include('blip_4815162342_108.php');
+
 $user = json_decode(file_get_contents("php://input"));
 $userName = $user->name;
 $userCountry = $user->country;
@@ -8,14 +9,26 @@ $userPassword = $user->password;
 // ENCRIPTING PASSWORD
 ///////////////////////////////////
 //pamietaj wstawic tak zeby sprawdzalo najpierw czy jest taki email w tabelce usaers!!!
-//$emailvailable = false
+
+
+//$emailvailable = true;
+//$emailvailableTemp = true;
+//$conn = mysqli_connect($servername, $username, $password, $db);
 //$get = mysqli_query($conn, 
- //      "CALL CheckUsername('$userEmail' , '$emailvailable')") or die("Query fail: " . mysqli_error($conn));
-  
+//       "CALL CheckUsername('$userEmail' , '$emailvailable')") or die("Query fail: " . mysqli_error($conn));
 
-//if ($emailvailable) {
+//$conn = mysqli_connect($servername, $username, $password, $db);
+//$get2 = mysqli_query($conn, 
+      //"CALL CheckUserNameTemp('$userEmail' , 'emailvailableTemp')") or die("Query fail: " . mysqli_error($conn));
+//if ($emailvailable == false ) 
+//{
+//	echo "U R ALREADY REGISTER";
 
-  // ok
+//}else if ($emailvailableTemp == false)
+//{
+ // echo "Check your email and activate your account";
+//}else
+//{
 $cost =10;
 $salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
 $salt = sprintf("$2a$%02d$", $cost) . $salt;
@@ -23,12 +36,15 @@ $hash = crypt($userPassword, $salt);
 $activationCode = crypt($userEmail, $salt);
 
 //creating sprock and executing 
+$conn = mysqli_connect($servername, $username, $password, $db);
 $sql = mysqli_query($conn, 
        "Call RegisterTempUserArtur( $userCountry , '$userName', '$hash', '$salt', '$userEmail' , '$activationCode')") or die("Query fail: " . mysqli_error($conn));
 
 $db_pass;
 $db_salt;
 $mailer = "noreply.blip@gmail.com";
+
+//$conn = mysqli_connect($servername, $username, $password, $db);
 $get = mysqli_query($conn, 
 	     "Call CheckPassArtur('$mailer')") or die("Query fail: " . mysqli_error($conn));
   
@@ -85,4 +101,6 @@ else
 */
 //closing connection
 $conn->close();
+
+//}
 ?>

@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
   <head>
@@ -18,8 +19,6 @@
     <link rel="stylesheet" href="styles/flags.css">
     <!-- endbuild -->
 
-    
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
   </head>
@@ -27,13 +26,10 @@
 
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      
     <![endif]-->
-
-
-
-
-
     <!--Site Content-->
+
 
     <div class="container-fluid">    
       <div ng-include="'views/componants/nav.html'" scope="" onload=""></div>
@@ -42,40 +38,7 @@
       </div>
     </div>
     <div ng-include="'views/componants/footer.html'" scope="" onload=""></div>
-
-
- 
-
     <!--End Site Content-->
-    
-
-
-
-<!-- Start Artur test with cendo UI -->
- <script>
-  function createDDL()
-  {
-    $("#my_dropdown").kendoComboBox({
-        dataTextField: "CountryName",
-        dataValueField: "Country_ID",
-        template: '<span class="k-state-default"><i class="flagstrap-icon flagstrap-#= CountryCode #"></i>#= CountryName #</span>',
-        dataSource: {
-            transport: {
-                read: {
-                    dataType: "json",
-                    url: "http://localhost/blip/app/phpCore/dropdown.php"
-                }
-            }
-        },
-        filter: "contains",
-        suggest: true,
-        index: -1
-    });
-  }
-                
-</script>          
-<!-- STOP Artur test with cendo UI-->
-
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -119,6 +82,8 @@
     <script src="scripts/services/geoServices.js"></script>
     <script src="scripts/services/searchServices.js"></script>
 
+    <script src="scripts/controllers/facebookLogin.js"></script>
+    <!-- <script  src="scripts/controllers/fb.js" ></script> mozliwe, ze do skasowania --> 
     <!-- endbuild --> 
 </body>
 </html>

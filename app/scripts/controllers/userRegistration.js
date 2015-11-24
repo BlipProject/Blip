@@ -13,10 +13,9 @@ angular.module('blipApp')
     //$scope.userDetails;
 //name, country, email, password
   $scope.createRegistration = function (userName, userCountry, userEmail, userPassword) {
-    var c = $('#my_dropdown');
+    
 
-    if(!isNaN(c.data('kendoComboBox').value()) && isNaN(c.data('kendoComboBox').text()))
-    {
+    
         //all ok
       var userDetails = {
       name:userName, 
@@ -24,7 +23,7 @@ angular.module('blipApp')
       email:userEmail,
       password:userPassword
     };
-    //console.log(userDetails)
+    console.log(userDetails)
     
   var postReg = $http.post('http://localhost/blip/app/phpCore/userReg.php', userDetails)
       .success(function(data, status, headers, config)
@@ -37,11 +36,7 @@ angular.module('blipApp')
       });
  
 
-    }
-      else 
-      {
-        // country validation failed
-      }  
+    
     };
 }]);
   

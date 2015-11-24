@@ -1,10 +1,11 @@
 <?php
-include('config.php');
+include('blip_4815162342_108.php');
+$conn = mysqli_connect($servername, $username, $password, $db);
 $user = json_decode(file_get_contents("php://input"));
 $userEmail = $user->email;
 $userPassword = $user->password;
 //echo 'ok?';
-//echo $user->email;
+echo $user->email;
 //echo $userPassword;
 //variables from db
 $db_pass;
@@ -32,6 +33,8 @@ else
 {
 	 echo "pasword incorect";
 }
+//Return to Frontend #######################################
+	
 //closing connection
 $conn->close();
 

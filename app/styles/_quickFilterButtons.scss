@@ -12,7 +12,16 @@
 	margin-bottom:20px;
 	@include box-shadow(0px 1px 1px -1px $box-shadow-colour);
 	z-index:5;
+	
+
 }
+.facebook{
+	width:176px;
+	height:40px;
+	background-image: url("http://www.ecognise.com/img/facebook_login.png");
+}
+
+
 
 
 button,i {outline: 0; border:none;} 
