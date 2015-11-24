@@ -9,6 +9,7 @@
 
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel='stylesheet' href='bower_components/angular-rangeslider/angular.rangeSlider.css' />
     <link rel='stylesheet' href='bower_components/components-font-awesome/css/font-awesome.css' />
     <link rel='stylesheet' href='bower_components/lato/css/lato.css' />
     <!-- endbower -->
@@ -43,34 +44,6 @@
     <!--End Site Content-->
     
 
-
-
-<!-- Start Artur test with cendo UI -->
- <script>
-  function createDDL()
-  {
-    $("#my_dropdown").kendoComboBox({
-        dataTextField: "CountryName",
-        dataValueField: "Country_ID",
-        template: '<span class="k-state-default"><i class="flagstrap-icon flagstrap-#= CountryCode #"></i>#= CountryName #</span>',
-        dataSource: {
-            transport: {
-                read: {
-                    dataType: "json",
-                    url: "http://localhost/blip/app/phpCore/dropdown.php"
-                }
-            }
-        },
-        filter: "contains",
-        suggest: true,
-        index: -1
-    });
-  }
-                
-</script>          
-<!-- STOP Artur test with cendo UI-->
-
-
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
@@ -91,6 +64,7 @@
     <script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
     <script src="bower_components/lodash/lodash.js"></script>
     <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+    <script src="bower_components/angular-rangeslider/angular.rangeSlider.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
@@ -114,6 +88,7 @@
     <script src="scripts/services/searchServices.js"></script>
     <script src="scripts/services/populateCountryDropdown.js"></script>
     <script src="scripts/controllers/settingsPannel.js"></script>
+    <script src="scripts/services/componants/sidebarNavState.js"></script>
     <!-- endbuild --> 
 </body>
 </html>

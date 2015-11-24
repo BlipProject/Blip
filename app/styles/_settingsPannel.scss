@@ -56,6 +56,21 @@
 
 //--Dropdowns
 //-------------
+.dropdown-wrapper {
+	float: left;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	width:95%;
+}
+
+.dropdown{
+	width: 100%;
+	float: left;
+	margin:auto;
+	margin: 0px;
+}
+
 .dropdown a{
 	cursor:pointer;
 }
@@ -72,7 +87,7 @@
 .settings-pannel-header{
 	width:$resultHeaderWidth;
 	height:$resultHeaderHeight;
-	padding:$resultHeaderPadding;
+	
 	margin-bottom:10px;
 	float:left;
 	color:$font-colour;
@@ -86,6 +101,7 @@
 }
 
 .settings-pannel-content{
+	width:100%;
 	padding:10px 0px 0px 10px;
 	height:auto;
 	float:left;
@@ -100,4 +116,24 @@
     text-decoration: none;
     list-style: none;
     color: $box-shadow-colour;
+}
+
+//Navigation Icons
+//------------------
+
+.nav-view-switch{
+	text-align: center;
+	width:50%;
+	float:left;
+
+	.fa{
+		color: #ecf0f1;
+
+		&:hover{color:$main-brand-colour;}
+
+	}
+}
+
+.navviewswitchactive{
+	.fa{color:$main-brand-colour;}
 }

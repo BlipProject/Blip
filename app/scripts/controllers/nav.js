@@ -2,6 +2,8 @@
 
 angular.module('blipApp')
   .controller('NavCtrl',['$scope', function ($scope) {
+
+  	/*
   		$scope.navStatus=0;
   		$scope.activeClass="m-nav-wrapper-hide";
 
@@ -18,5 +20,5 @@ angular.module('blipApp')
   				$scope.navStatus = 0;
   			}
   		};
-
+	*/
   }]);
