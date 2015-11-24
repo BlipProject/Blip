@@ -53,6 +53,11 @@ angular
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
+      .when('/LocationView', {
+        templateUrl: 'views/IndividualResultPage.html',
+        controller: 'IndividualResultPageCtrl',
+        controllerAs: 'IRP'
+      })
       .otherwise({
         redirectTo: 'views/landing.html'
       });

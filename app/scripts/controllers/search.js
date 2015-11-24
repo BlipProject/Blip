@@ -2,7 +2,7 @@
 
 angular.module('blipApp')
 	
-	.controller('LocationSearchCtrl', ['$http','$scope','GeoLocationService','SearchServices', function ($http,$scope,GeoLocationService,SearchServices) {
+	.controller('LocationSearchCtrl', ['$http','$scope','GeoLocationService','SearchServices','ResultPageState','$location', function ($http,$scope,GeoLocationService,SearchServices,ResultPageState,$location) {
 
 		//Store search result returned from server
 		$scope.searchResult="";
@@ -114,6 +114,12 @@ angular.module('blipApp')
 					return "";
 				}
 			}
+		};
+
+		//On hover button click calls the 'ResultPage Factory' to store the pages state
+		$scope.storeFocusedResult = function(index){
+			ResultPageState.SetPageState($scope.filterSearchResult[index]);
+			$location.path('LocationView');
 		};
 }]);
 
