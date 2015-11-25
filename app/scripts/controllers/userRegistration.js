@@ -28,6 +28,8 @@ angular.module('blipApp')
   var postReg = $http.post('http://localhost/blip/app/phpCore/userReg.php', userDetails)
       .success(function(data, status, headers, config)
       {
+        alert("Success"); 
+        location.reload();
         //console.log(status + ' - ' + "Success");        
       })
       .error(function(data, status, headers, config)
