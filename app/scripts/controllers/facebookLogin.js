@@ -29,11 +29,11 @@ $scope.loginFacebookUser = function (nationality) {
       nat:nationality
     };
     console.log(userDetails);
-if (userDetails != "") {
+if (userDetails !== "") {
 
 	document.getElementById("nationalityDD").className += " ng-hide";
 	document.getElementById("finishReg").className += " ng-hide";
-	};
+	}
 };
 
 
@@ -42,21 +42,21 @@ if (userDetails != "") {
 
   	FB.login(function(response) {
     if (response.authResponse) {
-     //console.log('Welcome!  Fetching your information.... ');
+     //console.log('Welcome!  ');
 
      FB.api('/me', { fields: 'name, email, picture' },function(response) {
      	
        console.log('Good to see you, ' + response.name + '.');
        console.log(response.picture.data.url);
-
-       $scope.$apply(function() {
+ 
+        $scope.$apply(function() {
        	$scope.hello="Good to see you";
         $scope.username = response.name;
         document.getElementById("hide").className += " ng-hide";
         document.getElementById("nationalityDD").className = "";
         document.getElementById("finishReg").className = "";
         var profileImg = response.picture.data.url;
-		document.getElementById('profilePicture').innerHTML = '<img src="' + profileImg + '" />';
+		    document.getElementById('profilePicture').innerHTML = '<img src="' + profileImg + '" />';
         
       });
 

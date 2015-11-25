@@ -23,7 +23,7 @@ angular.module('blipApp')
       email:userEmail,
       password:userPassword
     };
-    console.log(userDetails)
+    //console.log(userDetails);
     
   var postReg = $http.post('http://localhost/blip/app/phpCore/userReg.php', userDetails)
       .success(function(data, status, headers, config)

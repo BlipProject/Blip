@@ -6,11 +6,12 @@ $userName = $user->name;
 $userCountry = $user->country;
 $userEmail = $user->email;
 $userPassword = $user->password;
-// ENCRIPTING PASSWORD
-///////////////////////////////////
-//pamietaj wstawic tak zeby sprawdzalo najpierw czy jest taki email w tabelce usaers!!!
 
 
+//##########################################################################################################################
+// comenteed to not check is there existing email###########################################################################
+// just for presentation for colum co I dont need to delete my existing account from database ##############################
+// DO NOT TOUCH ############################################################################################################
 //$emailvailable = true;
 //$emailvailableTemp = true;
 //$conn = mysqli_connect($servername, $username, $password, $db);
@@ -29,6 +30,10 @@ $userPassword = $user->password;
  // echo "Check your email and activate your account";
 //}else
 //{
+// comenteed to not check is there existing email###########################################################################
+// just for presentation for colum co I dont need to delete my existing account from database ##############################
+// DO NOT TOUCH ############################################################################################################
+//##########################################################################################################################
 $cost =10;
 $salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
 $salt = sprintf("$2a$%02d$", $cost) . $salt;
@@ -75,10 +80,13 @@ Please verify your email and get started using your Website account.
 Please click this link to activate your account:
 http://localhost/blip/app/phpCore/activationUser.php?lkjhgv=$userEmail&asxcv=$activationCode
 
+
+
 Regards
 
 Blip Team
 ";
+// BRIAN 
 $mail->WordWrap = 200;
 $mail->Send();
 //checking sprock

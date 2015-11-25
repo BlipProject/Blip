@@ -1,5 +1,5 @@
 <?php
-    //require_once 'config.php';
+   
 include('blip_4815162342_108.php');
 $conn = mysqli_connect($servername, $username, $password, $db);
     $userEmail = $_GET['lkjhgv'];
@@ -20,10 +20,12 @@ if ($activation == $db_code && $userEmail == $db_email)
        "Call MoveIntoUsersArtur('$userEmail')") or die("Query fail: " . mysqli_error($conn));
 
  echo "Account activated. We are going to redirect You now into Blip. Have fun!";
- header( "refresh:3;url=http://localhost:9000/#/" );
+ header( "refresh:3;url = http://localhost:9000/#/" );
+ // BRIAN 
 
 }else
 {
     echo "Sorry activation time expired";
+
 }
 ?>
