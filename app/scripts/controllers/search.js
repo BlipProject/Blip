@@ -117,9 +117,9 @@ angular.module('blipApp')
 		};
 
 		//On hover button click calls the 'ResultPage Factory' to store the pages state
+		//Then redirects to page for that result
 		$scope.storeFocusedResult = function(index){
 			ResultPageState.SetPageState($scope.filterSearchResult[index]);
 			$location.path('LocationView');
 		};
 }]);
-

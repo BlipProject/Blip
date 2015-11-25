@@ -1,5 +1,5 @@
 //Store the current state of the page
-//If hoverOver result button is clicked takes the current result and tores it
+//If hoverOver result button is clicked takes the current result and stores it
 //to be back by "IndividualResultPageCtrl"
 
 angular.module('blipApp')
