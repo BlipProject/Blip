@@ -1,16 +1,23 @@
-<div class="settings-pannel-wrapper">
+<div  ng-controller="SettingsPannel" ng-init="getNationalities()">
+	 <!--includes filter buttons at top of page-->
+    <div ng-include="'views/componants/quickButtons.html'"></div>
 	<div class="settings-pannel-header settings-pannel-header-settings">
 		<p>Settings</p>
 	</div>
 	<div class="settings-pannel-content">
-		<div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select View
-            <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li><a href="#/searchResult">Result View</a></li>
-              <li><a href="#/map">Map View</a></li>
-            </ul>
-      	</div>
+		<div class="nav-icon-wrapper">
+			<div class="nav-view-switch" ng-click="setActive(0)" ng-class="{navviewswitchactive: isActive === 0}"><a href="#/searchResult"><i class="fa fa-list fa-4x"></i></a></div>
+        	<div class="nav-view-switch" ng-click="setActive(1)" ng-class="{navviewswitchactive: isActive === 1}"><a href="#/map"><i class="fa fa-map fa-4x"></i></a></div>
+        </div>
+        <div class="dropdown-wrapper">
+	      	<div class="dropdown">
+	            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select Nationality
+	            <span class="caret"></span></button>
+	            <ul class="dropdown-menu">
+	              <li ng-repeat="nation in nationalities track by $index" value="{{nation.NationalityID}}" ng-click="getLocationNewCountry(nation.NationalityID)"><a>{{nation.NationalityName}}</a></li>
+	            </ul>
+	      	</div>
+		</div>
 	</div>
 	<div class="settings-pannel-header settings-pannel-header">
 		<p>Business</p>
@@ -18,14 +25,14 @@
 	<div class="settings-pannel-content">
 		<ul>
 			<li><a href="#/registerbusiness">Register a business</a></li>
-			<li><a href="#">View my busnesses</a></li>
+			<li><a href="#/registerUser">Register User</a></li>
+			<li><a href="#/login">Login</a></li>
 		</ul>
 	</div>
 	<div class="settings-pannel-header settings-pannel-header">
 		<p>Profile</p>
 	</div>
-	<div class="settings-pannel-content">
-		
+	<div class="settings-pannel-content">		
 	</div>
 	
 </div>

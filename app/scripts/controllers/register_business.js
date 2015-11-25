@@ -11,8 +11,7 @@ angular.module('blipApp')
   .controller('RegisterBusinessCtrl', ['$http','$scope', 'uiGmapGoogleMapApi', function ($http,$scope,uiGmapGoogleMapApi) {
 
   	$scope.pageHeading = "Register Your Business";
-  	//Store nationalities & categories for dropdowns
-  	$scope.nationalities;
+  	//Store categories for dropdown
   	$scope.categories;
   	//Store data about business to send to php script
   	//var busData = {};
@@ -32,40 +31,25 @@ angular.module('blipApp')
 		}
 	};
 
-	$scope.openingHours = [
-		{day:"mon",open:"null",close:"null"},
-		{day:"tue",open:"null",close:"null"},
-		{day:"wed",open:"null",close:"null"},
-		{day:"thu",open:"null",close:"null"},
-		{day:"fri",open:"null",close:"null"},
-		{day:"sat",open:"null",close:"null"},
-		{day:"sun",open:"null",close:"null"}
-	];
+	$scope.openingHours = {
+		mon: "Closed",
+		tue: "Closed",
+		wed: "Closed",
+		thu: "Closed",
+		fri: "Closed",
+		sat: "Closed",
+		sunday: "Closed"
+	}
 
 	///////////
 	//IMPORTANT Change post URL to reletive link before build... '../phpCore/get_categories.php'
 	///////////
 	//TESTING URL http://localhost/blip/app/phpCore/get_categories.php
-	$scope.loadNationalities = function(){
-		var getNationalities = $http.post('http://localhost/blip/app/phpCore/get_nationalities.php')
-	        .success(function(data, status, headers, config)
-	        {
-	        	$scope.nationalities = data;
-	        	console.log($scope.nationalities);
-			    console.log(data + ' - ' + "Success");
-            })
-	        .error(function(data, status, headers, config)
-	        {
-	            console.log(status + ' - ' + 'Error');
-	        });
-	};
-
   	$scope.loadCategories = function(){
 		var getCategories = $http.post('http://localhost/blip/app/phpCore/get_categories.php')
 	        .success(function(data, status, headers, config)
 	        {
 	        	$scope.categories = data;
-	        	console.log($scope.categories);
 			    console.log(data + ' - ' + "Success");
             })
 	        .error(function(data, status, headers, config)
@@ -87,52 +71,44 @@ angular.module('blipApp')
   	};
 
   	$scope.addOpeningHours = function(openTime, closeTime) {
+
   		if(openTime != undefined || closeTime != undefined){
-  			openTime = String(openTime).slice(16, 21);
-  			closeTime = String(closeTime).slice(16, 21);
-  			loopSelectedDays(openTime, closeTime);
+  			var format = String(openTime).slice(16, 21) + " - " + String(closeTime).slice(16, 21);
+  			loopSelectedDays(format);
   		}
-  		else{
-  			openTime = "null";
-  			closeTime = "null";
-  			loopSelectedDays(openTime, closeTime);
-  		}
+  		else{loopSelectedDays("Closed");}
   	};
 
-  	var loopSelectedDays = function(openTime, closeTime) {
+  	var loopSelectedDays = function(formated) {
   		$('.opening-hours-day-selected').each(function(i, obj) {
   			switch(obj.innerHTML){
   				case "Mon":
-  					setOpenCloseHours(openTime, closeTime, 0);
+  					$scope.openingHours.mon = formated;
   					break;
   				case "Tue":
-  					setOpenCloseHours(openTime, closeTime, 1);
+  					$scope.openingHours.tue = formated;
   					break;
   				case "Wed":
-  					setOpenCloseHours(openTime, closeTime, 2);
+  					$scope.openingHours.wed = formated;
   					break;
   				case "Thu":
-  					setOpenCloseHours(openTime, closeTime, 3);
+  					$scope.openingHours.thu = formated;
   					break;
   				case "Fri":
-  					setOpenCloseHours(openTime, closeTime, 4);
+  					$scope.openingHours.fri = formated;
   					break;
   				case "Sat":
-  					setOpenCloseHours(openTime, closeTime, 5);
+  					$scope.openingHours.sat = formated;
   					break;
   				case "Sun":
-  					setOpenCloseHours(openTime, closeTime, 6);
+  					$scope.openingHours.sunday = formated;
   					break;
   			}
   		});	
   	};
 
-  	var setOpenCloseHours = function(openTime, closeTime, index) {
-  		$scope.openingHours[index].open = openTime;
-  		$scope.openingHours[index].close = closeTime;
-  	};
-
   	$scope.getCoordinates = function(busAddress, busAddress2, busCity, busCountry){
+
 		$scope.geodata = {};
 		$scope.queryResults = {};
 		$scope.queryError = {};
@@ -170,8 +146,8 @@ angular.module('blipApp')
 		function error(_error){
 			$scope.queryError = _error;
 			console.log($scope.queryError);
-		});
-	};
+		})
+	}
 
 	$scope.registerBusiness = function(busName, busCity, busDescription) {
 		alert("got here");

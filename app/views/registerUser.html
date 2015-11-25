@@ -27,7 +27,6 @@
       <span ng-show="registrationForm.password.$dirty && registrationForm.password.$error.required">Required</span>
       <span ng-show="registrationForm.password.$dirty && registrationForm.password.$error.minlength">Minimum 8 characters</span>
     </div></br>
-    <button  type="submit"  ng-disabled="registrationForm.$invalid"  ng-click='createRegistration(userName, userCountry, userEmail, userPassword)' >Sign In</button>
+    <button  type="submit"  ng-disabled="registrationForm.$invalid"  ng-click='createRegistration(userName, userCountry, userEmail, userPassword)'>Register</button>
   </form>
-  
 </div>

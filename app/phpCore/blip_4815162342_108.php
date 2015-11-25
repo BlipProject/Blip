@@ -1,13 +1,12 @@
 <?php
 
-	//Configure DATABASE
+//Configure DATABASE
 
-
-	//OLD DATABASE
-	//$servername = "eu-cdbr-azure-north-d.cloudapp.net";
-	//$username = "bd90192c1a23ec";
-	//$password = "bfbfe307";
-	//$db = "as_64dd0e9989faa02";
+//OLD DATABASE
+//$servername = "eu-cdbr-azure-north-d.cloudapp.net";
+//$username = "bd90192c1a23ec";
+//$password = "bfbfe307";
+//$db = "as_64dd0e9989faa02";
 
 //NEW DATABASE
 $servername = "eu-cdbr-azure-west-c.cloudapp.net";
