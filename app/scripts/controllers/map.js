@@ -11,7 +11,7 @@ angular.module('blipApp')
 		$scope.map;
 
 
-				if (window.DeviceOrientationEvent) {
+				/*if (window.DeviceOrientationEvent) {
   document.getElementById("doEvent").innerHTML = "DeviceOrientation";
   // Listen for the deviceorientation event and handle the raw data
   window.addEventListener('deviceorientation', function(eventData) {
@@ -44,7 +44,7 @@ logo.style.webkitTransform =
 logo.style.MozTransform = "rotate("+ tiltLR +"deg)";
 logo.style.transform =
   "rotate("+ tiltLR +"deg) rotate3d(1,0,0, "+ (tiltFB*-1)+"deg)";
-}
+}*/
 		
 		$scope.getLocation = function(){
 			var positionOptions = {
