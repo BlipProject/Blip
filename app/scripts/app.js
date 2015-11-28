@@ -58,6 +58,11 @@ angular
         controller: 'IndividualResultPageCtrl',
         controllerAs: 'IRP'
       })
+      .when('/facebookLogin', {
+        templateUrl: 'views/facebookLogin.html',
+        controller: 'FacebookLoginCtrl',
+        controllerAs: 'facebookLogin'
+      })
       .otherwise({
         redirectTo: 'views/landing.html'
       });
@@ -70,7 +75,6 @@ angular
         libraries: 'weather,geometry,visualization'
     });
 });
-
 
  
 

@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
   <head>
@@ -18,7 +19,6 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/flags.css">
     <!-- endbuild -->
-    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
@@ -27,14 +27,12 @@
 
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      
     <![endif]-->
-
-
-
-
-
     <!--Site Content-->
-    <div class="container-fluid" ng-controller="NavCtrl">    
+
+    <div class="container-fluid">   
+    <div class="container-fluid" ng-controller="NavCtrl">  
       <div ng-include="'views/componants/nav.html'" scope="" onload=""></div>
       <div>
         <div ng-view=""></div>
@@ -42,8 +40,6 @@
     </div>
     <div ng-include="'views/componants/footer.html'" scope="" onload=""></div>
     <!--End Site Content-->
-    
-
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
@@ -86,11 +82,13 @@
     <script src="scripts/controllers/register_business.js"></script>
     <script src="scripts/services/geoServices.js"></script>
     <script src="scripts/services/searchServices.js"></script>
+    <script src="scripts/controllers/facebookLogin.js"></script>
     <script src="scripts/services/populateCountryDropdown.js"></script>
     <script src="scripts/controllers/settingsPannel.js"></script>
     <script src="scripts/services/factories/sidebarNavState.js"></script>
     <script src="scripts/services/factories/resultPageState.js"></script>
     <script src="scripts/controllers/IndividualResultPage.js"></script>
+    <script src="scripts/services/componants/sidebarNavState.js"></script>
     <!-- endbuild --> 
 </body>
 </html>
