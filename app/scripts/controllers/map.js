@@ -61,16 +61,12 @@ logo.style.transform =
 				        data = {
 				        	longitude : position.coords.longitude,
 				        	latitude : position.coords.latitude,
+				        	nationality : "671",
+							showLimit : "30"
 				        };
 
-				        GeoLocationService.getGeoCoordinates(navigator).then(function(data){
-				console.log("GeoServices called succesfully");
-				data.nationality = "671";
-				//returnSearchResults(data);
-				getLocationResults(data);
-			});
 
-			        	 //getLocationResults(data);
+			        	 getLocationResults(data);
 			        	//alert(data.longitude + " " + data.latitude);
 			    
 
@@ -193,6 +189,7 @@ logo.style.transform =
 		        .success(function(data, status, headers, config)
 		        {
 		        	searchResult = data;
+		        	console.log(searchResult);
 		        angular.forEach(data, function(value, key){
 			
         					var marker = makeMarker(value, key);
