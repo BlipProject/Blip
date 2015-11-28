@@ -1,9 +1,7 @@
 'use strict';
 
 angular.module('blipApp')
-.controller('templateController',function(){})
-
-	.controller('MapCtrl', ['$http','$scope', 'uiGmapGoogleMapApi', 'uiGmapIsReady', function ($http,$scope,uiGmapGoogleMapApi, uiGmapIsReady) {
+	.controller('MapCtrl', ['$http','$scope', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'GeoLocationService', 'SearchServices', function ($http,$scope,uiGmapGoogleMapApi, uiGmapIsReady, GeoLocationService, SearchServices) {
 
 		//Stores geolocation data to send to php script
 		var data;
@@ -13,6 +11,40 @@ angular.module('blipApp')
 		$scope.map;
 
 
+				if (window.DeviceOrientationEvent) {
+  document.getElementById("doEvent").innerHTML = "DeviceOrientation";
+  // Listen for the deviceorientation event and handle the raw data
+  window.addEventListener('deviceorientation', function(eventData) {
+    // gamma is the left-to-right tilt in degrees, where right is positive
+    var tiltLR = eventData.gamma;
+
+    // beta is the front-to-back tilt in degrees, where front is positive
+    var tiltFB = eventData.beta;
+
+    // alpha is the compass direction the device is facing in degrees
+    var dir = eventData.alpha
+
+    // call our orientation event handler
+    deviceOrientationHandler(tiltLR, tiltFB, dir);
+  }, false);
+} else {
+  document.getElementById("doEvent").innerHTML = "Not supported."
+}
+
+var deviceOrientationHandler = function(tiltLR, tiltFB, dir)
+{
+	document.getElementById("doTiltLR").innerHTML = Math.round(tiltLR);
+document.getElementById("doTiltFB").innerHTML = Math.round(tiltFB);
+document.getElementById("doDirection").innerHTML = Math.round(dir);
+
+// Apply the transform to the image
+var logo = document.getElementById("imgLogo");
+logo.style.webkitTransform =
+  "rotate("+ tiltLR +"deg) rotate3d(1,0,0, "+ (tiltFB*-1)+"deg)";
+logo.style.MozTransform = "rotate("+ tiltLR +"deg)";
+logo.style.transform =
+  "rotate("+ tiltLR +"deg) rotate3d(1,0,0, "+ (tiltFB*-1)+"deg)";
+}
 		
 		$scope.getLocation = function(){
 			var positionOptions = {
@@ -21,16 +53,24 @@ angular.module('blipApp')
 			  maximumAge: 500
 			};
 
+
 			if (navigator.geolocation) {
 			    navigator.geolocation.getCurrentPosition(function(position,positionOptions){
 					$scope.$apply(function(){
 			        	$scope.position = position;
 				        data = {
 				        	longitude : position.coords.longitude,
-				        	latitude : position.coords.latitude
+				        	latitude : position.coords.latitude,
 				        };
 
-			        	 getLocationResults(data);
+				        GeoLocationService.getGeoCoordinates(navigator).then(function(data){
+				console.log("GeoServices called succesfully");
+				data.nationality = "671";
+				//returnSearchResults(data);
+				getLocationResults(data);
+			});
+
+			        	 //getLocationResults(data);
 			        	//alert(data.longitude + " " + data.latitude);
 			    
 
@@ -264,11 +304,12 @@ angular.module('blipApp')
 
 		};
 
-
-
-		uiGmapGoogleMapApi.then(function(maps) {
-
-		});
+		$scope.ShowOnlySelected = function(currentmarker){
+			console.log(currentmarker);
+			//$scope.windowOptions.show = false;
+			$scope.markers = [];
+			$scope.markers.push(currentmarker);
+		}
 }]);
 
 
