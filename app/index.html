@@ -21,6 +21,7 @@
     <!-- endbuild -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 
   </head>
   <body ng-app="blipApp">
@@ -31,14 +32,18 @@
     <![endif]-->
     <!--Site Content-->
 
-    <div class="container-fluid">   
-    <div class="container-fluid" ng-controller="NavCtrl">  
+  
+    <div ng-controller="NavCtrl">  
       <div ng-include="'views/componants/nav.html'" scope="" onload=""></div>
       <div>
         <div ng-view=""></div>
       </div>
     </div>
     <div ng-include="'views/componants/footer.html'" scope="" onload=""></div>
+
+
+
+
     <!--End Site Content-->
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>

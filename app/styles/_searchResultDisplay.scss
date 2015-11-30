@@ -119,6 +119,7 @@
 	p{
 		height:50%;
 		font-size: $fontHeading;
+		font-family: $fontFamilyHeading;
 		color: $font-colour;
 		margin-bottom: 40px;
 	}
@@ -212,12 +213,18 @@
 .result-header{
 	width:$resultHeaderWidth;
 	height:$resultHeaderHeight;
-	padding:$resultHeaderPadding;
+	padding:0px 0px 3px 3px;
 	float:left;
 	color:$font-colour;
-	font-size:$fontMain;
+	font-size:$fontHeading;
 	background-color:$box-shadow-colour;
 	@include box-shadow (0px 1px 1px -1px $box-shadow-colour);
+	font-family: $fontFamilyHeading;
+
+	.fa{
+		font-size: 26px;
+		padding:3px 3px 0px 0px;
+	}
 }
 
 //Headers for individual content types
@@ -308,6 +315,7 @@
 .content-left{
 	width:70%;
 	float:left;
+	position: relative;
 	@media(max-width:$screen-sm)
 	{
 		width:100%
@@ -321,4 +329,30 @@
 	{
 		display:none;
 	}
+}
+
+.search-loading{
+	img{
+		width:150px;
+	}
+	position:absolute;
+	top:20px;
+	left:42%;
+	z-index:0;
+
+	@media(max-width:$screen-sm)
+	{
+		left:38%;
+	}
+}
+
+.loading-image-text{
+	position:absolute;
+	left:33%;
+	top:47px;
+	z-index: 20;
+	color: $main-brand-colour;
+	font-family: $fontFamilyHeading;
+	font-size: 35px;
+	z-index:0;
 }
