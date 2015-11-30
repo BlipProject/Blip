@@ -191,7 +191,7 @@ logo.style.transform =
 			data.nationality = $scope.userNationality;
 			data.showLimit = $scope.showAmountFilter;
 			var searchResults;
-			var callSearch = $http.post('/phpCore/search.php', data)
+			var callSearch = $http.post('http://localhost/blip/app/phpCore/search.php', data)
 
 		        .success(function(data, status, headers, config)
 		        {
