@@ -11,6 +11,9 @@ angular.module('blipApp')
 		$scope.map;
 
 
+				
+//just testing orientation here
+
 				/*if (window.DeviceOrientationEvent) {
   document.getElementById("doEvent").innerHTML = "DeviceOrientation";
   // Listen for the deviceorientation event and handle the raw data
@@ -96,6 +99,30 @@ logo.style.transform =
                         }
 						
 						};
+
+						//enableWatchPosition();
+						enableOrientationArrow();
+
+						function enableOrientationArrow()
+						{
+							window.addEventListener('deviceorientation', function(event){
+								var alpha = null;
+								if(event.webkitCompassHeading)
+								{
+									alpha = event.webkitCompassHeading
+								}
+								else
+								{
+									alpha = event.alpha;
+									console.log(event.alpha);
+								}
+								/*var locationIcon = $scope.youarehere.options.icon;
+								locationIcon.rotation = 360 - alpha;
+								$scope.youarehere.options.icon = locationIcon;*/
+								//not working because 'rotation is a read only property'
+							}, false);	
+
+						}
 
 						    $scope.busmarker =  {
         					id: 5,
