@@ -64,7 +64,7 @@ logo.style.transform =
 				        data = {
 				        	longitude : position.coords.longitude,
 				        	latitude : position.coords.latitude,
-				        	nationality : "671",
+				        	nationality : "1471",
 							showLimit : "30"
 				        };
 
