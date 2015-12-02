@@ -23,7 +23,7 @@ angular.module('blipApp')
 			        .then(function(response)
 			        {
 			        	console.log("Success");
-			        	return response.data;     
+			        	return response.data;  
 		            });
 			}
 		};

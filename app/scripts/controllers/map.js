@@ -204,12 +204,19 @@ logo.style.transform =
 
 		};
 
+		//Tidy up later -- 25/11/15
+		//Brian
+		$scope.userNationality = 671;
+		$scope.showAmountFilter = 30;
 		///////////
 		//IMPORTANT Change post URL to reletive link before build... '../phpCore/search.php'
 		///////////
 		//TESTING URL http://localhost/blip/app/phpCore/search.php
 		var getLocationResults = function(data){
-
+			//Tidy up later -- 25/11/15
+			//Brian
+			data.nationality = $scope.userNationality;
+			data.showLimit = $scope.showAmountFilter;
 			var searchResults;
 			var callSearch = $http.post('http://localhost/blip/app/phpCore/search.php', data)
 
