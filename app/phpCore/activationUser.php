@@ -21,7 +21,7 @@ if ($activation == $db_code && $userEmail == $db_email)
 
  echo "Account activated. We are going to redirect You now into Blip. Have fun!";
  header( "refresh:3;url = http://localhost:9000/#/" );
- // BRIAN 
+ // header( "refresh:3;url = http://bliptest.azurewebsites.net/#/" );
 
 }else
 {

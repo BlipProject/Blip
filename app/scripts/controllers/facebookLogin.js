@@ -2,7 +2,7 @@
 
 angular.module('blipApp')
   .controller('FacebookLoginCtrl', ['$scope' ,function ($scope, Facebook) {
-
+$scope.pageHeading = "FACEBOOK LOGIN";
   	
   $scope.hello="Hi! Please";
   $scope.username="";
