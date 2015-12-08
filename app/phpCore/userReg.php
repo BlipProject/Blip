@@ -74,12 +74,14 @@ http://bliptest.azurewebsites/blip/app/phpCore/activationUser.php?lkjhgv=$userEm
 
 
 
+
 Regards
 
 Blip Team
 ";
 //WORK ON LOCALHOST
-// http://localhost/blip/app/phpCore/activationUser.php?lkjhgv=$userEmail&asxcv=$activationCode
+//http://localhost/blip/app/phpCore/activationUser.php?lkjhgv=$userEmail&asxcv=$activationCode 
+
 $mail->WordWrap = 200;
 $mail->Send();
 /*
