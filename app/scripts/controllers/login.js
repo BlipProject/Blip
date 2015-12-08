@@ -11,9 +11,9 @@ angular.module('blipApp')
       password:userPassword
     };
     console.log(userDetails);
-    
-  var postReg = $http.post('http://localhost/blip/app/phpCore/login.php', userDetails)
-  //var postReg = $http.post('http://bliptest.azurewebsites/blip/app/phpCore/login.php', userDetails)
+  //WORK ON LOCALHOST
+  //var postReg = $http.post('http://localhost/blip/app/phpCore/login.php', userDetails)
+  var postReg = $http.post('http://bliptest.azurewebsites/blip/app/phpCore/login.php', userDetails)
       .success(function(data, status, headers, config)
       {
         console.log(status + ' - ' + "Success"); 
