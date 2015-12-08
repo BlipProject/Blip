@@ -10,7 +10,7 @@ ng-class sets up classes for indiviual results based off result type
       <div class="result-wrapper-hover-content">
         <p>{{venue.LocationName}}</p>
         <!--breaks if a class directive (even an empty one) is not present-->
-        <div class="" ng-class="setResultClass(venue.CategoryName)"><button>Visit Page</button></div>
+        <div class="" ng-class="setResultClass(venue.CategoryName)"><button ng-click="storeFocusedResult($index)">Visit Page</button></div>
       </div>
     </div>
     <div class="result-header" ng-class="typeHeadClass">{{venue.LocationName}}<span ng-class="setIconClass" class="pull-right location-icon"></span></div>
@@ -24,5 +24,3 @@ ng-class sets up classes for indiviual results based off result type
     <div class="result-content-image"><img class="img-responsive" ng-src="{{venue.LocationPic}}"/></div>
   </div>
 </div>
-
-

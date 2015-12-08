@@ -20,10 +20,10 @@ if ($activation == $db_code && $userEmail == $db_email)
        "Call MoveIntoUsersArtur('$userEmail')") or die("Query fail: " . mysqli_error($conn));
 
  echo "Account activated. We are going to redirect You now into Blip. Have fun!";
+
  //LOCALHOST
  //header( "refresh:3;url = http://localhost:9000/#/" );
  header( "refresh:3;url = http://bliptest.azurewebsites.net/#/" );
-
 }else
 {
     echo "Sorry activation time expired";

@@ -1,5 +1,5 @@
 {
- "name": "blip",
+  "name": "blip",
   "private": true,
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -38,3 +38,4 @@
     "test": "grunt test"
   }
 } 
+
