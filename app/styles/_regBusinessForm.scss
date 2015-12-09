@@ -299,3 +299,13 @@
 input[type=time]::-webkit-inner-spin-button {
 	height:34px;
 }
+
+
+//Margin top for user/business page to align sidebar with page
+.sidebar-margin-top{
+	margin-top: 50px;
+}
+//Page heading bar
+.page-heading-bar{
+	font-family: $fontFamilyHeading;
+}
