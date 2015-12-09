@@ -182,6 +182,7 @@ angular.module('blipApp')
 	        {
 	        	$scope.business = data;
 			    console.log(busData + ' - ' + "Success");
+			    alert(busData.name + "succesfully added!");
             })
 	        .error(function(data, status, headers, config)
 	        {
