@@ -1,6 +1,6 @@
 <?php
 
-	//Configure DATABASE
+//Configure DATABASE
 
 	//LIVE DATABASE
 	//NEW DATABASE
@@ -14,3 +14,4 @@
 	//$username = "bd90192c1a23ec";
 	//$password = "bfbfe307";
 	//$db = "as_64dd0e9989faa02";
+

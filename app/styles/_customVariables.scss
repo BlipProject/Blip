@@ -1,32 +1,29 @@
-
-///////////
-//COLOURS//
-///////////
+//COLOURS
+//---------
 //Variables for custom colours:
 
-$main-brand-colour:#3498db;
+$main-brand-colour:#2980b9;
 
 $bar-colour: #e74c3c;
 $restaurant-colour:#883C82;
 $shop-colour:#2ecc71;
-$other-colour:#607D8B;
+//$other-colour:#fff200;
+$other-colour:#fbc93d;
 
-$box-shadow-colour:#9E9E9E;
+$box-shadow-colour:#bdc3c7;
 
-/////////
-//Fonts//
-/////////
+//Fonts
+//-------
 //Variables for custom fonts
 
 $fontFamily:'Lato';
 $fontHeading: 26px;
 $fontMain: 20px;
 
-$fontColour:#000;
+$font-colour:#2c3e50;
 
-//////////
-//Mixins//
-//////////
+//Mixins
+//--------
 
 @mixin box-shadow($box-shadow...){
 	-moz-box-shadow: 	$box-shadow;
@@ -56,9 +53,8 @@ $fontColour:#000;
     transform:         $transform;
 }
 
-/////////////////
-//Media Queries//
-/////////////////
+//Media Queries
+//---------------
 
 //screen-xs (xtra small)
 $screen-xs : 480px;
@@ -72,9 +68,8 @@ $screen-md : 992px;
 //screen-lg (large)
 $screen-lg : 1200px;
 
-//////////////////////
-//SearchResultDisply//
-//////////////////////
+//SearchResultDisply
+//--------------------
 
 //header//
 $resultHeaderWidth: 100%;
@@ -82,24 +77,21 @@ $resultHeaderHeight: 40px;
 $resultHeaderPadding: 3px;
 $result-header-bg:#fff;
 
-///////////////////
-//Settings Pannel//
-///////////////////
+//Settings Pannel
+//-----------------
 
 $settings-header-colour:$main-brand-colour;
 
-//////////////////////
-//Registration Forms//
-//////////////////////
+//Registration Forms
+//--------------------
 
 $reg-button-yes-colour:#4CAF50;
 $reg-button-no-colour:#F44336;
 $reg-button-yes-colour-hover:#388E3C;
 $reg-button-no-colour-hover:#D32F2F;
 
-///////////////////////
-//Bootstrap Overrides//
-///////////////////////
+//Bootstrap Overrides
+//---------------------
 
 //NavBar
 $navbar-default-bg:$main-brand-colour;

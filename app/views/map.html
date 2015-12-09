@@ -12,7 +12,7 @@
 </style>
 
 <div ng-init="getLocation()"></div>
-<div class="quick-filter-wrapper">
+<div class="quick-filter-wrapper hidden-md hidden-lg">
     <div ng-include="'views/componants/quickButtons.html'"></div>
 </div>
 <div class="container content-wrapper" ng-init="getLocation()">
@@ -29,8 +29,11 @@
     </div>
   </div>
     <div class="content-right">
-      <div ng-include="'views/componants/settingsPannel.html'"></div>
-    </div>
+        <!--includes settings pannel-->
+        <div class="settings-pannel-wrapper">
+        <div ng-include="'views/componants/settingsPannel.html'"></div>
+        </div>
+      </div>
 </div>
 
 

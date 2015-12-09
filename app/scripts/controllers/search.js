@@ -11,13 +11,25 @@ angular.module('blipApp')
 		//Variable to set the number of results displayed initialy
 		//Modify to show more/less results
 		$scope.showAmountFilter = 30;
+		//Stores users nationality to pass to server
+		//Hardcoded currently for testing -- 671 == France
+		$scope.userNationality = 671;
 
-		
+		//Called from Nationality dropdown in "settingsPannel.html" to set "userNationality"
+		//Then calls getLocation and which passes new country to database sproc
+		$scope.getLocationNewCountry = function(newCountry){
+			$scope.userNationality = newCountry;
+			console.log("New country - " + newCountry + " - set");
+			$scope.getLocation();
+		};
+
 		//Calls geoServices to return the current coordinates
 		//navigator must be passed to service (dont no why ??)
 		$scope.getLocation = function(){
 			GeoLocationService.getGeoCoordinates(navigator).then(function(data){
 				console.log("GeoServices called succesfully");
+				data.nationality = $scope.userNationality;
+				data.showLimit = $scope.showAmountFilter;
 				returnSearchResults(data);
 			});
 		};
@@ -31,7 +43,6 @@ angular.module('blipApp')
 				console.log("SearchServices called succesfully");
 			});
 		};
-
 
 		//Called from front-end to set filtered results and set active class on button
 		$scope.setFilterSetClass = function(filter,index){

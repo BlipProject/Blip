@@ -16,16 +16,17 @@
 	$busCity = $business->city;
 	$busDescription = $business->description;
 	$busCategory = $business->category;
+	$busNationality = $business->nationality;
 
 	$conn = mysqli_connect($servername, $username, $password, $db);
 
 
-	$businessData = insertBusiness($busName, $busLat, $busLng, $busCity, $busDescription, $busCategory);
+	$businessData = insertBusiness($busName, $busLat, $busLng, $busCity, $busDescription, $busCategory, $busNationality);
 
-	function insertBusiness($busName, $busLat, $busLng, $busCity, $busDescription, $busCategory) {
+	function insertBusiness($busName, $busLat, $busLng, $busCity, $busDescription, $busCategory, $busNationality) {
 		global $conn;
 
 		$insert = mysqli_query($conn,
-			"CALL RegisterLocation('$busName', '$busLat', '$busLng', '$busCity', '$busDescription', '$busCategory')") 
+			"CALL RegisterLocation('$busName', '$busLat', '$busLng', '$busCity', '$busDescription', '$busCategory', '$busNationality')") 
 			or die("Query fail: " . mysqli_error($conn));
 	}
