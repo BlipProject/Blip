@@ -2,7 +2,11 @@
 
 angular.module('blipApp')
   .controller('NavCtrl',['$scope', function ($scope) {
-
+    
+    //Controls mobile nav toggle
+    $scope.toggle = function() {
+        $scope.$broadcast('event:toggle');
+    }
   	/*
   		$scope.navStatus=0;
   		$scope.activeClass="m-nav-wrapper-hide";
@@ -21,4 +25,11 @@ angular.module('blipApp')
   			}
   		};
 	*/
-  }]);
+  }])
+  .directive('toggle', function() {
+    return function(scope, elem, attrs) {
+        scope.$on('event:toggle', function() {
+            elem.slideToggle();
+        });
+    };
+});
