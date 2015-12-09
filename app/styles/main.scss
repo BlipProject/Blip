@@ -21,6 +21,7 @@ $fa-font-path: "../bower_components/componants-font-awesome/fonts/";
 @import "_individualResultPage.scss";
 @import "_progress.scss";
 @import "_regBusinessForm.scss";
+@import "_landing.scss";
 
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
@@ -31,7 +32,8 @@ $fa-font-path: "../bower_components/componants-font-awesome/fonts/";
 //TODO: Needs to be moved to "global.scss"
 html {
 	//Show scrollbar (chrome) to stop site moving when content is less than height of screen (Annoying)
-    overflow-y: scroll; 
+    overflow-y: scroll;
+    height: 100%;
 }
 
 body{
@@ -42,7 +44,7 @@ body{
 	h1{
 		font-size:$fontHeading;
 	}
-
+	min-height: 100%;
 }
 
 //Heading Bar

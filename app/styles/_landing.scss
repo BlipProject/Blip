@@ -1,0 +1,59 @@
+.landing-main{
+	width:100%;
+	position:absolute;
+	height:905px;
+	text-align: center;
+	h1{
+		font-family: $fontFamilyHeading;
+		color: #fff;
+		font-size: 200px;
+	}
+}
+
+.landing-reg{
+	color: #fff;
+	width:100%;
+	height:400px;
+	margin:0 auto;
+	position:relative;
+	top:40px;
+	background-color: rgba(44, 62, 80,0.8);
+	@media(max-width:$screen-sm){
+		width: 100%;
+		background-color: #fff;
+	}
+}
+
+//TODO: Apply blur to reg background
+
+.background-image-properties{
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+
+.landing-france{
+	@extend .background-image-properties;
+	background-image: url("/images/landing/landingFrance.jpg");
+}
+
+.landing-ireland{
+	@extend .background-image-properties;
+	background-image: url("/images/landing/landingDublin.jpg");
+}
+
+.landing-england{
+	@extend .background-image-properties;
+	background-image: url("/images/landing/landingLondon.jpg");
+}
+
+.login-container{
+	height: 300px;
+	width: 600px;
+	margin: auto;
+	padding-top: 70px;
+	@media(max-width:$screen-sm){
+		width: 90%;
+		padding-top: 0px;
+	}
+}

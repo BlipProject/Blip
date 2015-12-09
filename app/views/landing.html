@@ -1,3 +1,10 @@
- <div class="container">
-	  <h1>Welcome to blip</h1> 
+<div ng-controller="LandingCtrl" ng-init="setBG()">
+	<div ng-class="{'landing-ireland': random === 0,'landing-france': random === 1,'landing-england': random === 2}" class="landing-main">
+	 	<h1>blip</h1>
+	  	<div class="landing-reg">
+	  		<div class="login-container">
+		  		<div ng-include="'views/login.html'" scope="" onload=""></div>
+		  	</div>
+	  	<div>
+	</div>
 </div>
