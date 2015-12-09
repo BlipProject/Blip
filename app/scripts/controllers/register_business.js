@@ -160,8 +160,6 @@ angular.module('blipApp')
 	};
 
 	$scope.registerBusiness = function(busName, busCity, busDescription) {
-		$scope.submitted = true;
-		//May have broke.. revert to get element by id to fix
   		var lstCat = document.getElementById("lstCat");
   		var busCategory = lstCat.options[lstCat.selectedIndex].value;
   		var lstNat = document.getElementById("lstNat");
