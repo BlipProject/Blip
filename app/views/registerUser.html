@@ -1,32 +1,73 @@
 <div class="container" ng-controller="UserRegistrationCtrl" >
-<!-- REGISTER USER-->
-  <form  role="form"  name="registrationForm">
-    <div><!-- NAME-->
-      <label>Name</label></br>
-      <input type="text" name="name" ng-model="userName" />
-      
-      <span ng-show="registrationForm.name.$dirty && registrationForm.name.$error.required">Required</span>
-      <span ng-show="registrationForm.name.$dirty &&    registrationForm.name.$error.minlength">Minimum 3 characters</span>
-    </div>
-    <div>
-      <label>Country</label></br>
-      <input id="my_dropdown" type="text" name="country" ng-model="userCountry" />
-      <span ng-show="registrationForm.name.$dirty && registrationForm.country.$error.required">Required</span>
-      
+  <div class="page-heading-bar">
+    <ng-include src="'views/componants/pageHeadingBar.html'"></ng-include>
+  </div> 
 
-    </div>
-    <div><!-- EMAIL-->
-      <label>Email</label></br>
-      <input type="email" name="email" ng-model="userEmail" />
-      <span ng-show="registrationForm.email.$dirty && registrationForm.email.$error.required">Required</span>
-      <span ng-show="registrationForm.email.$dirty  &&   registrationForm.email.$error.email">Not an email!</span>
-    </div>
-    <div><!-- PASSWORD-->
-      <label>Password</label></br>
-      <input type="password" name="password" ng-model="userPassword" />
-      <span ng-show="registrationForm.password.$dirty && registrationForm.password.$error.required">Required</span>
-      <span ng-show="registrationForm.password.$dirty && registrationForm.password.$error.minlength">Minimum 8 characters</span>
-    </div></br>
-    <button  type="submit"  ng-disabled="registrationForm.$invalid"  ng-click='createRegistration(userName, userCountry, userEmail, userPassword)'>Register</button>
-  </form>
+  <div class="container bus-reg-content-wrapper">
+    <form  class="form-left" role="form"   name="registrationForm" > 
+
+      <div class="form-field">
+        <label  class="form-label">Name</label>
+        <input   placeholder=" e.g. John" type="text" name="name" ng-model="userName" ng-minlength="3"  required/>
+        <span ng-show="registrationForm.name.$dirty && registrationForm.name.$error.required">Required</span>
+        <span ng-show="registrationForm.name.$dirty &&    registrationForm.name.$error.minlength">Minimum 3 characters</span>
+      </div>
+      <div class="form-field">
+        <label  class="form-label">Nationality</label>
+        <input  placeholder="e.g. Ireland" type="text" name="country" ng-model="userCountry" required/> 
+        <span ng-show="registrationForm.name.$dirty && registrationForm.country.$error.required">Required</span>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Email</label>
+        <input placeholder="e.g. john@gmail.com" type="email" name="email" ng-model="userEmail"   required/>
+        <span ng-show="registrationForm.email.$dirty && registrationForm.email.$error.required">Required</span>
+        <span ng-show="registrationForm.email.$dirty  &&   registrationForm.email.$error.email">Not an email!</span>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Password</label>
+        <input type="password" placeholder="e.g. qwerty" name="password" ng-model="userPassword" placeholder="e.g. qwerty"  ng-minlength="8" required/>
+        <span ng-show="registrationForm.password.$dirty && registrationForm.password.$error.required">Required</span>
+        <span ng-show="registrationForm.password.$dirty && registrationForm.password.$error.minlength">Minimum 8 characters</span>
+      </div>
+      <div>
+      <button  type="submit"  class="bus-reg-button bus-reg-button-yes" ng-disabled="registrationForm.$invalid"  ng-click='createRegistration(userName, userCountry, userEmail, userPassword)'>Register</button>
+      </div>
+<div ID="1">
+  <div class="steps" >
+    <div class="step current"><span class="stepTitle">1. Step</span></div>
+    <div class="step next"><span class="stepTitle">2. Step</span></div>
+    <div class="step next"><span class="stepTitle">3. Step</span></div>
+    <div class="step last-next"><span class="stepTitle">4. Step</span></div>
+  </div>
 </div>
+<div class="ng-hide" ID="2">
+  <div class="steps" >
+    <div class="step previous"><span class="stepTitle">1. Step</span></div>
+    <div class="step current"><span class="stepTitle">2. Step</span></div>
+    <div class="step next"><span class="stepTitle">3. Step</span></div>
+    <div class="step last-next"><span class="stepTitle">4. Step</span></div>
+  </div>
+</div>
+<div class="ng-hide" ID="3">
+  <div class="steps" >
+    <div class="step previous"><span class="stepTitle">1. Step</span></div>
+    <div class="step previous"><span class="stepTitle">2. Step</span></div>
+    <div class="step current"><span class="stepTitle">3. Step</span></div>
+    <div class="step last-next"><span class="stepTitle">4. Step</span></div>
+  </div>
+</div>
+<div class="ng-hide" ID="4">
+  <div class="steps" >
+    <div class="step previous"><span class="stepTitle">1. Step</span></div>
+    <div class="step previous"><span class="stepTitle">2. Step</span></div>
+    <div class="step previous"><span class="stepTitle">3. Step</span></div>
+    <div class="step last-current"><span class="stepTitle">4. Step</span></div>
+  </div>
+</div>
+    </form>
+  <div class="content-right">
+    <div ng-include="'views/componants/settingsPannel.html'"></div>
+  </div>
+  </div>
+</div>
+

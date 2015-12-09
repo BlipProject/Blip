@@ -2,6 +2,8 @@
 
 angular.module('blipApp')
 	.service('PopulateCountryDropdown',['$http', function ($http,data,$q) {
+		//http://localhost/blip/app/phpCore/get_nationalities.php
+		///phpCore/get_nationalities.php
 		return{
 			getNationalities: function(){
 				return $http.post('http://localhost/blip/app/phpCore/get_nationalities.php', data)

@@ -1,40 +1,30 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name blipApp.controller:AboutCtrl
- * @description
- * # AboutCtrl
- * Controller of the blipApp
- */
 angular.module('blipApp')
   .controller('LoginCtrl', ['$http','$scope' ,function ($http,$scope) {
 
-    //$scope.userDetails;
-//name, country, email, password
-  $scope.loginUser = function (userEmail, userPassword) {
-    
+     $scope.pageHeading = "LOGIN";
 
-    
-        //all ok
+  $scope.loginUser = function (userEmail, userPassword) {
       var userDetails = {
       email:userEmail,
       password:userPassword
     };
-    //console.log(userDetails)
-    
-  var postReg = $http.post('http://localhost/blip/app/phpCore/login.php', userDetails)
+    console.log(userDetails);
+  //WORK ON LOCALHOST
+  //var postReg = $http.post('http://localhost/blip/app/phpCore/login.php', userDetails)
+  var postReg = $http.post('http://bliptest.azurewebsites/blip/app/phpCore/login.php', userDetails)
       .success(function(data, status, headers, config)
       {
-        //console.log(status + ' - ' + "Success");        
+        console.log(status + ' - ' + "Success"); 
+        alert("Success"); 
+        location.reload();
       })
       .error(function(data, status, headers, config)
       {
-          //console.log(status + ' - ' + 'Error');
+          console.log(status + ' - ' + 'Error');
       });
- 
-
-    
     };
 }]);
 
+       

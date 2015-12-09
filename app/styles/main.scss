@@ -8,6 +8,8 @@ $fa-font-path: "../bower_components/componants-font-awesome/fonts/";
 //Copy of bootstraps variable file //To be deleted
 @import "_variablesOverride.scss";
 
+@import "_animate.scss";
+
 @import "_global.scss";
 @import "_simple-sidebar.scss";
 @import "_quickFilterButtons.scss";
@@ -16,8 +18,9 @@ $fa-font-path: "../bower_components/componants-font-awesome/fonts/";
 @import "_settingsPannel.scss";
 @import "_aboutPage.scss";
 @import "_mobileNav.scss";
-
 @import "_landingPage.scss";
+@import "_individualResultPage.scss";
+@import "_progress.scss";
 @import "_regBusinessForm.scss";
 
 // bower:scss

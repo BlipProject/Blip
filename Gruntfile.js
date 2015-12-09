@@ -397,7 +397,8 @@ module.exports = function (grunt) {
             '*.html',
             'images//**/*',
             'styles/fonts/{,*/}*.*',
-            'phpCore/**/*'
+            'phpCore/**/*',
+            '*.tpl'
           ]
         }, {
           expand: true,

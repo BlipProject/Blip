@@ -1,0 +1,76 @@
+//IndividulaSearchPage.html
+
+.indiv-fullpage-wrapper{
+	width:100%;
+	height: auto;
+	margin: 30px 0px 0px 0px;
+	@include box-shadow (0px 0px 0px 1px $box-shadow-colour);
+	
+	@media (max-width: $screen-sm) {
+		margin: 0px;	
+	}
+
+	background-color: #fff;
+	/*
+	background-image: url("/images/background/bar_bg.gif");
+	*/
+}
+
+.indiv-wrapper{
+	margin-top: 20px;
+	background-color: #fff;
+	overflow: hidden;
+	height:auto;
+}
+
+.indiv-img-wrap{
+	position:relative;
+	overflow: hidden;
+	height: 200px;
+
+	img{
+		transform-origin:50% 50%;
+		transform:translate(0%,-50%);
+		width:100%;
+
+		@media (max-width: $screen-sm){
+			transform-origin:50% 50%;
+			transform:translate(0%,0%);
+		}
+	}
+}
+
+.indiv-page-header{
+	position:absolute;
+	top:50%;
+	height: 60px;
+	background-color: #fff;
+	padding-right: 10px;
+	border-radius: 0px 1px 0px 1px;
+	line-height: 60px;
+
+	h2{
+		line-height: 60px;
+		margin: 0px;
+		font-family: $fontFamilyHeading;
+	}
+}
+
+.indiv-map-wrap{
+	padding:0px !important;
+}
+
+.indiv-content{
+}
+
+.indiv-divider{
+	margin: 5px 0px 5px 0px;
+	border-top: 5px solid;
+}
+
+.indiv-divider-bar{border-color: $bar-colour;}
+.indiv-divider-res{border-color: $restaurant-colour;}
+.indiv-divider-shop{border-color: $shop-colour;}
+.indiv-divider-other{border-color: $other-colour;}
+
+

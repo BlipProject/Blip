@@ -1,9 +1,7 @@
 'use strict';
 
 angular.module('blipApp')
-.controller('templateController',function(){})
-
-	.controller('MapCtrl', ['$http','$scope', 'uiGmapGoogleMapApi', 'uiGmapIsReady', function ($http,$scope,uiGmapGoogleMapApi, uiGmapIsReady) {
+	.controller('MapCtrl', ['$http','$scope', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'GeoLocationService', 'SearchServices', function ($http,$scope,uiGmapGoogleMapApi, uiGmapIsReady, GeoLocationService, SearchServices) {
 
 		//Stores geolocation data to send to php script
 		var data;
@@ -21,14 +19,18 @@ angular.module('blipApp')
 			  maximumAge: 500
 			};
 
+
 			if (navigator.geolocation) {
 			    navigator.geolocation.getCurrentPosition(function(position,positionOptions){
 					$scope.$apply(function(){
 			        	$scope.position = position;
 				        data = {
 				        	longitude : position.coords.longitude,
-				        	latitude : position.coords.latitude
+				        	latitude : position.coords.latitude,
+				        	nationality : "1471",
+							showLimit : "30"
 				        };
+
 
 			        	 getLocationResults(data);
 			        	//alert(data.longitude + " " + data.latitude);
@@ -60,6 +62,30 @@ angular.module('blipApp')
                         }
 						
 						};
+
+						//enableWatchPosition();
+						enableOrientationArrow();
+
+						function enableOrientationArrow()
+						{
+							window.addEventListener('deviceorientation', function(event){
+								var alpha = null;
+								if(event.webkitCompassHeading)
+								{
+									alpha = event.webkitCompassHeading
+								}
+								else
+								{
+									alpha = event.alpha;
+									console.log(event.alpha);
+								}
+								/*var locationIcon = $scope.youarehere.options.icon;
+								locationIcon.rotation = 360 - alpha;
+								$scope.youarehere.options.icon = locationIcon;*/
+								//not working because 'rotation is a read only property'
+							}, false);	
+
+						}
 
 						    $scope.busmarker =  {
         					id: 5,
@@ -141,18 +167,18 @@ angular.module('blipApp')
 
 		};
 
-		///////////
+
 		//IMPORTANT Change post URL to reletive link before build... '../phpCore/search.php'
 		///////////
 		//TESTING URL http://localhost/blip/app/phpCore/search.php
 		var getLocationResults = function(data){
-
 			var searchResults;
 			var callSearch = $http.post('http://localhost/blip/app/phpCore/search.php', data)
 
 		        .success(function(data, status, headers, config)
 		        {
 		        	searchResult = data;
+		        	console.log(searchResult);
 		        angular.forEach(data, function(value, key){
 			
         					var marker = makeMarker(value, key);
@@ -264,11 +290,12 @@ angular.module('blipApp')
 
 		};
 
-
-
-		uiGmapGoogleMapApi.then(function(maps) {
-
-		});
+		$scope.ShowOnlySelected = function(currentmarker){
+			console.log(currentmarker);
+			//$scope.windowOptions.show = false;
+			$scope.markers = [];
+			$scope.markers.push(currentmarker);
+		}
 }]);
 
 

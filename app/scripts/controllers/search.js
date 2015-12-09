@@ -2,7 +2,7 @@
 
 angular.module('blipApp')
 	
-	.controller('LocationSearchCtrl', ['$http','$scope','GeoLocationService','SearchServices', function ($http,$scope,GeoLocationService,SearchServices) {
+	.controller('LocationSearchCtrl', ['$http','$scope','GeoLocationService','SearchServices','ResultPageState','$location', function ($http,$scope,GeoLocationService,SearchServices,ResultPageState,$location) {
 
 		//Store search result returned from server
 		$scope.searchResult="";
@@ -14,6 +14,7 @@ angular.module('blipApp')
 		//Stores users nationality to pass to server
 		//Hardcoded currently for testing -- 671 == France
 		$scope.userNationality = 671;
+		$scope.showLoadingAnimation = true;
 
 		//Called from Nationality dropdown in "settingsPannel.html" to set "userNationality"
 		//Then calls getLocation and which passes new country to database sproc
@@ -40,6 +41,7 @@ angular.module('blipApp')
 			SearchServices.getLocationResults(geoData).then(function(data){
 				$scope.searchResult = data;
 				$scope.filterSearchResult = $scope.searchResult;
+				$scope.showLoadingAnimation = false;
 				console.log("SearchServices called succesfully");
 			});
 		};
@@ -115,5 +117,11 @@ angular.module('blipApp')
 				}
 			}
 		};
-}]);
 
+		//On hover button click calls the 'ResultPage Factory' to store the pages state
+		//Then redirects to page for that result
+		$scope.storeFocusedResult = function(index){
+			ResultPageState.SetPageState($scope.filterSearchResult[index]);
+			$location.path('LocationView');
+		};
+}]);

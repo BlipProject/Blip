@@ -20,6 +20,8 @@ $fontFamily:'Lato';
 $fontHeading: 26px;
 $fontMain: 20px;
 
+$fontFamilyHeading:'Poiret One', cursive;
+
 $font-colour:#2c3e50;
 
 //Mixins
@@ -74,7 +76,7 @@ $screen-lg : 1200px;
 //header//
 $resultHeaderWidth: 100%;
 $resultHeaderHeight: 40px;
-$resultHeaderPadding: 3px;
+$resultHeaderPadding: 2px;
 $result-header-bg:#fff;
 
 //Settings Pannel
