@@ -9,9 +9,28 @@
  */
 angular.module('blipApp')
   .controller('UserRegistrationCtrl', ['$http','$scope' ,function ($http,$scope) {
+    $scope.pageHeading = "User Registration";
 
-    //$scope.userDetails;
-//name, country, email, password
+
+
+
+
+//to do  if element is valid do progressrar##################
+$scope.userName ="";
+$scope.userCountry ="";
+$scope.userEmail ="";
+$scope.userPassword ="";
+
+   $scope.$watch("userName", function(newValue, oldValue) {
+    if ($scope.userName.length > 0) 
+    {
+      document.getElementById("1").className += " ng-hide";
+      document.getElementById("2").className += "";
+      document.getElementById("2").className += "ng-show";
+    }
+
+  });
+//###########################################################
   $scope.createRegistration = function (userName, userCountry, userEmail, userPassword) {
     
 
@@ -24,8 +43,9 @@ angular.module('blipApp')
       password:userPassword
     };
     //console.log(userDetails);
-    
-  var postReg = $http.post('http://localhost/blip/app/phpCore/userReg.php', userDetails)
+    //LOCALHOST
+  //var postReg = $http.post('http://localhost/blip/app/phpCore/userReg.php', userDetails)
+  var postReg = $http.post('http://bliptest.azurewebsites/blip/app/phpCore/userReg.php', userDetails)
       .success(function(data, status, headers, config)
       {
         alert("Success"); 

@@ -11,40 +11,6 @@ angular.module('blipApp')
 		$scope.map;
 
 
-				/*if (window.DeviceOrientationEvent) {
-  document.getElementById("doEvent").innerHTML = "DeviceOrientation";
-  // Listen for the deviceorientation event and handle the raw data
-  window.addEventListener('deviceorientation', function(eventData) {
-    // gamma is the left-to-right tilt in degrees, where right is positive
-    var tiltLR = eventData.gamma;
-
-    // beta is the front-to-back tilt in degrees, where front is positive
-    var tiltFB = eventData.beta;
-
-    // alpha is the compass direction the device is facing in degrees
-    var dir = eventData.alpha
-
-    // call our orientation event handler
-    deviceOrientationHandler(tiltLR, tiltFB, dir);
-  }, false);
-} else {
-  document.getElementById("doEvent").innerHTML = "Not supported."
-}
-
-var deviceOrientationHandler = function(tiltLR, tiltFB, dir)
-{
-	document.getElementById("doTiltLR").innerHTML = Math.round(tiltLR);
-document.getElementById("doTiltFB").innerHTML = Math.round(tiltFB);
-document.getElementById("doDirection").innerHTML = Math.round(dir);
-
-// Apply the transform to the image
-var logo = document.getElementById("imgLogo");
-logo.style.webkitTransform =
-  "rotate("+ tiltLR +"deg) rotate3d(1,0,0, "+ (tiltFB*-1)+"deg)";
-logo.style.MozTransform = "rotate("+ tiltLR +"deg)";
-logo.style.transform =
-  "rotate("+ tiltLR +"deg) rotate3d(1,0,0, "+ (tiltFB*-1)+"deg)";
-}*/
 		
 		$scope.getLocation = function(){
 			var positionOptions = {
@@ -61,7 +27,7 @@ logo.style.transform =
 				        data = {
 				        	longitude : position.coords.longitude,
 				        	latitude : position.coords.latitude,
-				        	nationality : "671",
+				        	nationality : "1471",
 							showLimit : "30"
 				        };
 
@@ -96,6 +62,30 @@ logo.style.transform =
                         }
 						
 						};
+
+						//enableWatchPosition();
+						enableOrientationArrow();
+
+						function enableOrientationArrow()
+						{
+							window.addEventListener('deviceorientation', function(event){
+								var alpha = null;
+								if(event.webkitCompassHeading)
+								{
+									alpha = event.webkitCompassHeading
+								}
+								else
+								{
+									alpha = event.alpha;
+									console.log(event.alpha);
+								}
+								/*var locationIcon = $scope.youarehere.options.icon;
+								locationIcon.rotation = 360 - alpha;
+								$scope.youarehere.options.icon = locationIcon;*/
+								//not working because 'rotation is a read only property'
+							}, false);	
+
+						}
 
 						    $scope.busmarker =  {
         					id: 5,
@@ -177,19 +167,11 @@ logo.style.transform =
 
 		};
 
-		//Tidy up later -- 25/11/15
-		//Brian
-		$scope.userNationality = 671;
-		$scope.showAmountFilter = 30;
-		///////////
+
 		//IMPORTANT Change post URL to reletive link before build... '../phpCore/search.php'
 		///////////
 		//TESTING URL http://localhost/blip/app/phpCore/search.php
 		var getLocationResults = function(data){
-			//Tidy up later -- 25/11/15
-			//Brian
-			data.nationality = $scope.userNationality;
-			data.showLimit = $scope.showAmountFilter;
 			var searchResults;
 			var callSearch = $http.post('http://localhost/blip/app/phpCore/search.php', data)
 
