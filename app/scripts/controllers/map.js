@@ -27,7 +27,7 @@ angular.module('blipApp')
 				        data = {
 				        	longitude : position.coords.longitude,
 				        	latitude : position.coords.latitude,
-				        	nationality : "1471",
+				        	nationality : "671",
 							showLimit : "30"
 				        };
 
