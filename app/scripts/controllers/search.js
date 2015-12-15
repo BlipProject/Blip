@@ -2,8 +2,18 @@
 
 angular.module('blipApp')
 	
-	.controller('LocationSearchCtrl', ['$http','$scope','GeoLocationService','SearchServices','ResultPageState','$location', function ($http,$scope,GeoLocationService,SearchServices,ResultPageState,$location) {
+	.controller('LocationSearchCtrl', 
+		['$http',
+		'$scope',
+		'GeoLocationService',
+		'SearchServices',
+		'ResultPageState',
+		'$location',
+		'$rootScope',
+		function ($http,$scope,GeoLocationService,SearchServices,ResultPageState,$location,$rootScope) {
 
+		//Close mobile-navigation menu on page load
+		$rootScope.toggleNavClass = $rootScope.animateOut;
 		//Store search result returned from server
 		$scope.searchResult="";
 		//Stores filtered data (Quick filter buttons)
@@ -14,6 +24,7 @@ angular.module('blipApp')
 		//Stores users nationality to pass to server
 		//Hardcoded currently for testing -- 671 == France
 		$scope.userNationality = 671;
+		//Show loading animation -- sets to false when reults are returned from server
 		$scope.showLoadingAnimation = true;
 
 		//Called from Nationality dropdown in "settingsPannel.html" to set "userNationality"

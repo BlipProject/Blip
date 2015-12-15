@@ -1,35 +1,19 @@
 'use strict';
 
 angular.module('blipApp')
-  .controller('NavCtrl',['$scope', function ($scope) {
-    
-    //Controls mobile nav toggle
-    $scope.toggle = function() {
-        $scope.$broadcast('event:toggle');
-    }
-  	/*
-  		$scope.navStatus=0;
-  		$scope.activeClass="m-nav-wrapper-hide";
+  .controller('NavCtrl',['$scope','$rootScope', function ($scope,$rootScope) {
+      //Store animate in/out classes for mobile nav
+  		$rootScope.toggleNavClass=  $rootScope.animateOut;
 
+      //Set nav bar animation class
   		$scope.setNav = function(){
-  			console.log($scope.navStatus);
-  			if($scope.navStatus === 0)
+  			if($rootScope.toggleNavClass === $rootScope.animateOut)
   			{
-  				$scope.activeClass="m-nav-wrapper-show";
-  				$scope.navStatus = 1;
+  				$rootScope.toggleNavClass = $rootScope.animateIn;
   			}
   			else
   			{
-  				$scope.activeClass="m-nav-wrapper-hide";
-  				$scope.navStatus = 0;
+  				$rootScope.toggleNavClass = $rootScope.animateOut;
   			}
   		};
-	*/
-  }])
-  .directive('toggle', function() {
-    return function(scope, elem, attrs) {
-        scope.$on('event:toggle', function() {
-            elem.slideToggle();
-        });
-    };
-});
+  }]);

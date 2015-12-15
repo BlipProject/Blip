@@ -4,7 +4,7 @@
 
 angular.module('blipApp')
 	.factory('SideBarPageInView', function () {
-		var page={pageOn:0};
+		var page={};
 		return{
 			SetPage : function(pageIn){
 				page.pageOn = pageIn;

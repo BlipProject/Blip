@@ -74,6 +74,14 @@ angular
         v: '3.20', //defaults to latest 3.X anyhow
         libraries: 'weather,geometry,visualization'
     });
+})
+.run(function($rootScope) {
+  //Set state for mobile nav.
+  //Hide on launch
+  //Show on button click in nav.html
+  $rootScope.animateIn = 'animated bounceInLeft';
+  $rootScope.animateOut = 'animated zoomOutLeft';
+  $rootScope.toggleNavClass = $rootScope.animateOut;
 });
 
 

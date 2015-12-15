@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('blipApp')
-	.controller('MapCtrl', ['$http','$scope', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'GeoLocationService', 'SearchServices', function ($http,$scope,uiGmapGoogleMapApi, uiGmapIsReady, GeoLocationService, SearchServices) {
+	.controller('MapCtrl', ['$http','$scope', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'GeoLocationService', 'SearchServices','$rootScope', function ($http,$scope,uiGmapGoogleMapApi, uiGmapIsReady, GeoLocationService, SearchServices,$rootScope) {
 
+		//Close mobile-navigation menu on page load
+		$rootScope.toggleNavClass = $rootScope.animateOut;
 		//Stores geolocation data to send to php script
 		var data;
 		//Store search result returned from server
