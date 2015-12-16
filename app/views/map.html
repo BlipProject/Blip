@@ -1,16 +1,17 @@
 <style>
-.angular-google-map-container { height: 400px;}
-.marker-labels{ 
-    color:#0066FF; 
-    height:61px; 
-    width:auto;
-    font-size:9px;
+.angular-google-map-container {
+    height: 400px;
+}
+
+.marker-labels {
+    color: #0066FF;
+    height: 61px;
+    width: auto;
+    font-size: 9px;
     font-family: helvetica;
     font-weight: bold;
-
-     }
+}
 </style>
-
 <div ng-init="getLocation()"></div>
 <div class="quick-filter-wrapper hidden-md hidden-lg">
     <div ng-include="'views/componants/quickButtons.html'"></div>
@@ -18,22 +19,20 @@
 <!--Include mobile nav-->
 <div ng-include="'views/componants/mobileNav.html'" scope="" onload=""></div>
 <div class="container content-wrapper" ng-init="getLocation()">
-  <div class="content-left">
-    <div ng-controller="MapCtrl">
-      <ui-gmap-google-map center="map.center" zoom="map.zoom" ng-init="getFilter('All')">
-      <ui-gmap-marker coords='youarehere.coords' idKey='youarehere.id' options='youarehere.options'>    
-      </ui-gmap-marker>
-      <ui-gmap-window coords="MapOptions.markers.selected.coords" show="windowOptions.show" options="windowOptions" closeClick="closeClick()" templateUrl="'../infowindow.tpl'"  templateParameter="selectedmarker" >
-      </ui-gmap-window>
-      <ui-gmap-markers models="markers" idkey="'id'" coords="'coords'" options="'options'" click="onClick" events="markers.events" >
-      </ui-gmap-markers>
-      </ui-gmap-google-map>
+    <div class="content-left">
+        <div ng-controller="MapCtrl">
+            <ui-gmap-google-map center="map.center" zoom="map.zoom" ng-init="getFilter('All')">
+                <ui-gmap-marker coords='youarehere.coords' idKey='youarehere.id' options='youarehere.options'>
+                </ui-gmap-marker>
+                <ui-gmap-window coords="MapOptions.markers.selected.coords" show="windowOptions.show" options="windowOptions" closeClick="closeClick()" templateUrl="'../infowindow.tpl'" templateParameter="selectedmarker">
+                </ui-gmap-window>
+                <ui-gmap-markers models="markers" idkey="'id'" coords="'coords'" options="'options'" click="onClick" events="markers.events">
+                </ui-gmap-markers>
+            </ui-gmap-google-map>
+        </div>
     </div>
-  </div>
     <div class="content-right">
-
-
-<!--<div class="main" ng-controller="MapCtrl">
+        <!--<div class="main" ng-controller="MapCtrl">
   <h2>Device Orientation</h2>
   <table>
     <tr>
@@ -58,14 +57,8 @@
   <img src="images/html5_logo.png" id="imgLogo" class="logo">-->
         <!--includes settings pannel-->
         <div class="settings-pannel-wrapper">
-        <div ng-include="'views/componants/settingsPannel.html'"></div>
+            <div ng-include="'views/componants/settingsPannel.html'"></div>
         </div>
-      </div>
-
+    </div>
 </div>
 <div ng-include="'views/componants/footer.html'" scope="" onload=""></div>
-
-
-
-
-
