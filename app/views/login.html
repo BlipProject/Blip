@@ -1,20 +1,24 @@
-<div  ng-controller="LoginCtrl">
-  <div class="">
-    <div <div class="form-field">
-        
-        <label class="form-label">User Email</label></br>
-        <input type="email" placeholder="e.g. john@gmail.com" name="email" ng-model="userEmail" /></br>
-    	<span ng-show="loginForm.email.$dirty && loginForm.email.$error.required">Required</span>
-        <span ng-show="loginForm.email.$dirty  &&   loginForm.email.$error.email">Not an email!</span>
+<div ng-controller="LoginCtrl">
+    <div class="">
+        <div <div class="form-field">
+            <label class="form-label">User Email</label>
+            </br>
+            <input type="email" placeholder="e.g. john@gmail.com" name="email" ng-model="userEmail" />
+            </br>
+            <span ng-show="loginForm.email.$dirty && loginForm.email.$error.required">Required</span>
+            <span ng-show="loginForm.email.$dirty  &&   loginForm.email.$error.email">Not an email!</span>
+        </div>
+        <div <div class="form-field">
+            <label class="form-label">Password</label>
+            </br>
+            <input type="password" placeholder="e.g. qwerty" name="password" ng-model="userPassword" ng-minlength="8" />
+            </br>
+            </br>
+            <span ng-show="loginForm.password.$dirty && loginForm.password.$error.required">Required</span>
+            <span ng-show="loginForm.password.$dirty && loginForm.password.$error.minlength">Minimum 8 characters</span>
+        </div>
+        </br>
+        <button class="bus-reg-button bus-reg-button-yes" type="submit" ng-disabled="loginForm.$invalid" ng-click='loginUser(userEmail, userPassword)'>LOGIN</button>
+        </form>
     </div>
-    <div <div class="form-field">
-        <label class="form-label">Password</label></br>
-        <input type="password" placeholder="e.g. qwerty" name="password" ng-model="userPassword" ng-minlength="8"/></br></br>
-        <span ng-show="loginForm.password.$dirty && loginForm.password.$error.required">Required</span>
-        <span ng-show="loginForm.password.$dirty && loginForm.password.$error.minlength">Minimum 8 characters</span>
-    </div></br>
-    <button class="bus-reg-button bus-reg-button-yes" type="submit"  ng-disabled="loginForm.$invalid"  ng-click='loginUser(userEmail, userPassword)' >LOGIN</button>
-
-  </form>
-
-  
+</div>

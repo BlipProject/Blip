@@ -8,186 +8,176 @@
  * Controller of the blipApp
  */
 angular.module('blipApp')
-  .controller('RegisterBusinessCtrl', ['$http','$scope','NationalityService','uiGmapGoogleMapApi', function ($http,$scope,NationalityService,uiGmapGoogleMapApi) {
+    .controller('RegisterBusinessCtrl', ['$http', '$scope', 'uiGmapGoogleMapApi', function($http, $scope, uiGmapGoogleMapApi) {
 
-  	$scope.pageHeading = "Register Your Business";
-  	//Store categories for dropdown
-  	$scope.categories = {};
-  	//Store data about business to send to php script
-  	//var busData = {};
-  	//Store business latitude and longtitude
-  	var busLat;
-  	var busLng;
+        $scope.pageHeading = "Register Your Business";
+        //Store categories for dropdown
+        $scope.categories;
+        //Store data about business to send to php script
+        //var busData = {};
+        //Store business latitude and longtitude
+        var busLat;
+        var busLng;
 
-  	$scope.submitted = false;
+        $scope.map = {
+            center: {
+                latitude: 54.276293,
+                longitude: -8.476524
+            },
+            zoom: 16
+        };
+        $scope.busmarker = {
+            id: 5,
+            coords: {
+                latitude: 54.276293,
+                longitude: -8.476524
+            }
+        };
 
-  	$scope.map = {
-  		center: { latitude: 54.276293, longitude: -8.476524},
-		zoom: 16
-  	};
-  	$scope.busmarker =  {
-		id: 5,
-		coords: {
-			latitude: 54.276293,
-			longitude: -8.476524
-		}
-	};
+        $scope.openingHours = {
+            mon: "Closed",
+            tue: "Closed",
+            wed: "Closed",
+            thu: "Closed",
+            fri: "Closed",
+            sat: "Closed",
+            sunday: "Closed"
+        }
 
-	$scope.openingHours = {
-		mon: "Closed",
-		tue: "Closed",
-		wed: "Closed",
-		thu: "Closed",
-		fri: "Closed",
-		sat: "Closed",
-		sunday: "Closed"
-	};
+        ///////////
+        //IMPORTANT Change post URL to reletive link before build... '../phpCore/get_categories.php'
+        ///////////
+        //TESTING URL http://localhost/blip/app/phpCore/get_categories.php
+        $scope.loadCategories = function() {
+            var getCategories = $http.post('http://localhost/blip/app/phpCore/get_categories.php')
+                .success(function(data, status, headers, config) {
+                    $scope.categories = data;
+                    console.log(data + ' - ' + "Success");
+                })
+                .error(function(data, status, headers, config) {
+                    console.log(status + ' - ' + 'Error');
+                });
+        };
 
-	$scope.loadNationalities = function(){
-		NationalityService.getNationalities().then(function(data){
-			console.log("NationalityService called succesfully");
-			$scope.nationalities = data;
-		});
-	};
+        uiGmapGoogleMapApi.then(function(maps) {});
 
-	///////////
-	//IMPORTANT Change post URL to reletive link before build... '../phpCore/get_categories.php'
-	///////////
-	//TESTING URL http://localhost/blip/app/phpCore/get_categories.php
+        $scope.setDayClass = function(event) {
+            if ($(event.target).hasClass("opening-hours-day-selected")) {
+                $(event.target).removeClass("opening-hours-day-selected");
+            } else {
+                $(event.target).addClass("opening-hours-day-selected");
+            }
+        };
 
-  	$scope.loadCategories = function(){
-		var getCategories = $http.post('http://localhost/blip/app/phpCore/get_categories.php')
-	        .success(function(data, status, headers, config)
-	        {
-	        	$scope.categories = data;
-			    console.log(data + ' - ' + "Success");
-            })
-	        .error(function(data, status, headers, config)
-	        {
-	            console.log(status + ' - ' + 'Error');
-	        });
-	};
+        $scope.addOpeningHours = function(openTime, closeTime) {
 
-  	uiGmapGoogleMapApi.then(function(maps) {
-  	});
+            if (openTime != undefined || closeTime != undefined) {
+                var format = String(openTime).slice(16, 21) + " - " + String(closeTime).slice(16, 21);
+                loopSelectedDays(format);
+            } else {
+                loopSelectedDays("Closed");
+            }
+        };
 
-  	$scope.setDayClass = function(event) {
-  		if($(event.target).hasClass("opening-hours-day-selected")){
-  			$(event.target).removeClass("opening-hours-day-selected");
-  		}
-  		else{
-  			$(event.target).addClass("opening-hours-day-selected");
-  		}
-  	};
+        var loopSelectedDays = function(formated) {
+            $('.opening-hours-day-selected').each(function(i, obj) {
+                switch (obj.innerHTML) {
+                    case "Mon":
+                        $scope.openingHours.mon = formated;
+                        break;
+                    case "Tue":
+                        $scope.openingHours.tue = formated;
+                        break;
+                    case "Wed":
+                        $scope.openingHours.wed = formated;
+                        break;
+                    case "Thu":
+                        $scope.openingHours.thu = formated;
+                        break;
+                    case "Fri":
+                        $scope.openingHours.fri = formated;
+                        break;
+                    case "Sat":
+                        $scope.openingHours.sat = formated;
+                        break;
+                    case "Sun":
+                        $scope.openingHours.sunday = formated;
+                        break;
+                }
+            });
+        };
 
-  	$scope.addOpeningHours = function(openTime, closeTime) {
+        $scope.getCoordinates = function(busAddress, busAddress2, busCity, busCountry) {
 
-  		if(openTime != undefined || closeTime != undefined){
-  			var format = String(openTime).slice(16, 21) + " - " + String(closeTime).slice(16, 21);
-  			loopSelectedDays(format);
-  		}
-  		else{loopSelectedDays("Closed");}
-  	};
+            $scope.geodata = {};
+            $scope.queryResults = {};
+            $scope.queryError = {};
+            //$scope.address = document.getElementById('busaddress').value;
+            $scope.address = busAddress + " " + busAddress2 + " " + busCity + " " + busCountry;
+            console.log($scope.address);
 
-  	var loopSelectedDays = function(formated) {
-  		$('.opening-hours-day-selected').each(function(i, obj) {
-  			switch(obj.innerHTML){
-  				case "Mon":
-  					$scope.openingHours.mon = formated;
-  					break;
-  				case "Tue":
-  					$scope.openingHours.tue = formated;
-  					break;
-  				case "Wed":
-  					$scope.openingHours.wed = formated;
-  					break;
-  				case "Thu":
-  					$scope.openingHours.thu = formated;
-  					break;
-  				case "Fri":
-  					$scope.openingHours.fri = formated;
-  					break;
-  				case "Sat":
-  					$scope.openingHours.sat = formated;
-  					break;
-  				case "Sun":
-  					$scope.openingHours.sunday = formated;
-  					break;
-  			}
-  		});	
-  	};
+            $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' +
+                    $scope.address + '&key=AIzaSyCn9zl42b2gnUt92A7v_OcAJB4OUem-zbM')
+                .then(function(_results) {
+                        console.log(_results.data);
 
-  	$scope.getCoordinates = function(busAddress, busAddress2, busCity, busCountry){
+                        $scope.queryResults = _results.data.results;
+                        $scope.geodata = $scope.queryResults[0].geometry;
 
-		$scope.geodata = {};
-		$scope.queryResults = {};
-		$scope.queryError = {};
-		//$scope.address = document.getElementById('busaddress').value;
-		$scope.address = busAddress + " " + busAddress2 + " " + busCity + " " + busCountry;
-		console.log($scope.address);
+                        var buslatlng = $scope.queryResults[0].geometry.location;
+                        console.log(buslatlng);
 
-		$http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + 
-		$scope.address + '&key=AIzaSyCn9zl42b2gnUt92A7v_OcAJB4OUem-zbM')
-		.then(function(_results){
-		console.log(_results.data);
+                        $scope.map = {
+                            center: {
+                                latitude: buslatlng.lat,
+                                longitude: buslatlng.lng
+                            },
+                            zoom: 16
+                        };
+                        $scope.busmarker = {
+                            id: 5,
+                            coords: {
+                                latitude: buslatlng.lat.toFixed(5),
+                                longitude: buslatlng.lng
+                            }
+                        };
 
-		$scope.queryResults = _results.data.results;
-		$scope.geodata = $scope.queryResults[0].geometry;
+                        busLat = buslatlng.lat;
+                        busLng = buslatlng.lng;
 
-		var buslatlng = $scope.queryResults[0].geometry.location;
-		console.log(buslatlng);
+                    },
+                    function error(_error) {
+                        $scope.queryError = _error;
+                        console.log($scope.queryError);
+                    })
+        }
 
-		$scope.map ={
-			center: { latitude: buslatlng.lat, longitude: buslatlng.lng},
-			zoom: 16
-		};
-		$scope.busmarker =  {
-			id: 5,
-			coords: {
-				latitude: buslatlng.lat.toFixed(5),
-				longitude: buslatlng.lng
-			}
-		};
+        $scope.registerBusiness = function(busName, busCity, busDescription) {
+            alert("got here");
+            //May have broke.. revert to get element by id to fix
+            var catEl = $("#busCategory");
+            var busCategory = catEl.options[catEl.selectedIndex].value;
 
-		busLat = buslatlng.lat;
-		busLng = buslatlng.lng;
+            var busData = {
+                name: busName,
+                latitude: parseFloat(busLat),
+                longtude: busLng,
+                city: busCity,
+                description: busDescription,
+                category: busCategory
 
-		}, 
-		function error(_error){
-			$scope.queryError = _error;
-			console.log($scope.queryError);
-		});
-	};
+            };
 
-	$scope.registerBusiness = function(busName, busCity, busDescription) {
-  		var lstCat = document.getElementById("lstCat");
-  		var busCategory = lstCat.options[lstCat.selectedIndex].value;
-  		var lstNat = document.getElementById("lstNat");
-  		var busNationality = lstNat.options[lstNat.selectedIndex].value;
+            console.log(busData);
 
-  		var busData = {
-  			name: busName,
-  			latitude: parseFloat(busLat),
-  			longtude: busLng,
-  			city: busCity,
-  			description: busDescription,
-  			category: busCategory,
-  			nationality: busNationality
-  		};
+            var insertBus = $http.post('http://localhost/blip/app/phpCore/register_business.php', busData)
+                .success(function(data, status, headers, config) {
+                    $scope.business = data;
+                    console.log(busData + ' - ' + "Success");
+                })
+                .error(function(data, status, headers, config) {
+                    console.log(status + ' - ' + 'Error');
+                });
+        };
 
-  		console.log(busData);
-
-  		var insertBus = $http.post('http://localhost/blip/app/phpCore/register_business.php', busData)
-	        .success(function(data, status, headers, config)
-	        {
-	        	$scope.business = data;
-			    console.log(busData + ' - ' + "Success");
-			    alert(busData.name + "succesfully added!");
-            })
-	        .error(function(data, status, headers, config)
-	        {
-	            console.log(status + ' - ' + 'Error');
-	        });
-  	};
-
-}]);
+    }]);
