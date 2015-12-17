@@ -79,8 +79,8 @@ angular
   //Set state for mobile nav.
   //Hide on launch
   //Show on button click in nav.html
-  $rootScope.animateIn = 'animated bounceInLeft';
-  $rootScope.animateOut = 'animated zoomOutLeft';
+  $rootScope.animateIn = 'animated slideInLeft';
+  $rootScope.animateOut = 'animated slideOutLeft';
   $rootScope.toggleNavClass = $rootScope.animateOut;
 });
 

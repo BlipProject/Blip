@@ -55,6 +55,13 @@ $font-colour:#2c3e50;
     transform:         $transform;
 }
 
+@mixin animation-duration($animation-duration...){
+    -moz-animation-duration:    $animation-duration;
+    -webkit-animation-duration: $animation-duration;
+    -o-animation-duration:      $animation-duration;
+    animation-duration:         $animation-duration;
+}
+
 //Media Queries
 //---------------
 
