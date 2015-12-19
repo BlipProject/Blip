@@ -49,7 +49,7 @@ angular.module('blipApp')
         ///////////
         //TESTING URL http://localhost/blip/app/phpCore/get_categories.php
         $scope.loadCategories = function() {
-            var getCategories = $http.post('http://localhost/blip/app/phpCore/get_categories.php')
+            var getCategories = $http.post('../phpCore/get_categories.php')
                 .success(function(data, status, headers, config) {
                     $scope.categories = data;
                     console.log(data + ' - ' + "Success");
