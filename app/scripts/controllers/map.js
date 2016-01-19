@@ -11,8 +11,13 @@ angular.module('blipApp')
         var searchResult = "";
         $scope.youarehere;
         $scope.map;
+        $scope.userNationality = 671;
 
-
+        $scope.getLocationNewCountry = function(newCountry) {
+            $scope.userNationality = newCountry;
+            console.log("New country - " + newCountry + " - set");
+            $scope.getLocation();
+        };
 
         $scope.getLocation = function() {
             var positionOptions = {
@@ -29,7 +34,7 @@ angular.module('blipApp')
                         data = {
                             longitude: position.coords.longitude,
                             latitude: position.coords.latitude,
-                            nationality: "1471",
+                            nationality: $scope.userNationality,
                             showLimit: "30"
                         };
 
