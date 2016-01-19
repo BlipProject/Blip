@@ -56,10 +56,13 @@
 		visibility:visible;
 		opacity:1;
 		transition-delay:0s;
-
+		
+		/*
+		//Hides hover effects on mobile screens
 		@media(max-width:$screen-sm){
-			visibility:hidden;
+			display:hidden;
 		}
+		*/
 	}
 	
 	//transition into blur and greyscale effect
@@ -69,20 +72,26 @@
 
 		@include transition(0.4s filter linear);
 		@include filter(blur(3px) grayscale(100%));
-
+		
+		/*
+		//Hides hover effects on mobile screens
 		@media(max-width:$screen-sm){
 			@include filter(blur(0px));
 		}
+		*/
 	}
 	
 	//TODO: Not sure whether to greyscale header colour. Come back too
 	.result-header{
 		@include transition(0.4s filter linear);
 		@include filter(blur(3px));
-
+		
+		/*
+		//Hides hover effects on mobile screens
 		@media(max-width:$screen-sm){
 			@include filter(blur(0px));
 		}
+		*/
 	}
 }
 }
@@ -141,7 +150,6 @@
 }
 
 //Global properties for -- ::before elements & .result-hover-bar
-//Inherited using SASS extend property
 //--
 .result-hover-bar-properties{
 	width:60%;

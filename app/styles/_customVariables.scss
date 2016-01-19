@@ -2,12 +2,13 @@
 //---------
 //Variables for custom colours:
 
-$main-brand-colour:#3498db;
+$main-brand-colour:#2980b9;
 
 $bar-colour: #e74c3c;
 $restaurant-colour:#883C82;
 $shop-colour:#2ecc71;
-$other-colour:#fff200;
+//$other-colour:#fff200;
+$other-colour:#fbc93d;
 
 $box-shadow-colour:#bdc3c7;
 
@@ -52,6 +53,13 @@ $font-colour:#2c3e50;
     -o-transform:      $transform;
     -webkit-transform: $transform;
     transform:         $transform;
+}
+
+@mixin animation-duration($animation-duration...){
+    -moz-animation-duration:    $animation-duration;
+    -webkit-animation-duration: $animation-duration;
+    -o-animation-duration:      $animation-duration;
+    animation-duration:         $animation-duration;
 }
 
 //Media Queries

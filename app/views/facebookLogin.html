@@ -1,21 +1,25 @@
-<div   class="container" ng-controller="FacebookLoginCtrl">
-<div class="page-heading-bar">
-    <ng-include src="'views/componants/pageHeadingBar.html'"></ng-include>
-  </div>
-	<h1>{{hello}} </h1>
-	<div ID="profilePicture"></div>
-	<h2 > {{username}}</h2>
-	<button ID="hide" class="facebook" ng-click = "FBLogin()"></button></br>
-	
-	<div  ID ="nationalityDD" class="ng-hide" >
-		<label>Lest what need is your nationality Fergal dropdown factory needed</label></br>
-        <input  type="nat" name="nat" ng-model="nationality"/></br>
-	</div></br>
-	<div ID ="finishReg" class="ng-hide" ><button  type="submit"    ng-click='loginFacebookUser(nationality)' >Finish registration</button></div>
-	<h2>{{infor}}</h2>
-	<div class="content-right">
+<div class="container" ng-controller="FacebookLoginCtrl">
+    <div class="page-heading-bar">
+        <ng-include src="'views/componants/pageHeadingBar.html'"></ng-include>
+    </div>
+    <h1>{{hello}} </h1>
+    <div ID="profilePicture"></div>
+    <h2> {{username}}</h2>
+    <button ID="hide" class="facebook" ng-click="FBLogin()"></button>
+    </br>
+    <div ID="nationalityDD" class="ng-hide">
+        <label>Lest what need is your nationality Fergal dropdown factory needed</label>
+        </br>
+        <input type="nat" name="nat" ng-model="nationality" />
+        </br>
+    </div>
+    </br>
+    <div ID="finishReg" class="ng-hide">
+        <button type="submit" ng-click='loginFacebookUser(nationality)'>Finish registration</button>
+    </div>
+    <h2>{{infor}}</h2>
+    <div class="content-right">
         <!--includes settings pannel-->
         <div ng-include="'views/componants/settingsPannel.html'"></div>
-      </div>
+    </div>
 </div>
-

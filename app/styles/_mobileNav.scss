@@ -11,6 +11,9 @@
 	@media (min-width:$screen-sm){
 		display:none;
 	}
+
+	//Speed of sidebar animation
+	@include animation-duration(.5s);
 }
 
 .m-nav-wrapper-show{
