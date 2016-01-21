@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('blipApp')
-    .controller('MapCtrl', ['$http', '$scope', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'GeoLocationService', 'SearchServices', '$rootScope', function($http, $scope, uiGmapGoogleMapApi, uiGmapIsReady, GeoLocationService, SearchServices, $rootScope) {
+    .controller('MapCtrl', ['$http', '$scope', '$timeout', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'GeoLocationService', 'SearchServices', '$rootScope', function($http, $scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, GeoLocationService, SearchServices, $rootScope) {
 
         //Close mobile-navigation menu on page load
         $rootScope.toggleNavClass = $rootScope.animateOut;
@@ -203,7 +203,10 @@ angular.module('blipApp')
                     console.log(status + ' - ' + 'Error');
                 });
 
-        };
+                
+};
+
+
 
         $scope.setFilterSetClass = function(filter, index) {
             $scope.getFilter(filter);
@@ -297,4 +300,18 @@ angular.module('blipApp')
             $scope.markers = [];
             $scope.markers.push(currentmarker);
         }
+        uiGmapGoogleMapApi.then((function (maps) { //maps is undefined - where do i define it??
+            $timeout($scope.setFitBounds,"2000")}));
+ $scope.setFitBounds = function () { 
+            console.log($scope.markers);
+        $scope.bounds = new maps.LatLngBounds();
+        angular.forEach($scope.markers, function (value, key) {
+            var myLatLng = new maps.LatLng($scope.markers[key].coords.latitude, $scope.markers[key].coords.longitude);
+            $scope.bounds.extend(myLatLng);
+        });
+        $scope.map = { center: { latitude: $scope.bounds.getCenter().lat(), longitude: $scope.bounds.getCenter().lng() }, zoom: 13 };
+        $scope.control.getGMap().fitBounds($scope.bounds);
+}
+
+
     }]);
