@@ -9,7 +9,7 @@ angular.module('blipApp')
         var data;
         //Store search result returned from server
         var searchResult = "";
-        $scope.youarehere;
+        //$scope.youarehere;
         $scope.map;
         $scope.userNationality = 671;
 
@@ -49,7 +49,9 @@ angular.module('blipApp')
                                 longitude: data.longitude
                             },
                             options: $scope.mapOptions,
-                            zoom: 14
+                            zoom: 14,
+                            bounds: {},
+                            control: {}
                         };
 
                         $scope.mapOptions = {
@@ -294,24 +296,36 @@ angular.module('blipApp')
 
         };
 
-        $scope.ShowOnlySelected = function(currentmarker) {
+        
+        uiGmapIsReady.promise(1).then(function (maps) {
+            console.log(maps);
+            //$timeout($scope.setFitBounds,"2000")
+        //});
+ //$scope.setFitBounds = function (maps) { 
+
+$scope.ShowOnlySelected = function(currentmarker) {
             console.log(currentmarker);
-            //$scope.windowOptions.show = false;
             $scope.markers = [];
             $scope.markers.push(currentmarker);
+            //$scope.bounds = {}//new maps[0].bounds();
+            
+            $scope.map.bounds = {
+            northeast: {
+                latitude: $scope.youarehere.coords.latitude, //youarehere is undefined here despite being populated already??
+                longitude: $scope.youarehere.coords.longitude
+            },
+            southwest: {
+                latitude: currentmarker.coords.latitude,
+                longitude: currentmarker.coords.longitude
+            }
         }
-        uiGmapGoogleMapApi.then((function (maps) { //maps is undefined - where do i define it??
-            $timeout($scope.setFitBounds,"2000")}));
- $scope.setFitBounds = function () { 
-            console.log($scope.markers);
-        $scope.bounds = new maps.LatLngBounds();
-        angular.forEach($scope.markers, function (value, key) {
-            var myLatLng = new maps.LatLng($scope.markers[key].coords.latitude, $scope.markers[key].coords.longitude);
-            $scope.bounds.extend(myLatLng);
-        });
-        $scope.map = { center: { latitude: $scope.bounds.getCenter().lat(), longitude: $scope.bounds.getCenter().lng() }, zoom: 13 };
-        $scope.control.getGMap().fitBounds($scope.bounds);
-}
 
+            $scope.map = { center: { latitude: $scope.map.bounds.getCenter().lat(), longitude: $scope.map.bounds.getCenter().lng() }, zoom: 13 };
+            $scope.map.control.getGMap().fitBounds($scope.bounds);
+
+        }
+        
+//}
+});
 
     }]);
