@@ -9,7 +9,6 @@ angular.module('blipApp')
         var data;
         //Store search result returned from server
         var searchResult = "";
-        //$scope.youarehere;
         $scope.map;
         $scope.userNationality = 671;
 
@@ -58,7 +57,7 @@ angular.module('blipApp')
 
                         };
 
-                        $scope.youarehere = {
+                        $rootScope.youarehere = {
                             id: 1,
                             coords: {
                                 latitude: data.latitude,
@@ -298,7 +297,7 @@ angular.module('blipApp')
 
         
         uiGmapIsReady.promise(1).then(function (maps) {
-            console.log(maps);
+            //console.log(maps);
             //$timeout($scope.setFitBounds,"2000")
         //});
  //$scope.setFitBounds = function (maps) { 
@@ -308,20 +307,23 @@ $scope.ShowOnlySelected = function(currentmarker) {
             $scope.markers = [];
             $scope.markers.push(currentmarker);
             //$scope.bounds = {}//new maps[0].bounds();
-            
+            //console.log($rootScope.youarehere);
             $scope.map.bounds = {
             northeast: {
-                latitude: $scope.youarehere.coords.latitude, //youarehere is undefined here despite being populated already??
-                longitude: $scope.youarehere.coords.longitude
+                latitude: $rootScope.youarehere.coords.latitude, //had to use rootscope because scope was not persisted here?
+                longitude: $rootScope.youarehere.coords.longitude
             },
             southwest: {
-                latitude: currentmarker.coords.latitude,
-                longitude: currentmarker.coords.longitude
+                latitude: parseFloat(currentmarker.coords.latitude),
+                longitude: parseFloat(currentmarker.coords.longitude)
             }
-        }
-
-            $scope.map = { center: { latitude: $scope.map.bounds.getCenter().lat(), longitude: $scope.map.bounds.getCenter().lng() }, zoom: 13 };
-            $scope.map.control.getGMap().fitBounds($scope.bounds);
+            }
+            console.log($scope.map);
+            //$scope.map = { center: { latitude: $scope.map.bounds.getCenter().lat(), longitude: $scope.map.bounds.getCenter().lng() }, zoom: 13 };
+            $timeout(function(){
+                $scope.map.control.getGMap().fitBounds($scope.map.bounds);
+    },  100);
+            
 
         }
         
