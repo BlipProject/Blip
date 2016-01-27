@@ -11,6 +11,7 @@ angular.module('blipApp')
         var searchResult = "";
         $scope.map;
         $scope.userNationality = 671;
+        //$scope.control = {};
 
         $scope.getLocationNewCountry = function(newCountry) {
             $scope.userNationality = newCountry;
@@ -50,12 +51,14 @@ angular.module('blipApp')
                             options: $scope.mapOptions,
                             zoom: 14,
                             bounds: {},
-                            control: {}
+                            //control: {}
                         };
 
-                        $scope.mapOptions = {
+                        //$scope.map.control = {};
 
-                        };
+                        //$scope.mapOptions = {
+
+                        //};
 
                         $rootScope.youarehere = {
                             id: 1,
@@ -108,7 +111,7 @@ angular.module('blipApp')
 
             //initialising the selected marker as a marker object
             $scope.selectedmarker = {};
-
+            $scope.map.control = {};
 
             $scope.onClick = function(data) {
                 $scope.selectedmarker = data;
@@ -207,7 +210,7 @@ angular.module('blipApp')
                 
 };
 
-
+        
 
         $scope.setFilterSetClass = function(filter, index) {
             $scope.getFilter(filter);
@@ -317,12 +320,18 @@ $scope.ShowOnlySelected = function(currentmarker) {
                 latitude: parseFloat(currentmarker.coords.latitude),
                 longitude: parseFloat(currentmarker.coords.longitude)
             }
-            }
+            };
             console.log($scope.map);
             //$scope.map = { center: { latitude: $scope.map.bounds.getCenter().lat(), longitude: $scope.map.bounds.getCenter().lng() }, zoom: 13 };
             $timeout(function(){
-                $scope.map.control.getGMap().fitBounds($scope.map.bounds);
-    },  100);
+                $scope.control.getGMap().fitBounds($scope.map.bounds);
+    },  2000);
+
+            $scope.$watch($scope.control, function(){ 
+                //$scope.map.control.getGMap().fitBounds($scope.map.bounds);
+                console.log('Map control changed');
+                console.log($scope.control);
+             });
             
 
         }
