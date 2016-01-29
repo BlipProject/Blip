@@ -11,7 +11,7 @@ angular.module('blipApp')
         var searchResult = "";
         $scope.map;
         $scope.userNationality = 671;
-        //$scope.control = {};
+        $scope.control = {};
 
         $scope.getLocationNewCountry = function(newCountry) {
             $scope.userNationality = newCountry;
@@ -50,11 +50,8 @@ angular.module('blipApp')
                             },
                             options: $scope.mapOptions,
                             zoom: 14,
-                            bounds: {},
-                            //control: {}
+                            //bounds: {}
                         };
-
-                        //$scope.map.control = {};
 
                         //$scope.mapOptions = {
 
@@ -330,13 +327,13 @@ $scope.ShowOnlySelected = function(currentmarker) {
             $scope.$watch($scope.control, function(){ 
                 //$scope.map.control.getGMap().fitBounds($scope.map.bounds);
                 console.log('Map control changed');
-                console.log($scope.control);
+                console.log($scope.control); //undefined......
              });
             
 
-        }
+        }//end of show only selected function
         
 //}
-});
+});//end of map is ready
 
     }]);
