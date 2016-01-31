@@ -23,7 +23,7 @@ angular.module('blipApp')
         //Stores users nationality to pass to server
         //Hardcoded currently for testing -- 671 == France
         $scope.userNationality = 671;
-        //Show loading animation -- sets to false when reults are returned from server
+        //Show loading animation -- sets to false when results are returned from server
         $scope.showLoadingAnimation = true;
 
         //Called from Nationality dropdown in "settingsPannel.html" to set "userNationality"
@@ -51,6 +51,7 @@ angular.module('blipApp')
             SearchServices.getLocationResults(geoData).then(function(data) {
                 $scope.searchResult = data;
                 $scope.filterSearchResult = $scope.searchResult;
+                console.log($scope.filterSearchResult);
                 $scope.showLoadingAnimation = false;
                 console.log("SearchServices called succesfully");
             });

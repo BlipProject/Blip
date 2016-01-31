@@ -7,10 +7,10 @@ angular.module('blipApp')
 		var pageState={};
 		return{
 			SetPageState : function(locationIn){
-				pageState = locationIn;
+				localStorage.pageState = JSON.stringify(locationIn);
 			},
 			GetPageState : function(){
-				return pageState;
+				return JSON.parse(localStorage.pageState);
 			}
 		}
 	});
