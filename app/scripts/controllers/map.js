@@ -177,7 +177,7 @@ angular.module('blipApp')
         //TESTING URL http://localhost/blip/app/phpCore/search.php
         var getLocationResults = function(data) {
             var searchResults;
-            var callSearch = $http.post('../phpCore/search.php', data)
+            var callSearch = $http.post('/phpCore/search.php', data)
 
             .success(function(data, status, headers, config) {
                     searchResult = data;
