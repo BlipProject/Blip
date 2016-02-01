@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('blipApp')
-    .controller('MapCtrl', ['$http', '$scope', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'GeoLocationService', 'SearchServices', '$rootScope', function($http, $scope, uiGmapGoogleMapApi, uiGmapIsReady, GeoLocationService, SearchServices, $rootScope) {
+    .controller('MapCtrl', ['$http', '$scope', '$timeout', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'GeoLocationService', 'SearchServices', '$rootScope', function($http, $scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, GeoLocationService, SearchServices, $rootScope) {
 
         //Close mobile-navigation menu on page load
         $rootScope.toggleNavClass = $rootScope.animateOut;
@@ -9,10 +9,15 @@ angular.module('blipApp')
         var data;
         //Store search result returned from server
         var searchResult = "";
-        $scope.youarehere;
         $scope.map;
+        $scope.userNationality = 671;
+        $scope.control = {};
 
-
+        $scope.getLocationNewCountry = function(newCountry) {
+            $scope.userNationality = newCountry;
+            console.log("New country - " + newCountry + " - set");
+            $scope.getLocation();
+        };
 
         $scope.getLocation = function() {
             var positionOptions = {
@@ -29,7 +34,7 @@ angular.module('blipApp')
                         data = {
                             longitude: position.coords.longitude,
                             latitude: position.coords.latitude,
-                            nationality: "1471",
+                            nationality: $scope.userNationality,
                             showLimit: "30"
                         };
 
@@ -44,14 +49,15 @@ angular.module('blipApp')
                                 longitude: data.longitude
                             },
                             options: $scope.mapOptions,
-                            zoom: 14
+                            zoom: 14,
+                            //bounds: {}
                         };
 
-                        $scope.mapOptions = {
+                        //$scope.mapOptions = {
 
-                        };
+                        //};
 
-                        $scope.youarehere = {
+                        $rootScope.youarehere = {
                             id: 1,
                             coords: {
                                 latitude: data.latitude,
@@ -102,7 +108,7 @@ angular.module('blipApp')
 
             //initialising the selected marker as a marker object
             $scope.selectedmarker = {};
-
+            $scope.map.control = {};
 
             $scope.onClick = function(data) {
                 $scope.selectedmarker = data;
@@ -198,7 +204,10 @@ angular.module('blipApp')
                     console.log(status + ' - ' + 'Error');
                 });
 
-        };
+                
+};
+
+        
 
         $scope.setFilterSetClass = function(filter, index) {
             $scope.getFilter(filter);
@@ -286,10 +295,45 @@ angular.module('blipApp')
 
         };
 
-        $scope.ShowOnlySelected = function(currentmarker) {
+        
+        uiGmapIsReady.promise(1).then(function (maps) {
+            //console.log(maps);
+            //$timeout($scope.setFitBounds,"2000")
+        //});
+ //$scope.setFitBounds = function (maps) { 
+
+$scope.ShowOnlySelected = function(currentmarker) {
             console.log(currentmarker);
-            //$scope.windowOptions.show = false;
             $scope.markers = [];
             $scope.markers.push(currentmarker);
-        }
+            //$scope.bounds = {}//new maps[0].bounds();
+            //console.log($rootScope.youarehere);
+            $scope.map.bounds = {
+            northeast: {
+                latitude: $rootScope.youarehere.coords.latitude, //had to use rootscope because scope was not persisted here?
+                longitude: $rootScope.youarehere.coords.longitude
+            },
+            southwest: {
+                latitude: parseFloat(currentmarker.coords.latitude),
+                longitude: parseFloat(currentmarker.coords.longitude)
+            }
+            };
+            console.log($scope.map);
+            //$scope.map = { center: { latitude: $scope.map.bounds.getCenter().lat(), longitude: $scope.map.bounds.getCenter().lng() }, zoom: 13 };
+            $timeout(function(){
+                $scope.control.getGMap().fitBounds($scope.map.bounds);
+    },  2000);
+
+            $scope.$watch($scope.control, function(){ 
+                //$scope.map.control.getGMap().fitBounds($scope.map.bounds);
+                console.log('Map control changed');
+                console.log($scope.control); //undefined......
+             });
+            
+
+        }//end of show only selected function
+        
+//}
+});//end of map is ready
+
     }]);

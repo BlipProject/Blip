@@ -21,10 +21,10 @@
 <div class="container content-wrapper" ng-init="getLocation()">
     <div class="content-left">
         <div ng-controller="MapCtrl">
-            <ui-gmap-google-map center="map.center" zoom="map.zoom" ng-init="getFilter('All')">
+            <ui-gmap-google-map center="map.center" zoom="map.zoom" ng-init="getFilter('All')" control="control" bounds="map.bounds">
                 <ui-gmap-marker coords='youarehere.coords' idKey='youarehere.id' options='youarehere.options'>
                 </ui-gmap-marker>
-                <ui-gmap-window coords="MapOptions.markers.selected.coords" show="windowOptions.show" options="windowOptions" closeClick="closeClick()" templateUrl="'../infowindow.tpl'" templateParameter="selectedmarker">
+                <ui-gmap-window coords="MapOptions.markers.selected.coords" show="windowOptions.show" options="windowOptions" closeClick="closeClick()" templateUrl="'../infowindow.tpl.html'" templateParameter="selectedmarker">
                 </ui-gmap-window>
                 <ui-gmap-markers models="markers" idkey="'id'" coords="'coords'" options="'options'" click="onClick" events="markers.events">
                 </ui-gmap-markers>
