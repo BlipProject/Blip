@@ -63,6 +63,9 @@ angular
         controller: 'FacebookLoginCtrl',
         controllerAs: 'facebookLogin'
       })
+      .when('/userLocations', {
+        templateUrl: 'views/userLocations.html'
+      })
       .otherwise({
         redirectTo: 'views/landing.html'
       });
