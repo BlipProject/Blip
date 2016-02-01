@@ -20,13 +20,25 @@ angular.module('blipApp')
 
 			link:function(scope, element, attributes){
 
+				function geo_error() {
+				  alert("Sorry, no position available.");
+				}
+
+				var geo_options = {
+				  enableHighAccuracy: true, 
+				  maximumAge        : 3000, 
+				  timeout           : 27000
+				};
+
     			if (navigator.geolocation) {
-			        navigator.geolocation.watchPosition(initMap);
+			        navigator.geolocation.watchPosition(geo_success, geo_error, geo_options);
 			    } else {
 			        // Error, Browser not supported
 			    }
 			    
-			    function initMap(position) {
+
+
+			    function geo_success(position) {
 
 			    	var coordinatesUser = {lat: position.coords.latitude, lng: position.coords.longitude};
 			    	var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
@@ -42,7 +54,7 @@ angular.module('blipApp')
 				      disableDefaultUI: true,
 				      draggable: false,
 				      scrollwheel: false,
-				      zoom: 18,
+				      zoom: 17
 				    });
 
 				    //TODO: Will set custom icon for markerUser
