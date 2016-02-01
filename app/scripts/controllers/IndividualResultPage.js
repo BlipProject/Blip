@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('blipApp')
-    .controller('IndividualResultPageCtrl', ['ResultPageState', '$scope','uiGmapGoogleMapApi', function(ResultPageState, $scope) {
+    .controller('IndividualResultPageCtrl', ['ResultPageState', '$scope', function(ResultPageState, $scope) {
 
     	$scope.pageViewData = ResultPageState.GetPageState();
 
@@ -10,8 +10,6 @@ angular.module('blipApp')
 
     	//Stores data pulled from the 'ResultPageState' factory
     	var pageViewData = ResultPageState.GetPageState();
-    	console.log("Lontitude (Venue) = " + pageViewData.MapLong);
-    	console.log("Latitude Lontitude (Venue) = " + pageViewData.MapLat);
 
   		return {
     		restrict: 'E',
@@ -20,103 +18,127 @@ angular.module('blipApp')
 
 			link:function(scope, element, attributes){
 
-				function geo_error() {
-				  alert("Sorry, no position available.");
-				}
+				var map,
+                currentPositionMarker,
+                currentVenueMarker,
+                mapCenter = new google.maps.LatLng(40.700683, -73.925972),
+                map,
+                distance,
+                direction;
 
-				var geo_options = {
-				  enableHighAccuracy: true, 
-				  maximumAge        : 500, 
-				  timeout           : 27000
-				};
+                var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
 
-    			if (navigator.geolocation) {
-			        navigator.geolocation.watchPosition(geo_success, geo_error, geo_options);
-			    } else {
-			        // Error, Browser not supported
-			    }
-			    
+	            function initializeMap()
+	            {
+	                map = new google.maps.Map(document.getElementById('map'), {
+	                   zoom: 16,
+	                   center: mapCenter,
+	                   mapTypeId: google.maps.MapTypeId.ROADMAP
+	                 });
 
+	                setVenueLocation();
+	            }
 
-			    function geo_success(position) {
+	            function locError(error) {
+	                // the current position could not be located
+	                alert("The current position could not be found!");
+	            }
 
-			    	var coordinatesUser = {lat: position.coords.latitude, lng: position.coords.longitude};
-			    	var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
+	            function setCurrentPosition(pos) {
+	                currentPositionMarker = new google.maps.Marker({
+	                    map: map,
+	                    position: new google.maps.LatLng(
+	                        pos.coords.latitude,
+	                        pos.coords.longitude
+	                    ),
+	                    title: "Current Position"
+	                });
+	                map.panTo(new google.maps.LatLng(
+	                        pos.coords.latitude,
+	                        pos.coords.longitude
+	                    ));
 
-			    	//Stores distance to venue from current position
-			    	var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(coordinatesUser.lat,coordinatesUser.lng), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
-			    	//Stores heading from markerUser to marker venue
-				  	var headingVenue = google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(coordinatesUser.lat,coordinatesUser.lng), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
-			  		//Stores heading for the users current position
-				  	var userHeading = position.coords.heading;
+	                getDistance(pos.coords.latitude,pos.coords.longitude);
 
-				    var mapDiv = document.getElementById('map');
-				    var map = new google.maps.Map(mapDiv, {
-				      center: {lat: position.coords.latitude, lng: position.coords.longitude},
-				      disableDefaultUI: true,
-				      draggable: false,
-				      scrollwheel: false,
-				      zoom: 16
-				    });
-
-				    //mapDiv.style.transform = "rotate(" + userHeading + "deg)";
-
-				    //TODO: Will set custom icon for markerUser
-				    /*
-				    var navArrow = {
-					    url: '/images/navigationArrow.png',
-					    size: new google.maps.Size(256,256),
-					    // The origin for this image is (0, 0).
-					    origin: new google.maps.Point(128,256),
-					    // The anchor for this image is the base of the flagpole at (0, 32).
-					    anchor: new google.maps.Point(100, 100),
-					    rotation: heading,
-					};
-					*/
-				    //Set users current position
-				    var markerUser = new google.maps.Marker({
-					    position: coordinatesUser,
-					    map: map,
-					    title: 'You Are Here'
-				  	});
-
-				    //Set markerUser towards heading of markerVenue
-				    markerUser.setIcon({
+	                //Set Marker icon as Arrow
+	                currentPositionMarker.setIcon({
 				    	path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
 				    	scale:9,
-				    	rotation: userHeading,
+				    	rotation:pos.coords.heading
 				    });
 
-				    //Sets venue position
-				  	var markerVenue = new google.maps.Marker({
-					    position: coordinatesVenue,
-					    map: map,
-					    title: pageViewData.LocationName,
-					    animation: google.maps.Animation.BOUNCE
-				  	});
+	                console.log(pos.coords.heading);
+	                var newPos = {lat: pos.coords.latitude,lng: pos.coords.longitude};
+	                setPollyLine(newPos);
+	            }
 
-				  	//TODO: Remove as only for visual purposes
-				  	//Set pollyline between markers
-					var direction = new google.maps.Polyline({
-				  		path: [coordinatesUser,coordinatesVenue],
+	            //Sets the map marker for venue
+	            function setVenueLocation(){
+	            	currentVenueMarker = new google.maps.Marker({
+	                    map: map,
+	                    position: coordinatesVenue,
+	                    title: pageViewData.LocationName
+	                });
+	            }
+
+	            function getDistance(curLong,curLat){
+	            	distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(curLong,curLat), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
+	            	var x = document.getElementById("testDistance");
+	            	x.innerHTML = "Distance = " + distance;
+	            	console.log(distance);
+	            }
+
+	            function displayAndWatch(position) {
+	                // set current position
+	                setCurrentPosition(position);
+	                // watch position
+	                watchCurrentPosition();
+	            }
+
+	            //FOR VISUAL REASONS ONLY
+	            //TO BE REMOVED
+	            //Draws a line between the 2 locations
+	            function setPollyLine(position){
+	            	direction = new google.maps.Polyline({
+				  		path: [position,coordinatesVenue],
 				  		geodesic: true,
 					    strokeColor: '#FF0000',
 					    strokeOpacity: 1.0,
 					    strokeWeight: 2
 				  	});
 				  	direction.setMap(map);
+	            }
 
+	            function watchCurrentPosition() {
+	                var positionTimer = navigator.geolocation.watchPosition(
+	                    function (position) {
+	                        setMarkerPosition(
+	                            currentPositionMarker,
+	                            position
+	                        );
+	                    });
+	            }
 
-				  	var x = document.getElementById("testDistance");
-				  	x.innerHTML = "Distance = " + distance;
-				  	
-				  	console.log("User Heading = " + userHeading);
-			  		console.log("Venue Heading = " + headingVenue);
-				  	console.log("Distance (m) = " + distance);
-				    console.log("Longitude (User) = " + position.coords.longitude);
-				    console.log("Latitude (User) = " + position.coords.latitude);
-				}		    
-    		}
+	            function setMarkerPosition(marker, position) {
+	                marker.setPosition(
+	                    new google.maps.LatLng(
+	                        position.coords.latitude,
+	                        position.coords.longitude)
+	                );
+	            }
 
+	            function initLocationProcedure() {
+	                initializeMap();
+	                if (navigator.geolocation) {
+	                    navigator.geolocation.getCurrentPosition(displayAndWatch, locError);
+	                } else {
+	                    alert("Your browser does not support the Geolocation API");
+	                }
+	            }
+
+	            $(document).ready(function() {
+	                initLocationProcedure();
+	            });
+			}	
     	}
   	}]);
