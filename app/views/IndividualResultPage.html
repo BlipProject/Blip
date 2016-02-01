@@ -11,16 +11,14 @@
                     <br/>
                 </div>
             </div>
-            <!--Picks border colour based on type of venue is displayed i.e 'Bar'-->
+            <!--Picks border colour based on type of venue is displayed i.e 'Bar' == red-->
             <div ng-class="{'indiv-divider-bar': pageViewData.CategoryName == 'Bar','indiv-divider-res': pageViewData.CategoryName == 'Restaurant','indiv-divider-shop': pageViewData.CategoryName == 'Supermarket','indiv-divider-other': pageViewData.CategoryName == 'Other'}" class="indiv-divider"></div>
             <div class="indiv-content">
                 <div class="col-xs-12 col-md-8 indiv-map-wrap">
-                    
-                    <div class="content-left">
-
-                    </div>
-
-                    
+                         
+                <div class="content-left">
+                    <div id="map" style="height:500px; width:700px; background-color: #CCC;"></div>
+                </div>
 
                 </div>
                 <div class="col-xs-12 col-md-4">
@@ -33,3 +31,4 @@
         </div>
     </div>
 </div>
+<watch-location></watch-location>
