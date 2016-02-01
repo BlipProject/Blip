@@ -87,7 +87,6 @@ angular.module('blipApp')
 	            	distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(curLong,curLat), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
 	            	var x = document.getElementById("testDistance");
 	            	x.innerHTML = "Distance = " + distance;
-	            	console.log(distance);
 	            }
 
 	            function displayAndWatch(position) {
@@ -137,8 +136,8 @@ angular.module('blipApp')
 				    	rotation: heading
 	            	}
 
-	                console.log(position);
-	                marker.setIcon(icon);
+	            	//Rests map icon with new rotation to match heading
+                	marker.setIcon(icon);
 
 	                var y = document.getElementById("testHeading");
 	                y.innerHTML = "Heading = " + icon.rotation;
@@ -148,6 +147,13 @@ angular.module('blipApp')
 
 	            function initLocationProcedure() {
 	                initializeMap();
+
+	                var option = {
+	                	maximumAge:0,
+	                	timeout:10000,
+	                	enableHighAccuracy: true
+	                }
+
 	                if (navigator.geolocation) {
 	                    navigator.geolocation.getCurrentPosition(displayAndWatch, locError);
 	                } else {
