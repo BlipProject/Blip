@@ -10,12 +10,14 @@ angular.module('blipApp')
 		};
 
 		$scope.getUserLocations = function() {
-			$scope.searchResult = $http.post('http://localhost/blip/app/phpCore/get_userLocations.php', user)
+			$http.post('http://localhost/blip/app/phpCore/get_userLocations.php', user)
 				.then(function(response)
 				{
 					console.log("Success");
-					console.log(response.data);
+					$scope.searchResult = response.data;
 				})
 		};
+
+		console.log($scope.searchResult);
 
 	}]);

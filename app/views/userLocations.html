@@ -1,12 +1,12 @@
 <div>
-    <div ng-controller="UserLocationsCTRL" ng-init="getFilter('All')">
+    <div ng-controller="UserLocationsCTRL">
         <!--Include mobile nav-->
         <div ng-include="'views/componants/mobileNav.html'" scope="" onload=""></div>
         <div class="container content-wrapper" ng-init="getUserLocations()">
             <div class="content-left">
                 <!--includes search results-->
-                <div class="search-loading" ng-show="showLoadingAnimation == true">
-                    <p class="loading-image-text">blip</p><img class="animated rotateIn infinite" src="/images/loading/loading_icon.svg"></div>
+                <!--<div class="search-loading" ng-show="showLoadingAnimation == true">
+                    <p class="loading-image-text">blip</p><img class="animated rotateIn infinite" src="/images/loading/loading_icon.svg"></div>-->
                 <div ng-include="'views/componants/userLocation.html'"></div>
             </div>
             <div class="content-right">
