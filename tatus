@@ -1,0 +1,1184 @@
+[33mcommit 043081a46df3ca177c7473d76f1920a5c83a2337[m
+Merge: 2f08770 25c8851
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Feb 1 10:53:21 2016 +0000
+
+    Merge branch 'master' of https://github.com/BlipProject/Blip
+
+[33mcommit 2f08770cff45a023c6bcac48a7a0c172980d6e8f[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Feb 1 09:57:05 2016 +0000
+
+    Minor tweaks to map variables
+
+[33mcommit 49da0667f28595c056d9daa05b2817ad7152c9bf[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Feb 1 09:04:29 2016 +0000
+
+    Switched heading to users heading. Increases timeout time for API.
+
+[33mcommit b28f81dd58b7962ac41d883de9d36f68d03964de[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Feb 1 08:43:38 2016 +0000
+
+    Fixed issue with certain images scaling incorectly (Individual result page). Added propertys to map api.
+
+[33mcommit a516509a5f7f6ccc9bb2064fad73f9184ffc8bfd[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Feb 1 07:23:44 2016 +0000
+
+    Fixed layout. Scroll and drag now disabled. Zoom set to 18.
+
+[33mcommit b7e102d4303695c9f46bd688affde83faff91cca[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Feb 1 06:39:31 2016 +0000
+
+    Distance outputting to screen.
+
+[33mcommit afd57174aec3d5097e6a5143ab506bad8e66977c[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Feb 1 06:07:51 2016 +0000
+
+    Marker pointing at header of venue. Distance to location working.
+
+[33mcommit 5d0a86d29bc577e38b66f5e8e9391ae8696e3681[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Feb 1 04:48:58 2016 +0000
+
+    Map displaying with user and venue locations. User position should auto update.
+
+[33mcommit 919c1e54c626a15129c90bc4731c66df04ce4169[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sun Jan 31 22:56:44 2016 +0000
+
+    location page state now stored in local storage
+
+[33mcommit 25c88514a14d2febd4419507d3de0d7a21d93316[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Fri Jan 29 10:02:13 2016 +0000
+
+    more messing around with scope variables. still not working
+
+[33mcommit 2d14de238a8d8c8d6e8aabc744499744b3b6af4c[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Wed Jan 27 12:02:34 2016 +0000
+
+    moving that error slightly along the last line...
+
+[33mcommit 5f47f9a5bb146070a4e9c6ef0de7bda68e8e8e74[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Tue Jan 26 14:12:18 2016 +0000
+
+    still working on this. Have now gotten to the very last line of code before an error occurs!
+
+[33mcommit d8dd4e4ba820406e7a0d181e4c6a2df9e1c18d2f[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Mon Jan 25 11:08:18 2016 +0000
+
+    getting nearer to a solution here - still problems with scope objects being undefined even though i have clearly defined them previously
+
+[33mcommit b60beda1e0dd86b8e4a3b9e6003be4e7e0774e7d[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Thu Jan 21 14:08:37 2016 +0000
+
+    trying to fit map to within bounds of all markers in list. having trouble using the uigmapisready function
+
+[33mcommit b1c862033c0d9d0061d18b7644a8feb160c40357[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Thu Jan 21 12:18:48 2016 +0000
+
+    redoing tasks i had to delete
+
+[33mcommit 14dfd85a8e8d3f7d129841200ec5657830cf489c[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Tue Jan 19 14:26:13 2016 +0000
+
+    nationality dropdown working on map page
+
+[33mcommit b69fb751ae2ee8d5cbae6c136044455bff7969a6[m
+Merge: e8b4938 34d5de9
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Tue Jan 19 11:28:00 2016 +0000
+
+    merged master into getdirections
+
+[33mcommit 34d5de9059e2b65c9f548cd6d6c30a016bf394ce[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sat Dec 19 00:54:47 2015 +0000
+
+    Updated imagemin to version 1.0.0
+
+[33mcommit beb99a0b857b2796675052d0583f0931b9c1fdc4[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Thu Dec 17 02:57:55 2015 +0000
+
+    Sidebar animation & speed changed
+
+[33mcommit 8ab8e4b7672fc478a388e2ec0b8c94c441996ac0[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Thu Dec 17 01:15:40 2015 +0000
+
+    Style & Prettify
+
+[33mcommit 174428f2f2e9a6a436d15a2a9e3f77024d197c68[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Wed Dec 16 16:54:15 2015 +0000
+
+    Created Profile Sidebar Module
+
+[33mcommit 92d84248f89c7ba5a85055e2f396652bb3a3c6c6[m
+Merge: a628887 d87064a
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Wed Dec 16 15:44:32 2015 +0000
+
+    Merge Fixed
+
+[33mcommit a628887db0d51bae4933819b00bf75e863433a9d[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Wed Dec 16 15:35:41 2015 +0000
+
+    Prettify
+
+[33mcommit d87064ac15ab22753a0e6319a15b0fdf0b7a6876[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Wed Dec 16 02:11:51 2015 +0000
+
+    Improved formating on all JS & HTML files.
+
+[33mcommit 552776d8e1e9f3ec70ea5e58726ce12e2c881156[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Tue Dec 15 02:58:57 2015 +0000
+
+    Navbar now behaving properly. To close navbar on page navigation, inject $rootScope into controller and use the following line '$rootScope.toggleNavClass = $rootScope.animateOut;.'
+
+[33mcommit e8b493863214b60a49d39173bc4178346933d4c7[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Thu Dec 10 15:23:37 2015 +0000
+
+    merged master in
+
+[33mcommit 63b80d9b48669b822b3922a3bd8e0d04553cf079[m
+Merge: 25b61c7 a42e0a8
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Wed Dec 9 23:02:27 2015 +0000
+
+    merged master
+
+[33mcommit 25b61c769208d4008a237192f532c40bb6af6b0d[m
+Merge: 39cf2c5 7c3bacc
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Wed Dec 9 22:59:39 2015 +0000
+
+    resolve unmerged files
+
+[33mcommit a42e0a829e900326d7c8a2214b27d8c0381c21bb[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Wed Dec 9 22:56:30 2015 +0000
+
+    Early version of mobile nav toggle working. Need to fix some bugs but ok for presentation.
+
+[33mcommit 39cf2c5a079dbf685b7282c63c7f6b3a8dca9590[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Wed Dec 9 21:33:03 2015 +0000
+
+    Success Alert Added!
+
+[33mcommit 0964b66605cae371bdd82e5dd625af02e2935aef[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Wed Dec 9 21:32:05 2015 +0000
+
+    Success alert added
+
+[33mcommit 7c3bacc7aed3e3995b6e7255c3b9e17e348c3532[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Wed Dec 9 21:30:54 2015 +0000
+
+    fixed sidebar position on reg business/reg user. Styled landing page
+
+[33mcommit e0a451a36052d0f58d462f523999d5697f9def5d[m
+Merge: bc46096 e2137cc
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Wed Dec 9 19:14:24 2015 +0000
+
+    merged master
+
+[33mcommit bc46096f939388da6160d8a671ccbf2de9fce5f3[m
+Merge: 6143fc1 5be0297
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Wed Dec 9 19:09:24 2015 +0000
+
+    Profile links added, form working
+
+[33mcommit e2137cc7145ba7b76fe2522e25c2ef2d1ad398bf[m
+Merge: 5d42929 3a979bb
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Wed Dec 9 18:28:51 2015 +0000
+
+    meged with auturs code
+
+[33mcommit 3a979bbb5e5606f758fc6137cdde1d4dd9eed0f9[m
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Tue Dec 8 18:51:13 2015 +0000
+
+    ready to merge to  master
+
+[33mcommit a523843804e1695ddb0b9ddd2301c2643d58b13b[m
+Merge: 78f886c bda05b3
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Tue Dec 8 18:33:22 2015 +0000
+
+    merged with master  i hope
+
+[33mcommit 78f886cf6c20e792cf627c78ac62e08ecf6ec7b0[m
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Tue Dec 8 18:22:23 2015 +0000
+
+    08/12/2015 should wors on live website
+
+[33mcommit 6d83d3bab697083395810f9e3c007ab25f53e742[m
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Mon Dec 7 22:50:09 2015 +0000
+
+    07/12/2015 facebook fixed
+
+[33mcommit bda05b373616b58124d4c515f8a2b454f2dd2e85[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Wed Dec 2 20:00:04 2015 +0000
+
+    merged master into my branch and got nationality workign again
+
+[33mcommit 16bedf69253494e392336990b0a97b5db3592154[m
+Merge: 2d3030b ce04778
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Wed Dec 2 19:40:48 2015 +0000
+
+    Merge branch 'master' into getdirections
+
+[33mcommit 2d3030ba482f8537554903697ee389d63e3fb59a[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Wed Dec 2 19:32:16 2015 +0000
+
+    commented out my direction testing and changed hardcoded nationality to polish
+
+[33mcommit 24a237d1c540ac57439aaff2340e9eed737fcc5a[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Tue Dec 1 19:03:32 2015 +0000
+
+    experimenting with rotation. not working and still cant test on phone
+
+[33mcommit 5d42929e178f88066456c651fc587d941636c9a8[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Nov 30 22:34:05 2015 +0000
+
+    Styling on 'IndividualResultPage.html'. Added loading animation to search page
+
+[33mcommit ce04778126e180c0437379710d906c44a21a975f[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Nov 30 15:28:46 2015 +0000
+
+    removed invalid reference to 'sidebarNavState.js' from index.html
+
+[33mcommit 20a5adef8d25d2690e34824b5db136e2e35323b7[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Nov 30 15:25:18 2015 +0000
+
+    small change to map.js
+
+[33mcommit aafd6dbf78141db5cf7b75b1cccf7de1cff8d240[m
+Merge: 5fa93e1 067fcb9
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sat Nov 28 18:40:37 2015 +0000
+
+    Merge branch 'master' of https://github.com/BlipProject/Blip
+
+[33mcommit 5fa93e12ee8122a9221f07e05cff0e364df7ef59[m
+Merge: 7b4d834 529e401
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sat Nov 28 18:38:44 2015 +0000
+
+    ?
+
+[33mcommit 067fcb92f53fae7bbd313716bb29a63bec038183[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Sat Nov 28 12:25:19 2015 +0000
+
+    commented out direction stuff, map working
+
+[33mcommit af6e4bd1f05807fefbbbffb49ba0f79f0108e6d3[m
+Merge: be4d666 5be0297
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Sat Nov 28 10:45:08 2015 +0000
+
+    map working again, with hardcoded nationality of french
+
+[33mcommit be4d6664df80a37e0f8b5f7c840f7625fd50b073[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Sat Nov 28 10:13:03 2015 +0000
+
+    working on getting the new sproc to wrk with my code. need to go and pull the last master and merge first.
+
+[33mcommit 7b4d834dd76d55246a572ceadae94fe87d53b3c4[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Wed Nov 25 21:55:16 2015 +0000
+
+    misc (swapping branch)
+
+[33mcommit 529e4019582780ff04c382e056945804d5ecc4da[m
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Wed Nov 25 21:46:53 2015 +0000
+
+    25/11/2015 small changes after margin with master
+
+[33mcommit 66332fdb24556055a70031a6ad5372de2b1da956[m
+Merge: 9eb95fd 5be0297
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Wed Nov 25 21:24:09 2015 +0000
+
+    25/11/2015 marged with master
+
+[33mcommit 9eb95fd04ac7ac7297ac5aec2c29cafba9126ced[m
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Wed Nov 25 21:11:11 2015 +0000
+
+    25//11/2015 without session and cookies
+
+[33mcommit 7980bee2ebc187edfba78d9a4affa9ac009880a8[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Tue Nov 24 21:38:47 2015 +0000
+
+    Added factory for pageState. Moving between result view and individual result now working
+
+[33mcommit 5c1c6c5414622864c66710833ebb5e8c1fa40960[m
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Tue Nov 24 20:38:45 2015 +0000
+
+    24/22/2015 Facebook loging working without facebook table in DB login working without checking is user exist
+
+[33mcommit 5be029728423a8e83347755de06cdc68fe6a6869[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Tue Nov 24 19:29:41 2015 +0000
+
+    sidebar icon highlights correctly on page navigation
+
+[33mcommit c330b7070189bfbee0bd5f0cebe96a5138007752[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Tue Nov 24 02:09:20 2015 +0000
+
+    Replaced navigation for results/map page ith icons
+
+[33mcommit c506896ec7e957da5f1f6cd885778f848efac396[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Nov 23 03:24:16 2015 +0000
+
+    Moved quick filter to sidebar on desktop. Working on new mobile nav bar to allow full access to scope of the site
+
+[33mcommit 136bcc3878b5b64856217b184a835da95183254d[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sun Nov 22 22:50:55 2015 +0000
+
+    Fixed scroll issue with nationality dropdown
+
+[33mcommit 30abe48c93c4bd5d2c64c55b24777e62acd25f61[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sun Nov 22 20:32:04 2015 +0000
+
+    Quick filter buttons moved to sidebar on desktop screens.
+
+[33mcommit bc667503bbfa7dbd86003afd3a3841db9fe445a7[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sun Nov 22 19:48:59 2015 +0000
+
+    Accidentaly deleted 'register_business.js'. Restored file.
+
+[33mcommit a7e8dfede35ebe4bfc3d2fa4c01e49b97af8bee8[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sun Nov 22 19:42:52 2015 +0000
+
+    Locations by nationalitys dropdown added and working. Need to fix css on dropdown menu (overflow property)
+
+[33mcommit b5e18392ae4de86176b8a8dfbe7cda4f2df66988[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sun Nov 22 07:37:45 2015 +0000
+
+    Get locations by Nationality Working. Currently passing a hardcoded variable. Need logged in state to continue.
+
+[33mcommit 6143fc11d5feb2c95caa53930567a2c4bf34646d[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Sun Nov 22 01:10:58 2015 +0000
+
+    DB File
+
+[33mcommit 2d5341e7cce2ccf662243a855d9ba47f3fb0366e[m
+Merge: 0853d02 44059fd
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sun Nov 22 00:04:59 2015 +0000
+
+    Fix mege conflicts
+
+[33mcommit 0853d02319e2542858c2dff2299c8e16112c023f[m
+Merge: 5cbd6e2 fac8b59
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sat Nov 21 23:34:12 2015 +0000
+
+    Updated connection string for dtatbase. Please include 'blip_4815162342_108.php' to connect to remote database.
+
+[33mcommit 0b608e0ee0ba03cd2dc84ace90c88d6370aa477c[m
+Merge: b248688 44059fd
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Thu Nov 19 13:55:15 2015 +0000
+
+    resolved merge
+
+[33mcommit b2486882d652058c4cc724d7b37b149b4b15b037[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Thu Nov 19 13:52:23 2015 +0000
+
+    Some styling done to 'Profile' section in side panel
+
+[33mcommit 44059fdf64295ce431f277b04e9b16b59efb57f2[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Wed Nov 18 12:43:41 2015 +0000
+
+    map filters working and tidied up the console
+
+[33mcommit f520123653e61c7447bb56279c41dfe92fbcb6ad[m
+Merge: 5dc1ad7 8f1cc31
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Tue Nov 17 20:07:27 2015 +0000
+
+    Merge branch 'master' into arturworking
+
+[33mcommit 5dc1ad7e68f92f76c42d4ae0d6af8128a9b9ff81[m
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Tue Nov 17 19:43:10 2015 +0000
+
+    17/11/2015 confirmation email working
+
+[33mcommit 8f1cc31a976df4b4b6e2f6ad46ddf92f2db1013a[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Sat Nov 14 13:08:47 2015 +0000
+
+    Marker icons working and new db connection established
+
+[33mcommit 39bd1b472b4a0353884a36cbd5dfd7c1e08c55be[m
+Merge: 0847396 fac8b59
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Fri Nov 13 10:16:02 2015 +0000
+
+    Merge branch 'master' into katietest
+
+[33mcommit 133e3faa402e9f2f7be4506b3d3ab4b3e723e9ff[m
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Sun Nov 8 01:29:24 2015 +0000
+
+    email sending with php
+
+[33mcommit 084739637862ba0fd41f8fbcdd271daddcaa560d[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Sat Nov 7 15:02:40 2015 +0000
+
+    removed marker labels underneath
+
+[33mcommit be67ffb4a04456585a27c33632d202826995cfa9[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Sat Nov 7 14:30:07 2015 +0000
+
+    custom map icons working
+
+[33mcommit 5cbd6e20ea53c543b294fac5ab19f2907d3f79ba[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Thu Nov 5 17:41:48 2015 +0000
+
+    added _global.scss
+
+[33mcommit 45c0bcc8c3e7e5c9e2fc827f7528d5d217ef67ae[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Thu Nov 5 15:32:02 2015 +0000
+
+    Added 'nationalityService.js'
+
+[33mcommit fac8b5963eb99662d3f748663535904eeef7a431[m
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Thu Nov 5 15:28:56 2015 +0000
+
+    all works fine
+
+[33mcommit d419c8d4b39f1fe13b7fc690535e7af03f878e07[m
+Merge: bbc0f3b a16ec30
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Thu Nov 5 14:34:12 2015 +0000
+
+    Merge branch 'master' into arturworking
+
+[33mcommit a16ec302283fce441572a6917e0834ffd9a7774f[m
+Merge: 279e015 7c83423
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Thu Nov 5 14:27:43 2015 +0000
+
+    Merge branch 'master' of https://github.com/BlipProject/Blip
+
+[33mcommit bbc0f3b8b90f3b2e79927ccfd46eaaf9d0596681[m
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Thu Nov 5 14:26:55 2015 +0000
+
+    login and registration 90% working
+
+[33mcommit 7c834237cca49d38f038cff94e297eb64ec69191[m
+Merge: 0962e92 a54cee8
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Thu Nov 5 14:11:07 2015 +0000
+
+    Merge branch 'master' into katietest
+
+[33mcommit a54cee85d2cff43e0a54e36f00fb2d614c73e382[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Thu Nov 5 14:06:31 2015 +0000
+
+    need to switch branch
+
+[33mcommit 0962e9290bb8b9b021f63323ae1a027b21718f3a[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Thu Nov 5 13:55:40 2015 +0000
+
+    just committing so i can switch branches
+
+[33mcommit 9cc0b669243f83e28f765fa8f1c62eccb3e68556[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Thu Nov 5 13:18:39 2015 +0000
+
+    working on register business
+
+[33mcommit 925582703b21576db3cfbe508f23ddc2b988585c[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Mon Nov 2 15:14:06 2015 +0000
+
+    windows showing with name, category, picture and description
+
+[33mcommit 10af199ea2878432b543a08d7c8b7ccb47d48e63[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Sun Nov 1 07:27:29 2015 +0000
+
+    get_nationalities.php added
+
+[33mcommit f86d8817e7cb50db9e3a82554deccf0e746b5d6a[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Sun Nov 1 06:50:21 2015 +0000
+
+    bower install font awesome
+
+[33mcommit f2d92517582488417a82a115276831229bed9180[m
+Merge: 4e4187f 47d589d
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Sun Nov 1 06:48:54 2015 +0000
+
+    resolve merge
+
+[33mcommit 47d589deabd32593cb523f47348184f1f4c2ee1d[m
+Merge: 7fc39f1 b647eed
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Sun Nov 1 06:46:43 2015 +0000
+
+    Merge branch 'master' of https://github.com/BlipProject/Blip
+
+[33mcommit b647eedcc0c565a634b4758d11ad8ce9af4fca7e[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sun Nov 1 06:45:06 2015 +0000
+
+    icon refinement
+
+[33mcommit 4e4187f95890dd6ad8b50f0b079044c2d2de297d[m
+Merge: caf0392 7fc39f1
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Sun Nov 1 06:41:35 2015 +0000
+
+    Merge branch 'master' into RegisterCompany
+
+[33mcommit 7fc39f11cdce536900171eb08bb9d17c3ec7a0d3[m
+Merge: c316fd1 da67888
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Sun Nov 1 06:41:03 2015 +0000
+
+    Merge branch 'master' of https://github.com/BlipProject/Blip
+
+[33mcommit caf0392415641cdce5f43d1b013e76bc34ce7ab9[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Sun Nov 1 06:40:44 2015 +0000
+
+    Opening hours formatted
+
+[33mcommit b7d91f0bc5605b446ea7ca69c246664a6f511ecf[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sat Oct 31 07:34:21 2015 +0000
+
+    Added icon to search result hover
+
+[33mcommit 36b2d639db311d974872403388ea9d9516117c6f[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sat Oct 31 02:11:38 2015 +0000
+
+    Add bower references for font awsome & lato font. Small tweaks to search animations.
+
+[33mcommit e97dba60fa67e2bc48dd523e995879dc216f8329[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Fri Oct 30 20:15:17 2015 +0000
+
+    Finished search hover effect. Changes to search.js to set classes correctly on ng-repeat
+
+[33mcommit 46af4ec9df5128a2afcb2a0b4306c6bbaf5f2db2[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Fri Oct 30 04:10:29 2015 +0000
+
+    Added hover effect to search reults, some refinement needed
+
+[33mcommit da67888e842e53870627f8fcbdd87288cca87980[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Fri Oct 30 01:36:58 2015 +0000
+
+    Added smooth scroll to top of page when filter button is clicked
+
+[33mcommit a23947b900cc2d890c3f0d4b38f11d00147d70b0[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Thu Oct 29 06:26:00 2015 +0000
+
+    Validation added - some added detail
+
+[33mcommit 38a0d1da92a467b76c13246381d017e7c8aafab2[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Thu Oct 29 04:56:52 2015 +0000
+
+    Added location image folder and tied in added sample images for 5 busineses. Seems fine so far. Also added a default image for when no image is available.
+
+[33mcommit 58813c88912234cb1809aad816b9e3b0cb5e959a[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Thu Oct 29 04:55:06 2015 +0000
+
+    Modified gruntfile to copy picture from sub directories to dist.
+
+[33mcommit 37ad13bcb152ed820a32510b9c9f6d992ad04d8b[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Wed Oct 28 22:45:04 2015 +0000
+
+    changed to build urls
+
+[33mcommit f51c3f6348623b571abf9cc5de4af6230fe6ca7c[m
+Merge: d9b0244 c316fd1
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Wed Oct 28 20:29:04 2015 +0000
+
+    Resolved conflict with map.js
+
+[33mcommit c316fd1f3b25f48d1760eb6ed4f375443bae0530[m
+Merge: b2aee37 245f13d
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Wed Oct 28 20:26:56 2015 +0000
+
+    Merge branch 'master' of https://github.com/BlipProject/Blip
+
+[33mcommit d9b0244b99ab95058b62318e1cbec103953156f8[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Wed Oct 28 20:26:29 2015 +0000
+
+    Working on form layout
+
+[33mcommit 245f13d681f43d656fef6c6c361c118006aeb68b[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Wed Oct 28 19:53:29 2015 +0000
+
+    hotfix: filter buttons working again
+
+[33mcommit 75790b56d9867e3a0ac8f3acec89dda0550ebeed[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Wed Oct 28 19:22:02 2015 +0000
+
+    Added sidebar to map page
+
+[33mcommit 7108b6765e067f004dc11b90fffd0561f40bb396[m
+Merge: f91ae24 8305b63
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Wed Oct 28 18:57:59 2015 +0000
+
+    Merge branch 'master' of https://github.com/BlipProject/Blip
+
+[33mcommit f91ae24d10a17b2570bddf489c923a4c2e4e45d8[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Wed Oct 28 18:56:02 2015 +0000
+
+    Services now working. I think.
+
+[33mcommit 8305b633654f70ab409b1da7dd16f12d924ca495[m
+Merge: 0992bc3 4112a6d
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Wed Oct 28 18:39:46 2015 +0000
+
+    merging master into my branch first so i dont break anything
+
+[33mcommit 0992bc32a017ea2b3e341b91db2fd290fb5247ef[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Wed Oct 28 18:22:07 2015 +0000
+
+    animated markers with windows showing their name and category
+
+[33mcommit 12136004d07cc4360f88b0faee8faf2bcd03792f[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Wed Oct 28 18:22:00 2015 +0000
+
+    Fixed view refreshing bug (changed watchPosition to getCurrentPosition in geoServices.js)
+
+[33mcommit ada79f26d016ecaf53758e79beb93298f2e2eae8[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Wed Oct 28 05:43:08 2015 +0000
+
+    GeolocationDervice working & Implemented. Documentation in geoServices.js.
+
+[33mcommit 7c4104e8decda9f0d352d8916a6c8eaa65202935[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Wed Oct 28 03:35:22 2015 +0000
+
+    GeoLocationService working. Need to figure out how to return the data.
+
+[33mcommit cc2493007e5b1e5dccadc8205dbf99e59c660317[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Tue Oct 27 22:04:24 2015 +0000
+
+    Minor stylesheet refactoring
+
+[33mcommit 4112a6dbbd76da7739cba6295c00211a789ef213[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Tue Oct 27 20:27:18 2015 +0000
+
+    Added box shadow mixin. (accidentily to master)
+
+[33mcommit 2eddcdd81fbc795f20afe8c212752395c060bb42[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Tue Oct 27 18:51:15 2015 +0000
+
+    marker window showing SOMETIMES and displays the data property of the object. But the addmarkerclick function keeps returning different data types - sometimes just an object like the marker, but sometimes the marker object is wrapped in a markerwithlabel object...
+
+[33mcommit ec28f20cf50c8dfcc004d897bcd48ab1bc8a31db[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Tue Oct 27 03:55:50 2015 +0000
+
+    Updated readme file
+
+[33mcommit ca31d6ec0155078fc72466f8a15bf91f29d6f714[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Tue Oct 27 03:54:49 2015 +0000
+
+    Updated readme file
+
+[33mcommit 73ae5b448526ff49bec2639e06bd033c275d70bf[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Tue Oct 27 03:52:45 2015 +0000
+
+    Updated readme file
+
+[33mcommit 3aaa35fb86ea4e2ddb0e200f03a4f3bbe06be57a[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Tue Oct 27 03:20:30 2015 +0000
+
+    Fixed images not being responsive on search page
+
+[33mcommit f8abc6bed79b34f2727aa66239459098b02b0dca[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Tue Oct 27 00:04:12 2015 +0000
+
+    Added about page
+
+[33mcommit 279e0151fcb6c2b17746abef2dce8584f24bdbb2[m
+Merge: 32c2250 c98dd97
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Mon Oct 26 17:31:25 2015 +0000
+
+    Merge branch 'master' of https://github.com/BlipProject/Blip
+
+[33mcommit 37c918fd7e01d6a5e10002de1bd089a76790ab72[m
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Mon Oct 26 17:30:25 2015 +0000
+
+    my commit
+
+[33mcommit da08b815a3be2c161213aa58fd7c9745649ac0ba[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Sun Oct 25 13:20:57 2015 +0000
+
+    Basic markers showing on click of map marker
+
+[33mcommit 58ae3fead31ee1fe181a024e4ad0f762a83f2bbc[m
+Merge: cfe382a b2aee37
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Sun Oct 25 01:45:39 2015 +0000
+
+    Merge branch 'master' into RegisterCompany
+
+[33mcommit b2aee374e3aa43d4c2b33a651747f4e721571d8e[m
+Merge: 8d60a8b c98dd97
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Sun Oct 25 01:45:18 2015 +0000
+
+    resolved merge confilct
+
+[33mcommit cfe382a9defccb3d69602ae435332a4e251a8375[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Sun Oct 25 01:39:58 2015 +0000
+
+    Styling Registration
+
+[33mcommit c98dd97810ea51adf6df45d594b70b0d930c9eb4[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sun Oct 25 01:17:32 2015 +0000
+
+    Fixed position on sidebar
+
+[33mcommit 8290f1819e3c591d2365f099fdad25c8343c08fe[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sun Oct 25 01:14:25 2015 +0100
+
+    Changed hostname to localhost. Site will now open on correct page when using grunt serve
+
+[33mcommit 0cbb4953e18194910b2d9be291783f76d97e61c8[m
+Merge: d41a894 0696480
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Sat Oct 24 19:56:52 2015 +0100
+
+    Resolved merge conflict
+
+[33mcommit d41a894422d3fb090e77a07686326dca9c193fa9[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Sat Oct 24 19:55:11 2015 +0100
+
+    Added bower dependancy for Bootstrap Tokenfield
+
+[33mcommit 06964802aebf037d4c91beee19d15c7ad8fad254[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Fri Oct 23 23:46:03 2015 +0100
+
+    I hate services!! Created geo & search services. Working on getting them to return data
+
+[33mcommit 27ba1b579da9d4129cd87703fe64cc1999312a61[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Fri Oct 23 05:24:59 2015 +0100
+
+    Redesigned sidebar
+
+[33mcommit 3b070a8f77ab141aed3011be828151fb0bcf976a[m
+Merge: 4f5a70b 8d60a8b
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Thu Oct 22 20:40:36 2015 +0100
+
+    Merge branch 'master' into RegisterCompany
+
+[33mcommit 8d60a8b3445c37f6f756ba36ac1c933908a19511[m
+Merge: 03008be 4dbeffb
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Thu Oct 22 20:40:04 2015 +0100
+
+    Resolved Conflict
+
+[33mcommit 4f5a70b3255b6549cf6b871289910f10a132bffa[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Thu Oct 22 20:36:12 2015 +0100
+
+    Registration Form adding to DB
+
+[33mcommit 4dbeffb9cc22313d5d1efba7c292a4c3e841bb0c[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Thu Oct 22 00:07:06 2015 +0100
+
+    Changes to .jshintrc file (wont flag undefined variables or $ variables). Added reference services js file on index.
+
+[33mcommit 409b799e33ac6f739d5b90e51cee32fffe2c8dd6[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Wed Oct 21 11:35:02 2015 +0100
+
+    marker labels display location name, playing with windows
+
+[33mcommit ddb66a77174aa57a2a683d3753f356e34609bdee[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Wed Oct 21 11:03:46 2015 +0100
+
+    Eureka! Database locations now showing on map
+
+[33mcommit 2ec0a5d9598aaa2458da791ff76ab58fda6427a2[m
+Merge: a92a90f 32c2250
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Mon Oct 19 16:29:41 2015 +0100
+
+    merge
+
+[33mcommit 32c225079080456cf7e889477214403777b92b27[m
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Mon Oct 19 16:25:24 2015 +0100
+
+    costam
+
+[33mcommit a92a90fff23eed6e313b528e3b1d87d7f98245d7[m
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Mon Oct 19 16:09:18 2015 +0100
+
+    last update aded controller for reg form
+
+[33mcommit 3fc25d2d58b90c4d223229dd02d002860cad3442[m
+Merge: aa6cf89 9769567
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Mon Oct 19 12:29:43 2015 +0100
+
+    merging back with changes brian made
+
+[33mcommit aa6cf8900a574107a3b607962a6103af975e40d5[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Mon Oct 19 11:53:22 2015 +0100
+
+    Marker labels kind of working, other minor changes...
+
+[33mcommit 25521dd1fcd521ab028c058e15ed6ce7f8cca895[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Mon Oct 19 04:08:10 2015 +0100
+
+    Working on Business Registration
+
+[33mcommit 95e076db6504433ab43ddd6275a4c6a160a463dc[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Oct 19 01:53:12 2015 +0100
+
+    Changes before meet (small Styling tweaks)
+
+[33mcommit dc4dc8d3fa8f8a408abe4669173b1c828aeff1a8[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Sun Oct 18 18:17:23 2015 +0100
+
+    Moved code for Business Location from map.js to register_business.js
+
+[33mcommit 3e96c26f6effce14e282aed4339a4fbeae87853a[m
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Sun Oct 18 18:05:29 2015 +0100
+
+    wprowadzone zmiany
+
+[33mcommit 03008be3acf0b3da7c041f81368ae650bcc1ad20[m
+Merge: 0800ed3 9769567
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Sun Oct 18 17:55:36 2015 +0100
+
+    Merge branch 'master' of https://github.com/BlipProject/Blip
+
+[33mcommit 0800ed3363a8ef185abb69bd96c3733b4b80b87d[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Sun Oct 18 17:48:30 2015 +0100
+
+    Misc
+
+[33mcommit 9769567aafbecf54a4de54da2a6f68a0fe22e680[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sun Oct 18 17:43:44 2015 +0100
+
+    merge master branch (fixed comflicts)
+
+[33mcommit 77adac836bd52f4613b552fed7f3c39566ff01dc[m
+Merge: 26c210f a8c4f9c
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sun Oct 18 17:29:41 2015 +0100
+
+     test
+
+[33mcommit a8c4f9ca078cd102724686c43c57fc20410aab4f[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sun Oct 18 16:37:59 2015 +0100
+
+    misc
+
+[33mcommit f45b78ac8f9bda887d7c6f646f7b82cdefbbc83f[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sun Oct 18 05:04:44 2015 +0100
+
+    Its 5am !!!. Quick filter bar restyled. All views now need to be wrapped in 'container' class to keep them in-line.
+
+[33mcommit c89b3f7d42634ad63a9f6b29554259d74aca2e86[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sat Oct 17 17:32:11 2015 +0100
+
+    Cleaned up search.js, Added variable to control amount of results to show (removes infinate loop on server error), Moved quik filter buttons to its own view and included in main.html, More styling
+
+[33mcommit 26c210fa33afaa82c2dd72ef11ce5a85cc98ec78[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Thu Oct 15 15:06:17 2015 +0100
+
+    added register business page with address finding functionality
+
+[33mcommit 5e987a225772658da4fb872999dd87f5282a4ecc[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Wed Oct 14 19:56:30 2015 +0100
+
+    multiple locations hardcoded on map. you can type in an address to add to the map
+
+[33mcommit df79562f00b9b89b4f3d039c1f5975cc353aceb6[m
+Merge: 3174f89 6a6cb05
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Wed Oct 14 19:41:03 2015 +0100
+
+    Merge branch 'katietest' into brianWorkingBranch
+
+[33mcommit 3174f89c4d9231353cf5dc70f0466fa127ecf796[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Wed Oct 14 19:40:02 2015 +0100
+
+    colour styling
+
+[33mcommit cdaa5eff6e986699cbdf1693cfbe8095143fb178[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Wed Oct 14 01:26:45 2015 +0100
+
+    Styling started
+
+[33mcommit 6a6cb0565b65ae0866effd833989ff70332e8366[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Oct 12 21:29:49 2015 +0100
+
+    Fixed build issues .. 'I think!'
+
+[33mcommit 396f1d9eebb7a0ca81ba7e4bcb2ddb251c284d76[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Oct 12 19:29:00 2015 +0100
+
+    Added dependencies to bower.json
+
+[33mcommit 4b53724ac193454966be827b05c6b6936c178bdc[m
+Author: Katie Morris <katiemorris212@hotmail.com>
+Date:   Mon Oct 12 17:59:39 2015 +0100
+
+    map working
+
+[33mcommit 58219f440a328ccaf2152378c0acacf65128477c[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Oct 12 14:34:24 2015 +0100
+
+    misc changes
+
+[33mcommit 80843b62316e2095605e5cb90111991cf2598cbe[m
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Mon Oct 12 14:30:54 2015 +0100
+
+    testing Git commit
+
+[33mcommit 60ef2aa3f3b4934348fc8e2491e970bd0e2b8d70[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Wed Oct 7 18:29:25 2015 +0100
+
+    Sidebar Working
+
+[33mcommit aab9071bbf394d6e95a57fda3be0bb2289685f50[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Tue Oct 6 19:51:29 2015 +0100
+
+    Filters working. Added side nav
+
+[33mcommit 95132cf2b67a02654e0911a4490b328e7904ae6e[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Oct 5 15:29:39 2015 +0100
+
+    Filter Implemented - Other Misc changes
+
+[33mcommit 12d949cde4548615008d4ce6f8ba52c326afd724[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sun Oct 4 21:22:46 2015 +0100
+
+    Minor fixes to location
+
+[33mcommit 6a5d784a6794a7b3e458df56f51026a838b0d46d[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sat Oct 3 23:56:34 2015 +0100
+
+    Search results now populating based on GPS location
+
+[33mcommit 1a3bbadeff3d3b1624eec6f43f8230c0f36dcb5d[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sat Oct 3 16:38:00 2015 +0100
+
+    Coordinates being read and sent to php
+
+[33mcommit 5ac4480545f3f7ae4059faa9ccc55d5f32171f7d[m
+Merge: f4f5544 156aed8
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Tue Sep 29 22:02:51 2015 +0100
+
+    Merge branch 'master' of https://github.com/BlipProject/Blip
+
+[33mcommit f4f55447b46c45c7eb4bafb9bbddc42c4ae25b1e[m
+Merge: 1a449dc 88d560b
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Tue Sep 29 22:00:52 2015 +0100
+
+    cleanup
+
+[33mcommit 88d560bc7d515add426520160a088a6efb91f1bb[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Tue Sep 29 21:57:06 2015 +0100
+
+    results returning to console
+
+[33mcommit 156aed89eefc41ff87eca92762038531616a44ec[m
+Author: Artur Kadziel <s00132249@mail.itsligo.ie>
+Date:   Tue Sep 29 21:36:32 2015 +0100
+
+    Deleted test.php
+
+[33mcommit 3e33ed8e8ed8941d081c26308c4112b22d62a92e[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Sep 28 19:55:48 2015 +0100
+
+    Search results being displayed to console
+
+[33mcommit c8522d9c450f358077b013b10429a692da3744ec[m
+Merge: 3a59c8c ddc2ec0
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Sep 28 19:38:39 2015 +0100
+
+    Merge branch 'master' of https://github.com/BlipProject/Blip into angularSearchModule
+
+[33mcommit 1a449dc094da3c07af5cd6857aa6135696853313[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Mon Sep 28 19:32:44 2015 +0100
+
+    Search results returning to console
+
+[33mcommit 45489d3b6891ff95e318c3a1b9e778e447376ea0[m
+Merge: ddc2ec0 3a59c8c
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sun Sep 27 14:50:19 2015 +0100
+
+    Merge branch 'angularSearchModule'
+
+[33mcommit 3a59c8c6ed652b5cd0c2e2e6fd7b44e66ac68795[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sun Sep 27 14:45:39 2015 +0100
+
+    Changes from last night ??
+
+[33mcommit ddc2ec00f17e2b171e3dd5b07f97f2cbd34e7b76[m
+Author: Fergal Gaffney <s00147036@mail.itsligo.ie>
+Date:   Sun Sep 27 14:38:36 2015 +0100
+
+    Added PHP Search Script
+
+[33mcommit 9b148d5e95a2081b6a7881e1c08258048f1fc4c2[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sat Sep 26 23:02:14 2015 +0100
+
+    Basic search inplemented
+
+[33mcommit 3ac2c733b5bc10634919fd1f28dc034efa89e438[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Sat Sep 26 17:58:44 2015 +0100
+
+    Start Module
+
+[33mcommit e264fac5a88820dad82bd848fd0252f22c3b892a[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Fri Sep 25 01:10:02 2015 +0100
+
+    BoilerPlate
+
+[33mcommit f7716af2c0ec76c663321207a563333810b92c01[m
+Author: Brian Geraghty <brian_geraghty@outlook.com>
+Date:   Thu Sep 24 23:46:24 2015 +0100
+
+    Initial commit
