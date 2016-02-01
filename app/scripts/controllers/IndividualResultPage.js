@@ -58,8 +58,6 @@ angular.module('blipApp')
 	                        pos.coords.longitude
 	                    ));
 
-	                getDistance(pos.coords.latitude,pos.coords.longitude);
-
 	                //Set Marker icon as Arrow
 	                currentPositionMarker.setIcon({
 				    	path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
@@ -125,6 +123,7 @@ angular.module('blipApp')
 	                        position.coords.latitude,
 	                        position.coords.longitude)
 	                );
+	                getDistance(pos.coords.latitude,pos.coords.longitude);
 	            }
 
 	            function initLocationProcedure() {
