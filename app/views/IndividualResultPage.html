@@ -1,41 +1,27 @@
-<style>
-    .nav-distance-label{
-        color: red;
-         background-color: white;
-         font-family: "Lucida Grande", "Arial", sans-serif;
-         font-size: 10px;
-         font-weight: bold;
-         text-align: center;
-         width: 40px;
-         height:20px;
-         border: 2px solid black;
-         white-space: nowrap;
-    }
-</style>
-
 <div ng-controller="IndividualResultPageCtrl">
     <div ng-include="'views/componants/mobileNav.html'" scope="" onload=""></div>
     <div class="indiv-fullpage-wrapper">
         <div class="container indiv-wrapper">
-            <!--Picks border colour based on type of venue is displayed i.e 'Bar'-->
-            <div ng-class="{'indiv-divider-bar': pageViewData.CategoryName == 'Bar','indiv-divider-res': pageViewData.CategoryName == 'Restaurant','indiv-divider-shop': pageViewData.CategoryName == 'Supermarket','indiv-divider-other': pageViewData.CategoryName == 'Other'}" class="indiv-divider"></div>
-            <div class="indiv-img-wrap">
-                <img ng-src="{{pageViewData.LocationPic}}" />
-                <div class="indiv-page-header">
-                    <h2>{{pageViewData.LocationName}}</h2>
-                    <br/>
+            <div class="indiv-header-wrapper">
+                <!--Picks border colour based on type of venue is displayed i.e 'Bar'-->
+                <div ng-class="{'indiv-divider-bar': pageViewData.CategoryName == 'Bar','indiv-divider-res': pageViewData.CategoryName == 'Restaurant','indiv-divider-shop': pageViewData.CategoryName == 'Supermarket','indiv-divider-other': pageViewData.CategoryName == 'Other'}" class="indiv-divider"></div>
+                <div class="indiv-img-wrap">
+                    <img ng-src="{{pageViewData.LocationPic}}" />
+                    <div class="indiv-page-header">
+                        <h2>{{pageViewData.LocationName}}</h2>  
+                    </div>
                 </div>
+                <!--Picks border colour based on type of venue is displayed i.e 'Bar' == red-->
+                <div ng-class="{'indiv-divider-bar': pageViewData.CategoryName == 'Bar','indiv-divider-res': pageViewData.CategoryName == 'Restaurant','indiv-divider-shop': pageViewData.CategoryName == 'Supermarket','indiv-divider-other': pageViewData.CategoryName == 'Other'}" class="indiv-divider"></div>
             </div>
-            <!--Picks border colour based on type of venue is displayed i.e 'Bar' == red-->
-            <div ng-class="{'indiv-divider-bar': pageViewData.CategoryName == 'Bar','indiv-divider-res': pageViewData.CategoryName == 'Restaurant','indiv-divider-shop': pageViewData.CategoryName == 'Supermarket','indiv-divider-other': pageViewData.CategoryName == 'Other'}" class="indiv-divider"></div>
             <div class="indiv-content">
                 <div class="indiv-map-wrap ">        
-                    <div id="map" style="width:100%; height: 500px"></div>
+                    <div id="map" style="width:100%; height: 100%"></div>
                 </div>
                 <div class="indiv-description">
-                    {{pageViewData.CategoryName}}
-                    <br/> {{pageViewData.City}}
-                    <br/> {{pageViewData.LocationDescription}}
+                    <p>{{pageViewData.CategoryName}}<p>
+                    <p>{{pageViewData.City}}</p>
+                    <p>{{pageViewData.LocationDescription}}</p>
                     <br/>
                     <h1 id="testDistance"></h1>
                 </div>
@@ -43,4 +29,6 @@
         </div>
     </div>
 </div>
+<div ng-include="'views/componants/footer.html'" scope="" onload=""></div>
+<!--Directive for google maps api-->
 <watch-location></watch-location>
