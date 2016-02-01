@@ -123,7 +123,7 @@ angular.module('blipApp')
 	                        position.coords.latitude,
 	                        position.coords.longitude)
 	                );
-	                getDistance(pos.coords.latitude,pos.coords.longitude);
+	                getDistance(position.coords.latitude,position.coords.longitude);
 	            }
 
 	            function initLocationProcedure() {
