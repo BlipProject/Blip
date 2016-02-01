@@ -116,7 +116,8 @@ angular.module('blipApp')
 	                        setMarkerPosition(
 	                            currentPositionMarker,
 	                            position
-	                        );
+	                        ),
+	                        {'enableHighAccuracy':true,'timeout':10000,'maximumAge':20000};
 	                    });
 	            }
 
