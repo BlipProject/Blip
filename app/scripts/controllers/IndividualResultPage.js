@@ -24,7 +24,8 @@ angular.module('blipApp')
                 mapCenter = new google.maps.LatLng(40.700683, -73.925972),
                 map,
                 distance,
-                direction;
+                direction,
+                heading;
 
                 var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
 
@@ -33,6 +34,9 @@ angular.module('blipApp')
 	                map = new google.maps.Map(document.getElementById('map'), {
 	                   zoom: 16,
 	                   center: mapCenter,
+	                   disableDefaultUI: true,
+	                   draggable: false,
+	                   scrollwheel: false,
 	                   mapTypeId: google.maps.MapTypeId.ROADMAP
 	                 });
 
@@ -101,8 +105,8 @@ angular.module('blipApp')
 				  		path: [position,coordinatesVenue],
 				  		geodesic: true,
 					    strokeColor: '#FF0000',
-					    strokeOpacity: 1.0,
-					    strokeWeight: 2
+					    strokeOpacity: 0.5,
+					    strokeWeight: 1
 				  	});
 				  	direction.setMap(map);
 	            }
@@ -118,17 +122,22 @@ angular.module('blipApp')
 	            }
 
 	            function setMarkerPosition(marker, position) {
-	            	var icon = {
-	            		path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-				    	scale:9,
-				    	rotation: position.coords.heading
-	            	}
-
 	                marker.setPosition(
 	                    new google.maps.LatLng(
 	                        position.coords.latitude,
 	                        position.coords.longitude)
 	                );
+
+	                if(position.coords.heading != null)
+	                	heading = position.coords.heading;
+
+	                var icon = {
+	            		path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+				    	scale:9,
+				    	rotation: heading
+	            	}
+
+	                console.log(position);
 	                marker.setIcon(icon);
 
 	                var y = document.getElementById("testHeading");
