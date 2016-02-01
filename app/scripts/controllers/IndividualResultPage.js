@@ -121,7 +121,7 @@ angular.module('blipApp')
 	            	var icon = {
 	            		path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
 				    	scale:9,
-				    	rotation:position.heading
+				    	rotation: position.coords.heading
 	            	}
 
 	                marker.setPosition(
