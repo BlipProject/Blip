@@ -40,7 +40,9 @@ angular.module('blipApp')
 				    var map = new google.maps.Map(mapDiv, {
 				      center: {lat: position.coords.latitude, lng: position.coords.longitude},
 				      disableDefaultUI: true,
-				      zoom: 14,
+				      draggable: false,
+				      scrollwheel: false,
+				      zoom: 18,
 				    });
 
 				    //TODO: Will set custom icon for markerUser
