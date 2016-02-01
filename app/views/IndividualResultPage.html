@@ -1,3 +1,18 @@
+<style>
+    .nav-distance-label{
+        color: red;
+         background-color: white;
+         font-family: "Lucida Grande", "Arial", sans-serif;
+         font-size: 10px;
+         font-weight: bold;
+         text-align: center;
+         width: 40px;
+         height:20px;
+         border: 2px solid black;
+         white-space: nowrap;
+    }
+</style>
+
 <div ng-controller="IndividualResultPageCtrl">
     <div ng-include="'views/componants/mobileNav.html'" scope="" onload=""></div>
     <div class="indiv-fullpage-wrapper">
@@ -19,6 +34,8 @@
                 <div class="content-left">
                     <div id="map" style="height:500px; width:700px; background-color: #CCC;"></div>
                 </div>
+                
+                
 
                 </div>
                 <div class="col-xs-12 col-md-4">
@@ -26,6 +43,7 @@
                     <br/> {{pageViewData.City}}
                     <br/> {{pageViewData.LocationDescription}}
                     <br/>
+                    <h1 id="testDistance"></h1>
                 </div>
             </div>
         </div>

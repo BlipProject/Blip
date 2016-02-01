@@ -10,8 +10,8 @@ angular.module('blipApp')
 
     	//Stores data pulled from the 'ResultPageState' factory
     	var pageViewData = ResultPageState.GetPageState();
-    	console.log(pageViewData.MapLong + " Lontitude (Venue)");
-    	console.log(pageViewData.MapLat + " Latitude Lontitude (Venue)");
+    	console.log("Lontitude (Venue) = " + pageViewData.MapLong);
+    	console.log("Latitude Lontitude (Venue) = " + pageViewData.MapLat);
 
   		return {
     		restrict: 'E',
@@ -31,14 +31,19 @@ angular.module('blipApp')
 			    	var coordinatesUser = {lat: position.coords.latitude, lng: position.coords.longitude};
 			    	var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
 
+			    	//Stores distance to venue from current position
 			    	var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(coordinatesUser.lat,coordinatesUser.lng), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
+			    	//Stores heading from markerUser to marker venue
 				  	var heading = google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(coordinatesUser.lat,coordinatesUser.lng), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
 
 				    var mapDiv = document.getElementById('map');
 				    var map = new google.maps.Map(mapDiv, {
-				      center: {lat: position.coords.latitude +0.010, lng: position.coords.longitude},
+				      center: {lat: position.coords.latitude, lng: position.coords.longitude},
+				      disableDefaultUI: true,
 				      zoom: 14,
 				    });
+
+				    //TODO: Will set custom icon for markerUser
 				    /*
 				    var navArrow = {
 					    url: '/images/navigationArrow.png',
@@ -54,13 +59,13 @@ angular.module('blipApp')
 				    var markerUser = new google.maps.Marker({
 					    position: coordinatesUser,
 					    map: map,
-					    icon: "/images/navigationArrow.png",
 					    title: 'You Are Here'
 				  	});
 
+				    //Set markerUser towards heading of markerVenue
 				    markerUser.setIcon({
 				    	path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-				    	scale:6,
+				    	scale:9,
 				    	rotation: heading,
 				    });
 
@@ -72,6 +77,7 @@ angular.module('blipApp')
 					    animation: google.maps.Animation.BOUNCE
 				  	});
 
+				  	//TODO: Remove as only for visual purposes
 				  	//Set pollyline between markers
 					var direction = new google.maps.Polyline({
 				  		path: [coordinatesUser,coordinatesVenue],
@@ -82,13 +88,15 @@ angular.module('blipApp')
 				  	});
 				  	direction.setMap(map);
 
-				  	//Returns distance to venue
+
+				  	var x = document.getElementById("testDistance");
+				  	x.innerHTML = "Distance = " + distance;
 				  	
 
-			  		console.log(heading + " Heading");
-				  	console.log(distance + " Distance (m)");
-				    console.log(position.coords.longitude + " Longitude (User)");
-				    console.log(position.coords.latitude + " Latitude (User)");
+			  		console.log("Heading = " + heading);
+				  	console.log("Distance (m) = " + distance);
+				    console.log("Longitude (User) = " + position.coords.longitude);
+				    console.log("Latitude (User) = " + position.coords.latitude);
 				}		    
     		}
 
