@@ -24,7 +24,8 @@ angular.module('blipApp')
                 mapCenter = new google.maps.LatLng(40.700683, -73.925972),
                 map,
                 distance,
-                direction;
+                direction,
+                heading;
 
                 var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
 
@@ -62,10 +63,12 @@ angular.module('blipApp')
 	                currentPositionMarker.setIcon({
 				    	path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
 				    	scale:9,
-				    	rotation:pos.coords.heading
+				    	rotation:heading
 				    });
 
-	                console.log(pos.coords.heading);
+	                heading = pos.coords.heading;
+	                getDistance(pos.coords.latitude,pos.coords.longitude);
+
 	                var newPos = {lat: pos.coords.latitude,lng: pos.coords.longitude};
 	                setPollyLine(newPos);
 	            }
@@ -77,6 +80,10 @@ angular.module('blipApp')
 	                    position: coordinatesVenue,
 	                    title: pageViewData.LocationName
 	                });
+	            }
+
+	            function setHeadingRoation(position){
+	            	heading = google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(position.coords.latitude,position.coords.longitude), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
 	            }
 
 	            function getDistance(curLong,curLat){
@@ -118,12 +125,26 @@ angular.module('blipApp')
 	            }
 
 	            function setMarkerPosition(marker, position) {
+	            	var icon = {
+	            		path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+				    	scale:9,
+				    	rotation:heading
+	            	}
+
 	                marker.setPosition(
 	                    new google.maps.LatLng(
 	                        position.coords.latitude,
 	                        position.coords.longitude)
 	                );
+	                console.log(marker);
+
+
+	                marker.setIcon(icon);
+
+
+
 	                getDistance(position.coords.latitude,position.coords.longitude);
+	                setHeadingRoation(position);
 	            }
 
 	            function initLocationProcedure() {
