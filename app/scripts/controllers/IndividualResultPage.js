@@ -26,7 +26,7 @@ angular.module('blipApp')
 
 				var geo_options = {
 				  enableHighAccuracy: true, 
-				  maximumAge        : 3000, 
+				  maximumAge        : 10000, 
 				  timeout           : 27000
 				};
 
@@ -46,7 +46,9 @@ angular.module('blipApp')
 			    	//Stores distance to venue from current position
 			    	var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(coordinatesUser.lat,coordinatesUser.lng), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
 			    	//Stores heading from markerUser to marker venue
-				  	var heading = google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(coordinatesUser.lat,coordinatesUser.lng), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
+				  	var headingVenue = google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(coordinatesUser.lat,coordinatesUser.lng), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
+			  		//Stores heading for the users current position
+				  	var userHeading = position.coords.heading;
 
 				    var mapDiv = document.getElementById('map');
 				    var map = new google.maps.Map(mapDiv, {
@@ -80,7 +82,7 @@ angular.module('blipApp')
 				    markerUser.setIcon({
 				    	path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
 				    	scale:9,
-				    	rotation: heading,
+				    	rotation: userHeading,
 				    });
 
 				    //Sets venue position
@@ -106,8 +108,8 @@ angular.module('blipApp')
 				  	var x = document.getElementById("testDistance");
 				  	x.innerHTML = "Distance = " + distance;
 				  	
-
-			  		console.log("Heading = " + heading);
+				  	console.log("User Heading = " + userHeading);
+			  		console.log("Venue Heading = " + headingVenue);
 				  	console.log("Distance (m) = " + distance);
 				    console.log("Longitude (User) = " + position.coords.longitude);
 				    console.log("Latitude (User) = " + position.coords.latitude);
