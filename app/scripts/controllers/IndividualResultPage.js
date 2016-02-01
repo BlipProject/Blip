@@ -26,7 +26,7 @@ angular.module('blipApp')
 
 				var geo_options = {
 				  enableHighAccuracy: true, 
-				  maximumAge        : 10000, 
+				  maximumAge        : 500, 
 				  timeout           : 27000
 				};
 
@@ -56,8 +56,10 @@ angular.module('blipApp')
 				      disableDefaultUI: true,
 				      draggable: false,
 				      scrollwheel: false,
-				      zoom: 17
+				      zoom: 16
 				    });
+
+				    //mapDiv.style.transform = "rotate(" + userHeading + "deg)";
 
 				    //TODO: Will set custom icon for markerUser
 				    /*
