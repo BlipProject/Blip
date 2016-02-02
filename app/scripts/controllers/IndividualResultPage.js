@@ -133,10 +133,12 @@ angular.module('blipApp')
 	                if(position.coords.heading != null)
 	                	heading = position.coords.heading;
 
+	                heading =  google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(position.coords.latitude,position.coords.longitude), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng)) - position.coords.heading;
+	                
 	                var icon = {
 	            		path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
 				    	scale:9,
-				    	rotation: google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(position.coords.latitude,position.coords.longitude), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng))
+				    	rotation: heading,
 	            	}
 
 	            	//Rests map icon with new rotation to match heading
