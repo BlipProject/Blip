@@ -75,6 +75,7 @@
 }
 
 .indiv-map-wrap{
+	position:relative;
 	overflow:hidden;
 	width:70%;
 	height:50vh;
@@ -107,4 +108,21 @@
 	.indiv-map-wrap{
 		width:100%;
 	}
+}
+
+#arrowContainer{
+	width:128px;
+	height:128px;
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%)
+}
+
+#navArrow{
+	-webkit-transform-origin:center center;
+	transform-origin:center center;
+	width:128px;
+	height:128px;
+	z-index:5;
 }

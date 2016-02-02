@@ -28,7 +28,7 @@ angular.module('blipApp')
                 heading;
 
                 //var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
-                var coordinatesVenue = {lat:54.279992, lng: -8.452035};
+                var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
 	            function initializeMap()
 	            {
 	                map = new google.maps.Map(document.getElementById('map'), {
@@ -49,27 +49,13 @@ angular.module('blipApp')
 	            }
 
 	            function setCurrentPosition(pos) {
-	                currentPositionMarker = new google.maps.Marker({
-	                    map: map,
-	                    position: new google.maps.LatLng(
-	                        pos.coords.latitude,
-	                        pos.coords.longitude
-	                    ),
-	                    title: "Current Position"
-	                });
 	                map.panTo(new google.maps.LatLng(
 	                        pos.coords.latitude,
 	                        pos.coords.longitude
 	                    ));
 
-	                //Set Marker icon as Arrow
-	                currentPositionMarker.setIcon({
-				    	path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-				    	scale:7,
-				    });
-
-	                map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-
+	                //Initaly set Rotation, Distance, and Pillyline
+	                setRotation();
 	                getDistance(pos.coords.latitude,pos.coords.longitude);
 	                setPollyLine({lat: pos.coords.latitude,lng: pos.coords.longitude});
 	            }
@@ -81,6 +67,13 @@ angular.module('blipApp')
 	                    position: coordinatesVenue,
 	                    title: pageViewData.LocationName
 	                });
+	            }
+
+	            function setRotation(){
+	            	var arrow = document.getElementById("navArrow");
+	                arrow.style.transform = "rotate(" + parseInt(heading) + "deg)";
+	                var x = document.getElementById("testHeading");
+	                x.innerHTML = heading;
 	            }
 
 	            function getDistance(curLat,curLong){
@@ -122,30 +115,20 @@ angular.module('blipApp')
 	            }
 
 	            function setMarkerPosition(marker, position) {
-	                marker.setPosition(
-	                    new google.maps.LatLng(
+	                map.panTo(new google.maps.LatLng(
 	                        position.coords.latitude,
-	                        position.coords.longitude)
-	                );
+	                        position.coords.longitude
+	                    ));
 
 	                if(position.coords.heading != null)
 	                	heading = position.coords.heading;
 
 	                heading =  google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(position.coords.latitude,position.coords.longitude), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
 	                
-	                var icon = {
-	            		path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-				    	scale:7,
-				    	rotation: heading,
-				    	anchor: new google.maps.Point(0, 3),
-	            	}
 
-	            	//Rests map icon with new rotation to match heading
-                	marker.setIcon(icon);
-
-	                var y = document.getElementById("testHeading");
-	                y.innerHTML = "Heading = " + icon.rotation;
-
+					//Update Rotation, distance
+					setRotation();
+					setPollyLine({lat: position.coords.latitude,lng: position.coords.longitude});
 	                getDistance(position.coords.latitude,position.coords.longitude);
 	            }
 
