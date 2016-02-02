@@ -71,9 +71,7 @@ angular.module('blipApp')
 	                map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
 
 	                getDistance(pos.coords.latitude,pos.coords.longitude);
-
-	                var newPos = {lat: pos.coords.latitude,lng: pos.coords.longitude};
-	                setPollyLine(newPos);
+	                setPollyLine({lat: pos.coords.latitude,lng: pos.coords.longitude});
 	            }
 
 	            //Sets the map marker for venue
@@ -133,7 +131,7 @@ angular.module('blipApp')
 	                if(position.coords.heading != null)
 	                	heading = position.coords.heading;
 
-	                heading =  google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(position.coords.latitude,position.coords.longitude), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng)) - position.coords.heading;
+	                heading =  google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(position.coords.latitude,position.coords.longitude), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
 	                
 	                var icon = {
 	            		path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
