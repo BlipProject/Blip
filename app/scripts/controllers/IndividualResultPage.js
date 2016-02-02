@@ -27,8 +27,8 @@ angular.module('blipApp')
                 direction,
                 heading;
 
-                var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
-
+                //var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
+                var coordinatesVenue = {lat:54.279992, lng: -8.452035};
 	            function initializeMap()
 	            {
 	                map = new google.maps.Map(document.getElementById('map'), {
@@ -64,8 +64,8 @@ angular.module('blipApp')
 
 	                //Set Marker icon as Arrow
 	                currentPositionMarker.setIcon({
-				    	path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-				    	scale:9,
+				    	path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+				    	scale:7,
 				    });
 
 	                map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
@@ -134,9 +134,10 @@ angular.module('blipApp')
 	                heading =  google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(position.coords.latitude,position.coords.longitude), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
 	                
 	                var icon = {
-	            		path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-				    	scale:9,
+	            		path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+				    	scale:7,
 				    	rotation: heading,
+				    	anchor: new google.maps.Point(0, 3),
 	            	}
 
 	            	//Rests map icon with new rotation to match heading
