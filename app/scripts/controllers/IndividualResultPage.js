@@ -21,7 +21,7 @@ angular.module('blipApp')
 				var map,
                 currentPositionMarker,
                 currentVenueMarker,
-                mapCenter = new google.maps.LatLng(40.700683, -73.925972),
+                mapCenter = new google.maps.LatLng(54.278234, -8.461709),
                 map,
                 distance,
                 direction,
@@ -68,6 +68,8 @@ angular.module('blipApp')
 				    	scale:9,
 				    });
 
+	                map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+
 	                getDistance(pos.coords.latitude,pos.coords.longitude);
 
 	                var newPos = {lat: pos.coords.latitude,lng: pos.coords.longitude};
@@ -83,8 +85,8 @@ angular.module('blipApp')
 	                });
 	            }
 
-	            function getDistance(curLong,curLat){
-	            	distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(curLong,curLat), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
+	            function getDistance(curLat,curLong){
+	            	distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(curLat,curLong), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
 	            	var x = document.getElementById("testDistance");
 	            	x.innerHTML = "Distance = " + distance;
 	            }
@@ -134,7 +136,7 @@ angular.module('blipApp')
 	                var icon = {
 	            		path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
 				    	scale:9,
-				    	rotation: heading
+				    	rotation: google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(position.coords.latitude,position.coords.longitude), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng))
 	            	}
 
 	            	//Rests map icon with new rotation to match heading
