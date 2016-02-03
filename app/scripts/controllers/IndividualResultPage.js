@@ -25,6 +25,7 @@ angular.module('blipApp')
                 map,
                 distance,
                 direction,
+                userMarker,
                 heading;
 
                 //var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
@@ -54,11 +55,18 @@ angular.module('blipApp')
 	                        pos.coords.longitude
 	                    ));
 
+	                
 	                //Initaly set Rotation, Distance, and Pillyline
-	                setRotation();
+	                setUserRotation(pos);
 	                getDistance(pos.coords.latitude,pos.coords.longitude);
 	                setPollyLine({lat: pos.coords.latitude,lng: pos.coords.longitude});
 	            }
+
+
+	            function setUserRotation(pos){
+	            	var arrow = document.getElementById("userArrow");
+	                arrow.style.transform = "rotate(" + pos.coords.heading + "deg)";
+	            };
 
 	            //Sets the map marker for venue
 	            function setVenueLocation(){
