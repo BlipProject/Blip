@@ -80,14 +80,12 @@ angular.module('blipApp')
 	            function setRotation(){
 	            	var arrow = document.getElementById("navArrow");
 	                arrow.style.transform = "rotate(" + parseInt(heading) + "deg)";
-	                var x = document.getElementById("testHeading");
-	                x.innerHTML = heading;
 	            }
 
 	            function getDistance(curLat,curLong){
 	            	distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(curLat,curLong), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
 	            	var x = document.getElementById("testDistance");
-	            	x.innerHTML = "Distance = " + distance;
+	            	x.innerHTML = "Distance To Venue : " + (distance/1000).toFixed(1) + "km";
 	            }
 
 	            function displayAndWatch(position) {
