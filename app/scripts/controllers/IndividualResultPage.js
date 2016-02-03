@@ -62,12 +62,6 @@ angular.module('blipApp')
 	                setPollyLine({lat: pos.coords.latitude,lng: pos.coords.longitude});
 	            }
 
-
-	            function setUserRotation(pos){
-	            	var arrow = document.getElementById("userArrow");
-	                arrow.style.transform = "rotate(" + pos.coords.heading + "deg)";
-	            };
-
 	            //Sets the map marker for venue
 	            function setVenueLocation(){
 	            	currentVenueMarker = new google.maps.Marker({
@@ -76,6 +70,12 @@ angular.module('blipApp')
 	                    title: pageViewData.LocationName
 	                });
 	            }
+
+	            //Functions to set headings of UserMarker & Venue marker
+	            function setUserRotation(pos){
+	            	var arrow = document.getElementById("userArrow");
+	                arrow.style.transform = "rotate(" + pos.coords.heading + "deg)";
+	            };
 
 	            function setRotation(){
 	            	var arrow = document.getElementById("navArrow");
@@ -135,6 +135,7 @@ angular.module('blipApp')
 	                
 
 					//Update Rotation, distance
+					setUserRotation(position);
 					setRotation();
 					setPollyLine({lat: position.coords.latitude,lng: position.coords.longitude});
 	                getDistance(position.coords.latitude,position.coords.longitude);
