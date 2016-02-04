@@ -62,12 +62,6 @@ angular.module('blipApp')
 	                setPollyLine({lat: pos.coords.latitude,lng: pos.coords.longitude});
 	            }
 
-
-	            function setUserRotation(pos){
-	            	var arrow = document.getElementById("userArrow");
-	                arrow.style.transform = "rotate(" + pos.coords.heading + "deg)";
-	            };
-
 	            //Sets the map marker for venue
 	            function setVenueLocation(){
 	            	currentVenueMarker = new google.maps.Marker({
@@ -77,17 +71,21 @@ angular.module('blipApp')
 	                });
 	            }
 
+	            //Functions to set headings of UserMarker & Venue marker
+	            function setUserRotation(pos){
+	            	var arrow = document.getElementById("userArrow");
+	                arrow.style.transform = "rotate(" + pos.coords.heading + "deg)";
+	            };
+
 	            function setRotation(){
 	            	var arrow = document.getElementById("navArrow");
 	                arrow.style.transform = "rotate(" + parseInt(heading) + "deg)";
-	                var x = document.getElementById("testHeading");
-	                x.innerHTML = heading;
 	            }
 
 	            function getDistance(curLat,curLong){
 	            	distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(curLat,curLong), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
 	            	var x = document.getElementById("testDistance");
-	            	x.innerHTML = "Distance = " + distance;
+	            	x.innerHTML = "Distance To Venue : " + (distance/1000).toFixed(1) + "km";
 	            }
 
 	            function displayAndWatch(position) {
@@ -135,6 +133,7 @@ angular.module('blipApp')
 	                
 
 					//Update Rotation, distance
+					setUserRotation(position);
 					setRotation();
 					setPollyLine({lat: position.coords.latitude,lng: position.coords.longitude});
 	                getDistance(position.coords.latitude,position.coords.longitude);
