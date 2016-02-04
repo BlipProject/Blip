@@ -31,6 +31,8 @@ angular.module('blipApp')
                 //var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
                 var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
 
+                //Check if mobile or desktop
+                //Load appropriate map
             	if( screen.width <= 959 ) {
 					$(document).ready(function() {
 	                	initLocationProcedure();
@@ -61,6 +63,10 @@ angular.module('blipApp')
 		                   mapTypeId: google.maps.MapTypeId.ROADMAP
 		                 });
 
+	            		//TODO: Implement this function
+	            		//Need user imputted location first
+	            		//setUserPositionDesktop(lat,lng);
+	            		//getDistance(curLat,curLong);
 		                setVenueLocation();
 	            	}
 	            }
@@ -80,7 +86,6 @@ angular.module('blipApp')
 	                //Initaly set Rotation, Distance, and Pillyline
 	                setUserRotation(pos);
 	                getDistance(pos.coords.latitude,pos.coords.longitude);
-	                setPollyLine({lat: pos.coords.latitude,lng: pos.coords.longitude});
 	            }
 
 	            //Sets the map marker for venue
@@ -116,20 +121,6 @@ angular.module('blipApp')
 	                watchCurrentPosition();
 	            }
 
-	            //FOR VISUAL REASONS ONLY
-	            //TO BE REMOVED
-	            //Draws a line between the 2 locations
-	            function setPollyLine(position){
-	            	direction = new google.maps.Polyline({
-				  		path: [position,coordinatesVenue],
-				  		geodesic: true,
-					    strokeColor: '#FF0000',
-					    strokeOpacity: 0.5,
-					    strokeWeight: 1
-				  	});
-				  	direction.setMap(map);
-	            }
-
 	            function watchCurrentPosition() {
 	                var positionTimer = navigator.geolocation.watchPosition(
 	                    function (position) {
@@ -156,7 +147,6 @@ angular.module('blipApp')
 					//Update Rotation, distance
 					setUserRotation(position);
 					setRotation();
-					setPollyLine({lat: position.coords.latitude,lng: position.coords.longitude});
 	                getDistance(position.coords.latitude,position.coords.longitude);
 	            }
 
