@@ -30,18 +30,39 @@ angular.module('blipApp')
 
                 //var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
                 var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
-	            function initializeMap()
-	            {
-	                map = new google.maps.Map(document.getElementById('map'), {
-	                   zoom: 16,
-	                   center: mapCenter,
-	                   disableDefaultUI: true,
-	                   draggable: false,
-	                   scrollwheel: false,
-	                   mapTypeId: google.maps.MapTypeId.ROADMAP
-	                 });
 
-	                setVenueLocation();
+            	if( screen.width <= 959 ) {
+					$(document).ready(function() {
+	                	initLocationProcedure();
+	            	});
+				}
+				else {
+					initializeMap('desktop');
+				}
+
+	            function initializeMap(type)
+	            {
+	            	if(type == 'mobile'){
+		                map = new google.maps.Map(document.getElementById('map'), {
+		                   zoom: 16,
+		                   center: mapCenter,
+		                   disableDefaultUI: true,
+		                   draggable: false,
+		                   scrollwheel: false,
+		                   mapTypeId: google.maps.MapTypeId.ROADMAP
+		                 });
+
+		                setVenueLocation();
+	            	}
+	            	else if(type == 'desktop'){
+	            		map = new google.maps.Map(document.getElementById('map'), {
+		                   zoom: 10,
+		                   center: mapCenter,
+		                   mapTypeId: google.maps.MapTypeId.ROADMAP
+		                 });
+
+		                setVenueLocation();
+	            	}
 	            }
 
 	            function locError(error) {
@@ -140,7 +161,7 @@ angular.module('blipApp')
 	            }
 
 	            function initLocationProcedure() {
-	                initializeMap();
+	                initializeMap('mobile');
 
 	                var option = {
 	                	maximumAge:0,
@@ -154,10 +175,6 @@ angular.module('blipApp')
 	                    alert("Your browser does not support the Geolocation API");
 	                }
 	            }
-
-	            $(document).ready(function() {
-	                initLocationProcedure();
-	            });
 			}	
     	}
   	}]);
