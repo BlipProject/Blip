@@ -46,7 +46,5 @@
 		
 	//closing connection
 	$conn->close();
-
-	mysqli_close();
 		
 ?>

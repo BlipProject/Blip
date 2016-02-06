@@ -36,6 +36,6 @@
 	//Return Query Result to Frontend
 	echo $searchResults;
 
-	mysqli_close();
+	mysqli_close($conn);
 		
 ?>

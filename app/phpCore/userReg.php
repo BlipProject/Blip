@@ -96,7 +96,5 @@
 
 
 	$conn->close();
-
-	mysqli_close();
-		
+	
 ?>
