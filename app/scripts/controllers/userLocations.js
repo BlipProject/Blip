@@ -4,6 +4,7 @@ angular.module('blipApp')
 	.controller('UserLocationsCTRL', ['$http', '$scope', function($http, $scope) {
 
 		$scope.userLocations = "";
+        $scope.filterUserLocations = [];
         $scope.showLoadingAnimation = true;
 
 		var user = {
@@ -14,14 +15,47 @@ angular.module('blipApp')
 			$http.post('http://localhost/blip/app/phpCore/get_user_locations.php', user)
 				.then(function(response)
 				{
-					console.log("Success");
-                    $scope.showLoadingAnimation = false;
 					$scope.userLocations = response.data;
+                    $scope.filterUserLocations = $scope.userLocations;
+                    console.log($scope.filterUserLocations);
+                    $scope.showLoadingAnimation = false;
 				});
 		};
 
 		console.log($scope.userLocations);
 
+        //Called from front-end to set filtered results and set active class on button
+        $scope.setFilterSetClass = function(filter, index) {
+            getFilter(filter);
+            setQuickFilterClass(index);
+        };
+
+        //Called to return filtered content
+        //If search result matches the filter button it gets pushed into 'filterUserLocations' array
+        //else 'filterUserLocations' equals the content that was origionaly returned from the server
+        var getFilter = function(filter) {
+            if (filter !== "All") {
+                $scope.filterUserLocations = [];
+                angular.forEach($scope.userLocations, function(value) {
+                    if (value.CategoryName === filter) {
+                        $scope.filterUserLocations.push(value);
+                    }
+                });
+            } else {
+                $scope.filterUserLocations = $scope.userLocations;
+            }
+        };
+
+        //Sets active class on selected filter button
+        $scope.activeFilter = 0;
+        var setQuickFilterClass = function(type) {
+            $scope.activeFilter = type;
+        };
+
+        //Set class for individual search results based off location type
+        //typeHeadClass -- controls the serarch result header
+        //setIconClass -- controls the icon that is displayed on the header
+        //return class controls the styles for the hover action on each result
         $scope.typeHeadClass = " ";
         $scope.setIconClass = " ";
 		$scope.setResultClass = function(classIn) {
@@ -57,13 +91,10 @@ angular.module('blipApp')
             }
         };
 
-        var location = {
-            ID: 2
-        };
         $scope.deleteLocation = function(index) {
             console.log("clicked");
-            console.log($scope.userLocations[index]);
-            $http.post('http://localhost/blip/app/phpCore/delete_location.php', $scope.userLocations[index])
+            console.log($scope.filterUserLocations[index]);
+            $http.post('http://localhost/blip/app/phpCore/delete_location.php', $scope.filterUserLocations[index])
                 .then(function(response)
                 {
                     console.log("Success");

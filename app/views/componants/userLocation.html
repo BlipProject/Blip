@@ -1,13 +1,13 @@
 <!--
-ng-repeat creates search results based of the data returned from the server -- contained in controller variable 'filterSearchResult'
+ng-repeat creates search results based of the data returned from the server -- contained in controller variable 'filterUserLocations'
 ng-class sets up classes for indiviual results based off result type
 -->
-<div ng-repeat="venue in userLocations | limitTo:10 track by $index">
+<div ng-repeat="venue in filterUserLocations | limitTo:10 track by $index">
     <div class="result-wrapper">
         <!--Hidden div for on hover-->
         <div class="result-wrapper-hover">
             <div class="result-wrapper-hover-content">
-                <p>{{venue.LocationName}}</p>
+                <!--<p>{{venue.LocationName}}</p>
                 <!--breaks if a class directive (even an empty one) is not present-->
                 <div class="" ng-class="setResultClass(venue.CategoryName)">
                     <button ng-click="storeFocusedResult($index)">Edit</button>
