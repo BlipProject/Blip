@@ -172,37 +172,30 @@ angular.module('blipApp')
 	         	var setBtnClass = "";
 
 				$("#btnToggleMap").click(function(){
-					$('.indiv-map-wrap').slideToggle( "slow", function() {});
+					$('.indiv-map-wrap').slideToggle( 400, function() {});
 
 					if(setBtnClass === "btn-danger")
-					{
-						$("#btnToggleMap").removeClass('btn-danger ');
-						$("#btnToggleMap").addClass('btn-success');
-						$("#btnToggleMap").html("Get Directions");
-						setBtnClass = "btn-success";
-
-						$("html, body").animate({
-			            	scrollTop: 0
-			        	}, 600);
-			        	return false;
-					}
+						mapToggle('btn-danger','btn-success',0,"Get Directions")
 					else
-					{
-						$("#btnToggleMap").removeClass('btn-success');
-						$("#btnToggleMap").addClass('btn-danger');
-						$("#btnToggleMap").html("Close Directions");
-						setBtnClass = "btn-danger";
+						mapToggle('btn-success','btn-danger',145,"Close Directions")
+				});
+
+				function mapToggle(rClass,aClass,scroll,htmlMsg){
+					$("#btnToggleMap").removeClass(rClass).addClass(aClass).html(htmlMsg);
+						setBtnClass = aClass;
 
 						$("html, body").animate({
-			            	scrollTop: 145
-			        	}, 600);
-			        	
-			        	setTimeout(function(){
-						  initLocationProcedure();
-						}, 1000); 
+			            	scrollTop: scroll
+			        	}, 400);
+
+			        	if(aClass === 'btn-danger')
+			        	{
+			        		setTimeout(function(){
+						  		initLocationProcedure();
+							}, 1000);
+			        	}
 			        	return false;
-					}
-				});
+				};
 			}
     	}
   	}]);
