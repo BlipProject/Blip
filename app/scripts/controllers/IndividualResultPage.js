@@ -165,6 +165,44 @@ angular.module('blipApp')
 	                    alert("Your browser does not support the Geolocation API");
 	                }
 	            }
-			}	
+
+	            //Toggle controls for map -- mobile --
+            	$('.indiv-map-wrap').hide();
+
+	         	var setBtnClass = "";
+
+				$("#btnToggleMap").click(function(){
+					$('.indiv-map-wrap').slideToggle( "slow", function() {});
+
+					if(setBtnClass === "btn-danger")
+					{
+						$("#btnToggleMap").removeClass('btn-danger ');
+						$("#btnToggleMap").addClass('btn-success');
+						$("#btnToggleMap").html("Get Directions");
+						setBtnClass = "btn-success";
+
+						$("html, body").animate({
+			            	scrollTop: 0
+			        	}, 600);
+			        	return false;
+					}
+					else
+					{
+						$("#btnToggleMap").removeClass('btn-success');
+						$("#btnToggleMap").addClass('btn-danger');
+						$("#btnToggleMap").html("Close Directions");
+						setBtnClass = "btn-danger";
+
+						$("html, body").animate({
+			            	scrollTop: 145
+			        	}, 600);
+			        	
+			        	setTimeout(function(){
+						  initLocationProcedure();
+						}, 1000); 
+			        	return false;
+					}
+				});
+			}
     	}
   	}]);

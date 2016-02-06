@@ -30,3 +30,6 @@
 			"CALL RegisterLocation('$busName', '$busLat', '$busLng', '$busCity', '$busDescription', '$busCategory', '$busNationality')") 
 			or die("Query fail: " . mysqli_error($conn));
 	}
+
+	mysqli_close($conn);		
+?>

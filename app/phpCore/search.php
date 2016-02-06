@@ -14,6 +14,16 @@
 	$showLimit = $request->showLimit;
 	$nationality = $request->nationality;
 
+	//Possible new way to get data
+	/*
+	$postdata = file_get_contents("php://input");
+	$request = json_decode($postdata);
+	$latitude = number_format((float)$request['latitude'],8,'.','');
+	$longitude = number_format((float)$request['longitude'],8,'.','');
+	$showLimit = (int)$request['showLimit'];
+	$nationality = (int)$request['nationality'];
+	*/
+
 	$conn = mysqli_connect($servername, $username, $password, $db);
 
 	$searchResults = searchLocation($latitude,$longitude,$nationality,$showLimit);
@@ -35,5 +45,7 @@
 
 	//Return Query Result to Frontend
 	echo $searchResults;
+
 	
+		
 ?>
