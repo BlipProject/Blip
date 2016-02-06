@@ -31,5 +31,5 @@
 			or die("Query fail: " . mysqli_error($conn));
 	}
 
-	mysqli_close();		
+	mysqli_close($conn);		
 ?>

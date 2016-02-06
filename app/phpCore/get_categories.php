@@ -29,6 +29,6 @@
 	//Return Query Result to Frontend
 	echo $categories;
 
-	mysqli_close();
+	mysqli_close($conn);
 		
 ?>
