@@ -48,6 +48,11 @@ angular
         controller: 'UserRegistrationCtrl',
         controllerAs: 'userReg'
       })
+      .when('/review', {
+        templateUrl: 'views/review.html',
+        controller: 'ReviewCtrl',
+        controllerAs: 'review'
+      })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
