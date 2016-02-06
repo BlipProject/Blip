@@ -6,6 +6,7 @@
 
 
 //Wrapper for all search results
+//--
 .content-wrapper{
 	margin-top:30px;
 	@media(max-width:$screen-sm){
@@ -18,6 +19,7 @@
 }
 
 //Wrapper for individual search result
+//--
 .result-wrapper{
 	width:100%;
 	clear:both;
@@ -118,6 +120,7 @@
 }
 
 //Wrapper for content in the hover event of result wrapper
+//--
 .result-wrapper-hover-content{
 	width:330px;
 	height:150px;
@@ -212,7 +215,7 @@
 }
 
 //Result Headers
-
+//--
 .location-icon{
 	margin:5px 5px 0px 0px; 
 	color:#9E9E9E;
@@ -236,7 +239,7 @@
 }
 
 //Headers for individual content types
-
+//--
 .result-header-bar{
 	border-top: 5px solid $bar-colour;
 	background-color:$result-header-bg;
@@ -266,7 +269,7 @@
 }
 
 //Result Content
-
+//--
 .result-content{
 	width:60%;
 	height:150px;
@@ -318,8 +321,8 @@
 
 
 //Search Result page 
-//Left $ right columns
-
+//Left & right columns
+//--
 .content-left{
 	width:70%;
 	float:left;

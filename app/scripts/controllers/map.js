@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('blipApp')
-    .controller('MapCtrl', ['$http', '$scope', '$timeout', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'GeoLocationService', 'SearchServices', '$rootScope', function($http, $scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, GeoLocationService, SearchServices, $rootScope) {
+    .controller('MapCtrl', ['ResultPageState', '$location', '$http', '$scope', '$timeout', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'GeoLocationService', 'SearchServices', '$rootScope', function(ResultPageState, $location, $http, $scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, GeoLocationService, SearchServices, $rootScope) {
 
         //Close mobile-navigation menu on page load
         $rootScope.toggleNavClass = $rootScope.animateOut;
@@ -75,9 +75,9 @@ angular.module('blipApp')
                         };
 
                         //enableWatchPosition();
-                        enableOrientationArrow();
+                        //enableOrientationArrow();
 
-                        function enableOrientationArrow() {
+                        /*function enableOrientationArrow() {
                             window.addEventListener('deviceorientation', function(event) {
                                 var alpha = null;
                                 if (event.webkitCompassHeading) {
@@ -86,13 +86,13 @@ angular.module('blipApp')
                                     alpha = event.alpha;
                                     console.log(event.alpha);
                                 }
-                                /*var locationIcon = $scope.youarehere.options.icon;
+                                var locationIcon = $scope.youarehere.options.icon;
                                 locationIcon.rotation = 360 - alpha;
-                                $scope.youarehere.options.icon = locationIcon;*/
+                                $scope.youarehere.options.icon = locationIcon;
                                 //not working because 'rotation is a read only property'
                             }, false);
 
-                        }
+                        }*/
 
                         $scope.busmarker = {
                             id: 5,
@@ -254,7 +254,9 @@ angular.module('blipApp')
                     name: value.LocationName,
                     category: value.CategoryName,
                     description: value.LocationDescription,
-                    picture: value.LocationPic
+                    picture: value.LocationPic,
+                    city: value.city,
+                    distance: value.distance
                 }
 
             };
@@ -296,7 +298,7 @@ angular.module('blipApp')
         };
 
         
-        uiGmapIsReady.promise(1).then(function (maps) {
+       /* uiGmapIsReady.promise(1).then(function (maps) {
             //console.log(maps);
             //$timeout($scope.setFitBounds,"2000")
         //});
@@ -374,5 +376,26 @@ var service = new google.maps.DistanceMatrixService();
 
         }//end of show only selected function
 //}
+
 });//end of map is ready
 }]);
+
+});//end of map is ready*/
+
+$scope.storeFocusedResult = function(currentmarker) {
+            var data = {
+                MapLat : currentmarker.coords.latitude,
+                MapLong : currentmarker.coords.longitude,
+                LocationDescription : currentmarker.data.description,
+                LocationName : currentmarker.data.name,
+                LocationPic : currentmarker.data.picture,
+                distance : currentmarker.data.distance,
+                City : currentmarker.data.city
+
+            };
+            ResultPageState.SetPageState(data);
+            $location.path('LocationView');
+        };
+
+    }]);
+

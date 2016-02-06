@@ -1,6 +1,6 @@
  'use strict';
  angular.module('blipApp')
-    .controller('ReviewCtrl', ['$http', '$scope', function($http, $scope) {
+    .controller('ReviewCtrl', ['$http', '$scope', 'ResultPageState',function($http, $scope, ResultPageState) {
         //$scope.pageHeading = "User Registration";
 
 
@@ -11,8 +11,14 @@
     // to jest servis wracajacy data ze strony ph[ ? ]
         $(document).ready(function() {
 
-        	//console.log($scope);
+        	//$scope.pageViewData = ResultPageState.GetPageState();
+//ResultPageState.SetPageState($scope.filterSearchResult[index]);
+ //alert($scope.pageViewData);
+
+        	//console.log($scope);pageViewData.LocationName
+        	//console.log($scope.pageViewData.LocationName);
         	//console.log(ResultPageState.GetPageState);
+
         	$.ajax({                                      
 		      url: 'http://localhost/blip/app/phpCore/review.php',                  //the script to call to get data          
 		      data: { locationID : 7 },                        //you can insert url argumnets here to pass to api.php
@@ -108,27 +114,6 @@ var returnSearchResults = function(geoData) {
         	///////////////////////////////
 
 				*/
-               
-
-    		
-
-
-
-
-
-
-
-
-    
         });//end ready function 
-
-
-
-
- 
-
-
-
-
     }]);
 
