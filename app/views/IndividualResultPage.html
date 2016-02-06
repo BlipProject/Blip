@@ -15,15 +15,23 @@
                 <div ng-class="{'indiv-divider-bar': pageViewData.CategoryName == 'Bar','indiv-divider-res': pageViewData.CategoryName == 'Restaurant','indiv-divider-shop': pageViewData.CategoryName == 'Supermarket','indiv-divider-other': pageViewData.CategoryName == 'Other'}" class="indiv-divider"></div>
             </div>
             <div class="indiv-content">
-                <div class="indiv-map-wrap ">        
+                <div class="indiv-map-wrap ">     
                     <div id="map" style="width:100%; height: 100%"></div>
+                    <div id="arrowContainer"><img id="centreRing" class="hidden-md hidden-lg" src="/images/navIcons/userRing.svg"></div>
+                    <div id="arrowContainer"><img id="navArrow" class="hidden-md hidden-lg" src="images/navIcons/venueHeading.svg"></div>
+                    <div id="arrowContainer"><img id="userArrow" class="hidden-md hidden-lg" src="images/navIcons/userHeading.svg"></div>
+                    <div id="testDistance" class="indiv-map-distance"></div>
                 </div>
                 <div class="indiv-description">
                     <p>{{pageViewData.CategoryName}}<p>
+                    <hr/>
                     <p>{{pageViewData.City}}</p>
+                    <hr/>
                     <p>{{pageViewData.LocationDescription}}</p>
-                    <br/>
-                    <h1 id="testDistance"></h1>
+                    <hr/>
+                    <buton class="btn btn-default col-xs-12">Phone Now</buton>
+                    <hr/>
+                    <button class="btn btn-default col-xs-12 indiv-button-spacer">Visit Website</buton> 
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('blipApp')
-    .controller('IndividualResultPageCtrl', ['ResultPageState', '$scope','uiGmapGoogleMapApi', function(ResultPageState, $scope) {
+    .controller('IndividualResultPageCtrl', ['ResultPageState', '$scope', function(ResultPageState, $scope) {
 
     	$scope.pageViewData = ResultPageState.GetPageState();
 
@@ -10,8 +10,6 @@ angular.module('blipApp')
 
     	//Stores data pulled from the 'ResultPageState' factory
     	var pageViewData = ResultPageState.GetPageState();
-    	console.log("Lontitude (Venue) = " + pageViewData.MapLong);
-    	console.log("Latitude Lontitude (Venue) = " + pageViewData.MapLat);
 
   		return {
     		restrict: 'E',
@@ -20,103 +18,153 @@ angular.module('blipApp')
 
 			link:function(scope, element, attributes){
 
-				function geo_error() {
-				  alert("Sorry, no position available.");
+				var map,
+                currentPositionMarker,
+                currentVenueMarker,
+                mapCenter = new google.maps.LatLng(54.278234, -8.461709),
+                map,
+                distance,
+                direction,
+                userMarker,
+                heading;
+
+                //var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
+                var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
+
+                //Check if mobile or desktop
+                //Load appropriate map
+            	if( screen.width <= 959 ) {
+					$(document).ready(function() {
+	                	initLocationProcedure();
+	            	});
+				}
+				else {
+					initializeMap('desktop');
 				}
 
-				var geo_options = {
-				  enableHighAccuracy: true, 
-				  maximumAge        : 500, 
-				  timeout           : 27000
-				};
+	            function initializeMap(type)
+	            {
+	            	if(type == 'mobile'){
+		                map = new google.maps.Map(document.getElementById('map'), {
+		                   zoom: 16,
+		                   center: mapCenter,
+		                   disableDefaultUI: true,
+		                   draggable: false,
+		                   scrollwheel: false,
+		                   mapTypeId: google.maps.MapTypeId.ROADMAP
+		                 });
 
-    			if (navigator.geolocation) {
-			        navigator.geolocation.watchPosition(geo_success, geo_error, geo_options);
-			    } else {
-			        // Error, Browser not supported
-			    }
-			    
+		                setVenueLocation();
+	            	}
+	            	else if(type == 'desktop'){
+	            		map = new google.maps.Map(document.getElementById('map'), {
+		                   zoom: 10,
+		                   center: mapCenter,
+		                   mapTypeId: google.maps.MapTypeId.ROADMAP
+		                 });
 
+	            		//TODO: Implement this function
+	            		//Need user imputted location first
+	            		//setUserPositionDesktop(lat,lng);
+	            		//getDistance(curLat,curLong);
+		                setVenueLocation();
+	            	}
+	            }
 
-			    function geo_success(position) {
+	            function locError(error) {
+	                // the current position could not be located
+	                alert("The current position could not be found!");
+	            }
 
-			    	var coordinatesUser = {lat: position.coords.latitude, lng: position.coords.longitude};
-			    	var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
+	            function setCurrentPosition(pos) {
+	                map.panTo(new google.maps.LatLng(
+	                        pos.coords.latitude,
+	                        pos.coords.longitude
+	                    ));
 
-			    	//Stores distance to venue from current position
-			    	var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(coordinatesUser.lat,coordinatesUser.lng), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
-			    	//Stores heading from markerUser to marker venue
-				  	var headingVenue = google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(coordinatesUser.lat,coordinatesUser.lng), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
-			  		//Stores heading for the users current position
-				  	var userHeading = position.coords.heading;
+	                
+	                //Initaly set Rotation, Distance, and Pillyline
+	                setUserRotation(pos);
+	                getDistance(pos.coords.latitude,pos.coords.longitude);
+	            }
 
-				    var mapDiv = document.getElementById('map');
-				    var map = new google.maps.Map(mapDiv, {
-				      center: {lat: position.coords.latitude, lng: position.coords.longitude},
-				      disableDefaultUI: true,
-				      draggable: false,
-				      scrollwheel: false,
-				      zoom: 16
-				    });
+	            //Sets the map marker for venue
+	            function setVenueLocation(){
+	            	currentVenueMarker = new google.maps.Marker({
+	                    map: map,
+	                    position: coordinatesVenue,
+	                    title: pageViewData.LocationName
+	                });
+	            }
 
-				    //mapDiv.style.transform = "rotate(" + userHeading + "deg)";
+	            //Functions to set headings of UserMarker & Venue marker
+	            function setUserRotation(pos){
+	            	var arrow = document.getElementById("userArrow");
+	                arrow.style.transform = "rotate(" + pos.coords.heading + "deg)";
+	            };
 
-				    //TODO: Will set custom icon for markerUser
-				    /*
-				    var navArrow = {
-					    url: '/images/navigationArrow.png',
-					    size: new google.maps.Size(256,256),
-					    // The origin for this image is (0, 0).
-					    origin: new google.maps.Point(128,256),
-					    // The anchor for this image is the base of the flagpole at (0, 32).
-					    anchor: new google.maps.Point(100, 100),
-					    rotation: heading,
-					};
-					*/
-				    //Set users current position
-				    var markerUser = new google.maps.Marker({
-					    position: coordinatesUser,
-					    map: map,
-					    title: 'You Are Here'
-				  	});
+	            function setRotation(){
+	            	var arrow = document.getElementById("navArrow");
+	                arrow.style.transform = "rotate(" + parseInt(heading) + "deg)";
+	            }
 
-				    //Set markerUser towards heading of markerVenue
-				    markerUser.setIcon({
-				    	path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-				    	scale:9,
-				    	rotation: userHeading,
-				    });
+	            function getDistance(curLat,curLong){
+	            	distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(curLat,curLong), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
+	            	var x = document.getElementById("testDistance");
+	            	x.innerHTML = "Distance To Venue : " + (distance/1000).toFixed(1) + "km";
+	            }
 
-				    //Sets venue position
-				  	var markerVenue = new google.maps.Marker({
-					    position: coordinatesVenue,
-					    map: map,
-					    title: pageViewData.LocationName,
-					    animation: google.maps.Animation.BOUNCE
-				  	});
+	            function displayAndWatch(position) {
+	                // set current position
+	                setCurrentPosition(position);
+	                // watch position
+	                watchCurrentPosition();
+	            }
 
-				  	//TODO: Remove as only for visual purposes
-				  	//Set pollyline between markers
-					var direction = new google.maps.Polyline({
-				  		path: [coordinatesUser,coordinatesVenue],
-				  		geodesic: true,
-					    strokeColor: '#FF0000',
-					    strokeOpacity: 1.0,
-					    strokeWeight: 2
-				  	});
-				  	direction.setMap(map);
+	            function watchCurrentPosition() {
+	                var positionTimer = navigator.geolocation.watchPosition(
+	                    function (position) {
+	                        setMarkerPosition(
+	                            currentPositionMarker,
+	                            position
+	                        ),
+	                        {'enableHighAccuracy':true,'timeout':10000,'maximumAge':20000};
+	                    });
+	            }
 
+	            function setMarkerPosition(marker, position) {
+	                map.panTo(new google.maps.LatLng(
+	                        position.coords.latitude,
+	                        position.coords.longitude
+	                    ));
 
-				  	var x = document.getElementById("testDistance");
-				  	x.innerHTML = "Distance = " + distance;
-				  	
-				  	console.log("User Heading = " + userHeading);
-			  		console.log("Venue Heading = " + headingVenue);
-				  	console.log("Distance (m) = " + distance);
-				    console.log("Longitude (User) = " + position.coords.longitude);
-				    console.log("Latitude (User) = " + position.coords.latitude);
-				}		    
-    		}
+	                if(position.coords.heading != null)
+	                	heading = position.coords.heading;
 
+	                heading =  google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(position.coords.latitude,position.coords.longitude), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
+	                
+
+					//Update Rotation, distance
+					setUserRotation(position);
+					setRotation();
+	                getDistance(position.coords.latitude,position.coords.longitude);
+	            }
+
+	            function initLocationProcedure() {
+	                initializeMap('mobile');
+
+	                var option = {
+	                	maximumAge:0,
+	                	timeout:10000,
+	                	enableHighAccuracy: true
+	                }
+
+	                if (navigator.geolocation) {
+	                    navigator.geolocation.getCurrentPosition(displayAndWatch, locError);
+	                } else {
+	                    alert("Your browser does not support the Geolocation API");
+	                }
+	            }
+			}	
     	}
   	}]);
