@@ -31,3 +31,7 @@
 
 	//Return Query Result to Frontend
 	echo $userLocations;
+
+	mysqli_close($conn);
+		
+?>
