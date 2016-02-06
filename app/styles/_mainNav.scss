@@ -4,7 +4,13 @@
 
 .profile-dropdown {
 	height: 100%;
-	width: 200px;
+	width: 100px;
 	padding: 0px !important;
 	background-color: #fff;
+}
+
+.profile-menu-nav {
+	width:200px; 
+	overflow:hidden !important;
+	border:none !important;
 }
