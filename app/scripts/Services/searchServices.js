@@ -17,7 +17,6 @@ angular.module('blipApp')
 			//IMPORTANT Change post URL to reletive link before build... '../phpCore/search.php'
 			///////////
 			//TESTING URL http://localhost/blip/app/phpCore/search.php
-			
 			getLocationResults: function(data){
 				return $http.post('http://localhost/blip/app/phpCore/search.php', data)
 			        .then(function(response)
