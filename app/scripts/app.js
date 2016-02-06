@@ -63,10 +63,12 @@ angular
         controller: 'FacebookLoginCtrl',
         controllerAs: 'facebookLogin'
       })
+      .when('/userLocations', {
+        templateUrl: 'views/userLocations.html'
+      })
       .otherwise({
         redirectTo: 'views/landing.html'
       });
-
   })
  .config(function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
