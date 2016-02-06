@@ -7,20 +7,19 @@
 	//Start Script
 
 	//Input variables from Angular
-	$user = json_decode(file_get_contents("php://input"));
-	$userID = $user->ID;
+	$location = json_decode(file_get_contents("php://input"));
+	$locationID = 	$location->LocationID;
 
 	$conn = mysqli_connect($servername, $username, $password, $db);
 
-	deleteLocation($userID);
+	$delete = deleteLocation($locationID);
 
-	function deleteLocation($userID) {
+	function deleteLocation($locationID) {
 		global $conn;
 
-		mysqli_query($conn, 
-	    "CALL DeleteLocation('$userID')") or die("Query fail: " . mysqli_error($conn));
+		$deleteQuery = mysqli_query($conn, 
+	    	"CALL DeleteLocation('$locationID')") or die("Query fail: " . mysqli_error($conn));
 	}
 
-	mysqli_close($conn);
-		
+	mysqli_close($conn);		
 ?>

@@ -69,7 +69,6 @@ angular
       .otherwise({
         redirectTo: 'views/landing.html'
       });
-
   })
  .config(function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({

@@ -3,7 +3,7 @@
 angular.module('blipApp')
 	.controller('UserLocationsCTRL', ['$http', '$scope', function($http, $scope) {
 
-		$scope.searchResult = "";
+		$scope.userLocations = "";
         $scope.showLoadingAnimation = true;
 
 		var user = {
@@ -16,11 +16,11 @@ angular.module('blipApp')
 				{
 					console.log("Success");
                     $scope.showLoadingAnimation = false;
-					$scope.searchResult = response.data;
+					$scope.userLocations = response.data;
 				});
 		};
 
-		console.log($scope.searchResult);
+		console.log($scope.userLocations);
 
         $scope.typeHeadClass = " ";
         $scope.setIconClass = " ";
@@ -55,6 +55,19 @@ angular.module('blipApp')
                         return "";
                     }
             }
+        };
+
+        var location = {
+            ID: 2
+        };
+        $scope.deleteLocation = function(index) {
+            console.log("clicked");
+            console.log($scope.userLocations[index]);
+            $http.post('http://localhost/blip/app/phpCore/delete_location.php', $scope.userLocations[index])
+                .then(function(response)
+                {
+                    console.log("Success");
+                });
         };
 
 	}]);
