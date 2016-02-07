@@ -66,6 +66,9 @@ angular
       .when('/userLocations', {
         templateUrl: 'views/userLocations.html'
       })
+      .when('/userProfile', {
+        templateUrl: 'views/userProfile.html'
+      })
       .otherwise({
         redirectTo: 'views/landing.html'
       });
