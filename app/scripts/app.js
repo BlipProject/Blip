@@ -21,7 +21,9 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/landing.html',
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl',
+        controllerAs: 'main'
       })
       .when('/searchResult', {
         templateUrl: 'views/main.html',
@@ -67,7 +69,7 @@ angular
         templateUrl: 'views/userLocations.html'
       })
       .otherwise({
-        redirectTo: 'views/landing.html'
+        redirectTo: 'home.html'
       });
   })
  .config(function(uiGmapGoogleMapApiProvider) {

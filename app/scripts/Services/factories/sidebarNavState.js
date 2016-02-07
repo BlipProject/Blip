@@ -1,4 +1,4 @@
-//Sets the icon dor current page in sidebar
+//Sets the icon for current page in sidebar
 //0 == List View
 //1 == Map View
 
