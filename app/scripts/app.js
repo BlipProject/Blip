@@ -21,7 +21,9 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/landing.html',
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl',
+        controllerAs: 'main'
       })
       .when('/searchResult', {
         templateUrl: 'views/main.html',
@@ -64,7 +66,7 @@ angular
         controllerAs: 'facebookLogin'
       })
       .otherwise({
-        redirectTo: 'views/landing.html'
+        redirectTo: 'home.html'
       });
 
   })
