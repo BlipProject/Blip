@@ -4,17 +4,11 @@
  var tUp;
         $(document).ready(function() {
         	//get user id from session
-        	// comment b4 start 
-        	var userId = 311;
+        	var userId = 321;
         	$scope.pageViewData = ResultPageState.GetPageState();
-        	// I am using Brian Factory resultPageState
-        	// if we could change Brian query "30Nearest" to get location ID it would make code easy 
-        	//var lat = $scope.pageViewData.MapLat;
-        	//var lon = $scope.pageViewData.MapLong;
         	var locationId = $scope.pageViewData.LocationID;
-        	//alert (locationId);
-
-        	$("#noComment").click(function()// no comment 
+        	
+        	$("#noComment").click(function()// when no comment is clicked 
         	     {  
                     document.getElementById("addingComments").className = "";
                     document.getElementById("addingComments").className += "ng-hide";
@@ -36,7 +30,7 @@
 	         });// end click no comment 
         	
         $scope.addComment = function(userId, userTitle, userComment) {
-           $.ajax({        // TO DO LIFE ADDRESS                   
+           $.ajax({                       
 		      url: 'http://localhost/blip/app/phpCore/sendReview.php',//the script to call to get data          
 		      data: { 
 		      userId:userId,
@@ -44,7 +38,7 @@
 		      userComment:userComment,
 		      locationId,
 		      tUp
-		      },//insert url argumnets here to pass to review.php
+		      },//insert url argumnets here to pass to sendReview.php
 		      type: 'get',
 		      success: function(data)
 		      {
@@ -62,13 +56,12 @@
 		      dataType: 'json',                                   //data format      
 		      success: function(data)                             //on recieve of reply
 		      {		
-		      	$('#countUp').html(data[0].ThumbsUp);//insert thumbs up can b angular just 4 now 
-		      	$('#countDown').html(data[0].ThumbsDown);// insert thumb down can b angular just 4 now 
-		      	$('#usersName').html(data[0].AllComments);// insert commment can b angular just 4 now 
+		      	$('#countUp').html(data[0].ThumbsUp);
+		      	$('#countDown').html(data[0].ThumbsDown);
+		      	$('#usersName').html(data[0].AllComments);
 		      	var counterUp = data[0].ThumbsUp;
  				var counterDown = data[0].ThumbsDown;
- 				// get user id from locationrating
- 				// czeck was user voting or not 
+ 				// check was user voting or not 
  				if (data[0].UserVoted == 1) 
  				{
  					$("#up").prop("disabled",true);

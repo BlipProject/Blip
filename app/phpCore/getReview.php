@@ -2,10 +2,7 @@
 include('blip_4815162342_108.php');
 
 $conn = mysqli_connect($servername, $username, $password, $db);
-//$MapLatt = $_GET['locationLat'];
-//$MapLongg = $_GET['locationLon'];
 $LocationID = $_GET['locationId'];
-
 $userId = $_GET['userId'];
 
 $searchResults = giveMeRating($LocationID, $userId);
