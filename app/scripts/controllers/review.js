@@ -5,12 +5,14 @@
         $(document).ready(function() {
         	//get user id from session
         	// comment b4 start 
-        	var userId = 321;
+        	var userId = 311;
         	$scope.pageViewData = ResultPageState.GetPageState();
         	// I am using Brian Factory resultPageState
         	// if we could change Brian query "30Nearest" to get location ID it would make code easy 
-        	var lat = $scope.pageViewData.MapLat;
-        	var lon = $scope.pageViewData.MapLong;
+        	//var lat = $scope.pageViewData.MapLat;
+        	//var lon = $scope.pageViewData.MapLong;
+        	var locationId = $scope.pageViewData.LocationID;
+        	//alert (locationId);
 
         	$("#noComment").click(function()// no comment 
         	     {  
@@ -22,8 +24,7 @@
 		      userId:userId,
 		      userTitle:'',
 		      userComment:'',
-		      lat,
-		      lon,
+		      locationId,		      
 		      tUp
 		      },//you can insert url argumnets here to pass to review.php
 		      type: 'get',
@@ -41,8 +42,7 @@
 		      userId:userId,
 		      userTitle:userTitle,
 		      userComment:userComment,
-		      lat,
-		      lon,
+		      locationId,
 		      tUp
 		      },//insert url argumnets here to pass to review.php
 		      type: 'get',
@@ -57,7 +57,7 @@
         	$.ajax({
         	  //                                       
 		      url: 'http://localhost/blip/app/phpCore/getReview.php',//the script to call to get data          
-		      data: { locationLat : lat , locationLon : lon, userId: userId},     //you can insert url argumnets here to pass to review.php
+		      data: { locationId: locationId, userId: userId},     //you can insert url argumnets here to pass to review.php
 		      type: 'get',                                        //for example "get"
 		      dataType: 'json',                                   //data format      
 		      success: function(data)                             //on recieve of reply
