@@ -21,7 +21,9 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/landing.html',
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl',
+        controllerAs: 'main'
       })
       .when('/searchResult', {
         templateUrl: 'views/main.html',
@@ -68,10 +70,12 @@ angular
         controller: 'FacebookLoginCtrl',
         controllerAs: 'facebookLogin'
       })
+      .when('/userLocations', {
+        templateUrl: 'views/userLocations.html'
+      })
       .otherwise({
-        redirectTo: 'views/landing.html'
+        redirectTo: 'home.html'
       });
-
   })
  .config(function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({

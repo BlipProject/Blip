@@ -97,17 +97,20 @@ angular.module('blipApp')
 	                });
 	            }
 
-	            //Functions to set headings of UserMarker & Venue marker
+	            //Sets the rotation of the users heading
 	            function setUserRotation(pos){
 	            	var arrow = document.getElementById("userArrow");
 	                arrow.style.transform = "rotate(" + pos.coords.heading + "deg)";
 	            };
 
+	            //Sets the rotation of the venue heading
 	            function setRotation(){
 	            	var arrow = document.getElementById("navArrow");
 	                arrow.style.transform = "rotate(" + parseInt(heading) + "deg)";
 	            }
 
+	            //Gets and displays distance to location
+	            //Refreshes on watchPoistion event
 	            function getDistance(curLat,curLong){
 	            	distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(curLat,curLong), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
 	            	var x = document.getElementById("testDistance");
@@ -131,7 +134,7 @@ angular.module('blipApp')
 	                        {'enableHighAccuracy':true,'timeout':10000,'maximumAge':20000};
 	                    });
 	            }
-
+	            
 	            function setMarkerPosition(marker, position) {
 	                map.panTo(new google.maps.LatLng(
 	                        position.coords.latitude,
@@ -149,15 +152,9 @@ angular.module('blipApp')
 					setRotation();
 	                getDistance(position.coords.latitude,position.coords.longitude);
 	            }
-
+				
 	            function initLocationProcedure() {
 	                initializeMap('mobile');
-
-	                var option = {
-	                	maximumAge:0,
-	                	timeout:10000,
-	                	enableHighAccuracy: true
-	                }
 
 	                if (navigator.geolocation) {
 	                    navigator.geolocation.getCurrentPosition(displayAndWatch, locError);
@@ -165,6 +162,47 @@ angular.module('blipApp')
 	                    alert("Your browser does not support the Geolocation API");
 	                }
 	            }
-			}	
+
+
+	            //Toggle controls for map -- mobile --
+
+	            //Check if screen is less than 960px
+	            //Hides map if on mobile screen
+	            if($(window).width() < 960)
+            		$('.indiv-map-wrap').hide();
+
+            	//Temp variable to store current set class on map toggle button
+	         	var setBtnClass = "";
+
+				$("#btnToggleMap").click(function(){
+					$('.indiv-map-wrap').slideToggle( 400, function() {});
+
+					//Calls function to set toggle button and scroll
+					if(setBtnClass === "btn-danger")
+						mapToggle('btn-danger','btn-success',0,"Get Directions")
+					else
+						mapToggle('btn-success','btn-danger',145,"Close Directions")
+				});
+
+				//Sets class on toggle button [btn-danger/btn-success]
+				//Sets scroll [0 == noramal, 145 == scrolled to top]
+				//Initiates map
+				function mapToggle(rClass,aClass,scroll,htmlMsg){
+					$("#btnToggleMap").removeClass(rClass).addClass(aClass).html(htmlMsg);
+						setBtnClass = aClass;
+
+						$("html, body").animate({
+			            	scrollTop: scroll
+			        	}, 400);
+
+			        	if(aClass === 'btn-danger')
+			        	{
+			        		setTimeout(function(){
+						  		initLocationProcedure();
+							}, 1000);
+			        	}
+			        	return false;
+				};
+			}
     	}
   	}]);
