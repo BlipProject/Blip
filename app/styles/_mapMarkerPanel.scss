@@ -1,0 +1,74 @@
+.gm-style-iw{
+	width: auto!important;
+  	height: auto!important;
+	top: 15px !important;
+	left: 0 !important;
+	background-color: #fff;
+	border: none;
+}
+
+.gm-style img{
+	max-width: 100%;
+}
+
+.marker-panel{
+	width: 500px;
+	height: auto;
+	background-color: #fff;
+}
+
+.marker-panel-header{
+    width: 100%;
+    height: 40px;
+    padding: 0px 0px 3px 3px;
+    float: left;
+    color: #2c3e50;
+    font-size: 26px;
+    background-color: #fff;
+    -o-box-shadow: 0px 1px 1px -1px #bdc3c7;
+    box-shadow: 0px 1px 1px -1px #bdc3c7;
+    font-family: "Poiret One", cursive;
+    border-top: 5px solid;
+}
+
+.marker-panel-header-bar{border-color: $bar-colour;}
+.marker-panel-header-res{border-color: $restaurant-colour;}
+.marker-panel-header-shop{border-color: $shop-colour;}
+.marker-panel-header-other{border-color: $other-colour;}
+
+.marker-panel-content{
+	width: 60%;
+	padding: 10px 10px 0px 10px;
+	float: left;
+}
+
+.marker-panel-content-des{
+	width: 100%;
+}
+
+.marker-panel-image{
+	width: 40%;
+	max-height: 150px;
+	float: left;
+	overflow: hidden;
+}
+
+.marker-panel-buttons{
+	width: 100%;
+	float: left;
+	padding: 2px;
+}
+
+.marker-panel-btn{
+	width: 100%;
+}
+
+.angular-google-map-container{
+	width:100%;
+	height:324px;
+
+	@media(max-width:$screen-sm){
+		height:100vh;
+		width:100%;
+	}
+}

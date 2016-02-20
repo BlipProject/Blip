@@ -1,7 +1,30 @@
 <div ng-controller="MapCtrl">
-<h3>{{parameter.data.name}}</h3>
+	<!--<div class="marker-panel">
+		<div class="marker-panel-header" ng-class="{'marker-panel-header-bar': parameter.data.category == 'Bar','marker-panel-header-res': parameter.data.category == 'Restaurant','marker-panel-header-shop': parameter.data.category == 'Supermarket','marker-panel-header-other': parameter.data.category == 'Other'}">{{parameter.data.name}}<span ng-class="setIconClass" class="pull-right location-icon"></span></div>
+        <div class="marker-panel-content">
+            <div class="marker-panel-content-des">
+                <p>{{parameter.data.description | limitTo:145}} ...</p>
+            </div>
+        </div>
+        <div class="result-content-image"><img class="img-responsive" ng-src="{{parameter.data.picture}}" /></div>
+        <button class="marker-panel-btn btn btn-default" ng-click="storeFocusedResult(parameter)">Visit Page</button>
+    </div>-->
+    <div class="marker-panel" ng-init="markerPanel()">
+        <div class="marker-panel-header" ng-class="{'marker-panel-header-bar': parameter.data.category == 'Bar','marker-panel-header-res': parameter.data.category == 'Restaurant','marker-panel-header-shop': parameter.data.category == 'Supermarket','marker-panel-header-other': parameter.data.category == 'Other'}">{{parameter.data.name}}<span ng-class="setIconClass" class="pull-right location-icon"></span></div>
+        <div class="marker-panel-content">
+            <div class="marker-panel-content-des">
+                <p>{{parameter.data.description | limitTo:145}} ...</p>
+            </div>
+        </div>
+        <div class="marker-panel-image"><img class="img-responsive" ng-src="{{parameter.data.picture}}" /></div>
+        <div class="marker-panel-buttons">
+        	<button class="marker-panel-btn btn btn-default" ng-click="storeFocusedResult(parameter)">Visit Page</button>
+        	<button class="marker-panel-btn btn btn-default" ng-click="closeClick()">Close</button>
+        </div>
+    </div>
+<!--<h3>{{parameter.data.name}}</h3>
 <h4>{{parameter.data.category}}</h4>
 <img src='{{parameter.data.picture}}' height='100px' width='150px'></img>
 <p>{{parameter.data.description}}</p>
-<button ng-click="storeFocusedResult(parameter)">Get There</button>
-</div>
+<button ng-click="storeFocusedResult(parameter)">Get There</button>-->
+</div> 

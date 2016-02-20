@@ -277,16 +277,6 @@
 	background-color:#bdc3c7;
 }
 
-.angular-google-map-container{
-	width:100%;
-	height:324px;
-	border:1px solid $restaurant-colour;
-
-	@media(max-width:$screen-sm){
-		height:310px;
-	}
-}
-
 .reg-form-error-message{
 	padding:5px;
 	color:#e74c3c;

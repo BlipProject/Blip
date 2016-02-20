@@ -125,7 +125,10 @@ angular.module('blipApp')
                 pixelOffset: {
                     width: -1,
                     height: -20
-                }
+                },
+                maxWidth: 500,
+                closeBoxURL: "",
+                closeBoxMargin : ""
             };
 
 
@@ -183,7 +186,7 @@ angular.module('blipApp')
         //TESTING URL http://localhost/blip/app/phpCore/search.php
         var getLocationResults = function(data) {
             var searchResults;
-            var callSearch = $http.post('/phpCore/search.php', data)
+            var callSearch = $http.post('http://localhost/blip/app/phpCore/search.php', data)
 
             .success(function(data, status, headers, config) {
                     searchResult = data;
@@ -346,11 +349,21 @@ $scope.storeFocusedResult = function(currentmarker) {
                 LocationName : currentmarker.data.name,
                 LocationPic : currentmarker.data.picture,
                 distance : currentmarker.data.distance,
-                City : currentmarker.data.city
+                City : currentmarker.data.city,
+                CategoryName: currentmarker.data.category
 
             };
             ResultPageState.SetPageState(data);
             $location.path('LocationView');
         };
 
-    }]);
+        $scope.markerPanel = function() {
+            var iwOuter = $('.gm-style-iw');
+            var iwBackground = iwOuter.prev();
+            iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+            iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+
+            var iwCloseBtn = iwOuter.next();
+            iwCloseBtn.remove();
+        };
+    }])
