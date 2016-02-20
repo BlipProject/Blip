@@ -10,27 +10,35 @@
 angular.module('blipApp')
     .controller('RegisterBusinessCtrl', ['$http', '$scope', 'uiGmapGoogleMapApi', function($http, $scope, uiGmapGoogleMapApi) {
 
-        $scope.pageHeading = "Register Your Business";
-        //Store categories for dropdown
+        //Store categories and nationalities for dropdowns
         $scope.categories;
+        $scope.nationalities;
         //Store data about business to send to php script
         //var busData = {};
         //Store business latitude and longtitude
         var busLat;
         var busLng;
 
-        $scope.map = {
-            center: {
-                latitude: 54.276293,
-                longitude: -8.476524
-            },
-            zoom: 16
-        };
-        $scope.busmarker = {
+        $scope.addLocationMapMarker = {
             id: 5,
             coords: {
-                latitude: 54.276293,
-                longitude: -8.476524
+            }
+        };
+
+        $scope.map = {
+            center: {
+                latitude: 54.2785534,
+                longitude: -8.4600902
+            },
+            zoom: 16,
+            events: {
+                click: function(mapModel, eventName, originalEventArgs) {
+                    var e = originalEventArgs[0];
+                    $scope.addLocationMapMarker.coords.latitude = e.latLng.lat();
+                    $scope.addLocationMapMarker.coords.longitude = e.latLng.lng();
+
+                    $scope.$apply();
+                }
             }
         };
 
@@ -49,7 +57,7 @@ angular.module('blipApp')
         ///////////
         //TESTING URL http://localhost/blip/app/phpCore/get_categories.php
         $scope.loadCategories = function() {
-            var getCategories = $http.post('../phpCore/get_categories.php')
+            var getCategories = $http.post('http://localhost/blip/app/phpCore/get_categories.php')
                 .success(function(data, status, headers, config) {
                     $scope.categories = data;
                     console.log(data + ' - ' + "Success");
@@ -59,7 +67,14 @@ angular.module('blipApp')
                 });
         };
 
-        uiGmapGoogleMapApi.then(function(maps) {});
+        uiGmapGoogleMapApi.then(function(maps) {
+            if( typeof _.contains === 'undefined' ) {
+                _.contains = _.includes;
+            }
+            if( typeof _.object === 'undefined' ) {
+                _.object = _.zipObject;
+            }
+        });
 
         $scope.setDayClass = function(event) {
             if ($(event.target).hasClass("opening-hours-day-selected")) {
