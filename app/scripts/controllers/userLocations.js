@@ -109,6 +109,8 @@ angular.module('blipApp')
                 {
                     console.log("Success");
                 });
+            $("#myModal").modal('hide');
+            $scope.filterUserLocations.splice($scope.indexToDelete, 1);
         };
 
 	}]);
