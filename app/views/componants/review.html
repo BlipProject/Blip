@@ -1,0 +1,48 @@
+<div class="form-left" ng-controller="ReviewCtrl">
+ 			<button  id="up"  class="btn btn-success" ng-click='thumbUp(userId, locationId)'>
+            <i id="countUp" class="fa fa-thumbs-up  fa-6"></i>
+            </button>
+            <button id="down"  class="btn btn-danger" ng-click='thumbDown(userId, locationId)'>
+            <i id="countDown" class="fa fa-thumbs-down  fa-6"></i>
+            </button>
+<div id ="addingComments" class="ng-hide">
+<button  class="btn btn-danger" id='noComment'>No Thanks</button>
+<form class="form-left" role="form" name="commentForm">           
+            
+            <div class="form-field">
+                <label class="form-label">User ID get from sesion/now  311 or 321</label>
+                <input placeholder="id" type="text" name="id" ng-model="userId" ng-minlength="3" required/>
+                <span ng-show="registrationForm.name.$dirty && registrationForm.name.$error.required">Required</span>
+            </div>
+            <div class="form-field">
+                <label class="form-label">Would you like to leave a comment ?</label>
+                 
+                <input placeholder="Title" type="text" name="title" ng-model="userTitle" ng-minlength="3" required/>
+                <span ng-show="registrationForm.name.$dirty && registrationForm.name.$error.required">Required</span>
+                <span ng-show="registrationForm.name.$dirty &&    registrationForm.name.$error.minlength">Minimum 3 characters</span>
+            </div>
+            <div class="form-field">
+                <input placeholder="Write your comment here" type="text" name="comment" ng-model="userComment" ng-minlength="3" ng-maxlength="100" required/>
+                <span ng-show="registrationForm.comment.$dirty &&    registrationForm.comment.$error.minlength">Minimum 3 characters</span>
+                <span ng-show="registrationForm.comment.$dirty &&    registrationForm.comment.$error.maxlength">Maximum 100 characters</span>
+                <span ng-show="registrationForm.comment.$dirty && registrationForm.comment.$error.required">Required</span>
+            </div> 
+            <div>
+            <button type="submit" class="bus-reg-button bus-reg-button-yes" ng-disabled="registrationForm.$invalid" ng-click='addComment(userId, userTitle, userComment)'>Submit comment</button>
+            </div>
+            
+            </form>
+            </div>
+			<div><lable>Comments</lable></div>
+
+            <div class="scrollabletextbox" id="usersName" name="note"></div>
+        
+        
+</div>
+
+
+            
+             
+            
+
+

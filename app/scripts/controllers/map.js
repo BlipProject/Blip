@@ -304,7 +304,12 @@ angular.module('blipApp')
         //});
  //$scope.setFitBounds = function (maps) { 
 
+
+
+
+
 $scope.ShowOnlySelected = function(currentmarker) {
+    
             console.log(currentmarker);
             $scope.markers = [];
             $scope.markers.push(currentmarker);
@@ -331,11 +336,50 @@ $scope.ShowOnlySelected = function(currentmarker) {
                 console.log('Map control changed');
                 console.log($scope.control); //undefined......
              });
-            
+//DISTANCE #########################################################
+            var latme = $rootScope.youarehere.coords.latitude; 
+            var lonme = $rootScope.youarehere.coords.longitude; 
+            var latyou = parseFloat(currentmarker.coords.latitude); 
+            var lonyou = parseFloat(currentmarker.coords.longitude);
+             //testing
+             //console.log(latme);
+             //console.log(lonme);
+             //console.log(latyou);
+             //console.log(lonyou);
+var origin1 = new google.maps.LatLng(latme, lonme);
+var destinationA = new google.maps.LatLng(latyou, lonyou);
+var service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix({
+        origins: [origin1],
+        destinations: [destinationA],
+        travelMode: google.maps.TravelMode.WALKING,
+        unitSystem: google.maps.UnitSystem.METRIC,
+        avoidHighways: false,
+        avoidTolls: false
+    }, function (response, status) {
+        if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
+            var distance = response.rows[0].elements[0].distance.text;
+            //var duration = response.rows[0].elements[0].duration.text;
+            //var dvDistance = document.getElementById("dvDistance");
+            //dvDistance.innerHTML = "";
+            //dvDistance.innerHTML += "Distance: " + distance + "<br />";
+            //dvDistance.innerHTML += "Duration:" + duration;
+            document.getElementById('wynik').innerHTML ="";
+            document.getElementById('wynik').innerHTML +="Distance: " + distance;
+        } else 
+        {
+            alert("Unable to find the distance via road.");
+        }
+    });
+
+
 
         }//end of show only selected function
-        
 //}
+
+});//end of map is ready
+}]);
+
 });//end of map is ready*/
 
 $scope.storeFocusedResult = function(currentmarker) {
@@ -354,3 +398,4 @@ $scope.storeFocusedResult = function(currentmarker) {
         };
 
     }]);
+
