@@ -11,8 +11,10 @@ angular.module('blipApp')
     .controller('RegisterBusinessCtrl', ['$http', 
         '$scope', 
         'NationalityService', 
-        'uiGmapGoogleMapApi', 
-        function($http, $scope, NationalityService, uiGmapGoogleMapApi) {
+        'uiGmapGoogleMapApi',
+        '$location',
+        'ResultPageState', 
+        function($http, $scope, NationalityService, uiGmapGoogleMapApi, $location, ResultPageState) {
 
         //Store categories and nationalities for dropdowns
         $scope.categories;
@@ -123,28 +125,38 @@ angular.module('blipApp')
 
         $scope.addLocation = function(locationName, locationDescription, locationNationality, locationCategory, locationAddress) {
 
-            var locationData = {
-                name: locationName,
-                latitude: parseFloat($scope.addLocationMapMarker.coords.latitude.toFixed(6)),
-                longitude: parseFloat($scope.addLocationMapMarker.coords.longitude.toFixed(6)),
-                city: locationAddress,
-                nationality: parseInt(locationNationality.NationalityID),
-                category: parseInt(locationCategory.CategoryID),
-                description: locationDescription,
-                userid: 311
-
+            $scope.locationData = {
+                LocationName: locationName,
+                MapLat: parseFloat($scope.addLocationMapMarker.coords.latitude.toFixed(6)),
+                MapLng: parseFloat($scope.addLocationMapMarker.coords.longitude.toFixed(6)),
+                City: locationAddress,
+                Nationality: parseInt(locationNationality.NationalityID),
+                CategoryID: parseInt(locationCategory.CategoryID),
+                CategoryName: locationCategory.CategoryName,
+                LocationDescription: locationDescription,
+                UserID: 311,
+                LocationPic: "images/busineses_dir/default/def.png"
             };
 
-            console.log(locationData);
+            console.log($scope.locationData);
 
-            var insertBus = $http.post('http://localhost/blip/app/phpCore/register_business.php', locationData)
+            var insertBus = $http.post('http://localhost/blip/app/phpCore/register_business.php', $scope.locationData)
                 .success(function(data, status, headers, config) {
                     $scope.business = data;
-                    console.log(locationData + ' - ' + "Success");
+                    console.log($scope.locationData + ' - ' + "Success");
                 })
                 .error(function(data, status, headers, config) {
                     console.log(status + ' - ' + 'Error');
                 });
+
+            $('#myModal').modal('show');
+        };
+
+        $scope.viewNewLocation = function() {
+            console.log($scope.locationData);
+            ResultPageState.SetPageState($scope.locationData);
+            $location.path('LocationView');
+            $('#myModal').modal('hide');
         };
 
     }]);

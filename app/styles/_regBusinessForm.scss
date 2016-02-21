@@ -368,3 +368,34 @@ input[type=time]::-webkit-inner-spin-button {
 .page-heading-bar{
 	font-family: $fontFamilyHeading;
 }
+
+
+//MODAL
+body.modal-open .container{
+    -webkit-filter: blur(1px);
+    -moz-filter: blur(1px);
+    -o-filter: blur(1px);
+    -ms-filter: blur(1px);
+    filter: blur(1px);
+}
+
+.modal{
+	top: 30% !important;
+	padding: 0px !important;
+}
+
+.modal-content {
+	border-radius: 0px !important;
+	border: none !important;
+	border-top:5px solid $main-brand-colour !important;
+}
+
+.modal-body {
+	padding: 5px !important;
+	font-size: 20px;
+	text-align: center;
+
+	p {
+		margin: 10px;
+	}
+}
