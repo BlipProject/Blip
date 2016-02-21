@@ -35,7 +35,7 @@ $fa-font-path: "../bower_components/componants-font-awesome/fonts/";
 //TODO: Needs to be moved to "global.scss"
 html {
 	//Show scrollbar (chrome) to stop site moving when content is less than height of screen (Annoying)
-    overflow-y: scroll;
+    //overflow-y: scroll;
     height: 100%;
 }
 
@@ -48,6 +48,14 @@ body{
 		font-size:$fontHeading;
 	}
 	min-height: 100%;
+}
+
+body.modal-open { overflow:inherit; padding-right:inherit !important; }
+
+//Sets google map to width and height of containg element
+.angular-google-map, .angular-google-map-container{
+	width:100%;
+	height:100%;
 }
 
 //Heading Bar
