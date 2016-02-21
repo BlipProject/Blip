@@ -2,6 +2,12 @@
 //Business Registration Form//
 //////////////////////////////
 
+.add-location-content-wrapper {
+	margin-top: 30px;
+    position: relative;
+    min-height: 500px;
+}
+
 .add-location-form{
 	@include box-shadow(0px 0px 2px 0px $box-shadow-colour);
 	width:100%;
@@ -59,23 +65,6 @@
     margin-bottom: 5px;
 }
 
-.category-icon-container{
-    height: 70px;
-    width: 60px;
-    margin: auto;
-    padding-top: 3px;
-}
-
-.category-icon-row{
-    width: 100%;
-    height: 35px;
-}
-
-.category-icon-inside{
-    width: 50%;
-    float: left;
-}
-
 .add-location-form-details-field-description{
 	width: 100%;
 	text-align: center;
@@ -98,16 +87,20 @@
 	padding: 10px;
 }
 
-.user-reg-content-wrapper{
-	margin-top:80px; 
-	
-	min-height:500px;
+.add-location-form-label-mobile{
+	display: none;
+
+	@media(max-width:$screen-sm){
+		display: initial;
+	}
 }
 
-.bus-reg-container{
-	width:100%;
-	float:left;
-	margin-bottom:10px;
+.add-location-form-label-desktop{
+	display: initial;
+	
+	@media(max-width:$screen-sm){
+		display: none;
+	}
 }
 
 .bus-reg-buttons-container{
@@ -134,21 +127,6 @@
 	}
 }
 
-.user-reg-button{
-	height:34px;
-	width:24.4%;
-	float:left;
-	margin:10px 10px 10px 90px;
-	outline: 0; 
-	border:none;
-	color:#fff;
-
-	@media(max-width:$screen-sm){
-		margin:px;
-		width:50%;
-	}
-}
-
 .bus-reg-button-yes{
 	background-color:$reg-button-yes-colour;
 
@@ -162,170 +140,6 @@
 
 	&:hover{
 		background-color:$reg-button-no-colour-hover;
-	}
-}
-
-.form-left, .form-right{
-	float:left;
-	padding:10px;
-	width:50%;
-	height:100%;
-
-	@media(max-width:$screen-sm){
-		padding:5px;
-		width:100%;
-	}
-}
-
-.form-field{
-	margin-bottom:20px;
-
-	label{
-		width:100%;
-	}
-	input[type=text]{
-		width:100%;
-		height:34px;
-	}
-	input[type=email]{
-		width:100%;
-		height:34px;
-		color:black;
-	}
-	input[type=password]{
-		width:100%;
-		height:34px;
-		color:black;
-	}
-	select{
-		width:100%;
-		height:34px;
-	}
-	textarea{
-		width:100%;
-		height:78px;
-		resize:none;
-		margin:0px;
-	}
-}
-
-.form-address-padding{
-	margin-bottom:10px;
-}
-
-.opening-hours{
-	width:100%;
-}
-
-.opening-hours-day-tabs-mobile{
-	@media(min-width:$screen-md){
-		width:100%;
-		height:34px;
-		margin-bottom:15px;
-
-		div{
-			float:left;
-			text-align:center;
-			height:34px;
-			line-height:30px;
-		}
-		div:hover{
-			@media(min-width:$screen-md){
-				background-color:$restaurant-colour;
-				color:#fff;
-				cursor:pointer;
-			}
-		}
-	}
-
-	@media(max-width:$screen-sm){
-		width:100%;
-		height:68px;
-		margin-bottom:15px;
-
-		div{
-			float:left;
-			text-align:center;
-			height:34px;
-			line-height:30px;
-		}
-	}
-}
-
-.opening-hours-day-top{
-	@media(min-width:$screen-md){
-		width:14%;
-		border-width:1px 0px;
-		border-style:solid;
-		border-color:$restaurant-colour;
-	}
-
-	@media(max-width:$screen-sm){
-		width:33.3%;
-		border-width:1px 0px;
-		border-style:solid;
-		border-color:$restaurant-colour;
-	}
-}
-
-.opening-hours-day-bottom{
-	@media(min-width:$screen-md){
-		width:14%;
-		border-width:1px 0px;
-		border-style:solid;
-		border-color:$restaurant-colour;
-	}
-
-	@media(max-width:$screen-sm){
-		width:25%;
-		border-width:0px 0px 1px 0px;;
-		border-style:solid;
-		border-color:$restaurant-colour;
-	}
-}
-
-.opening-hours-day-selected{
-	background-color:$restaurant-colour;
-	color:#fff;
-}
-
-.opening-hours-time-capsule{
-	width:100%;
-}
-
-.opening-hours-time-input{
-	width:50%;
-	float:left;
-	padding-right:8px;
-
-	label{
-		float:left;
-		width:50%;
-		height:34px;
-		line-height:32px;
-	}
-	input[type="time"]{
-		float:left;
-		width:50%;
-		height:34px;
-	}
-
-	@media(max-width:$screen-sm){
-		width:100%;
-	}
-}
-
-.opening-hours-added-time{
-	width:100%;
-	height:34px;
-
-	label{
-		float:left;
-		width:50%;
-	}
-	p{
-		float:left;
-		width:50%;
 	}
 }
 
@@ -353,10 +167,6 @@
 	border:1px solid #fff;
 	@include box-shadow(0px 0px 4px 0px #e74c3c);
 	outline:none;
-}
-
-input[type=time]::-webkit-inner-spin-button {
-	height:34px;
 }
 
 

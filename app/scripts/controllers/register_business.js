@@ -9,54 +9,75 @@
  */
 angular.module('blipApp')
     .controller('RegisterBusinessCtrl', ['$http', 
-        '$scope', 
-        'NationalityService', 
-        'uiGmapGoogleMapApi',
-        '$location',
-        'ResultPageState', 
-        function($http, $scope, NationalityService, uiGmapGoogleMapApi, $location, ResultPageState) {
+    '$scope', 
+    'NationalityService', 
+    'uiGmapGoogleMapApi',
+    '$location',
+    'ResultPageState', 
+    function($http, $scope, NationalityService, uiGmapGoogleMapApi, $location, ResultPageState) {
 
-        //Store categories and nationalities for dropdowns
-        $scope.categories;
-        $scope.nationalities;
+        uiGmapGoogleMapApi.then(function(maps) {
 
-        $scope.addLocationMapMarker = {
-            id: 5,
-            coords: {
+            //Fix ._contains/._object is not a function
+            //Caused by using old version of lodash, installed by bower
+            if( typeof _.contains === 'undefined' ) {
+                _.contains = _.includes;
             }
-        };
+            if( typeof _.object === 'undefined' ) {
+                _.object = _.zipObject;
+            }
 
-        $scope.map = {
-            center: {
-                latitude: 54.2785534,
-                longitude: -8.4600902
-            },
-            zoom: 16,
-            events: {
-                click: function(mapModel, eventName, originalEventArgs) {
-                    var e = originalEventArgs[0];
-                    $scope.addLocationMapMarker.coords.latitude = e.latLng.lat();
-                    $scope.addLocationMapMarker.coords.longitude = e.latLng.lng();
-                    $scope.$apply();
+            //Store categories and nationalities for dropdowns
+            $scope.categories;
+            $scope.nationalities;
 
-                    var latlng = {lat: parseFloat(e.latLng.lat()), lng: parseFloat(e.latLng.lng())};
-                    console.log(latlng);
-                    var geocoder = new google.maps.Geocoder;
-                    geocoder.geocode({'location': latlng}, function(results, status) {
-                        console.log(results);
-                        console.log(results[0].formatted_address);
-                        $scope.locationAddress = results[0].formatted_address;
-                        $scope.$apply();
-                    });
+            //Data for the map marker
+            $scope.addLocationMapMarker = {
+                id: 5,
+                coords: {
                 }
-            }
-        };
+            };
+
+            //Controls if the map can be dragged on a small screen
+            $scope.isDraggable = $(document).width() > 480 ? true : false; 
+
+
+            $scope.map = {
+                center: {
+                    latitude: 54.2785534,
+                    longitude: -8.4600902
+                },
+                zoom: 16,
+                events: {
+                    click: function(mapModel, eventName, originalEventArgs) {
+                        var e = originalEventArgs[0];
+                        $scope.addLocationMapMarker.coords.latitude = e.latLng.lat();
+                        $scope.addLocationMapMarker.coords.longitude = e.latLng.lng();
+                        $scope.$apply();
+
+                        var latlng = {lat: parseFloat(e.latLng.lat()), lng: parseFloat(e.latLng.lng())};
+                        console.log(latlng);
+                        var geocoder = new google.maps.Geocoder;
+                        geocoder.geocode({'location': latlng}, function(results, status) {
+                            console.log(results);
+                            console.log(results[0].formatted_address);
+                            $scope.locationAddress = results[0].formatted_address;
+                            $scope.$apply();
+                        });
+                    }
+                },
+                options: {
+                    draggable: $scope.isDraggable
+                }
+            };
+        });
 
         ///////////
         //IMPORTANT Change post URL to reletive link before build... '../phpCore/get_categories.php'
         ///////////
         //TESTING URL http://localhost/blip/app/phpCore/get_categories.php
         $scope.loadCategories = function() {
+
             var getCategories = $http.post('http://localhost/blip/app/phpCore/get_categories.php')
                 .success(function(data, status, headers, config) {
                     $scope.categories = data;
@@ -68,20 +89,12 @@ angular.module('blipApp')
         };
 
         $scope.loadNationalities = function() {
+
             NationalityService.getNationalities().then(function(data){
                 $scope.nationalities = data;
                 console.log($scope.nationalities);
             });
         };
-
-        uiGmapGoogleMapApi.then(function(maps) {
-            if( typeof _.contains === 'undefined' ) {
-                _.contains = _.includes;
-            }
-            if( typeof _.object === 'undefined' ) {
-                _.object = _.zipObject;
-            }
-        });
 
         $scope.getCoordinates = function(locationAddress) {
 
@@ -91,36 +104,33 @@ angular.module('blipApp')
 
             $scope.address = locationAddress;
 
-            $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' +
-                    $scope.address + '&key=AIzaSyCn9zl42b2gnUt92A7v_OcAJB4OUem-zbM')
-                .then(function(_results) {
-                        console.log(_results.data);
+            $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' 
+            + $scope.address + '&key=AIzaSyCn9zl42b2gnUt92A7v_OcAJB4OUem-zbM').then(function(_results) {
 
-                        $scope.queryResults = _results.data.results;
-                        $scope.geodata = $scope.queryResults[0].geometry;
+                $scope.queryResults = _results.data.results;
+                $scope.geodata = $scope.queryResults[0].geometry;
 
-                        var locationLatLng = $scope.queryResults[0].geometry.location;
-                        console.log(locationLatLng);
+                var locationLatLng = $scope.queryResults[0].geometry.location;
 
-                        $scope.map = {
-                            center: {
-                                latitude: locationLatLng.lat,
-                                longitude: locationLatLng.lng
-                            },
-                            zoom: 16
-                        };
-                        $scope.addLocationMapMarker = {
-                            id: 5,
-                            coords: {
-                                latitude: locationLatLng.lat.toFixed(5),
-                                longitude: locationLatLng.lng
-                            }
-                        };
+                $scope.map = {
+                    center: {
+                        latitude: locationLatLng.lat,
+                        longitude: locationLatLng.lng
                     },
-                    function error(_error) {
-                        $scope.queryError = _error;
-                        console.log($scope.queryError);
-                    })
+                    zoom: 16
+                };
+                $scope.addLocationMapMarker = {
+                    id: 5,
+                    coords: {
+                        latitude: locationLatLng.lat.toFixed(5),
+                        longitude: locationLatLng.lng
+                    }
+                };
+            },
+            function error(_error) {
+                $scope.queryError = _error;
+                console.log($scope.queryError);
+            })
         }
 
         $scope.addLocation = function(locationName, locationDescription, locationNationality, locationCategory, locationAddress) {
@@ -143,7 +153,6 @@ angular.module('blipApp')
             var insertBus = $http.post('http://localhost/blip/app/phpCore/register_business.php', $scope.locationData)
                 .success(function(data, status, headers, config) {
                     $scope.business = data;
-                    console.log($scope.locationData + ' - ' + "Success");
                 })
                 .error(function(data, status, headers, config) {
                     console.log(status + ' - ' + 'Error');
@@ -153,10 +162,9 @@ angular.module('blipApp')
         };
 
         $scope.viewNewLocation = function() {
-            console.log($scope.locationData);
             ResultPageState.SetPageState($scope.locationData);
             $location.path('LocationView');
             $('#myModal').modal('hide');
         };
-
+        
     }]);
