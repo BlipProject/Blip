@@ -82,7 +82,7 @@ angular.module('blipApp')
 	                        pos.coords.longitude
 	                    ));
 
-	                
+
 	                //Initaly set Rotation, Distance, and Pillyline
 	                setUserRotation(pos);
 	                getDistance(pos.coords.latitude,pos.coords.longitude);
@@ -134,25 +134,26 @@ angular.module('blipApp')
 	                        {'enableHighAccuracy':true,'timeout':10000,'maximumAge':20000};
 	                    });
 	            }
-	            
+
 	            function setMarkerPosition(marker, position) {
 	                map.panTo(new google.maps.LatLng(
 	                        position.coords.latitude,
 	                        position.coords.longitude
 	                    ));
 
+	                //TODO: Remove this if (Check nothing breaks)
 	                if(position.coords.heading != null)
 	                	heading = position.coords.heading;
 
 	                heading =  google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(position.coords.latitude,position.coords.longitude), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
-	                
+
 
 					//Update Rotation, distance
 					setUserRotation(position);
 					setRotation();
 	                getDistance(position.coords.latitude,position.coords.longitude);
 	            }
-				
+
 	            function initLocationProcedure() {
 	                initializeMap('mobile');
 
