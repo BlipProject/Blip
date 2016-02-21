@@ -36,11 +36,24 @@ angular.module('blipApp')
                     var e = originalEventArgs[0];
                     $scope.addLocationMapMarker.coords.latitude = e.latLng.lat();
                     $scope.addLocationMapMarker.coords.longitude = e.latLng.lng();
-
                     $scope.$apply();
+
+                    var latlng = {lat: parseFloat(e.latLng.lat()), lng: parseFloat(e.latLng.lng())};
+                    console.log(latlng);
+                    var geocoder = new google.maps.Geocoder;
+                    geocoder.geocode({'location': latlng}, function(results, status) {
+                        console.log(results);
+                        console.log(results[0].formatted_address);
+                        $scope.locationAddress = results[0].formatted_address;
+                        $scope.$apply();
+                    });
                 }
             }
         };
+
+        $scope.populateTbxAddress = function(){
+
+        }
 
         $scope.openingHours = {
             mon: "Closed",
@@ -122,13 +135,13 @@ angular.module('blipApp')
             });
         };
 
-        $scope.getCoordinates = function(busAddress, busAddress2, busCity, busCountry) {
+        $scope.getCoordinates = function(busAddress) {
 
             $scope.geodata = {};
             $scope.queryResults = {};
             $scope.queryError = {};
             //$scope.address = document.getElementById('busaddress').value;
-            $scope.address = busAddress + " " + busAddress2 + " " + busCity + " " + busCountry;
+            $scope.address = busAddress;
             console.log($scope.address);
 
             $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' +
@@ -149,7 +162,7 @@ angular.module('blipApp')
                             },
                             zoom: 16
                         };
-                        $scope.busmarker = {
+                        $scope.addLocationMapMarker = {
                             id: 5,
                             coords: {
                                 latitude: buslatlng.lat.toFixed(5),

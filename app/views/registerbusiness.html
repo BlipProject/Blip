@@ -71,7 +71,7 @@
                             </div>
                             <div>
                                 <label for="tbxAddress" class="add-location-form-label">Address</label>
-                                <input id="tbxAddress" name="address" class="add-location-form-input" ng-class="{'reg-form-error-outline' : submitted && add_location_form.address.$invalid || add_location_form.address.$dirty && add_location_form.address.$invalid}" type="text" ng-model="locationAddress" required>
+                                <input id="tbxAddress" name="address" class="add-location-form-input" ng-class="{'reg-form-error-outline' : submitted && add_location_form.address.$invalid || add_location_form.address.$dirty && add_location_form.address.$invalid}" type="text" ng-model="locationAddress" ng-change="getCoordinates(locationAddress)" required>
                             </div>
                         </div>
                     <div>
