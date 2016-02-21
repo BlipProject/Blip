@@ -25,6 +25,7 @@ $fa-font-path: "../bower_components/componants-font-awesome/fonts/";
 @import "_landing.scss";
 @import "_settingsPanelModules.scss";
 @import "_mainNav.scss";
+@import "_mapView.scss";
 
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
@@ -52,10 +53,10 @@ body{
 
 body.modal-open { overflow:inherit; padding-right:inherit !important; }
 
-//Sets google map to width and height of containg element
+//Sets google map to width and height of containing element
 .angular-google-map, .angular-google-map-container{
-	width:100%;
-	height:100%;
+	width:100% !important;
+	height:100% !important;
 }
 
 //Heading Bar
