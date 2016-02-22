@@ -10,7 +10,17 @@
 }
 
 .profile-menu-nav {
-	width:200px; 
+	width:200px;
 	overflow:hidden !important;
 	border:none !important;
+}
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
 }
