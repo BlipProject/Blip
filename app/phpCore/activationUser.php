@@ -29,6 +29,7 @@
 
  		//LOCALHOST
  		header( "refresh:3;url = http://localhost:9000/#/" );
+ 		//  BRIAN that link was changed to work on localhost  
  		//header( "refresh:3;url = http://bliptest.azurewebsites.net/#/" );
 	}
 	else

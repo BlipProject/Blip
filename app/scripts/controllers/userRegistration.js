@@ -14,8 +14,9 @@ angular.module('blipApp')
 
 
 
-
+//BRIAN I had to comment that as it was on my "to do list and it wasnt working correctly "
         //to do  if element is valid do progressrar##################
+        /*
         $scope.userName = "";
         $scope.userCountry = "";
         $scope.userEmail = "";
@@ -29,6 +30,7 @@ angular.module('blipApp')
             }
 
         });
+*/
         //###########################################################
         $scope.createRegistration = function(userName, userCountry, userEmail, userPassword) {
 
@@ -43,8 +45,9 @@ angular.module('blipApp')
             };
             //console.log(userDetails);
             //LOCALHOST
-            //var postReg = $http.post('http://localhost/blip/app/phpCore/userReg.php', userDetails)
-            var postReg = $http.post('http://bliptest.azurewebsites/blip/app/phpCore/userReg.php', userDetails)
+            var postReg = $http.post('http://localhost/blip/app/phpCore/userReg.php', userDetails)
+            //BRIAN that link was changed 
+            //var postReg = $http.post('http://bliptest.azurewebsites/blip/app/phpCore/userReg.php', userDetails)
                 .success(function(data, status, headers, config) {
                     alert("Success");
                     location.reload();
