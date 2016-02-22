@@ -22,7 +22,6 @@ angular.module('blipApp')
                 currentPositionMarker,
                 currentVenueMarker,
                 mapCenter = new google.maps.LatLng(54.278234, -8.461709),
-                map,
                 distance,
                 direction,
                 userMarker,
@@ -44,7 +43,7 @@ angular.module('blipApp')
 
 	            function initializeMap(type)
 	            {
-	            	if(type == 'mobile'){
+	            	if(type === 'mobile'){
 		                map = new google.maps.Map(document.getElementById('map'), {
 		                   zoom: 16,
 		                   center: mapCenter,
@@ -56,7 +55,7 @@ angular.module('blipApp')
 
 		                setVenueLocation();
 	            	}
-	            	else if(type == 'desktop'){
+	            	else if(type === 'desktop'){
 	            		map = new google.maps.Map(document.getElementById('map'), {
 		                   zoom: 10,
 		                   center: mapCenter,
@@ -101,7 +100,7 @@ angular.module('blipApp')
 	            function setUserRotation(pos){
 	            	var arrow = document.getElementById("userArrow");
 	                arrow.style.transform = "rotate(" + pos.coords.heading + "deg)";
-	            };
+	            }
 
 	            //Sets the rotation of the venue heading
 	            function setRotation(){
@@ -142,8 +141,9 @@ angular.module('blipApp')
 	                    ));
 
 	                //TODO: Remove this if (Check nothing breaks)
-	                if(position.coords.heading != null)
+	                if(position.coords.heading !== null){
 	                	heading = position.coords.heading;
+	                }
 
 	                heading =  google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(position.coords.latitude,position.coords.longitude), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
 
@@ -169,8 +169,9 @@ angular.module('blipApp')
 
 	            //Check if screen is less than 960px
 	            //Hides map if on mobile screen
-	            if($(window).width() < 960)
+	            if($(window).width() < 960){
             		$('.indiv-map-wrap').hide();
+	            }
 
             	//Temp variable to store current set class on map toggle button
 	         	var setBtnClass = "";
@@ -179,10 +180,12 @@ angular.module('blipApp')
 					$('.indiv-map-wrap').slideToggle( 400, function() {});
 
 					//Calls function to set toggle button and scroll
-					if(setBtnClass === "btn-danger")
+					if(setBtnClass === "btn-danger"){
 						mapToggle('btn-danger','btn-success',0,"Get Directions")
-					else
+					}
+					else{
 						mapToggle('btn-success','btn-danger',145,"Close Directions")
+					}
 				});
 
 				//Sets class on toggle button [btn-danger/btn-success]
@@ -203,7 +206,7 @@ angular.module('blipApp')
 							}, 1000);
 			        	}
 			        	return false;
-				};
+				}
 			}
-    	}
+    	};
   	}]);
