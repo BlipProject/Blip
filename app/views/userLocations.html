@@ -16,6 +16,22 @@
                 </div>
             </div>
         </div>
+        <!--Modal-->
+        <div id="myModal" class="modal" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Are you sure you want to delete <span ng-bind="nameToDelete"></span>?<p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="cancelDeleteLocation()">Cancel</button>
+                    <button type="button" class="btn btn-default" ng-click="deleteLocation()">Yes</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
     </div>
     <!--Include footer-->
     <div ng-include="'views/componants/footer.html'" scope="" onload=""></div>

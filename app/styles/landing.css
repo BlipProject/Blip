@@ -1,0 +1,91 @@
+body{
+	background-color: #393E46;
+	padding:0px;
+	margin: 0px;
+	position:relative;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box; 
+	box-sizing: border-box;
+	background-image: url("/images/landing/landingFrance.jpg");
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+}
+
+.centre-row{
+	position: absolute;
+	width: 100%;
+	top: 50vh;
+	background-color: rgba(34,40,49,0.8);
+	height: 400px;
+	z-index: 1;
+	transform: translate(0, -50%);
+}
+
+.title-block{
+	width: 100%;
+	height:100px;
+	position: absolute;
+	top:5vh;
+	transform: translate(0, -100%);
+}
+
+.landing-title{
+	text-align: center;
+	color: #fff;
+	font-family: 'Poiret One', cursive;
+	font-size: 150px;
+}
+
+.centre-row-in-wrap{
+	width:960px;
+	height:360px;
+	margin:auto;
+	padding:10px;
+}
+
+.centre-row-in-wrap h2{
+	font-family: 'Poiret One', cursive;
+	text-align: center;
+	color: #fff;
+}
+
+.centre-row-in-wrap label{
+	font-family: 'Poiret One', cursive;
+	color: #fff;
+}
+
+.login{
+	width:50%;
+	padding:10px;
+	border-right: 1px solid #fff;
+	height: 100%;
+	float: left;
+}
+
+.signup{
+	width:50%;
+	padding:10px;
+	height: 100%;
+	float: left;
+}
+
+.login input[type="text"], .signup input[type="text"]{
+	margin: 20px 0px;
+	width:100%;
+	height:40px;
+}
+
+.login button{
+	width:100%;
+	height:40px;
+	margin-top: 20px;
+}
+
+.divBar{
+	width: 100%;
+	margin-top:10px;
+	padding-bottom: 10px;
+	border-top: 1px solid #fff;
+}

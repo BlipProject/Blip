@@ -7,8 +7,6 @@
 	$userCountry = $user->country;
 	$userEmail = $user->email;
 	$userPassword = $user->password;
-
-
 	/*
 	$conn = mysqli_connect($servername, $username, $password, $db);
 	$get = mysqli_query($conn, 
@@ -23,9 +21,6 @@
 	if($msg == "ok")
 	{
 		*/
-
-
-
 	$cost =10;
 	$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
 	$salt = sprintf("$2a$%02d$", $cost) . $salt;
@@ -40,17 +35,14 @@
 	$db_pass;
 	$db_salt;
 	$mailer = "noreply.blip@gmail.com";
-
 	//$conn = mysqli_connect($servername, $username, $password, $db);
 	$get = mysqli_query($conn, 
 		     "Call CheckPassArtur('$mailer')") or die("Query fail: " . mysqli_error($conn));
-	  
 	while ($row = mysqli_fetch_row($get))
 	{ 
 		$db_pass = $row[0];
 		$db_salt = $row[1];
 	} 
-
 	require("mailer/PHPMailerAutoload.php"); 
 	ini_set("SMTP","ssl://smtp.gmail.com"); 
 	ini_set("smtp_port","465"); 
@@ -80,9 +72,8 @@
 
 	Blip Team
 	";
-	//WORK ON LOCALHOST
+	//WORK ON LOCALHOST IF U CTRL+V .this into email body
 	//http://localhost/blip/app/phpCore/activationUser.php?lkjhgv=$userEmail&asxcv=$activationCode 
-
 	$mail->WordWrap = 200;
 	$mail->Send();
 	/*
@@ -93,8 +84,5 @@
 	}
 
 	*/
-
-
 	$conn->close();
-	
 ?>
