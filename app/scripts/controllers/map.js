@@ -1,7 +1,28 @@
 'use strict';
 
 angular.module('blipApp')
-    .controller('MapCtrl', ['ResultPageState', '$location', '$http', '$scope', '$timeout', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'GeoLocationService', 'SearchServices', '$rootScope', function(ResultPageState, $location, $http, $scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, GeoLocationService, SearchServices, $rootScope) {
+    .controller('MapCtrl', ['ResultPageState', 
+    '$location',
+    '$http',
+    '$scope',
+    '$timeout',
+    'uiGmapGoogleMapApi',
+    'uiGmapIsReady',
+    'GeoLocationService',
+    'SearchServices',
+    '$rootScope',
+    function(ResultPageState, $location, $http, $scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, GeoLocationService, SearchServices, $rootScope) {
+
+        uiGmapGoogleMapApi.then(function(maps) {
+            //Fix ._contains/._object is not a function
+            //Caused by using old version of lodash, installed by bower
+            if( typeof _.contains === 'undefined' ) {
+                _.contains = _.includes;
+            }
+            if( typeof _.object === 'undefined' ) {
+                _.object = _.zipObject;
+            }
+        });
 
         //Close mobile-navigation menu on page load
         $rootScope.toggleNavClass = $rootScope.animateOut;
