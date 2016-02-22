@@ -11,7 +11,7 @@ ng-class sets up classes for indiviual results based off result type
                 <!--breaks if a class directive (even an empty one) is not present-->
                 <div class="" ng-class="setResultClass(venue.CategoryName)">
                     <button ng-click="storeFocusedResult($index)">Edit</button>
-                    <button ng-click="deleteLocation($index)">Delete</button>
+                    <button ng-click="confirmDeleteLocation($index)">Delete</button>
                 </div>
             </div>
         </div>

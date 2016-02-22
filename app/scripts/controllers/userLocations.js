@@ -91,14 +91,26 @@ angular.module('blipApp')
             }
         };
 
-        $scope.deleteLocation = function(index) {
-            console.log("clicked");
-            console.log($scope.filterUserLocations[index]);
-            $http.post('http://localhost/blip/app/phpCore/delete_location.php', $scope.filterUserLocations[index])
+        $scope.confirmDeleteLocation = function(index) {
+            $scope.nameToDelete = $scope.filterUserLocations[index].LocationName;
+            $scope.indexToDelete = index;
+            $("#myModal").modal('show');
+        };
+
+        $scope.cancelDeleteLocation = function () {
+            $("#myModal").modal('hide');
+        }
+
+        $scope.deleteLocation = function() {
+            console.log($scope.indexToDelete);
+            console.log($scope.filterUserLocations[$scope.indexToDelete]);
+            $http.post('http://localhost/blip/app/phpCore/delete_location.php', $scope.filterUserLocations[$scope.indexToDelete])
                 .then(function(response)
                 {
                     console.log("Success");
                 });
+            $("#myModal").modal('hide');
+            $scope.filterUserLocations.splice($scope.indexToDelete, 1);
         };
 
 	}]);
