@@ -8,11 +8,11 @@
 //Wrapper for all search results
 //--
 .content-wrapper{
-	margin-top:30px;
+	margin-top:40px;
 	@media(max-width:$screen-sm){
     	margin-top:80px;
     }
-	
+
 
 	position:relative;
 	min-height:500px;
@@ -28,7 +28,6 @@
 	overflow:auto;
 	background-color:#fff;
 	@include transition(all .4s ease);
-	@include box-shadow (0px 0px 10px 1px $box-shadow-colour);
 	margin-bottom:25px;
 	border-radius:1px;
 	float:left;
@@ -42,7 +41,7 @@
 
 	&:hover{
 		@include transition(all .7s ease);
-		@include box-shadow (0px 0px 6px 1px $box-shadow-colour);
+
 
 		//transition into scale effect on image
 		img{
@@ -53,12 +52,12 @@
 				transform: none;
 		}
 	}
-	
+
 	.result-wrapper-hover{
 		visibility:visible;
 		opacity:1;
 		transition-delay:0s;
-		
+
 		/*
 		//Hides hover effects on mobile screens
 		@media(max-width:$screen-sm){
@@ -66,7 +65,7 @@
 		}
 		*/
 	}
-	
+
 	//transition into blur and greyscale effect
 	.result-content, .result-content-image{
 		//fix for small white fliker on transition
@@ -74,7 +73,7 @@
 
 		@include transition(0.4s filter linear);
 		@include filter(blur(3px) grayscale(100%));
-		
+
 		/*
 		//Hides hover effects on mobile screens
 		@media(max-width:$screen-sm){
@@ -82,12 +81,12 @@
 		}
 		*/
 	}
-	
+
 	//TODO: Not sure whether to greyscale header colour. Come back too
 	.result-header{
 		@include transition(0.4s filter linear);
 		@include filter(blur(3px));
-		
+
 		/*
 		//Hides hover effects on mobile screens
 		@media(max-width:$screen-sm){
@@ -113,7 +112,7 @@
 	width:100%;
 	z-index: 2;
 	//'a' value controls opacity of hover box
-	background-color: rgba(255,255,255,0.7);
+	background-color:rgba(22, 160, 133,.9);
 	position: absolute;
 	left:0px;
 	top:0px;
@@ -132,7 +131,7 @@
 		height:50%;
 		font-size: $fontHeading;
 		font-family: $fontFamilyHeading;
-		color: $font-colour;
+		color: #fff;
 		margin-bottom: 40px;
 	}
 
@@ -166,18 +165,18 @@
 	font-family: FontAwesome;
 	position: absolute;
 	left:45%;
-	top:-55px;
-	font-size: 25px;
+	top:-60px;
+	font-size: 30px;
 }
 //--
 .result-hover-button-bar{
 	@extend .result-hover-bar-properties;
-	border-color: $bar-colour;
-	
+	border-color: #fff;
+
 	::before{
 		@extend .result-hover-icon-properties;
    		content: "\f000";
-   		color: $bar-colour;
+   		color: #fff;
 	}
 }
 
@@ -217,7 +216,7 @@
 //Result Headers
 //--
 .location-icon{
-	margin:5px 5px 0px 0px; 
+	margin:5px 5px 0px 0px;
 	color:#9E9E9E;
 }
 
@@ -310,9 +309,9 @@
 	width:40%;
 	height:150px;
 	overflow: hidden;
-	
+
 	@include box-shadow(-1px 0px 0px 0px $box-shadow-colour);
-	
+
 	@media(max-width:$screen-sm){
 		width:100%;
 		@include box-shadow(0px 0px 0px 0px #fff);
@@ -320,17 +319,20 @@
 }
 
 
-//Search Result page 
+//Search Result page
 //Left & right columns
 //--
 .content-left{
 	width:70%;
+	padding:5px;
+	background-color:#fff;
 	float:left;
 	position: relative;
 	@media(max-width:$screen-sm)
 	{
 		width:100%
 	}
+	@include box-shadow (0px 0px 10px 1px $box-shadow-colour);
 }
 
 //Hide settings pannel when on mobile view
