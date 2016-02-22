@@ -315,7 +315,7 @@ $scope.storeFocusedResult = function(currentmarker) {
 
             };
             ResultPageState.SetPageState(data);
-            console.log(data.ID);
+            console.log(data.LocationID);
             $location.path('LocationView');
         };
 
