@@ -8,12 +8,12 @@
  * Controller of the blipApp
  */
 angular.module('blipApp')
-    .controller('RegisterBusinessCtrl', ['$http', 
-    '$scope', 
-    'NationalityService', 
+    .controller('RegisterBusinessCtrl', ['$http',
+    '$scope',
+    'NationalityService',
     'uiGmapGoogleMapApi',
     '$location',
-    'ResultPageState', 
+    'ResultPageState',
     function($http, $scope, NationalityService, uiGmapGoogleMapApi, $location, ResultPageState) {
 
         uiGmapGoogleMapApi.then(function(maps) {
@@ -39,7 +39,7 @@ angular.module('blipApp')
             };
 
             //Controls if the map can be dragged on a small screen
-            $scope.isDraggable = $(document).width() > 480 ? true : false; 
+            $scope.isDraggable = $(document).width() > 480 ? true : false;
 
 
             $scope.map = {
@@ -78,7 +78,7 @@ angular.module('blipApp')
         //TESTING URL http://localhost/blip/app/phpCore/get_categories.php
         $scope.loadCategories = function() {
 
-            var getCategories = $http.post('http://localhost/blip/app/phpCore/get_categories.php')
+            var getCategories = $http.post('../phpCore/get_categories.php')
                 .success(function(data, status, headers, config) {
                     $scope.categories = data;
                     console.log(status + ' - ' + "Success");
@@ -104,7 +104,7 @@ angular.module('blipApp')
 
             $scope.address = locationAddress;
 
-            $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' 
+            $http.get('https://maps.googleapis.com/maps/api/geocode/json?address='
             + $scope.address + '&key=AIzaSyCn9zl42b2gnUt92A7v_OcAJB4OUem-zbM').then(function(_results) {
 
                 $scope.queryResults = _results.data.results;
@@ -150,7 +150,7 @@ angular.module('blipApp')
 
             console.log($scope.locationData);
 
-            var insertBus = $http.post('http://localhost/blip/app/phpCore/register_business.php', $scope.locationData)
+            var insertBus = $http.post('../phpCore/register_business.php', $scope.locationData)
                 .success(function(data, status, headers, config) {
                     $scope.business = data;
                 })
@@ -166,5 +166,5 @@ angular.module('blipApp')
             $location.path('LocationView');
             $('#myModal').modal('hide');
         };
-        
+
     }]);
