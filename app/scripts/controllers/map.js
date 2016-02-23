@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('blipApp')
-    .controller('MapCtrl', ['ResultPageState', 
+    .controller('MapCtrl', ['ResultPageState',
     '$location',
     '$http',
     '$scope',
@@ -184,7 +184,7 @@ angular.module('blipApp')
         //TESTING URL http://localhost/blip/app/phpCore/search.php
         var getLocationResults = function(data) {
             var searchResults;
-            var callSearch = $http.post('http://localhost/blip/app/phpCore/search.php', data)
+            var callSearch = $http.post('../phpCore/search.php', data)
 
             .success(function(data, status, headers, config) {
                     searchResult = data;
@@ -205,10 +205,10 @@ angular.module('blipApp')
                     console.log(status + ' - ' + 'Error');
                 });
 
-                
+
 };
 
-        
+
 
         $scope.setFilterSetClass = function(filter, index) {
             $scope.getFilter(filter);
@@ -299,7 +299,7 @@ angular.module('blipApp')
 
         };
 
-         
+
 $scope.storeFocusedResult = function(currentmarker) {
             //have to reformat the currentmarker object to how the individual business page will interpret it
             var data = {
