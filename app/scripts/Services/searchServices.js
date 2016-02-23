@@ -18,12 +18,12 @@ angular.module('blipApp')
 			///////////
 			//TESTING URL http://localhost/blip/app/phpCore/search.php
 			getLocationResults: function(data){
-				return $http.post('../phpCore/search.php', data)
+				return $http.post('http://localhost/blip/app/phpCore/search.php', data)
 			        .then(function(response)
 			        {
 			        	console.log("Success");
 			        	console.log(response.data);
-			        	return response.data;  
+			        	return response.data;
 		            });
 			}
 		};

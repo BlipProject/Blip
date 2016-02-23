@@ -31,9 +31,29 @@ body{
 	top:50%;
 	left:50%;
 	transform:translate(-50%, -50%);
-	background-color: rgba(255, 255, 255,.7);
+	background-color: #ecf0f1;
 	box-shadow :0px 0px 10px 1px #7f8c8d;
 	padding:5px;
+}
+
+.hidden-logo{
+	width:100%;
+	float:left;
+	position:relative;
+}
+
+.landing-logo{
+	width:200px;
+	position:absolute;
+	left:50%;
+	top:-100px;
+	transform:translate(-50%, 0%);
+	z-index:1;
+}
+
+.form-fields-wrap{
+	height:50%;
+	margin-top:150px;
 }
 
 .landing-form-login{
@@ -41,15 +61,35 @@ body{
 	height:100%;
 	float: left;
 	border-right: 1px solid #1abc9c;
+	text-align:center;
+	padding:0px 40px;
 }
 
+//Sign Up form
+//--
 .landing-form-signup{
+	position:relative;
 	width:50%;
 	height:100%;
-	float: left
+	float: left;
+	text-align:center;
 }
 
-@media (max-width:480px){
+.btn-signIn{
+	width:60%;
+}
+
+.btn-signUp{
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+	background-color:#1abc9c;
+	color:#fff;
+	width:60%;
+}
+
+@media (max-width: $screen-sm){
 	.landing-form{
 		height:80vh;
 		width:95%;
@@ -57,14 +97,30 @@ body{
 
 	.landing-form-login, .landing-form-signup{
 		width:100%;
-		height:40vh;
+		height:60%;
 		border-right: 0px;
+		padding-top:100px;
 	}
 
-	.landing-form-login{border-bottom: 1px solid #1abc9c;}
+	.landing-form-signup{
+		height:40%;
+	}
+
+	.landing-form-login{
+		border-bottom: 1px solid #1abc9c;
+	}
+
+	.form-fields-wrap{
+		height:100%;
+		margin-top:0px;
+	}
 
 	.landing-brand-name{
 		top:0px;
 		font-size: 2em;
+	}
+
+	.btn-signUp{
+		top:70%
 	}
 }

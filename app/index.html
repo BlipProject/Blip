@@ -1,25 +1,63 @@
 <html>
+
 <head>
-	<meta charset="UTF-8">
-	<title>Blip</title>
-
-	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
-
-	<!-- build:css(.tmp) styles/main.css -->
+    <meta charset="UTF-8">
+    <title>Blip</title>
+    <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-
     <!-- endbuild -->
-
 </head>
+
 <body>
-<div class="content-wrapper-landing">
-	<h1 class="landing-brand-name">blip</h1>
-	<div class="landing-form">
-		<div class="landing-form-login">
-			<a href="/home.html">Skip</a>
-		</div>
-		<div class="landing-form-signup"></div>
-	</div>
-</div>
+    <div class="content-wrapper-landing">
+        <h1 class="landing-brand-name">blip</h1>
+        <div class="landing-form animated fadeIn">
+            <div class="hidden-logo">
+                <img class="landing-logo" src="images/landingLogoStroked.png" />
+            </div>
+            <div class="form-fields-wrap">
+                <div class="landing-form-login">
+                    <h2 class="h4">Already A Member? Sign In.</h2>
+                    <form>
+                        <fieldset class="form-group">
+                            <label for="userEmailInput">Email</label>
+                            <input type="text" class="form-control" id="userEmailInput" placeholder="example@example.com">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label for="userPasswordInput">Password</label>
+                            <input type="password" class="form-control" id="userPasswordInput" placeholder="xxxxxxxx">
+                        </fieldset>
+                        <button class="btn btn-default btn-lg btn-signIn">Sign In</button>
+                    </form>
+                    <a href="/home.html">Skip</a>
+                </div>
+                <div class="landing-form-signup">
+                    <h2 class="h4">First Time Here? Create an Account Below.</h2>
+                    <button data-toggle="modal" data-target="#myModal" class="btn-signUp btn  btn-lg">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
 </body>
+
 </html>
