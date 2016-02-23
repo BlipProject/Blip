@@ -1,59 +1,70 @@
-.landing-main{
-	width:100%;
-	position:absolute;
-	height:905px;
-	text-align: center;
-	h1{
-		font-family: $fontFamilyHeading;
-		color: #fff;
-		font-size: 200px;
-	}
+body{
+	overflow:hidden;
+	box-sizing: border-box;
 }
 
-.landing-reg{
-	color: #fff;
-	width:100%;
-	height:400px;
-	margin:0 auto;
+.content-wrapper-landing{
+	background-color: #1abc9c;
 	position:relative;
-	top:40px;
-	background-color: rgba(44, 62, 80,0.8);
-	@media(max-width:$screen-sm){
-		width: 100%;
-		background-color: #fff;
-	}
-}
-
-//TODO: Apply blur to reg background
-
-.background-image-properties{
-	background-size: 100%;
+	background-image: url("/images/landingBackNewYork.svg");
+	background-position:center bottom;
 	background-repeat: no-repeat;
+	background-size:100%;
+	height:100vh;
+	width: 100%;
 }
 
-
-.landing-france{
-	@extend .background-image-properties;
-	background-image: url("/images/landing/landingFrance.jpg");
+.landing-brand-name{
+	position:absolute;
+	top:10px;
+	left:50%;
+	transform:translate(-50%, 0%);
+	font-family: 'Poiret One', cursive;
+	font-size: 5em;
+	color: #fff;
 }
 
-.landing-ireland{
-	@extend .background-image-properties;
-	background-image: url("/images/landing/landingDublin.jpg");
+.landing-form{
+	height:50vh;
+	width:50%;
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+	background-color: rgba(255, 255, 255,.7);
+	box-shadow :0px 0px 10px 1px #7f8c8d;
+	padding:5px;
 }
 
-.landing-england{
-	@extend .background-image-properties;
-	background-image: url("/images/landing/landingLondon.jpg");
+.landing-form-login{
+	width:50%;
+	height:100%;
+	float: left;
+	border-right: 1px solid #1abc9c;
 }
 
-.login-container{
-	height: 300px;
-	width: 600px;
-	margin: auto;
-	padding-top: 70px;
-	@media(max-width:$screen-sm){
-		width: 90%;
-		padding-top: 0px;
+.landing-form-signup{
+	width:50%;
+	height:100%;
+	float: left
+}
+
+@media (max-width:480px){
+	.landing-form{
+		height:80vh;
+		width:95%;
+	}
+
+	.landing-form-login, .landing-form-signup{
+		width:100%;
+		height:40vh;
+		border-right: 0px;
+	}
+
+	.landing-form-login{border-bottom: 1px solid #1abc9c;}
+
+	.landing-brand-name{
+		top:0px;
+		font-size: 2em;
 	}
 }
