@@ -12,7 +12,7 @@ angular.module('blipApp')
 		};
 
 		$scope.getUserLocations = function() {
-			$http.post('../phpCore/get_user_locations.php', user)
+			$http.post('http://localhost/blip/app/phpCore/get_user_locations.php', user)
 				.then(function(response)
 				{
 					$scope.userLocations = response.data;
@@ -104,7 +104,7 @@ angular.module('blipApp')
         $scope.deleteLocation = function() {
             console.log($scope.indexToDelete);
             console.log($scope.filterUserLocations[$scope.indexToDelete]);
-            $http.post('../phpCore/delete_location.php', $scope.filterUserLocations[$scope.indexToDelete])
+            $http.post('http://localhost/blip/app/phpCore/delete_location.php', $scope.filterUserLocations[$scope.indexToDelete])
                 .then(function(response)
                 {
                     console.log("Success");
