@@ -184,7 +184,7 @@ angular.module('blipApp')
 						mapToggle('btn-danger','btn-success',0,"Get Directions")
 					}
 					else{
-						mapToggle('btn-success','btn-danger',145,"Close Directions")
+						mapToggle('btn-success','btn-danger',125,"Close Directions")
 					}
 				});
 

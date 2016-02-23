@@ -5,25 +5,21 @@
 
 	<link rel="stylesheet" type="text/css" href="styles/landing.css">
 	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+
+	<!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+
+    <!-- endbuild -->
+
 </head>
 <body>
-	<div class="title-block"><h1 class="landing-title">Blip</h1></div>
-	<div class="centre-row">
-		<div class="centre-row-in-wrap">
-			<div class="login">
-				<form action="http://localhost/blip/app/phpCore/login.php" method="post">
-					<h2>Sign In</h2>
-					<div class="divBar"></div>
-					<label>Email</label>
-					<input name="email" type="text" placeholder="Email">
-					<label>Password</label>
-					<input name="password" type="text" placeholder="Password">
-					<div class="divBar"></div>
-					<input type="submit" value="Sign In"/>
-				</form>
-				<button><a href="home.html">Test Skip</a></button>
-			</div>
-		</div>
+<div class="content-wrapper-landing">
+	<h1 class="landing-brand-name">blip</h1>
+	<div class="landing-form">
+		<div class="landing-form-login"></div>
+		<div class="landing-form-signup"></div>
+		<button ></button>
 	</div>
+</div>
 </body>
 </html>

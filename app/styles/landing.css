@@ -1,91 +1,70 @@
 body{
-	background-color: #393E46;
-	padding:0px;
-	margin: 0px;
-	position:relative;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box; 
+	overflow:hidden;
 	box-sizing: border-box;
-	background-image: url("/images/landing/landingFrance.jpg");
-	-webkit-background-size: cover;
-  	-moz-background-size: cover;
-  	-o-background-size: cover;
-  	background-size: cover;
 }
 
-.centre-row{
-	position: absolute;
+.content-wrapper-landing{
+	background-color: #1abc9c;
+	position:relative;
+	background-image: url("/images/landingBackNewYork.svg");
+	background-position:center bottom;
+	background-repeat: no-repeat;
+	background-size:100%;
+	height:100vh;
 	width: 100%;
-	top: 50vh;
-	background-color: rgba(34,40,49,0.8);
-	height: 400px;
-	z-index: 1;
-	transform: translate(0, -50%);
 }
 
-.title-block{
-	width: 100%;
-	height:100px;
-	position: absolute;
-	top:5vh;
-	transform: translate(0, -100%);
-}
-
-.landing-title{
-	text-align: center;
-	color: #fff;
+.landing-brand-name{
+	position:absolute;
+	top:10px;
+	left:50%;
+	transform:translate(-50%, 0%);
 	font-family: 'Poiret One', cursive;
-	font-size: 150px;
-}
-
-.centre-row-in-wrap{
-	width:960px;
-	height:360px;
-	margin:auto;
-	padding:10px;
-}
-
-.centre-row-in-wrap h2{
-	font-family: 'Poiret One', cursive;
-	text-align: center;
+	font-size: 5em;
 	color: #fff;
 }
 
-.centre-row-in-wrap label{
-	font-family: 'Poiret One', cursive;
-	color: #fff;
-}
-
-.login{
+.landing-form{
+	height:50vh;
 	width:50%;
-	padding:10px;
-	border-right: 1px solid #fff;
-	height: 100%;
-	float: left;
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+	background-color: rgba(255, 255, 255,.7);
+	box-shadow :0px 0px 10px 1px #7f8c8d;
+	padding:5px;
 }
 
-.signup{
+.landing-form-login{
 	width:50%;
-	padding:10px;
-	height: 100%;
+	height:100%;
 	float: left;
+	border-right: 1px solid #1abc9c;
 }
 
-.login input[type="text"], .signup input[type="text"]{
-	margin: 20px 0px;
-	width:100%;
-	height:40px;
+.landing-form-signup{
+	width:50%;
+	height:100%;
+	float: left
 }
 
-.login button{
-	width:100%;
-	height:40px;
-	margin-top: 20px;
-}
+@media (max-width:480px){
+	.landing-form{
+		height:80vh;
+		width:95%;
+	}
 
-.divBar{
-	width: 100%;
-	margin-top:10px;
-	padding-bottom: 10px;
-	border-top: 1px solid #fff;
+	.landing-form-login, .landing-form-signup{
+		width:100%;
+		height:40vh;
+		border-right: 0px;
+	}
+
+	.landing-form-login{border-bottom: 1px solid #1abc9c;}
+
+	.landing-brand-name{
+		top:0px;
+		font-size: 2em;
+	}
 }

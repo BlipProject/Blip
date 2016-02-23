@@ -8,9 +8,9 @@
 //Wrapper for all search results
 //--
 .content-wrapper{
-	margin-top:40px;
+	margin-top:90px;
 	@media(max-width:$screen-sm){
-    	margin-top:80px;
+    	margin-top:120px;
     }
 
 
@@ -28,11 +28,13 @@
 	overflow:auto;
 	background-color:#fff;
 	@include transition(all .4s ease);
-	margin-bottom:25px;
+	margin-bottom:10px;
 	border-radius:1px;
 	float:left;
 	position: relative;
-	border:1px solid $box-shadow-colour;
+	border-style:solid;
+	border-width:0px 0px 1px 0px;
+	border-color: $box-shadow-colour;
 
 	//transition out of scale effect on image
 	img{
@@ -57,44 +59,9 @@
 		visibility:visible;
 		opacity:1;
 		transition-delay:0s;
-
-		/*
-		//Hides hover effects on mobile screens
-		@media(max-width:$screen-sm){
-			display:hidden;
 		}
-		*/
+
 	}
-
-	//transition into blur and greyscale effect
-	.result-content, .result-content-image{
-		//fix for small white fliker on transition
-		-webkit-backface-visibility: hidden;
-
-		@include transition(0.4s filter linear);
-		@include filter(blur(3px) grayscale(100%));
-
-		/*
-		//Hides hover effects on mobile screens
-		@media(max-width:$screen-sm){
-			@include filter(blur(0px));
-		}
-		*/
-	}
-
-	//TODO: Not sure whether to greyscale header colour. Come back too
-	.result-header{
-		@include transition(0.4s filter linear);
-		@include filter(blur(3px));
-
-		/*
-		//Hides hover effects on mobile screens
-		@media(max-width:$screen-sm){
-			@include filter(blur(0px));
-		}
-		*/
-	}
-}
 }
 
 //Transition out of blur and greyscale effects
@@ -112,7 +79,7 @@
 	width:100%;
 	z-index: 2;
 	//'a' value controls opacity of hover box
-	background-color:rgba(22, 160, 133,.9);
+	background-color:rgba(22, 160, 133,1);
 	position: absolute;
 	left:0px;
 	top:0px;
@@ -172,44 +139,52 @@
 .result-hover-button-bar{
 	@extend .result-hover-bar-properties;
 	border-color: #fff;
+	//border-color: $bar-colour;
 
 	::before{
 		@extend .result-hover-icon-properties;
    		content: "\f000";
    		color: #fff;
+   		//border-color: $bar-colour;
 	}
 }
 
 .result-hover-button-restaurant{
 	@extend .result-hover-bar-properties;
-	border-color: $restaurant-colour;
+	//border-color: $restaurant-colour;
+	border-color: #fff;
 
 	::before{
 		@extend .result-hover-icon-properties;
    		content: "\f0f5";
-   		color: $restaurant-colour;
+   		color:#fff;
+   		//color: $restaurant-colour;
 	}
 }
 
 .result-hover-button-shop{
 	@extend .result-hover-bar-properties;
-	border-color: $shop-colour;
+	//border-color: $shop-colour;
+	border-color: #fff;
 
 	::before{
 		@extend .result-hover-icon-properties;
    		content: "\f07a";
-		color: $shop-colour;
+   		color:#fff;
+		//color: $shop-colour;
 	}
 }
 
 .result-hover-button-other{
 	@extend .result-hover-bar-properties;
-	border-color: $other-colour;
+	//border-color: $other-colour;
+	border-color: #fff;
 
 	::before{
 		@extend .result-hover-icon-properties;
    		content: "\f141";
-   		color: $other-colour;
+   		color:#fff;
+   		//color: $other-colour;
 	}
 }
 
@@ -309,12 +284,13 @@
 	width:40%;
 	height:150px;
 	overflow: hidden;
-
-	@include box-shadow(-1px 0px 0px 0px $box-shadow-colour);
+	background-color:#ecf0f1;
+	img{
+		margin: auto;
+	}
 
 	@media(max-width:$screen-sm){
 		width:100%;
-		@include box-shadow(0px 0px 0px 0px #fff);
 	}
 }
 
@@ -323,6 +299,7 @@
 //Left & right columns
 //--
 .content-left{
+	position:relative;
 	width:70%;
 	padding:5px;
 	background-color:#fff;
@@ -350,13 +327,9 @@
 	}
 	position:absolute;
 	top:20px;
-	left:42%;
+	left:50%;
 	z-index:0;
-
-	@media(max-width:$screen-sm)
-	{
-		left:38%;
-	}
+	transform:translate(-50%, 0%)
 }
 
 .loading-image-text{
@@ -375,4 +348,11 @@
     font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
     font-size: 82%;
     overflow-y:scroll;
+}
+
+
+@media(max-width:$screen-sm){
+	.result-wrapper-hover{
+		display: none;
+	}
 }

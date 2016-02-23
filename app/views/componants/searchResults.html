@@ -16,12 +16,12 @@ ng-class sets up classes for indiviual results based off result type
         </div>
         <div class="result-header" ng-class="typeHeadClass">{{venue.LocationName}}<span ng-class="setIconClass" class="pull-right location-icon"></span></div>
         <div class="result-content">
-            <div class="result-content-description">
+            <div class="result-content-description hidden-xs">
                 <p>{{venue.LocationDescription | limitTo:145}} ...</p>
             </div>
-            <div class="result-content-aux-info">
+            <div class="result-content-aux-info hidden-xs">
                 <div class="aux-city">
-                    <p>City : {{venue.City}}</p>
+                    <p>Address : {{venue.City}}</p>
                 </div>
                 <div class="aux-distance">
                     <p>Distance : {{venue.distance | number : 1}}km</p>
@@ -29,5 +29,14 @@ ng-class sets up classes for indiviual results based off result type
             </div>
         </div>
         <div class="result-content-image"><img class="img-responsive" ng-src="{{venue.LocationPic}}" /></div>
+        <div class="result-content-aux-info hidden-sm hidden-md hidden-lg">
+            <div class="aux-city">
+                <p>Address : {{venue.City}}</p>
+            </div>
+            <div class="aux-distance">
+                <p>Distance : {{venue.distance | number : 1}}km</p>
+            </div>
+        </div>
+        <button class="btn btn-default col-xs-12 hidden-sm hidden-md hidden-lg" ng-click="storeFocusedResult($index)">Visit Page</button>
     </div>
 </div>
