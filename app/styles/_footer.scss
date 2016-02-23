@@ -6,8 +6,8 @@
 	clear:both;
 	width:100%;
 	position:relative;
-	min-height:200px;
-	height:auto;
+	min-height:100px;
+	height:130px;
 	color:#fff;
 	background-color:$main-brand-colour;
 	z-index:0;
@@ -16,7 +16,6 @@
 .foot-box{
 	width:100%;
 	padding: 10px;
-	margin-top:50px;
 	height:100%;
 	@media(max-width:$screen-sm){
 		margin-top:20px;
@@ -25,26 +24,25 @@
 }
 
 .foot-box-header{
-	height:50%;
+	height:70%;
 	width:100%;
 	font-family:$fontFamilyHeading;
 	border-bottom:solid 3px #fff;
+
 	h2{
 		font-size:60px;
+		line-height: 100%;
+		padding:0px;
+		margin:0px;
 	}
 }
 
 .foot-box-body{
-	height:50%;
+	height:30%;
+	line-height: 100%;
+	padding-top:5px;
 	a{
 		color: #fff;
+
 	}
-}
-
-
-.footer-avatar{
-	position:absolute;
-	top:-390px;
-	left:77%;
-	margin-left:100px;
 }
