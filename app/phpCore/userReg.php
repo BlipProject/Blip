@@ -7,24 +7,25 @@
 	$userCountry = $user->country;
 	$userEmail = $user->email;
 	$userPassword = $user->password;
-
-
 	/*
 	$conn = mysqli_connect($servername, $username, $password, $db);
-	$get = mysqli_query($conn, 
+	$get = mysqli_query($conn,
 	       "CALL CheckUsername('$mail')") or die("Query fail: " . mysqli_error($conn));
 
 	$msg = "";
 	while ($row = mysqli_fetch_row($get))
-	{ 
+	{
 		$msg = $row[0];
-	} 
+	}
 
 	if($msg == "ok")
 	{
 		*/
 
-
+	echo $userName;
+	echo $userCountry;
+	echo $userEmail;
+	echo $userPassword;
 
 	$cost =10;
 	$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
@@ -32,28 +33,25 @@
 	$hash = crypt($userPassword, $salt);
 	$activationCode = crypt($userEmail, $salt);
 
-	//creating sprock and executing 
+	//creating sprock and executing
 	$conn = mysqli_connect($servername, $username, $password, $db);
-	$sql = mysqli_query($conn, 
+	$sql = mysqli_query($conn,
 	       "Call RegisterTempUserArtur( $userCountry , '$userName', '$hash', '$salt', '$userEmail' , '$activationCode')") or die("Query fail: " . mysqli_error($conn));
 
 	$db_pass;
 	$db_salt;
 	$mailer = "noreply.blip@gmail.com";
-
 	//$conn = mysqli_connect($servername, $username, $password, $db);
-	$get = mysqli_query($conn, 
+	$get = mysqli_query($conn,
 		     "Call CheckPassArtur('$mailer')") or die("Query fail: " . mysqli_error($conn));
-	  
 	while ($row = mysqli_fetch_row($get))
-	{ 
+	{
 		$db_pass = $row[0];
 		$db_salt = $row[1];
-	} 
-
-	require("mailer/PHPMailerAutoload.php"); 
-	ini_set("SMTP","ssl://smtp.gmail.com"); 
-	ini_set("smtp_port","465"); 
+	}
+	require("mailer/PHPMailerAutoload.php");
+	ini_set("SMTP","ssl://smtp.gmail.com");
+	ini_set("smtp_port","465");
 	$mail = new PHPMailer();
 	$mail->SMTPAuth = true;
 	$mail->Host = "smtp.gmail.com";
@@ -68,7 +66,7 @@
 	Thanks for signing up!
 
 	Your account has been created.
-	Please verify your email and get started using your Website account. 
+	Please verify your email and get started using your Website account.
 	Please click this link to activate your account:
 	http://bliptest.azurewebsites/blip/app/phpCore/activationUser.php?lkjhgv=$userEmail&asxcv=$activationCode
 
@@ -80,9 +78,8 @@
 
 	Blip Team
 	";
-	//WORK ON LOCALHOST
-	//http://localhost/blip/app/phpCore/activationUser.php?lkjhgv=$userEmail&asxcv=$activationCode 
-
+	//WORK ON LOCALHOST IF U CTRL+V .this into email body
+	//http://localhost/blip/app/phpCore/activationUser.php?lkjhgv=$userEmail&asxcv=$activationCode
 	$mail->WordWrap = 200;
 	$mail->Send();
 	/*
@@ -93,8 +90,5 @@
 	}
 
 	*/
-
-
 	$conn->close();
-	
 ?>

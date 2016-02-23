@@ -8,11 +8,11 @@
 //Wrapper for all search results
 //--
 .content-wrapper{
-	margin-top:30px;
+	margin-top:90px;
 	@media(max-width:$screen-sm){
-    	margin-top:80px;
+    	margin-top:120px;
     }
-	
+
 
 	position:relative;
 	min-height:500px;
@@ -28,12 +28,13 @@
 	overflow:auto;
 	background-color:#fff;
 	@include transition(all .4s ease);
-	@include box-shadow (0px 0px 10px 1px $box-shadow-colour);
-	margin-bottom:25px;
+	margin-bottom:10px;
 	border-radius:1px;
 	float:left;
 	position: relative;
-	border:1px solid $box-shadow-colour;
+	border-style:solid;
+	border-width:0px 0px 1px 0px;
+	border-color: $box-shadow-colour;
 
 	//transition out of scale effect on image
 	img{
@@ -42,7 +43,7 @@
 
 	&:hover{
 		@include transition(all .7s ease);
-		@include box-shadow (0px 0px 6px 1px $box-shadow-colour);
+
 
 		//transition into scale effect on image
 		img{
@@ -53,49 +54,14 @@
 				transform: none;
 		}
 	}
-	
+
 	.result-wrapper-hover{
 		visibility:visible;
 		opacity:1;
 		transition-delay:0s;
-		
-		/*
-		//Hides hover effects on mobile screens
-		@media(max-width:$screen-sm){
-			display:hidden;
 		}
-		*/
-	}
-	
-	//transition into blur and greyscale effect
-	.result-content, .result-content-image{
-		//fix for small white fliker on transition
-		-webkit-backface-visibility: hidden;
 
-		@include transition(0.4s filter linear);
-		@include filter(blur(3px) grayscale(100%));
-		
-		/*
-		//Hides hover effects on mobile screens
-		@media(max-width:$screen-sm){
-			@include filter(blur(0px));
-		}
-		*/
 	}
-	
-	//TODO: Not sure whether to greyscale header colour. Come back too
-	.result-header{
-		@include transition(0.4s filter linear);
-		@include filter(blur(3px));
-		
-		/*
-		//Hides hover effects on mobile screens
-		@media(max-width:$screen-sm){
-			@include filter(blur(0px));
-		}
-		*/
-	}
-}
 }
 
 //Transition out of blur and greyscale effects
@@ -113,7 +79,7 @@
 	width:100%;
 	z-index: 2;
 	//'a' value controls opacity of hover box
-	background-color: rgba(255,255,255,0.7);
+	background-color:rgba(22, 160, 133,1);
 	position: absolute;
 	left:0px;
 	top:0px;
@@ -132,7 +98,7 @@
 		height:50%;
 		font-size: $fontHeading;
 		font-family: $fontFamilyHeading;
-		color: $font-colour;
+		color: #fff;
 		margin-bottom: 40px;
 	}
 
@@ -166,58 +132,66 @@
 	font-family: FontAwesome;
 	position: absolute;
 	left:45%;
-	top:-55px;
-	font-size: 25px;
+	top:-60px;
+	font-size: 30px;
 }
 //--
 .result-hover-button-bar{
 	@extend .result-hover-bar-properties;
-	border-color: $bar-colour;
-	
+	border-color: #fff;
+	//border-color: $bar-colour;
+
 	::before{
 		@extend .result-hover-icon-properties;
    		content: "\f000";
-   		color: $bar-colour;
+   		color: #fff;
+   		//border-color: $bar-colour;
 	}
 }
 
 .result-hover-button-restaurant{
 	@extend .result-hover-bar-properties;
-	border-color: $restaurant-colour;
+	//border-color: $restaurant-colour;
+	border-color: #fff;
 
 	::before{
 		@extend .result-hover-icon-properties;
    		content: "\f0f5";
-   		color: $restaurant-colour;
+   		color:#fff;
+   		//color: $restaurant-colour;
 	}
 }
 
 .result-hover-button-shop{
 	@extend .result-hover-bar-properties;
-	border-color: $shop-colour;
+	//border-color: $shop-colour;
+	border-color: #fff;
 
 	::before{
 		@extend .result-hover-icon-properties;
    		content: "\f07a";
-		color: $shop-colour;
+   		color:#fff;
+		//color: $shop-colour;
 	}
 }
 
 .result-hover-button-other{
 	@extend .result-hover-bar-properties;
-	border-color: $other-colour;
+	//border-color: $other-colour;
+	border-color: #fff;
 
 	::before{
 		@extend .result-hover-icon-properties;
    		content: "\f141";
-   		color: $other-colour;
+   		color:#fff;
+   		//color: $other-colour;
 	}
 }
 
 //Result Headers
 //--
 .location-icon{
-	margin:5px 5px 0px 0px; 
+	margin:5px 5px 0px 0px;
 	color:#9E9E9E;
 }
 
@@ -310,27 +284,32 @@
 	width:40%;
 	height:150px;
 	overflow: hidden;
-	
-	@include box-shadow(-1px 0px 0px 0px $box-shadow-colour);
-	
+	background-color:#ecf0f1;
+	img{
+		margin: auto;
+	}
+
 	@media(max-width:$screen-sm){
 		width:100%;
-		@include box-shadow(0px 0px 0px 0px #fff);
 	}
 }
 
 
-//Search Result page 
+//Search Result page
 //Left & right columns
 //--
 .content-left{
+	position:relative;
 	width:70%;
+	padding:5px;
+	background-color:#fff;
 	float:left;
 	position: relative;
 	@media(max-width:$screen-sm)
 	{
 		width:100%
 	}
+	@include box-shadow (0px 0px 10px 1px $box-shadow-colour);
 }
 
 //Hide settings pannel when on mobile view
@@ -348,13 +327,9 @@
 	}
 	position:absolute;
 	top:20px;
-	left:42%;
+	left:50%;
 	z-index:0;
-
-	@media(max-width:$screen-sm)
-	{
-		left:38%;
-	}
+	transform:translate(-50%, 0%)
 }
 
 .loading-image-text{
@@ -366,4 +341,18 @@
 	font-family: $fontFamilyHeading;
 	font-size: 35px;
 	z-index:0;
+}
+.scrollabletextbox {
+    height:100px;
+    width:250px;
+    font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 82%;
+    overflow-y:scroll;
+}
+
+
+@media(max-width:$screen-sm){
+	.result-wrapper-hover{
+		display: none;
+	}
 }

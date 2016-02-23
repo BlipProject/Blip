@@ -43,12 +43,12 @@ angular.module('blipApp')
             };
             //console.log(userDetails);
             //LOCALHOST
-            //var postReg = $http.post('http://localhost/blip/app/phpCore/userReg.php', userDetails)
-            var postReg = $http.post('http://bliptest.azurewebsites/blip/app/phpCore/userReg.php', userDetails)
+            var postReg = $http.post('/phpCore/userReg.php', userDetails)
+            //var postReg = $http.post('http://bliptest.azurewebsites/blip/app/phpCore/userReg.php', userDetails)
                 .success(function(data, status, headers, config) {
                     alert("Success");
                     location.reload();
-                    //console.log(status + ' - ' + "Success");        
+                    //console.log(status + ' - ' + "Success");
                 })
                 .error(function(data, status, headers, config) {
                     //console.log(status + ' - ' + 'Error');

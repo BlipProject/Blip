@@ -1,27 +1,28 @@
 <!--
-ng-repeat creates search results based of the data returned from the server -- contained in controller variable 'filterSearchResult'
+ng-repeat creates search results based of the data returned from the server -- contained in controller variable 'filterUserLocations'
 ng-class sets up classes for indiviual results based off result type
 -->
-<div ng-repeat="venue in filterSearchResult | limitTo:showAmountFilter track by $index">
+<div ng-repeat="venue in filterUserLocations | limitTo:10 track by $index">
     <div class="result-wrapper">
         <!--Hidden div for on hover-->
         <div class="result-wrapper-hover">
             <div class="result-wrapper-hover-content">
-                <p>{{venue.LocationName}}</p>
+                <!--<p>{{venue.LocationName}}</p>
                 <!--breaks if a class directive (even an empty one) is not present-->
                 <div class="" ng-class="setResultClass(venue.CategoryName)">
-                    <button ng-click="storeFocusedResult($index)">Visit Page</button>
+                    <button ng-click="storeFocusedResult($index)">Edit</button>
+                    <button ng-click="confirmDeleteLocation($index)">Delete</button>
                 </div>
             </div>
         </div>
         <div class="result-header" ng-class="typeHeadClass">{{venue.LocationName}}<span ng-class="setIconClass" class="pull-right location-icon"></span></div>
         <div class="result-content">
-            <div class="result-content-description hidden-xs">
+            <div class="result-content-description">
                 <p>{{venue.LocationDescription | limitTo:145}} ...</p>
             </div>
-            <div class="result-content-aux-info hidden-xs">
+            <div class="result-content-aux-info">
                 <div class="aux-city">
-                    <p>Address : {{venue.City}}</p>
+                    <p>City : {{venue.City}}</p>
                 </div>
                 <div class="aux-distance">
                     <p>Distance : {{venue.distance | number : 1}}km</p>
@@ -29,14 +30,5 @@ ng-class sets up classes for indiviual results based off result type
             </div>
         </div>
         <div class="result-content-image"><img class="img-responsive" ng-src="{{venue.LocationPic}}" /></div>
-        <div class="result-content-aux-info hidden-sm hidden-md hidden-lg">
-            <div class="aux-city">
-                <p>Address : {{venue.City}}</p>
-            </div>
-            <div class="aux-distance">
-                <p>Distance : {{venue.distance | number : 1}}km</p>
-            </div>
-        </div>
-        <button class="btn btn-default col-xs-12 hidden-sm hidden-md hidden-lg" ng-click="storeFocusedResult($index)">Visit Page</button>
     </div>
 </div>

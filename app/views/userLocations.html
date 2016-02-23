@@ -1,0 +1,36 @@
+<div>
+    <div ng-controller="UserLocationsCTRL" ng-init="getFilter('All')">
+        <!--Include mobile nav-->
+        <div ng-include="'views/componants/mobileNav.html'" scope="" onload=""></div>
+        <div class="container content-wrapper" ng-init="getUserLocations()">
+            <div class="content-left">
+                <!--includes search results-->
+                <div class="search-loading" ng-show="showLoadingAnimation == true">
+                    <p class="loading-image-text">blip</p><img class="animated rotateIn infinite" src="/images/loading/loading_icon.svg"></div>
+                <div ng-include="'views/componants/userLocation.html'"></div>
+            </div>
+            <div class="content-right">
+                <!--includes settings pannel-->
+                <div class="settings-pannel-wrapper">
+                    <div ng-include="'views/componants/settingsPannel.html'"></div>
+                </div>
+            </div>
+        </div>
+        <!--Modal-->
+        <div id="myModal" class="modal" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Are you sure you want to delete <span ng-bind="nameToDelete"></span>?<p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="cancelDeleteLocation()">Cancel</button>
+                    <button type="button" class="btn btn-default" ng-click="deleteLocation()">Yes</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</div>

@@ -9,25 +9,26 @@
 
 	echo("Script Called ( . )( . )");
 	//Input variables from Angular
-	$business = json_decode(file_get_contents("php://input"));
-	$busName = $business->name;
-	$busLat = $business->latitude;
-	$busLng = $business->longtude;
-	$busCity = $business->city;
-	$busDescription = $business->description;
-	$busCategory = $business->category;
-	$busNationality = $business->nationality;
+	$location = json_decode(file_get_contents("php://input"));
+	$locationName = $location->LocationName;
+	$locationLat = $location->MapLat;
+	$locationLng = $location->MapLng;
+	$locationCity = $location->City;
+	$locationDescription = $location->LocationDescription;
+	$locationCategory = $location->CategoryID;
+	$locationNationality = $location->Nationality;
+	$locationUserId = $location->UserID;
 
 	$conn = mysqli_connect($servername, $username, $password, $db);
 
 
-	$businessData = insertBusiness($busName, $busLat, $busLng, $busCity, $busDescription, $busCategory, $busNationality);
+	$businessData = insertBusiness($locationName, $locationLat, $locationLng, $locationCity, $blocationDescription, $locationCategory, $locationNationality, $locationUserId);
 
-	function insertBusiness($busName, $busLat, $busLng, $busCity, $busDescription, $busCategory, $busNationality) {
+	function insertBusiness($locationName, $locationLat, $locationLng, $locationCity, $blocationDescription, $locationCategory, $locationNationality, $locationUserId) {
 		global $conn;
 
 		$insert = mysqli_query($conn,
-			"CALL RegisterLocation('$busName', '$busLat', '$busLng', '$busCity', '$busDescription', '$busCategory', '$busNationality')") 
+			"CALL RegisterLocation('$locationName', '$locationLat', '$locationLng', '$locationCity', '$locationDescription', '$locationCategory', '$locationNationality', '$locationUserId')") 
 			or die("Query fail: " . mysqli_error($conn));
 	}
 

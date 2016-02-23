@@ -50,6 +50,11 @@ angular
         controller: 'UserRegistrationCtrl',
         controllerAs: 'userReg'
       })
+      .when('/review', {
+        templateUrl: 'views/review.html',
+        controller: 'ReviewCtrl',
+        controllerAs: 'review'
+      })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
@@ -65,10 +70,12 @@ angular
         controller: 'FacebookLoginCtrl',
         controllerAs: 'facebookLogin'
       })
+      .when('/userLocations', {
+        templateUrl: 'views/userLocations.html'
+      })
       .otherwise({
         redirectTo: 'home.html'
       });
-
   })
  .config(function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
@@ -87,6 +94,6 @@ angular
 });
 
 
- 
+
 
 
