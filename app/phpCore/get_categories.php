@@ -1,13 +1,10 @@
 <?php
-	
+
 	//Configure DATABASE
 
-	include 'blip_4815162342_108.php';
-	
+	require_once 'blip_4815162342_108.php';
+
 	//Start Script
-
-	$conn = mysqli_connect($servername, $username, $password, $db);
-
 
 	$categories = getCats();
 
@@ -15,7 +12,7 @@
 		$resultsArray;
 		global $conn;
 
-		$search = mysqli_query($conn, 
+		$search = mysqli_query($conn,
 	    "CALL GetCategories()") or die("Query fail: " . mysqli_error($conn));
 
 		while($row = $search->fetch_array(MYSQL_ASSOC)) {
@@ -30,5 +27,5 @@
 	echo $categories;
 
 	mysqli_close($conn);
-		
+
 ?>

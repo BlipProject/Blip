@@ -12,7 +12,7 @@ angular.module('blipApp')
 		};
 
 		$scope.getUserLocations = function() {
-			$http.post('../phpCore/get_user_locations.php', user)
+			$http.post('http://localhost/blip/app/phpCore/get_user_locations.php', user)
 				.then(function(response)
 				{
 					$scope.userLocations = response.data;

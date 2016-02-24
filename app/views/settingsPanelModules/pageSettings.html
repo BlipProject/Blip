@@ -8,6 +8,9 @@
             <div class="nav-view-switch" ng-click="setActive(1)" ng-class="{navviewswitchactive: isActive === 1}"><a href="#/map"><i class="fa fa-map fa-4x"></i></a></div>
         </div>
         <div class="dropdown-wrapper">
+            <select id="lstNat" name="nat" class="add-location-form-input" ng-model="locationNationality" ng-options="option.NationalityName for option in nationalities track by option.NationalityID">
+                <option value="" disabled selected ng-click="getLocationNewCountry(option.NationalityID)">Select Nationality</option>
+            </select>
             <div class="dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select Nationality
                     <span class="caret"></span></button>

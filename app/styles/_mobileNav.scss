@@ -4,9 +4,9 @@
 	left:0px;
 	top:50px;
 	bottom:0px;
-	background-color: #fff;
-	z-index:5;
+	z-index:999;
 	color: #000;
+	background-color: #fff;
 
 	@media (min-width:$screen-sm){
 		display:none;

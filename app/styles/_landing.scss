@@ -97,12 +97,14 @@ body{
 
 	.landing-form-login, .landing-form-signup{
 		width:100%;
+		min-height: 200px;
 		height:60%;
 		border-right: 0px;
 		padding-top:100px;
 	}
 
 	.landing-form-signup{
+		min-height: 200px;
 		height:40%;
 	}
 
@@ -122,5 +124,17 @@ body{
 
 	.btn-signUp{
 		top:70%
+	}
+}
+
+#signUpModal{
+	height:auto;
+	.modal-body{
+		text-align: center;
+	}
+	.form-group{
+		margin-left:auto;
+		margin-right:auto;
+		width:80%;
 	}
 }

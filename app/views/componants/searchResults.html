@@ -2,7 +2,7 @@
 ng-repeat creates search results based of the data returned from the server -- contained in controller variable 'filterSearchResult'
 ng-class sets up classes for indiviual results based off result type
 -->
-<div ng-repeat="venue in filterSearchResult | limitTo:showAmountFilter track by $index" class="animated fadeIn">
+<div ng-repeat="venue in filterSearchResult | limitTo:showAmountFilter track by $index" class="">
     <div class="result-wrapper">
         <!--Hidden div for on hover-->
         <div class="result-wrapper-hover">

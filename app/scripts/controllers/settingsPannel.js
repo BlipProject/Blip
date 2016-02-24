@@ -1,13 +1,14 @@
 'use strict';
 
 angular.module('blipApp')
-    .controller('SettingsPannel', ['$scope', '$http', 'PopulateCountryDropdown', 'SideBarPageInView', function($scope, $http, PopulateCountryDropdown, SideBarPageInView) {
+    .controller('SettingsPannel', ['$scope', '$http', 'NationalityService', 'SideBarPageInView', function($scope, $http, NationalityService, SideBarPageInView) {
 
         $scope.nationalities = {};
 
-        $scope.getNationalities = function() {
-            PopulateCountryDropdown.getNationalities().then(function(data) {
+        $scope.loadNationalities = function() {
+            NationalityService.getNationalities().then(function(data){
                 $scope.nationalities = data;
+                console.log($scope.nationalities);
             });
         };
 

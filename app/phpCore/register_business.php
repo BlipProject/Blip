@@ -2,8 +2,8 @@
 
 	///Configure DATABASE
 
-	include 'blip_4815162342_108.php';
-	
+	require_once 'blip_4815162342_108.php';
+
 	//Start Script
 
 
@@ -19,8 +19,6 @@
 	$locationNationality = $location->Nationality;
 	$locationUserId = $location->UserID;
 
-	$conn = mysqli_connect($servername, $username, $password, $db);
-
 
 	$businessData = insertBusiness($locationName, $locationLat, $locationLng, $locationCity, $blocationDescription, $locationCategory, $locationNationality, $locationUserId);
 
@@ -28,9 +26,9 @@
 		global $conn;
 
 		$insert = mysqli_query($conn,
-			"CALL RegisterLocation('$locationName', '$locationLat', '$locationLng', '$locationCity', '$locationDescription', '$locationCategory', '$locationNationality', '$locationUserId')") 
+			"CALL RegisterLocation('$locationName', '$locationLat', '$locationLng', '$locationCity', '$locationDescription', '$locationCategory', '$locationNationality', '$locationUserId')")
 			or die("Query fail: " . mysqli_error($conn));
 	}
 
-	mysqli_close($conn);		
+	mysqli_close($conn);
 ?>

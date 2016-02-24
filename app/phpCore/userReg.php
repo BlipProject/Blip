@@ -1,6 +1,6 @@
 <?php
 
-	include('blip_4815162342_108.php');
+	require_once 'blip_4815162342_108.php';
 
 	$user = json_decode(file_get_contents("php://input"));
 	$userName = $user->name;
@@ -34,7 +34,6 @@
 	$activationCode = crypt($userEmail, $salt);
 
 	//creating sprock and executing
-	$conn = mysqli_connect($servername, $username, $password, $db);
 	$sql = mysqli_query($conn,
 	       "Call RegisterTempUserArtur( $userCountry , '$userName', '$hash', '$salt', '$userEmail' , '$activationCode')") or die("Query fail: " . mysqli_error($conn));
 
