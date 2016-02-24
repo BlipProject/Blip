@@ -79,15 +79,6 @@ body{
 	width:60%;
 }
 
-.btn-signUp{
-	position:absolute;
-	top:50%;
-	left:50%;
-	transform:translate(-50%, -50%);
-	background-color:#1abc9c;
-	color:#fff;
-	width:60%;
-}
 
 @media (max-width: $screen-sm){
 	.landing-form{
@@ -95,17 +86,19 @@ body{
 		width:95%;
 	}
 
-	.landing-form-login, .landing-form-signup{
+	.landing-form-login{
 		width:100%;
-		min-height: 200px;
+		min-height: 400px;
 		height:60%;
 		border-right: 0px;
 		padding-top:100px;
 	}
 
 	.landing-form-signup{
-		min-height: 200px;
-		height:40%;
+		position:relative;
+		width: 100%;
+		height: 40%;
+
 	}
 
 	.landing-form-login{
@@ -125,6 +118,16 @@ body{
 	.btn-signUp{
 		top:70%
 	}
+}
+
+.btn-signUp{
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+	background-color:#1abc9c;
+	color:#fff;
+	width:60%;
 }
 
 #signUpModal{
