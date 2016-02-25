@@ -11,6 +11,28 @@ angular.module('blipApp')
     	//Stores data pulled from the 'ResultPageState' factory
     	var pageViewData = ResultPageState.GetPageState();
 
+    	//Set correct icon for venue type
+    	var venueIcon;
+    	switch(pageViewData.CategoryName){
+    		case "Bar":{
+    			venueIcon = "/images/map_icons/bar_icon.png";
+    			break;
+    		}
+    		case "Restaurant":{
+    			venueIcon = "/images/map_icons/resturant_icon.png";
+    			break;
+    		}
+    		case "Supermarket":{
+    			venueIcon = "/images/map_icons/shopping_icon.png";
+    			break;
+    		}
+    		case "Other":{
+    			venueIcon = "/images/map_icons/other_icon.png";
+    			break;
+    		}
+
+    	}
+
   		return {
     		restrict: 'E',
     		replace: true,
@@ -92,7 +114,8 @@ angular.module('blipApp')
 	            	currentVenueMarker = new google.maps.Marker({
 	                    map: map,
 	                    position: coordinatesVenue,
-	                    title: pageViewData.LocationName
+	                    title: pageViewData.LocationName,
+	                    icon: venueIcon
 	                });
 	            }
 
@@ -184,7 +207,7 @@ angular.module('blipApp')
 						mapToggle('btn-danger','btn-success',0,"Get Directions")
 					}
 					else{
-						mapToggle('btn-success','btn-danger',125,"Close Directions")
+						mapToggle('btn-success','btn-danger',130,"Close Directions")
 					}
 				});
 

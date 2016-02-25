@@ -19,7 +19,7 @@
 <!--Include mobile nav-->
 <div ng-include="'views/componants/mobileNav.html'" scope="" onload=""></div>
 <div class="container map-view-content-wrapper" ng-init="getLocation()">
-    <div class="content-left">
+    <div class="content-left animated fadeIn">
         <div class="map-view-map" ng-controller="MapCtrl">
           <div style="color: red;" id="wynik"></div>
           <ui-gmap-google-map center="map.center" zoom="map.zoom" ng-init="getFilter('All')" control="control" bounds="map.bounds">

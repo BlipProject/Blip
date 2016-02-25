@@ -38,7 +38,7 @@
 
 	//transition out of scale effect on image
 	img{
-		@include transition(all 1s ease);
+		@include transition(all .5s ease);
 	}
 
 	&:hover{
@@ -62,12 +62,6 @@
 		}
 
 	}
-}
-
-//Transition out of blur and greyscale effects
-.result-header, .result-content, .result-content-image{
-	@include transition(0.1s filter linear);
-	@include filter(blur(0px) grayscale(0%));
 }
 
 //.result-wrapper Hover Styling
@@ -355,4 +349,24 @@
 	.result-wrapper-hover{
 		display: none;
 	}
+}
+
+//Geolocation Error
+//--
+
+#contentLeftError{
+	height:200px;
+	width:100%;
+	text-align:center;
+}
+
+.contentLeftError-show{
+	display:block;
+}
+.contentLeftError-hide{
+	display:none;
+}
+
+.manual-location{
+	margin-top:35px;
 }

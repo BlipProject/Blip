@@ -19,14 +19,22 @@ angular.module('blipApp')
 				  timeout: 1000,
 				  maximumAge: 500
 				};
-				if (navigator.geolocation) {
-				    navigator.geolocation.getCurrentPosition(function(position,positionOptions){
+				if (!navigator) {
+		            deferred.reject(new Error("Geolocation is not supported"));
+		        }
+				else {
+				    navigator.geolocation.getCurrentPosition(function(position,positionOptions,error){
 				        deferred.resolve ({
 				        	longitude : position.coords.longitude,
-				        	latitude : position.coords.latitude
+				        	latitude : position.coords.latitude,
+				        	timeout: 5000
 			        	});
-					});
+					},function (error) {
+						//If error return code to front end
+        				deferred.reject(error);
+    				});
 			    }
+
 			    return deferred.promise;
 			}
 		};

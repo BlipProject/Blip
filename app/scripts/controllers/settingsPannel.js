@@ -5,17 +5,11 @@ angular.module('blipApp')
 
         $scope.nationalities = {};
 
-        $scope.loadNationalities = function() {
+        function loadNationalities(){
             NationalityService.getNationalities().then(function(data){
                 $scope.nationalities = data;
-                console.log($scope.nationalities);
             });
         };
 
-        $scope.isActive = SideBarPageInView.GetPage();
-        console.log($scope.isActive);
-        $scope.setActive = function(currentTab) {
-            SideBarPageInView.SetPage(currentTab);
-        };
-
+        $scope.init = loadNationalities();
     }]);

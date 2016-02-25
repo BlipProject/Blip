@@ -20,8 +20,7 @@ angular.module('blipApp')
 
 			getNationalities: function(data){
 				return $http.post('http://localhost/blip/app/phpCore/get_nationalities.php', data)
-				.then(function(response) {
-					console.log("Success");
+				.then(function(response) {;
 					return response.data;
 				});
 			}

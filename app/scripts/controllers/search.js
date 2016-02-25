@@ -23,14 +23,12 @@ angular.module('blipApp')
         //Stores users nationality to pass to server
         //Hardcoded currently for testing -- 671 == France
         $scope.userNationality = 671;
-        //Show loading animation -- sets to false when results are returned from server
-        $scope.showLoadingAnimation = true;
 
         //Called from Nationality dropdown in "settingsPannel.html" to set "userNationality"
         //Then calls getLocation and which passes new country to database sproc
         $scope.getLocationNewCountry = function(newCountry) {
+            $rootScope.showLoadingAnimation = true;
             $scope.userNationality = newCountry;
-            console.log("New country - " + newCountry + " - set");
             $scope.getLocation();
         };
 
@@ -38,10 +36,22 @@ angular.module('blipApp')
         //navigator must be passed to service (dont no why ??)
         $scope.getLocation = function() {
             GeoLocationService.getGeoCoordinates(navigator).then(function(data) {
-                console.log("GeoServices called succesfully");
+                console.log(data);
                 data.nationality = $scope.userNationality;
                 data.showLimit = $scope.showAmountFilter;
                 returnSearchResults(data);
+            },function (reason) {
+                console.log(reason);
+                switch(reason.code){
+                    case 1:
+                        $rootScope.showLoadingAnimation = false;
+                        var errorBlock = document.getElementById('contentLeftError');
+                        var errorMessage = document.getElementById('geolocationErrorMessage');
+                        errorMessage.innerHTML = "Geolocation has been blocked on you computer. <a href='https://support.google.com/chrome/answer/142065?hl=en'>Learn how to enable it here.</a>"
+                        errorBlock.className = "";
+                        errorBlock.className = ".contentLeftError-show animated fadeIn"
+                    break;
+                }
             });
         };
 
@@ -51,9 +61,7 @@ angular.module('blipApp')
             SearchServices.getLocationResults(geoData).then(function(data) {
                 $scope.searchResult = data;
                 $scope.filterSearchResult = $scope.searchResult;
-                console.log($scope.filterSearchResult);
-                $scope.showLoadingAnimation = false;
-                console.log("SearchServices called succesfully");
+                $rootScope.showLoadingAnimation = false;
             });
         };
 
@@ -128,8 +136,9 @@ angular.module('blipApp')
         //Then redirects to page for that result
         $scope.storeFocusedResult = function(index) {
             ResultPageState.SetPageState($scope.filterSearchResult[index]);
-            console.log($scope.filterSearchResult[index]);
             $location.path('LocationView');
         };
+
+        $scope.init = getFilter('All');
     }
 ]);
