@@ -16,7 +16,12 @@
                     <h4>Or</h4>
                     <div class="manual-location">
                         <label for="manualLocationEntry">Enter Your Current Location</label>
-                        <input type="text" class="form-control" id="manualLocationEntry" placeholder="i.e. Dublin, Ireland">
+                        <div class="input-group">
+                        <input id="manualLocationEntry" type="text" class="form-control" placeholder="i.e. Dublin, Ireland">
+                            <span class="input-group-btn">
+                                <button ng-click="manualSearch()" class="btn btn-default" type="button">Search</button>
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div class="search-loading" ng-show="showLoadingAnimation == true">

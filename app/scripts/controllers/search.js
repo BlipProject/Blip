@@ -6,10 +6,11 @@ angular.module('blipApp')
     '$scope',
     'GeoLocationService',
     'SearchServices',
+    'uiGmapGoogleMapApi',
     'ResultPageState',
     '$location',
     '$rootScope',
-    function($http, $scope, GeoLocationService, SearchServices, ResultPageState, $location, $rootScope) {
+    function($http, $scope, GeoLocationService, SearchServices, uiGmapGoogleMapApi, ResultPageState, $location, $rootScope) {
 
         //Close mobile-navigation menu on page load
         $rootScope.toggleNavClass = $rootScope.animateOut;
@@ -47,13 +48,57 @@ angular.module('blipApp')
                         $rootScope.showLoadingAnimation = false;
                         var errorBlock = document.getElementById('contentLeftError');
                         var errorMessage = document.getElementById('geolocationErrorMessage');
-                        errorMessage.innerHTML = "Geolocation has been blocked on you computer. <a href='https://support.google.com/chrome/answer/142065?hl=en'>Learn how to enable it here.</a>"
+                        errorMessage.innerHTML = "Geolocation has been blocked on you computer. <a target='_blank' href='https://support.google.com/chrome/answer/142065?hl=en'>Learn how to enable it here.</a>"
                         errorBlock.className = "";
-                        errorBlock.className = ".contentLeftError-show animated fadeIn"
+                        errorBlock.className = ".contentLeftError-show animated fadeIn";
                     break;
                 }
             });
         };
+
+        //Function For manual search
+        //--
+        //Used when geolocation is not available
+        $scope.manualSearch = function(){
+            var location = document.getElementById('manualLocationEntry').value;
+            var errorBlock = document.getElementById('contentLeftError');
+            errorBlock.className = "";
+            errorBlock.className = "contentLeftError-hide";
+            $rootScope.showLoadingAnimation = true;
+            manualLocation(location);
+        }
+
+        //Gets the coordinates of a manualy entered text address using reverse Geo Coding
+        function manualLocation(locationAddress) {
+
+            $scope.geodata = {};
+            $scope.queryResults = {};
+            $scope.queryError = {};
+
+            $scope.address = locationAddress;
+
+            $http.get('https://maps.googleapis.com/maps/api/geocode/json?address='
+            + $scope.address + '&key=AIzaSyCn9zl42b2gnUt92A7v_OcAJB4OUem-zbM').then(function(_results) {
+
+                $scope.queryResults = _results.data.results;
+                $scope.geodata = $scope.queryResults[0].geometry;
+
+                var locationLngLat = {
+                    longitude: $scope.queryResults[0].geometry.location.lng,
+                    latitude: $scope.queryResults[0].geometry.location.lat,
+                    nationality: $scope.userNationality,
+                    showLimit: $scope.showAmountFilter
+                };
+                console.log(locationLngLat);
+                returnSearchResults(locationLngLat);
+
+            },
+            function error(_error) {
+                $scope.queryError = _error;
+                console.log($scope.queryError);
+            })
+
+        }
 
         //Calls SearchServices to return search results
         //Takes 1 argument ([current coordinates])
