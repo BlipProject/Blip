@@ -42,19 +42,30 @@ angular.module('blipApp')
                 data.showLimit = $scope.showAmountFilter;
                 returnSearchResults(data);
             },function (reason) {
-                console.log(reason);
                 switch(reason.code){
                     case 1:
-                        $rootScope.showLoadingAnimation = false;
-                        var errorBlock = document.getElementById('contentLeftError');
-                        var errorMessage = document.getElementById('geolocationErrorMessage');
-                        errorMessage.innerHTML = "Geolocation has been blocked on you computer. <a target='_blank' href='https://support.google.com/chrome/answer/142065?hl=en'>Learn how to enable it here.</a>"
-                        errorBlock.className = "";
-                        errorBlock.className = ".contentLeftError-show animated fadeIn";
-                    break;
+                        printGeoError("Geolocation has been blocked on you computer! <a target='_blank' href='https://support.google.com/chrome/answer/142065?hl=en'>Learn how to enable it here.</a>");
+                        break;
+                    case 2:
+                        printGeoError("Position is not Available!")
+                        break;
+                    case 3:
+                        printGeoError("The Geo Connection Timed Our!")
+                        break;
+                    default:
+                        printGeoError("Geolocation is not supported");
                 }
             });
         };
+
+        //Prints geolocation errors to the screen
+        function printGeoError(errorMessage){
+            $rootScope.showLoadingAnimation = false;
+            var errorBlock = document.getElementById('contentLeftError');
+            document.getElementById('geolocationErrorMessage').innerHTML = errorMessage;
+            errorBlock.className = "";
+            errorBlock.className = ".contentLeftError-show animated fadeIn";
+        }
 
         //Function For manual search
         //--

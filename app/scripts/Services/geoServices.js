@@ -39,5 +39,3 @@ angular.module('blipApp')
 			}
 		};
 	});
-
-	//TODO implement error checking
