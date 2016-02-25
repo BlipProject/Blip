@@ -16,7 +16,7 @@ angular.module('blipApp')
 				var deferred = $q.defer();
 				var positionOptions = {
 				  enableHighAccuracy: true,
-				  timeout: 1000,
+				  timeout: 5000,
 				  maximumAge: 500
 				};
 				if (!navigator) {
@@ -26,8 +26,7 @@ angular.module('blipApp')
 				    navigator.geolocation.getCurrentPosition(function(position,positionOptions,error){
 				        deferred.resolve ({
 				        	longitude : position.coords.longitude,
-				        	latitude : position.coords.latitude,
-				        	timeout: 5000
+				        	latitude : position.coords.latitude
 			        	});
 					},function (error) {
 						//If error return code to front end

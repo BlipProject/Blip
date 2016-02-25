@@ -44,7 +44,7 @@ angular.module('blipApp')
             },function (reason) {
                 switch(reason.code){
                     case 1:
-                        printGeoError("Geolocation has been blocked on you computer! <a target='_blank' href='https://support.google.com/chrome/answer/142065?hl=en'>Learn how to enable it here.</a>");
+                        printGeoError("Geolocation has been blocked on your Device! <a target='_blank' href='https://support.google.com/chrome/answer/142065?hl=en'>Learn how to enable it here.</a>");
                         break;
                     case 2:
                         printGeoError("Position is not Available!")
