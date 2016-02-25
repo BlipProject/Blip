@@ -16,20 +16,25 @@ angular.module('blipApp')
 				var deferred = $q.defer();
 				var positionOptions = {
 				  enableHighAccuracy: true,
-				  timeout: 1000,
+				  timeout: 5000,
 				  maximumAge: 500
 				};
-				if (navigator.geolocation) {
-				    navigator.geolocation.getCurrentPosition(function(position,positionOptions){
+				if (!navigator) {
+		            deferred.reject(new Error("Geolocation is not supported"));
+		        }
+				else {
+				    navigator.geolocation.getCurrentPosition(function(position,positionOptions,error){
 				        deferred.resolve ({
 				        	longitude : position.coords.longitude,
 				        	latitude : position.coords.latitude
 			        	});
-					});
+					},function (error) {
+						//If error return code to front end
+        				deferred.reject(error);
+    				});
 			    }
+
 			    return deferred.promise;
 			}
 		};
 	});
-
-	//TODO implement error checking

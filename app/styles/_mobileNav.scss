@@ -1,7 +1,7 @@
 .m-nav-wrapper{
 	width:75%;
 	position:fixed;
-	left:0px;
+	left:-600px;
 	top:50px;
 	bottom:0px;
 	z-index:999;
@@ -17,10 +17,7 @@
 }
 
 .m-nav-wrapper-show{
-	display:block;
-}
-.m-nav-wrapper-hide.ng-hide{
-	display: none;
+	left:0;
 }
 
 .m-nav .quickBTN{

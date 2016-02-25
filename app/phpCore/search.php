@@ -11,11 +11,11 @@
 	//Input variables from Angular
 	$postdata = file_get_contents("php://input");
 	$request = json_decode($postdata);
+
 	$latitude = $request->latitude;
 	$longitude = $request->longitude;
 	$showLimit = $request->showLimit;
 	$nationality = $request->nationality;
-
 	//Possible new way to get data
 	/*
 	$postdata = file_get_contents("php://input");

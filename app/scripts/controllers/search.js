@@ -6,10 +6,11 @@ angular.module('blipApp')
     '$scope',
     'GeoLocationService',
     'SearchServices',
+    'uiGmapGoogleMapApi',
     'ResultPageState',
     '$location',
     '$rootScope',
-    function($http, $scope, GeoLocationService, SearchServices, ResultPageState, $location, $rootScope) {
+    function($http, $scope, GeoLocationService, SearchServices, uiGmapGoogleMapApi, ResultPageState, $location, $rootScope) {
 
         //Close mobile-navigation menu on page load
         $rootScope.toggleNavClass = $rootScope.animateOut;
@@ -23,14 +24,12 @@ angular.module('blipApp')
         //Stores users nationality to pass to server
         //Hardcoded currently for testing -- 671 == France
         $scope.userNationality = 671;
-        //Show loading animation -- sets to false when results are returned from server
-        $scope.showLoadingAnimation = true;
 
         //Called from Nationality dropdown in "settingsPannel.html" to set "userNationality"
         //Then calls getLocation and which passes new country to database sproc
         $scope.getLocationNewCountry = function(newCountry) {
+            $rootScope.showLoadingAnimation = true;
             $scope.userNationality = newCountry;
-            console.log("New country - " + newCountry + " - set");
             $scope.getLocation();
         };
 
@@ -38,12 +37,79 @@ angular.module('blipApp')
         //navigator must be passed to service (dont no why ??)
         $scope.getLocation = function() {
             GeoLocationService.getGeoCoordinates(navigator).then(function(data) {
-                console.log("GeoServices called succesfully");
+                console.log(data);
                 data.nationality = $scope.userNationality;
                 data.showLimit = $scope.showAmountFilter;
                 returnSearchResults(data);
+            },function (reason) {
+                switch(reason.code){
+                    case 1:
+                        printGeoError("Geolocation has been blocked on your Device! <a target='_blank' href='https://support.google.com/chrome/answer/142065?hl=en'>Learn how to enable it here.</a>");
+                        break;
+                    case 2:
+                        printGeoError("Position is not Available!")
+                        break;
+                    case 3:
+                        printGeoError("The Geo Connection Timed Our!")
+                        break;
+                    default:
+                        printGeoError("Geolocation is not supported");
+                }
             });
         };
+
+        //Prints geolocation errors to the screen
+        function printGeoError(errorMessage){
+            $rootScope.showLoadingAnimation = false;
+            var errorBlock = document.getElementById('contentLeftError');
+            document.getElementById('geolocationErrorMessage').innerHTML = errorMessage;
+            errorBlock.className = "";
+            errorBlock.className = ".contentLeftError-show animated fadeIn";
+        }
+
+        //Function For manual search
+        //--
+        //Used when geolocation is not available
+        $scope.manualSearch = function(){
+            var location = document.getElementById('manualLocationEntry').value;
+            var errorBlock = document.getElementById('contentLeftError');
+            errorBlock.className = "";
+            errorBlock.className = "contentLeftError-hide";
+            $rootScope.showLoadingAnimation = true;
+            manualLocation(location);
+        }
+
+        //Gets the coordinates of a manualy entered text address using reverse Geo Coding
+        function manualLocation(locationAddress) {
+
+            $scope.geodata = {};
+            $scope.queryResults = {};
+            $scope.queryError = {};
+
+            $scope.address = locationAddress;
+
+            $http.get('https://maps.googleapis.com/maps/api/geocode/json?address='
+            + $scope.address + '&key=AIzaSyCn9zl42b2gnUt92A7v_OcAJB4OUem-zbM').then(function(_results) {
+
+                $scope.queryResults = _results.data.results;
+                $scope.geodata = $scope.queryResults[0].geometry;
+
+                var locationLngLat = {
+                    longitude: $scope.queryResults[0].geometry.location.lng,
+                    latitude: $scope.queryResults[0].geometry.location.lat,
+                    nationality: $scope.userNationality,
+                    showLimit: $scope.showAmountFilter
+                };
+                console.log(locationLngLat);
+                returnSearchResults(locationLngLat);
+
+            },
+            function error(_error) {
+                $scope.queryError = _error;
+                console.log($scope.queryError);
+            })
+
+        }
 
         //Calls SearchServices to return search results
         //Takes 1 argument ([current coordinates])
@@ -51,9 +117,7 @@ angular.module('blipApp')
             SearchServices.getLocationResults(geoData).then(function(data) {
                 $scope.searchResult = data;
                 $scope.filterSearchResult = $scope.searchResult;
-                console.log($scope.filterSearchResult);
-                $scope.showLoadingAnimation = false;
-                console.log("SearchServices called succesfully");
+                $rootScope.showLoadingAnimation = false;
             });
         };
 
@@ -128,8 +192,9 @@ angular.module('blipApp')
         //Then redirects to page for that result
         $scope.storeFocusedResult = function(index) {
             ResultPageState.SetPageState($scope.filterSearchResult[index]);
-            console.log($scope.filterSearchResult[index]);
             $location.path('LocationView');
         };
+
+        $scope.init = getFilter('All');
     }
 ]);

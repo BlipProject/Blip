@@ -3,7 +3,7 @@
 	//Configure DATABASE
 
 	require_once 'blip_4815162342_108.php';
-
+	$conn = db_connect();
 	//Start Script
 
 

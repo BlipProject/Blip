@@ -88,12 +88,13 @@ angular
   //Set state for mobile nav.
   //Hide on launch
   //Show on button click in nav.html
-  $rootScope.animateIn = 'animated slideInLeft';
+  $rootScope.animateIn = 'm-nav-wrapper-show animated slideInLeft';
   $rootScope.animateOut = 'animated slideOutLeft';
   $rootScope.toggleNavClass = $rootScope.animateOut;
+
+  //COntrols what icon to show what page user is on
+  $rootScope.mobileNavPageActive = 0;
+
+  //Show loading animation -- sets to false when results are returned from server
+  $rootScope.showLoadingAnimation = true;
 });
-
-
-
-
-

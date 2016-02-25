@@ -1,7 +1,7 @@
 <div ng-controller="IndividualResultPageCtrl">
     <div ng-include="'views/componants/mobileNav.html'" scope="" onload=""></div>
     <div class="container indiv-wrapper">
-        <div class="content-left">
+        <div class="content-left animated fadeIn">
             <div class="indiv-header-wrapper">
                 <!--Picks border colour based on type of venue is displayed i.e 'Bar'-->
                 <div ng-class="{'indiv-divider-bar': pageViewData.CategoryName == 'Bar','indiv-divider-res': pageViewData.CategoryName == 'Restaurant','indiv-divider-shop': pageViewData.CategoryName == 'Supermarket','indiv-divider-other': pageViewData.CategoryName == 'Other'}" class="indiv-divider"></div>
@@ -24,16 +24,15 @@
                     <div id="testDistance" class="indiv-map-distance"></div>
                 </div>
                 <div class="indiv-description">
-                    <p>{{pageViewData.CategoryName}}
-                        <p>
-                            <hr/>
-                            <p>{{pageViewData.City}}</p>
-                            <hr/>
-                            <p>{{pageViewData.LocationDescription}}</p>
-                            <hr/>
-                            <buton class="btn btn-default col-xs-12">Phone Now</buton>
-                            <hr/>
-                            <button class="btn btn-default col-xs-12 indiv-button-spacer">Visit Website</buton>
+                    <p>{{pageViewData.CategoryName}}</p>
+                    <hr/>
+                    <p>{{pageViewData.City}}</p>
+                    <hr/>
+                    <p>{{pageViewData.LocationDescription}}</p>
+                    <hr/>
+                    <buton class="btn btn-default col-xs-12">Phone Now</buton>
+                    <hr/>
+                    <button class="btn btn-default col-xs-12 indiv-button-spacer">Visit Website</buton>
                 </div>
                 <div ng-include="'views/componants/review.html'"></div>
             </div>

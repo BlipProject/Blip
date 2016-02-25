@@ -1,5 +1,5 @@
 <div class="animated fadeIn">
-    <div ng-controller="LocationSearchCtrl" ng-init="getFilter('All')">
+    <div ng-controller="LocationSearchCtrl">
         <!--Include quick filter buttons-->
         <div class="quick-filter-wrapper hidden-md hidden-lg">
             <!--includes filter buttons at top of page-->
@@ -10,6 +10,20 @@
         <div class="container content-wrapper" ng-init="getLocation()">
             <div class="content-left">
                 <!--includes search results-->
+                <div id="contentLeftError" class="contentLeftError-hide">
+                    <h4 id="geolocationErrorMessage"></h4>
+                    <hr/>
+                    <h4>Or</h4>
+                    <div class="manual-location">
+                        <label for="manualLocationEntry">Enter Your Current Location</label>
+                        <div class="input-group">
+                        <input id="manualLocationEntry" type="text" class="form-control" placeholder="i.e. Dublin, Ireland">
+                            <span class="input-group-btn">
+                                <button ng-click="manualSearch()" class="btn btn-default" type="button">Search</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
                 <div class="search-loading" ng-show="showLoadingAnimation == true">
                     <p class="loading-image-text">blip</p><img class="animated rotateIn infinite" src="/images/loading/loading_icon.svg"></div>
                 <div ng-include="'views/componants/searchResults.html'"></div>
@@ -23,3 +37,5 @@
         </div>
     </div>
 </div>
+
+<showMobileNav></showMobileNav>

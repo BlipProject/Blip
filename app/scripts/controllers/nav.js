@@ -13,4 +13,12 @@ angular.module('blipApp')
                 $rootScope.toggleNavClass = $rootScope.animateOut;
             }
         };
+
+        $scope.setActive = function(currentTab) {
+            $rootScope.mobileNavPageActive = currentTab;
+        };
+
+        $scope.isActive = function(){
+            return $rootScope.mobileNavPageActive;
+        };
     }]);
