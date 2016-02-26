@@ -123,12 +123,10 @@ angular.module('blipApp')
 	            //Sets the rotation of the users heading
 	            function setUserRotation(pos){
 	            	var arrow = document.getElementById("userArrow");
-	                arrow.style.transform = "rotate(" + pos.coords.heading + "deg)";
 
 	            	window.addEventListener('deviceorientation', function(event) {
-					  console.log(event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
+					  arrow.style.transform = "rotate(" + event.alpha + "deg)";
 					  var x = document.getElementById("testDistance");
-					  x.innerHTML = event.alpha + ' : ' + event.beta + ' : ' + event.gamma;
 					});
 	            }
 
