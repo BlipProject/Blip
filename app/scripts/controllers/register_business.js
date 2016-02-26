@@ -119,13 +119,8 @@ angular.module('blipApp')
                     },
                     zoom: 16
                 };
-                $scope.addLocationMapMarker = {
-                    id: 5,
-                    coords: {
-                        latitude: locationLatLng.lat.toFixed(5),
-                        longitude: locationLatLng.lng
-                    }
-                };
+                $scope.addLocationMapMarker.coords.latitude = e.latLng.lat();
+                $scope.addLocationMapMarker.coords.longitude = e.latLng.lng();
             },
             function error(_error) {
                 $scope.queryError = _error;
