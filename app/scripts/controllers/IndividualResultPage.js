@@ -125,8 +125,22 @@ angular.module('blipApp')
 	            	var arrow = document.getElementById("userArrow");
 
 	            	window.addEventListener('deviceorientation', function(event) {
-					  arrow.style.transform = "rotate(" + event.alpha + "deg)";
-					  var x = document.getElementById("testDistance");
+	            		var currentHeading;
+	            		var accuracy;
+						if (event.webkitCompassHeading !== undefined) {
+							// Direction values are measured in degrees starting at due north and continuing clockwise around the compass.
+							// Thus, north is 0 degrees, east is 90 degrees, south is 180 degrees, and so on. A negative value indicates an invalid direction.
+							currentHeading = (360 - event.webkitCompassHeading);
+							accuracy = event.webkitCompassAccuracy;
+						} else if (event.alpha != null) {
+							// alpha returns the rotation of the device around the Z axis; that is, the number of degrees by which the device is being twisted
+							// around the center of the screen
+							// (support for android)
+							currentHeading = (270 - event.alpha) * -1;
+							accuracy = event.webkitCompassAccuracy;
+						}
+
+						arrow.style.transform = "rotate(" + currentHeading + "deg)";
 					});
 	            }
 
