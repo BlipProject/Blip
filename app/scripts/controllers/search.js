@@ -50,7 +50,7 @@ angular.module('blipApp')
                         printGeoError("Position is not Available!")
                         break;
                     case 3:
-                        printGeoError("The Geo Connection Timed Our!")
+                        printGeoError("The Geo Connection Timed Out!")
                         break;
                     default:
                         printGeoError("Geolocation is not supported");

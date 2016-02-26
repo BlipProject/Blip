@@ -10,7 +10,7 @@ angular.module('blipApp')
 
     	//Stores data pulled from the 'ResultPageState' factory
     	var pageViewData = ResultPageState.GetPageState();
-    	/*
+
     	//Set correct icon for venue type
     	var venueIcon;
     	switch(pageViewData.CategoryName){
@@ -32,7 +32,7 @@ angular.module('blipApp')
     		}
 
     	}
-		*/
+
   		return {
     		restrict: 'E',
     		replace: true,
@@ -47,6 +47,7 @@ angular.module('blipApp')
                 distance,
                 direction,
                 userMarker,
+                //venue heading
                 heading;
 
                 //var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
@@ -102,7 +103,7 @@ angular.module('blipApp')
 	                        pos.coords.latitude,
 	                        pos.coords.longitude
 	                    ));
-
+	                console.log(pos);
 
 	                //Initaly set Rotation, Distance, and Pillyline
 	                setUserRotation(pos);
@@ -115,7 +116,7 @@ angular.module('blipApp')
 	                    map: map,
 	                    position: coordinatesVenue,
 	                    title: pageViewData.LocationName,
-	                    //icon: venueIcon
+	                    icon: venueIcon
 	                });
 	            }
 
@@ -123,7 +124,8 @@ angular.module('blipApp')
 	            function setUserRotation(pos){
 	            	var arrow = document.getElementById("userArrow");
 	                arrow.style.transform = "rotate(" + pos.coords.heading + "deg)";
-	                console.log(pos);
+	                var x = document.getElementById("testDistance");
+	            	x.innerHTML = "Heading : " + pos.coords.heading;
 	            }
 
 	            //Sets the rotation of the venue heading
@@ -136,8 +138,10 @@ angular.module('blipApp')
 	            //Refreshes on watchPoistion event
 	            function getDistance(curLat,curLong){
 	            	distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(curLat,curLong), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
+	            	/*
 	            	var x = document.getElementById("testDistance");
 	            	x.innerHTML = "Distance To Venue : " + (distance/1000).toFixed(1) + "km";
+	            	*/
 	            }
 
 	            function displayAndWatch(position) {
@@ -163,11 +167,6 @@ angular.module('blipApp')
 	                        position.coords.latitude,
 	                        position.coords.longitude
 	                    ));
-
-	                //TODO: Remove this if (Check nothing breaks)
-	                if(position.coords.heading !== null){
-	                	heading = position.coords.heading;
-	                }
 
 	                heading =  google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(position.coords.latitude,position.coords.longitude), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
 
