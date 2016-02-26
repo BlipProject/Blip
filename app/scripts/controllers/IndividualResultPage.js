@@ -47,6 +47,7 @@ angular.module('blipApp')
                 distance,
                 direction,
                 userMarker,
+                //venue heading
                 heading;
 
                 //var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
@@ -102,7 +103,7 @@ angular.module('blipApp')
 	                        pos.coords.latitude,
 	                        pos.coords.longitude
 	                    ));
-
+	                console.log(pos);
 
 	                //Initaly set Rotation, Distance, and Pillyline
 	                setUserRotation(pos);
@@ -122,7 +123,25 @@ angular.module('blipApp')
 	            //Sets the rotation of the users heading
 	            function setUserRotation(pos){
 	            	var arrow = document.getElementById("userArrow");
-	                arrow.style.transform = "rotate(" + pos.coords.heading + "deg)";
+
+	            	window.addEventListener('deviceorientation', function(event) {
+	            		var currentHeading;
+	            		var accuracy;
+						if (event.webkitCompassHeading !== undefined) {
+							// Direction values are measured in degrees starting at due north and continuing clockwise around the compass.
+							// Thus, north is 0 degrees, east is 90 degrees, south is 180 degrees, and so on. A negative value indicates an invalid direction.
+							currentHeading = (360 - event.webkitCompassHeading);
+							accuracy = event.webkitCompassAccuracy;
+						} else if (event.alpha != null) {
+							// alpha returns the rotation of the device around the Z axis; that is, the number of degrees by which the device is being twisted
+							// around the center of the screen
+							// (support for android)
+							currentHeading = (270 - event.alpha) * -1;
+							accuracy = event.webkitCompassAccuracy;
+						}
+
+						arrow.style.transform = "rotate(" + currentHeading + "deg)";
+					});
 	            }
 
 	            //Sets the rotation of the venue heading
@@ -162,11 +181,6 @@ angular.module('blipApp')
 	                        position.coords.latitude,
 	                        position.coords.longitude
 	                    ));
-
-	                //TODO: Remove this if (Check nothing breaks)
-	                if(position.coords.heading !== null){
-	                	heading = position.coords.heading;
-	                }
 
 	                heading =  google.maps.geometry.spherical.computeHeading(new google.maps.LatLng(position.coords.latitude,position.coords.longitude), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
 
