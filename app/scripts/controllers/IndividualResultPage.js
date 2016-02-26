@@ -10,7 +10,7 @@ angular.module('blipApp')
 
     	//Stores data pulled from the 'ResultPageState' factory
     	var pageViewData = ResultPageState.GetPageState();
-    	/*
+
     	//Set correct icon for venue type
     	var venueIcon;
     	switch(pageViewData.CategoryName){
@@ -32,7 +32,7 @@ angular.module('blipApp')
     		}
 
     	}
-		*/
+
   		return {
     		restrict: 'E',
     		replace: true,
@@ -115,7 +115,7 @@ angular.module('blipApp')
 	                    map: map,
 	                    position: coordinatesVenue,
 	                    title: pageViewData.LocationName,
-	                    //icon: venueIcon
+	                    icon: venueIcon
 	                });
 	            }
 
@@ -123,7 +123,6 @@ angular.module('blipApp')
 	            function setUserRotation(pos){
 	            	var arrow = document.getElementById("userArrow");
 	                arrow.style.transform = "rotate(" + pos.coords.heading + "deg)";
-	                console.log(pos);
 	            }
 
 	            //Sets the rotation of the venue heading
