@@ -124,6 +124,8 @@ angular.module('blipApp')
 	            function setUserRotation(pos){
 	            	var arrow = document.getElementById("userArrow");
 
+	            	//Source: http://developers.arcgis.com/javascript/sandbox/sandbox.html?sample=mobile_compass
+
 	            	window.addEventListener('deviceorientation', function(event) {
 	            		var currentHeading;
 	            		var accuracy;
