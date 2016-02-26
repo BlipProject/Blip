@@ -133,7 +133,7 @@ angular.module('blipApp')
 	            		if(event.webkitCompassHeading){
 	            			alpha = event.webkitCompassHeading;
 	            			//IOS
-	            			arrow.style.WebkitTransform = "rotate(" + alpha + "deg)";
+	            			arrow.style.webkitTransform = "rotate(" + alpha + "deg)";
 	            		}
 	            		else{
             				alpha = event.alpha;
@@ -143,9 +143,9 @@ angular.module('blipApp')
 	            		}
 
 						arrow.style.transform = "rotate(" + alpha + "deg)";
-						arrow.style.WebkitTransform = "rotate(" + webkitAlpha + "deg)";
+						arrow.style.webkitTransform = "rotate(" + webkitAlpha + "deg)";
 						//Firefox
-						arrow.style.MozTransform = "rotate(" + alpha + "deg)"
+						arrow.style.mozTransform = "rotate(" + alpha + "deg)"
 
 					});
 	            }
