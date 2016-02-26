@@ -124,8 +124,12 @@ angular.module('blipApp')
 	            function setUserRotation(pos){
 	            	var arrow = document.getElementById("userArrow");
 	                arrow.style.transform = "rotate(" + pos.coords.heading + "deg)";
-	                var x = document.getElementById("testDistance");
-	            	x.innerHTML = "Heading : " + pos.coords.heading;
+
+	            	window.addEventListener('deviceorientation', function(event) {
+					  console.log(event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
+					  var x = document.getElementById("testDistance");
+					  x.innerHTML = event.alpha + ' : ' + event.beta + ' : ' + event.gamma;
+					});
 	            }
 
 	            //Sets the rotation of the venue heading
