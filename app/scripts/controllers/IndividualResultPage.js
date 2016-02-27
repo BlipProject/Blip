@@ -122,9 +122,10 @@ angular.module('blipApp')
 
 	            //Sets the rotation of the users heading
 	            //Source: https://mobiforge.com/design-development/html5-mobile-web-device-orientation-events
+	            //Sets the rotation of the users heading
+	            //Source: https://mobiforge.com/design-development/html5-mobile-web-device-orientation-events
 	            function setUserRotation(pos){
 	            	var arrow = document.getElementById("userArrow");
-
 
 	            	window.addEventListener('deviceorientation', function(event) {
 	            		var alpha;
@@ -139,14 +140,13 @@ angular.module('blipApp')
             				alpha = event.alpha;
             				webkitAlpha = alpha;
             				if(!window.chrome)
-            					webkitAlpha = 360-alpha;
+            					webkitAlpha = alpha - 270;
 	            		}
 
-						arrow.style.transform = "rotate(" + webkitAlpha + "deg)";
+						arrow.style.transform = "rotate(" + alpha + "deg)";
 						arrow.style.webkitTransform = "rotate(" + webkitAlpha + "deg)";
 						//Firefox
-						arrow.style.mozTransform = "rotate(" + webkitAlpha + "deg)"
-
+						arrow.style.mozTransform = "rotate(" + alpha + "deg)"
 					});
 	            }
 
