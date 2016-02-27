@@ -122,9 +122,12 @@ angular.module('blipApp')
 
 	            //Sets the rotation of the users heading
 	            //Source: https://mobiforge.com/design-development/html5-mobile-web-device-orientation-events
+	            //Sets the rotation of the users heading
+	            //Source: https://mobiforge.com/design-development/html5-mobile-web-device-orientation-events
 	            function setUserRotation(pos){
 	            	var arrow = document.getElementById("userArrow");
 
+	            	//Source: http://developers.arcgis.com/javascript/sandbox/sandbox.html?sample=mobile_compass
 
 	            	window.addEventListener('deviceorientation', function(event) {
 	            		var alpha;
@@ -146,7 +149,6 @@ angular.module('blipApp')
 						arrow.style.webkitTransform = "rotate(" + webkitAlpha + "deg)";
 						//Firefox
 						arrow.style.mozTransform = "rotate(" + alpha + "deg)"
-
 					});
 	            }
 
