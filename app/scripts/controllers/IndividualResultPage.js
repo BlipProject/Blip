@@ -143,14 +143,21 @@ angular.module('blipApp')
 
             				webkitAlpha = alpha;
             				if(!window.chrome)
-            					webkitAlpha = alpha ;
-	            		}
-	            		var x = document.getElementById("testDistance");
-	            		x.innerHTML = "A: " + alpha;
-						arrow.style.transform = "rotate(" + alpha + "deg)";
-						arrow.style.webkitTransform = "rotate(" + webkitAlpha + "deg)";
-						//Firefox
-						arrow.style.mozTransform = "rotate(" + alpha + "deg)"
+            					webkitAlpha = alpha;
+
+            				if (alpha > 180) {
+						      alpha = 360 - alpha
+						    }
+						    else {
+						      alpha = 0 - alpha
+						    }
+
+	            			webkitAlpha = alpha;
+							arrow.style.transform = "rotate(" + alpha + "deg)";
+							arrow.style.webkitTransform = "rotate(" + alpha + "deg)";
+							//Firefox
+							arrow.style.mozTransform = "rotate(" + alpha + "deg)"
+        				}
 					});
 	            }
 
@@ -164,10 +171,8 @@ angular.module('blipApp')
 	            //Refreshes on watchPoistion event
 	            function getDistance(curLat,curLong){
 	            	distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(curLat,curLong), new google.maps.LatLng(coordinatesVenue.lat,coordinatesVenue.lng));
-	            	/*
 	            	var x = document.getElementById("testDistance");
 	            	x.innerHTML = "Distance To Venue : " + (distance/1000).toFixed(1) + "km";
-	            	*/
 	            }
 
 	            function displayAndWatch(position) {
