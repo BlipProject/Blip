@@ -139,13 +139,13 @@ angular.module('blipApp')
             				alpha = event.alpha;
             				webkitAlpha = alpha;
             				if(!window.chrome)
-            					webkitAlpha = alpha - 270;
+            					webkitAlpha = 360-alpha;
 	            		}
 
-						arrow.style.transform = "rotate(" + alpha + "deg)";
+						arrow.style.transform = "rotate(" + webkitAlpha + "deg)";
 						arrow.style.webkitTransform = "rotate(" + webkitAlpha + "deg)";
 						//Firefox
-						arrow.style.mozTransform = "rotate(" + alpha + "deg)"
+						arrow.style.mozTransform = "rotate(" + webkitAlpha + "deg)"
 
 					});
 	            }
