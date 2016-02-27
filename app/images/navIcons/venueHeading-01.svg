@@ -3,12 +3,11 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 760 760" style="enable-background:new 0 0 760 760;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:none;stroke:#2C3E50;stroke-width:5;stroke-miterlimit:10;}
-	.st1{fill:#2C3E50;}
+	.st0{display:none;fill:none;stroke:#2C3E50;stroke-width:5;stroke-miterlimit:10;}
+	.st1{display:none;fill:#2C3E50;}
 	.st2{display:none;fill:#3498DB;}
-	.st3{display:none;fill:#E74C3C;}
+	.st3{fill:#E74C3C;}
 </style>
-<title>userRing</title>
 <circle class="st0" cx="375" cy="386.8" r="199.9"/>
 <circle class="st1" cx="371.1" cy="389.8" r="9.9"/>
 <path class="st2" d="M371.1,59.1l-76.3,132.2h0.2c23.6-9.1,49.3-14.1,76.1-14.1s52.5,5,76.1,14.1h0.2L371.1,59.1z M371.1,164.2
