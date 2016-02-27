@@ -140,6 +140,7 @@ angular.module('blipApp')
 	            		}
 	            		else{
             				alpha = event.alpha;
+
             				webkitAlpha = alpha;
             				if(!window.chrome)
             					webkitAlpha = alpha - 270;
