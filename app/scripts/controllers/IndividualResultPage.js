@@ -140,15 +140,24 @@ angular.module('blipApp')
 	            		}
 	            		else{
             				alpha = event.alpha;
+
             				webkitAlpha = alpha;
             				if(!window.chrome)
-            					webkitAlpha = alpha - 270;
-	            		}
+            					webkitAlpha = alpha;
 
-						arrow.style.transform = "rotate(" + alpha + "deg)";
-						arrow.style.webkitTransform = "rotate(" + webkitAlpha + "deg)";
-						//Firefox
-						arrow.style.mozTransform = "rotate(" + alpha + "deg)"
+            				if (alpha > 180) {
+						      alpha = 360 - alpha
+						    }
+						    else {
+						      alpha = 0 - alpha
+						    }
+
+	            			webkitAlpha = alpha;
+							arrow.style.transform = "rotate(" + alpha + "deg)";
+							arrow.style.webkitTransform = "rotate(" + alpha + "deg)";
+							//Firefox
+							arrow.style.mozTransform = "rotate(" + alpha + "deg)"
+        				}
 					});
 	            }
 
