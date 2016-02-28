@@ -6,10 +6,13 @@
 	margin-top: 90px;
     position: relative;
     min-height: 500px;
+
+    @media(max-width:$screen-sm){
+    	margin-top: 55px;
+    }
 }
 
 .add-location-form{
-	@include box-shadow(0px 0px 2px 0px $box-shadow-colour);
 	width:100%;
 	background-color: #fff;
 	height:auto;
