@@ -73,6 +73,11 @@ angular
       .when('/userLocations', {
         templateUrl: 'views/userLocations.html'
       })
+      .when('/visitedLocations', {
+        templateUrl: 'views/visitedLocations.html',
+        controller: 'VisitedLocationsCtrl',
+        controllerAs: 'visitedLocations'
+      })
       .otherwise({
         redirectTo: 'home.html'
       });

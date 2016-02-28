@@ -28,7 +28,7 @@ angular.module('blipApp')
         $scope.ProfileOptionSelected = function(ProfileOption) {
             switch(ProfileOption.substring(2)) {
                 case "Visited locations":
-                    $location.path('searchResult');
+                    $location.path('visitedLocations');
                     break;
                 case "Add location":
                     $location.path('registerbusiness');
