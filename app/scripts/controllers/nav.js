@@ -23,4 +23,25 @@ angular.module('blipApp')
         $scope.isActive = function(){
             return $rootScope.mobileNavPageActive;
         };
+
+        //Redirect to the correct page when an option is selected in the mobile profile dropdown
+        $scope.ProfileOptionSelected = function(ProfileOption) {
+            switch(ProfileOption.substring(2)) {
+                case "Visited locations":
+                    $location.path('searchResult');
+                    break;
+                case "Add location":
+                    $location.path('registerbusiness');
+                    break;
+                case "My locations":
+                    $location.path('userLocations');
+                    break;
+                case "Account Settings":
+                    $location.path('registerbusiness');
+                    break;
+                case "Logout":
+                    $location.path('registerbusiness');
+                    break;
+            }
+        };
     }]);
