@@ -112,15 +112,10 @@ angular.module('blipApp')
 
                 var locationLatLng = $scope.queryResults[0].geometry.location;
 
-                $scope.map = {
-                    center: {
-                        latitude: locationLatLng.lat,
-                        longitude: locationLatLng.lng
-                    },
-                    zoom: 16
-                };
-                $scope.addLocationMapMarker.coords.latitude = e.latLng.lat();
-                $scope.addLocationMapMarker.coords.longitude = e.latLng.lng();
+                $scope.map.center.latitude = locationLatLng.lat;
+                $scope.map.center.longitude = locationLatLng.lng;
+                $scope.addLocationMapMarker.coords.latitude = locationLatLng.lat;
+                $scope.addLocationMapMarker.coords.longitude = locationLatLng.lng;
             },
             function error(_error) {
                 $scope.queryError = _error;
