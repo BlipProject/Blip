@@ -114,11 +114,28 @@ angular.module('blipApp')
         //Calls SearchServices to return search results
         //Takes 1 argument ([current coordinates])
         var returnSearchResults = function(geoData) {
-            SearchServices.getLocationResults(geoData).then(function(data) {
-                $scope.searchResult = data;
+            var cachedResult={};
+            if(localStorage.getItem("cacheResults") !== null)
+                cachedResult = JSON.parse(localStorage.cacheResults);
+            else{
+                cachedResult.date = Date.now();
+            }
+
+            //Check if cached results is older than 5 mins
+            //If yes recall searchSearvices for updated results
+            if(Date.now() - cachedResult.date > 300000)
+            {
+                SearchServices.getLocationResults(geoData).then(function(data) {
+                    $scope.searchResult = data;
+                    $scope.filterSearchResult = $scope.searchResult;
+                    $rootScope.showLoadingAnimation = false;
+                });
+            }
+            else{
+                $scope.searchResult = cachedResult.data;
                 $scope.filterSearchResult = $scope.searchResult;
                 $rootScope.showLoadingAnimation = false;
-            });
+            }
         };
 
         //Called from front-end to set filtered results and set active class on button

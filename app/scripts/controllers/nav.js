@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('blipApp')
-    .controller('NavCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
+    .controller('NavCtrl', ['$scope', '$rootScope', '$location', function($scope, $rootScope, $location) {
         //Store animate in/out classes for mobile nav
         $rootScope.toggleNavClass = $rootScope.animateOut;
 
@@ -14,8 +14,10 @@ angular.module('blipApp')
             }
         };
 
-        $scope.setActive = function(currentTab) {
+        //Set current new page active and redirect to new page
+        $scope.setActive = function(currentTab, redirect) {
             $rootScope.mobileNavPageActive = currentTab;
+            $location.path(redirect);
         };
 
         $scope.isActive = function(){

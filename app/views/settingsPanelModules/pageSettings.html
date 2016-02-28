@@ -4,8 +4,8 @@
     </div>
     <div class="settings-pannel-content">
         <div class="nav-icon-wrapper">
-            <div class="nav-view-switch" ng-click="setActive(0)" ng-class="{navviewswitchactive: isActive() === 0}"><a href="#/searchResult"><i class="fa fa-list fa-4x"></i></a></div>
-            <div class="nav-view-switch" ng-click="setActive(1)" ng-class="{navviewswitchactive: isActive() === 1}"><a href="#/map"><i class="fa fa-map fa-4x"></i></a></div>
+            <div class="nav-view-switch" ng-click="setActive(0, '/searchResult')" ng-class="{navviewswitchactive: isActive() === 0}"><i class="fa fa-list fa-4x"></i></div>
+            <div class="nav-view-switch" ng-click="setActive(1, '/map')" ng-class="{navviewswitchactive: isActive() === 1}"><i class="fa fa-map fa-4x"></i></div>
         </div>
         <div class="dropdown-wrapper">
             <select id="lstNat" name="nat" class="add-location-form-input" ng-model="locationNationality" ng-change="getLocationNewCountry(locationNationality.NationalityID)" ng-options="option.NationalityName for option in nationalities track by option.NationalityID">

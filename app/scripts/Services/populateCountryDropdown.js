@@ -6,7 +6,7 @@ angular.module('blipApp')
 		///phpCore/get_nationalities.php
 		return{
 			getNationalities: function(){
-				return $http.post('http://localhost/blip/app/phpCore/get_nationalities.php', data)
+				return $http.post('../phpCore/get_nationalities.php', data)
 			        .then(function(response)
 			        {
 			        	console.log("Success");

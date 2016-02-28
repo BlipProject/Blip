@@ -21,8 +21,9 @@ angular.module('blipApp')
 				return $http.post('http://localhost/blip/app/phpCore/search.php', data)
 			        .then(function(response)
 			        {
-			        	console.log("Success");
-			        	console.log(response.data);
+			        	var resultCache = {date: Date.now(), data:response.data};
+			        	localStorage.cacheResults = JSON.stringify(resultCache);
+			        	console.log(resultCache);
 			        	return response.data;
 		            });
 			}
