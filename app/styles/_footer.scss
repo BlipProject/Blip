@@ -5,7 +5,6 @@
 .footer{
 	clear:both;
 	width:100%;
-	min-height:100px;
 	height:130px;
 	color:#fff;
 	background-color:$main-brand-colour;
@@ -16,9 +15,6 @@
 	width:100%;
 	padding: 10px;
 	height:100%;
-	@media(max-width:$screen-sm){
-		margin-top:20px;
-	}
 	text-align:center;
 }
 
@@ -50,5 +46,24 @@
 	.footer{
 		position: fixed;
 		bottom:0px;
+		height:80px;
+	}
+
+	.foot-box{
+		margin-top:0px;
+		padding: 5px;
+	}
+
+	.foot-box-header{
+		position:relative;
+		height:50%;
+
+		h2{
+			position:absolute;
+			top:50%;
+			left:50%;
+			transform:translate(-50%,-50%);
+			font-size:30px;
+		}
 	}
 }

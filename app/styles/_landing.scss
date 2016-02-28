@@ -79,7 +79,6 @@ body{
 	width:60%;
 }
 
-
 @media (max-width: $screen-sm){
 
 	.landing-logo{
@@ -88,7 +87,7 @@ body{
 	}
 
 	.landing-form{
-		height:80vh;
+		height:auto;
 		width:95%;
 	}
 
@@ -98,17 +97,17 @@ body{
 
 	.landing-form-login{
 		width:100%;
-		height: calc(50vh - 10%);
+		height: 400px;
 		border-right: 0px;
-		border-bottom: 1px solid #1abc9c;
 		padding-top:50px;
 	}
 
 	.landing-form-signup{
-		position:relative;
+		border-top: 1px solid #1abc9c;
 		width: 100%;
-		height: 40%;
+		height: 190px;
 		padding-top:50px;
+
 	}
 
 	.form-fields-wrap{
@@ -127,10 +126,7 @@ body{
 }
 
 .btn-signUp{
-	position:absolute;
-	top:50%;
-	left:50%;
-	transform:translate(-50%, -50%);
+
 	background-color:#1abc9c;
 	color:#fff;
 	width:60%;
@@ -145,5 +141,17 @@ body{
 		margin-left:auto;
 		margin-right:auto;
 		width:80%;
+	}
+}
+
+@media (min-width: $screen-md) and (max-width: $screen-lg){
+	.landing-form{
+		height:80vh;
+	}
+}
+
+@media (min-width: $screen-lg){
+	.landing-form{
+		height:50vh;
 	}
 }

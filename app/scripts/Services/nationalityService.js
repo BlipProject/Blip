@@ -19,8 +19,9 @@ angular.module('blipApp')
 			//TESTING URL http://localhost/blip/app/phpCore/get_nationalities.php
 
 			getNationalities: function(data){
-				return $http.post('http://localhost/blip/app/phpCore/get_nationalities.php', data)
-				.then(function(response) {;
+				return $http.post('../phpCore/get_nationalities.php', data)
+				.then(function(response) {
+					console.log("Success");
 					return response.data;
 				});
 			}
