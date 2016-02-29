@@ -29,7 +29,7 @@
 	$searchResults = searchLocation($latitude,$longitude,$nationality,$showLimit);
 
 	function searchLocation($lat,$long,$nationality,$showLimit) {
-		$resultsArray;
+		$resultsArray=[];
 		global $conn;
 
 		$search = mysqli_query($conn,
