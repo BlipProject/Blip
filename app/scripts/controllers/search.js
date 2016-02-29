@@ -11,7 +11,8 @@ angular.module('blipApp')
     '$location',
     '$rootScope',
     function($http, $scope, GeoLocationService, SearchServices, uiGmapGoogleMapApi, ResultPageState, $location, $rootScope) {
-
+        //Set button active in nav
+        $rootScope.mobileNavPageActive = 0;
         //Close mobile-navigation menu on page load
         $rootScope.toggleNavClass = $rootScope.animateOut;
         //Store search result returned from server
@@ -24,12 +25,16 @@ angular.module('blipApp')
         //Stores users nationality to pass to server
         //Hardcoded currently for testing -- 671 == France
         $scope.userNationality = 671;
+        var refreshData = false;
 
         //Called from Nationality dropdown in "settingsPannel.html" to set "userNationality"
         //Then calls getLocation and which passes new country to database sproc
         $scope.getLocationNewCountry = function(newCountry) {
             $rootScope.showLoadingAnimation = true;
             $scope.userNationality = newCountry;
+            $scope.filterSearchResult = [];
+            $rootScope.showLoadingAnimation = true;
+            refreshData = true;
             $scope.getLocation();
         };
 
@@ -37,7 +42,6 @@ angular.module('blipApp')
         //navigator must be passed to service (dont no why ??)
         $scope.getLocation = function() {
             GeoLocationService.getGeoCoordinates(navigator).then(function(data) {
-                console.log(data);
                 data.nationality = $scope.userNationality;
                 data.showLimit = $scope.showAmountFilter;
                 returnSearchResults(data);
@@ -105,8 +109,7 @@ angular.module('blipApp')
 
             },
             function error(_error) {
-                $scope.queryError = _error;
-                console.log($scope.queryError);
+                //printGeoError(_error);
             })
 
         }
@@ -118,12 +121,19 @@ angular.module('blipApp')
             if(localStorage.getItem("cacheResults") !== null)
                 cachedResult = JSON.parse(localStorage.cacheResults);
             else{
-                cachedResult.date = Date.now();
+                cachedResult.date = 0;
             }
+
+
+            if(refreshData === true){
+                cachedResult.date = 0;
+            }
+
+            refreshData = false;
 
             //Check if cached results is older than 5 mins
             //If yes recall searchSearvices for updated results
-            if(Date.now() - cachedResult.date > 300000)
+            if(Date.now() - cachedResult.date > 300000 )
             {
                 SearchServices.getLocationResults(geoData).then(function(data) {
                     $scope.searchResult = data;

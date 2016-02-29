@@ -92,7 +92,7 @@ angular.module('blipApp')
 
             NationalityService.getNationalities().then(function(data){
                 $scope.nationalities = data;
-                console.log($scope.nationalities);
+                console.log(JSON.stringify(data));
             });
         };
 

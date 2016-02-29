@@ -14,17 +14,17 @@ angular.module('blipApp')
 		return{
 
 			///////////
-			//IMPORTANT Change post URL to reletive link before build... '../phpCore/get_nationalities.php'
+			//IMPORTANT Change post URL to reletive link before build... '../phpCore/nationalities.json
 			///////////
-			//TESTING URL http://localhost/blip/app/phpCore/get_nationalities.php
+			//TESTING URL http://localhost/blip/app/phpCore/nationalities.json
 
 			getNationalities: function(data){
-				return $http.post('../phpCore/get_nationalities.php', data)
+				return $http.get('http://localhost/blip/app/phpCore/nationalities.json', data)
 				.then(function(response) {
-					console.log("Success");
 					return response.data;
 				});
 			}
+
 		};
 	}]);
 
