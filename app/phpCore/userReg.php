@@ -1,12 +1,13 @@
 <?php
 
 	require_once 'blip_4815162342_108.php';
+	$conn = db_connect();
 
-	$user = json_decode(file_get_contents("php://input"));
-	$userName = $user->name;
-	$userCountry = $user->country;
-	$userEmail = $user->email;
-	$userPassword = $user->password;
+	//$user = json_decode(file_get_contents("php://input"));
+	$userName= $_POST["nameReg"];
+	$userCountry = (int)$_POST["countryReg"];
+	$userEmail = $_POST["emailReg"];
+	$userPassword = $_POST["passwordReg"];
 	/*
 	$conn = mysqli_connect($servername, $username, $password, $db);
 	$get = mysqli_query($conn,
@@ -67,7 +68,7 @@
 	Your account has been created.
 	Please verify your email and get started using your Website account.
 	Please click this link to activate your account:
-	http://bliptest.azurewebsites/blip/app/phpCore/activationUser.php?lkjhgv=$userEmail&asxcv=$activationCode
+	//http://localhost/blip/app/phpCore/activationUser.php?lkjhgv=$userEmail&asxcv=$activationCode
 
 
 

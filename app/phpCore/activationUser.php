@@ -1,6 +1,7 @@
 <?php
 
 	require_once 'blip_4815162342_108.php';
+	$conn = db_connect();
 
 
     $userEmail = $_GET['lkjhgv'];
@@ -20,7 +21,7 @@
 
 	if ($activation == $db_code && $userEmail == $db_email)
 	{
-  		$conn = mysqli_connect($servername, $username, $password, $db);
+		$conn = db_connect();
 		$move = mysqli_query($conn,
        		"Call MoveIntoUsersArtur('$userEmail')") or die("Query fail: " . mysqli_error($conn));
 

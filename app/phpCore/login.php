@@ -1,18 +1,19 @@
 <?php
 
 	require_once 'blip_4815162342_108.php';
+	$conn = db_connect();
 
 	//$user = json_decode(file_get_contents("php://input"));
-	$userEmail = $_POST['email'];
-	$userPassword = $_POST['password'];
+	$userEmail = $_POST["email"];
+	$userPassword = $_POST["password"];
 
 	//echo 'ok?';
 	echo $userEmail;
 	echo $userPassword;
 
 	//variables from db
-	$db_pass;
-	$db_salt;
+	$db_pass="";
+	$db_salt="";
 
 	//creating sprock and executing
 	$get = mysqli_query($conn,
@@ -29,7 +30,6 @@
 	}
 
 	$hash = crypt($userPassword, $db_salt);
-	echo $hash;
 
 	if ($hash == $db_pass)
 	{
