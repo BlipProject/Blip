@@ -131,7 +131,10 @@
 	.fa{
 		color: #ecf0f1;
 
-		&:hover{color:$main-brand-colour;}
+		&:hover{
+			color:$main-brand-colour;
+			cursor: pointer;
+		}
 
 	}
 

@@ -13,6 +13,9 @@ angular.module('blipApp')
     '$rootScope',
     function(ResultPageState, $location, $http, $scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, GeoLocationService, SearchServices, $rootScope) {
 
+        //Set button active in nav
+        $rootScope.mobileNavPageActive = 1;
+
         uiGmapGoogleMapApi.then(function(maps) {
             //Fix ._contains/._object is not a function
             //Caused by using old version of lodash, installed by bower
