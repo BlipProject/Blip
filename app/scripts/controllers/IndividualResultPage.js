@@ -4,7 +4,21 @@ angular.module('blipApp')
     .controller('IndividualResultPageCtrl', ['ResultPageState', '$scope', function(ResultPageState, $scope) {
 
     	$scope.pageViewData = ResultPageState.GetPageState();
-    	$scope.editLocation = ResultPageState.GetEditState();
+    	//$scope.editLocation = ResultPageState.GetEditState();
+    	$scope.editLocation = true;
+
+    	$scope.editLocationName = function(update, name) {
+
+    		if(update != true) {
+
+    			$("#textBoxModal").modal('show');
+    			$scope.tbxModal = $scope.pageViewData.LocationName;
+    		}
+    		else { 
+    			$scope.pageViewData.LocationName = name;
+    			$("#textBoxModal").modal('hide');
+    		}
+    	};
 
     }])
     .directive('watchLocation',['ResultPageState', function(ResultPageState) {

@@ -6,6 +6,19 @@
                 <!--Picks border colour based on type of venue is displayed i.e 'Bar'-->
                 <div ng-class="{'indiv-divider-bar': pageViewData.CategoryName == 'Bar','indiv-divider-res': pageViewData.CategoryName == 'Restaurant','indiv-divider-shop': pageViewData.CategoryName == 'Supermarket','indiv-divider-other': pageViewData.CategoryName == 'Other'}" class="indiv-divider"></div>
                 <div class="indiv-img-wrap">
+                    <div class="edit-location-hover" ng-show="editLocation == true">
+                        <div class="edit-location-hover-header-options">
+                            <div class="user-location-hover-bar-option">
+                                <div ng-click="editLocationName()"><i class="fa fa-trademark fa-3x"></i><span>Edit Name</span></div>
+                            </div>
+                            <div class="user-location-hover-bar-option">
+                                <div ng-click="editLocationCategory()"><i class="fa fa-ellipsis-h fa-3x"></i><span>Edit Category</span></div>
+                            </div>
+                            <div class="user-location-hover-bar-option">
+                                <div ng-click="editLocationImage()"><i class="fa fa-picture-o fa-3x"></i><span>Edit Picture</span></div>
+                            </div>
+                        </div>
+                    </div>
                     <img ng-src="{{pageViewData.LocationPic}}" />
                     <div class="indiv-page-header">
                         <h2>{{pageViewData.LocationName}}</h2>
@@ -17,6 +30,8 @@
             <div class="indiv-content">
                 <button id="btnToggleMap" class="btn btn-success col-xs-12 hidden-md hidden-lg">Get Directions</button>
                 <div class="indiv-map-wrap">
+                    <div class="edit-location-hover">
+                    </div>
                     <div id="map" style="width:100%; height: 100%"></div>
                     <div id="arrowContainer"><img id="centreRing" class="hidden-md hidden-lg" src="/images/navIcons/userRing.svg"></div>
                     <div id="arrowContainer"><img id="navArrow" class="hidden-md hidden-lg" src="images/navIcons/venueHeading.svg"></div>
@@ -43,6 +58,34 @@
                 <div ng-include="'views/componants/settingsPannel.html'"></div>
             </div>
         </div>
+    </div>
+    <!--TextBox Modal-->
+    <div id="textBoxModal" class="modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Please enter the new name of your location.</p>
+                    <input id="tbxModal" name="name" class="add-location-form-input" type="text" ng-model="tbxModal" placeholder="e.g. The Little Pizza" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="editLocationName(true, tbxModal)">Confirm</button>
+                </div>
+            </div>
+        </di>
+    </div>
+    <!--Image Modal-->
+    <div id="imageModal" class="modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Please enter the new name of your location.</p>
+                    <input id="tbxModal" name="name" class="add-location-form-input" type="text" ng-model="tbxModal" placeholder="e.g. The Little Pizza" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="editLocationName(true, tbxModal)">Confirm</button>
+                </div>
+            </div>
+        </di>
     </div>
 </div>
 <!--Directive for google maps api-->
