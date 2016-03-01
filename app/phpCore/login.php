@@ -31,14 +31,19 @@
 
 		while ($row = mysqli_fetch_row($user))
 		{
-			$userLogged = json_encode($row,true);
+			$userId = $row[0];
+			$userNat = $row[1];
+			$userName = $row[2];
 		}
 
 
 	    session_start();
 
-		$_SESSION['userSession'] = $userLogged;
-		header('Location: http://localhost:9000/home.html#/');
+		$_SESSION['userId'] = $userId;
+		$_SESSION['userName'] = $userName;
+		$_SESSION['userNat'] = $userNat;
+		header('Location: /home.html#/');
+		exit();
 	}
 	else
 	{

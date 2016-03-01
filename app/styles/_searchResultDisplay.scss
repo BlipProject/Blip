@@ -96,20 +96,7 @@
 		margin-bottom: 40px;
 	}
 
-	button{
-		width:100%;
-		height:30px;
-		z-index: 10;
-		margin: auto;
-		border:1px solid $box-shadow-colour;
-		background-color:#fff;
-		color:$font-colour;
 
-		&:hover{
-			@include transition(background-color 0.8s ease);
-			background-color:#ecf0f1;
-		}
-	}
 }
 
 //Global properties for -- ::before elements & .result-hover-bar
@@ -120,65 +107,51 @@
 	position:relative;
 	margin: auto;
 	border-top:5px solid;
+	border-color: #fff;
 }
 
 .result-hover-icon-properties{
 	font-family: FontAwesome;
 	position: absolute;
 	left:45%;
-	top:-60px;
+	top:-90px;
 	font-size: 30px;
+	color: #fff;
 }
 //--
 .result-hover-button-bar{
 	@extend .result-hover-bar-properties;
-	border-color: #fff;
-	//border-color: $bar-colour;
 
 	::before{
 		@extend .result-hover-icon-properties;
    		content: "\f000";
-   		color: #fff;
-   		//border-color: $bar-colour;
 	}
 }
 
 .result-hover-button-restaurant{
 	@extend .result-hover-bar-properties;
-	//border-color: $restaurant-colour;
-	border-color: #fff;
 
 	::before{
 		@extend .result-hover-icon-properties;
    		content: "\f0f5";
-   		color:#fff;
-   		//color: $restaurant-colour;
 	}
 }
 
 .result-hover-button-shop{
 	@extend .result-hover-bar-properties;
-	//border-color: $shop-colour;
-	border-color: #fff;
 
 	::before{
 		@extend .result-hover-icon-properties;
    		content: "\f07a";
-   		color:#fff;
-		//color: $shop-colour;
 	}
 }
 
 .result-hover-button-other{
 	@extend .result-hover-bar-properties;
-	//border-color: $other-colour;
-	border-color: #fff;
 
 	::before{
 		@extend .result-hover-icon-properties;
    		content: "\f141";
-   		color:#fff;
-   		//color: $other-colour;
 	}
 }
 
