@@ -34,7 +34,7 @@ angular.module('blipApp')
         //Store search result returned from server
         var searchResult = "";
         $scope.map;
-        $scope.userNationality = 671;
+        $scope.userNationality = 5221;
         $scope.control = {};
 
         $scope.getLocationNewCountry = function(newCountry) {
@@ -187,7 +187,7 @@ angular.module('blipApp')
         //TESTING URL http://localhost/blip/app/phpCore/search.php
         var getLocationResults = function(data) {
             var searchResults;
-            var callSearch = $http.post('../phpCore/search.php', data)
+            var callSearch = $http.post('http://localhost/blip/app/phpCore/search.php', data)
 
             .success(function(data, status, headers, config) {
                     searchResult = data;
