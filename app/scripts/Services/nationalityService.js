@@ -19,7 +19,7 @@ angular.module('blipApp')
 			//TESTING URL http://localhost/blip/app/phpCore/nationalities.json
 
 			getNationalities: function(data){
-				return $http.get('../phpCore/nationalities.json', data)
+				return $http.get('http://localhost/blip/app/phpCore/get_nationalities.php', data)
 				.then(function(response) {
 					return response.data;
 				});
