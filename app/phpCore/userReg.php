@@ -68,7 +68,7 @@
 	Your account has been created.
 	Please verify your email and get started using your Website account.
 	Please click this link to activate your account:
-	//http://localhost/blip/app/phpCore/activationUser.php?lkjhgv=$userEmail&asxcv=$activationCode
+	<a href='http://bliptest.azurewebsites.net/#phpCore/activationUser.php?lkjhgv=$userEmail&asxcv=$activationCode'>Click Here To Verify Your Account</a>
 
 
 

@@ -1,4 +1,13 @@
 <?php
 session_start();
-if (isset($_SESSION['userSession']))
-	echo json_encode($_SESSION['userSession']);
+
+//Create array to store session variables
+$currentSession = array();
+
+//Expose only session details required
+$currentSession['id'] = $_SESSION['userId'];
+$currentSession['name'] = $_SESSION['userName'];
+$currentSession['Nat'] = $_SESSION['userNat'];
+
+//header('Content-Type: application/json');
+echo json_encode($currentSession,true);

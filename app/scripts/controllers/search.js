@@ -10,17 +10,22 @@ angular.module('blipApp')
     'ResultPageState',
     '$location',
     '$rootScope',
-    'Session',
-    function($http, $scope, GeoLocationService, SearchServices, uiGmapGoogleMapApi, ResultPageState, $location, $rootScope, Session) {
+    'SessionService',
+    function($http, $scope, GeoLocationService, SearchServices, uiGmapGoogleMapApi, ResultPageState, $location, $rootScope, SessionService) {
 
 
         $scope.session;
+        /*
         Session.then(function(response){
             $scope.session = response;
-            console.log(response);
+            console.log(response.data);
         });
         console.log($scope.session);
+        */
 
+        SessionService.SessionService().then(function(data){
+            console.log(data);
+        })
 
         //Set button active in nav
         $rootScope.mobileNavPageActive = 0;
