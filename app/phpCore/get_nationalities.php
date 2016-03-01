@@ -6,7 +6,6 @@
 	$conn = db_connect();
 	//Start Script
 
-
 	$nationalities = getNats();
 
 	function getNats() {
