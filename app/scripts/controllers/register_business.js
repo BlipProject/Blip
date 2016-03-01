@@ -15,7 +15,6 @@ angular.module('blipApp')
     '$location',
     'ResultPageState',
     function($http, $scope, NationalityService, uiGmapGoogleMapApi, $location, ResultPageState) {
-
         uiGmapGoogleMapApi.then(function(maps) {
 
             //Fix ._contains/._object is not a function
