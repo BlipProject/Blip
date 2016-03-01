@@ -26,8 +26,6 @@ angular.module('blipApp')
 				});
 		};
 
-		console.log($scope.userLocations);
-
         //Called from front-end to set filtered results and set active class on button
         $scope.setFilterSetClass = function(filter, index) {
             getFilter(filter);
@@ -115,6 +113,12 @@ angular.module('blipApp')
                 });
             $("#myModal").modal('hide');
             $scope.filterUserLocations.splice($scope.indexToDelete, 1);
+        };
+
+        $scope.editLocation = function(index) {
+            ResultPageState.SetPageState($scope.filterUserLocations[index]);
+            ResultPageState.SetEditState(true);
+            $location.path('LocationView');
         };
 
         $scope.storeFocusedResult = function(index) {

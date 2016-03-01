@@ -4,6 +4,7 @@ angular.module('blipApp')
     .controller('IndividualResultPageCtrl', ['ResultPageState', '$scope', function(ResultPageState, $scope) {
 
     	$scope.pageViewData = ResultPageState.GetPageState();
+    	$scope.editLocation = ResultPageState.GetEditState();
 
     }])
     .directive('watchLocation',['ResultPageState', function(ResultPageState) {
