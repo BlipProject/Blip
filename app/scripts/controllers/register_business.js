@@ -144,7 +144,7 @@ angular.module('blipApp')
 
             var insertBus = $http.post('http://localhost/blip/app/phpCore/register_business.php', $scope.locationData)
                 .success(function(data, status, headers, config) {
-                    $scope.insertedID = parseInt(data[Object.keys(data)[0]]);
+                    $scope.insertedID = parseInt(data.lastID);
                     $scope.locationData.LocationID = $scope.insertedID;
                     console.log($scope.locationData.LocationID);
                 })
