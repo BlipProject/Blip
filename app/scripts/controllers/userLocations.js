@@ -1,7 +1,11 @@
 'use strict';
 
 angular.module('blipApp')
-	.controller('UserLocationsCTRL', ['$http', '$scope', function($http, $scope) {
+	.controller('UserLocationsCTRL', ['$http', 
+        '$scope',
+        '$location',
+        'ResultPageState', 
+        function($http, $scope, $location, ResultPageState) {
 
 		$scope.userLocations = "";
         $scope.filterUserLocations = [];
@@ -12,7 +16,7 @@ angular.module('blipApp')
 		};
 
 		$scope.getUserLocations = function() {
-			$http.post('../phpCore/get_user_locations.php', user)
+			$http.post('http://localhost/blip/app/phpCore/get_user_locations.php', user)
 				.then(function(response)
 				{
 					$scope.userLocations = response.data;
@@ -64,25 +68,25 @@ angular.module('blipApp')
                     {
                         $scope.typeHeadClass = "result-header-bar";
                         $scope.setIconClass = "fa fa-glass fa-lg";
-                        return "result-hover-button-bar";
+                        return "";
                     }
                 case 'Restaurant':
                     {
                         $scope.typeHeadClass = "result-header-restaurant";
                         $scope.setIconClass = 'fa fa-cutlery fa-lg';
-                        return "result-hover-button-restaurant";
+                        return "";
                     }
                 case 'Supermarket':
                     {
                         $scope.typeHeadClass = "result-header-shop";
                         $scope.setIconClass = 'fa fa-shopping-cart fa-lg';
-                        return "result-hover-button-shop";
+                        return "";
                     }
                 case 'Other':
                     {
                         $scope.typeHeadClass = "result-header-other";
                         $scope.setIconClass = "fa fa-ellipsis-h fa-lg";
-                        return "result-hover-button-other";
+                        return "";
                     }
                 default:
                     {
@@ -104,13 +108,18 @@ angular.module('blipApp')
         $scope.deleteLocation = function() {
             console.log($scope.indexToDelete);
             console.log($scope.filterUserLocations[$scope.indexToDelete]);
-            $http.post('../phpCore/delete_location.php', $scope.filterUserLocations[$scope.indexToDelete])
+            $http.post('http://localhost/blip/app/phpCore/delete_location.php', $scope.filterUserLocations[$scope.indexToDelete])
                 .then(function(response)
                 {
                     console.log("Success");
                 });
             $("#myModal").modal('hide');
             $scope.filterUserLocations.splice($scope.indexToDelete, 1);
+        };
+
+        $scope.storeFocusedResult = function(index) {
+            ResultPageState.SetPageState($scope.filterUserLocations[index]);
+            $location.path('LocationView');
         };
 
 	}]);
