@@ -11,10 +11,6 @@ angular.module('blipApp')
 
     	$scope.cancelModal = function() {
     		$(".modal").modal('hide');
-
-    		$scope.uploader.croppie("destroy");
-    		$scope.uploader = undefined;
-    		console.log($scope.uploader);
     	};
 
     	$scope.editLocationName = function(update, name) {
@@ -34,17 +30,6 @@ angular.module('blipApp')
     		console.log($scope.pageViewData.LocationID);
     		if(update == true) {
     			$("#imageModal").modal('hide');
-    			$scope.uploader.croppie('result', {
-    				type: 'html',
-    				size: 'viewport'
-    			}).then(function (src) {
-    				console.log(src);
-    				var source = $(src).find('img:first').attr("src");
-    				console.log(source);
-    				$scope.pageViewData.LocationPic = source;
-    				console.log($scope.pageViewData);
-    				$scope.$apply();
-    			});
     		}
     		else {
     			$("#imageModal").modal('show');
@@ -58,42 +43,16 @@ angular.module('blipApp')
     		$("#hiddenImgInput").change(function() {
 
     			if(this.files && this.files[0]) {
+				$("#editImageHolder").removeClass("hide");
+				var reader = new FileReader();
 
-    				$("#editImageHolder").removeClass("hide");
-    				var reader = new FileReader();
-
-    				if($scope.uploader === undefined) {
-	    					$scope.uploader = $("#editImageHolder").croppie({
-	    					exif: true,
-		    				viewport: {
-		    					width: $("#editImageHolder").width(),
-		    					height: 200,
-		    					type: 'square'
-		    				},
-		    				boundary: {
-		    					width: $("#editImageHolder").width(),
-		    					height: 200
-		    				},
-		    				mouseWheelZoom: false,
-		    				//showZoomer: false
-		    			});
-	    				reader.onload = function(e) {
-	    					$scope.uploader.croppie('bind', {
-	    						url: e.target.result
-	    					});
-	    				}
-	    				reader.readAsDataURL(this.files[0]);
+    				reader.onload = function(e) {
+    					$scope.pageViewData.LocationPic = e.target.result
+    					$scope.$apply();
     				}
-    				else {
-	    				reader.onload = function(e) {
-	    					$scope.uploader.croppie('bind', {
-	    						url: e.target.result
-	    					});
-	    				}
-	    				reader.readAsDataURL(this.files[0]);
-    				}
-    			}
-    		})
+    				reader.readAsDataURL(this.files[0]);
+				};
+    		});
     	};
 
     }])
