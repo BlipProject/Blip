@@ -27,7 +27,11 @@
                 <!--Picks border colour based on type of venue is displayed i.e 'Bar' == red-->
                 <div ng-class="{'indiv-divider-bar': pageViewData.CategoryName == 'Bar','indiv-divider-res': pageViewData.CategoryName == 'Restaurant','indiv-divider-shop': pageViewData.CategoryName == 'Supermarket','indiv-divider-other': pageViewData.CategoryName == 'Other'}" class="indiv-divider"></div>
             </div>
-            <div class="indiv-content">
+
+            <!--Desktop View-->
+            <div ng-include="'views/componants/indivDesktop.html'"></div>
+
+            <!--<div class="indiv-content">
                 <button id="btnToggleMap" class="btn btn-success col-xs-12 hidden-md hidden-lg">Get Directions</button>
                 <div class="indiv-map-wrap">
                     <div class="edit-location-hover">
@@ -49,8 +53,8 @@
                     <hr/>
                     <button class="button-main button-border-green">Visit Website</button>
                 </div>
-                <!--<div ng-include="'views/componants/review.html'"></div>-->
-            </div>
+                <div ng-include="'views/componants/review.html'"></div>
+            </div>-->
         </div>
         <div class="content-right">
             <!--includes settings pannel-->
