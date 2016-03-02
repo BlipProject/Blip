@@ -183,3 +183,43 @@
 	height: 100%;
 	margin: auto;
 }
+
+#imageModal{
+	top: 20% !important;
+
+	@media(min-width:$screen-md){
+		.modal-dialog {
+			width: 900px;
+		}
+	}
+}
+
+.image-modal-upload-container{
+	width: 100%;
+	height: auto;
+	position: relative;
+}
+
+#editImageHolder{
+	width: 100%;
+	height: 200px;
+	top: 0;
+	position: absolute;
+	padding: 0px !important;
+}
+
+.image-modal-upload-btn-container{
+	width: 100%;
+	height: auto;
+	margin-top: 50px;
+
+    input[type="file"]{
+    	position: absolute;
+    	visibility: hidden;
+    }
+
+    i:hover{
+    	color: $main-brand-colour;
+    	cursor: pointer
+    }
+}

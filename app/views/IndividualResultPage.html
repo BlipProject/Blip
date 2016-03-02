@@ -19,7 +19,7 @@
                             </div>
                         </div>
                     </div>
-                    <img ng-src="{{pageViewData.LocationPic}}" />
+                    <img src="{{pageViewData.LocationPic}}" />
                     <div class="indiv-page-header">
                         <h2>{{pageViewData.LocationName}}</h2>
                     </div>
@@ -68,21 +68,32 @@
                     <input id="tbxModal" name="name" class="add-location-form-input" type="text" ng-model="tbxModal" placeholder="e.g. The Little Pizza" required>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="cancelModal()">Cancel</button>
                     <button type="button" class="btn btn-default" ng-click="editLocationName(true, tbxModal)">Confirm</button>
                 </div>
             </div>
-        </di>
+        </div>
     </div>
     <!--Image Modal-->
     <div id="imageModal" class="modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <p>Please enter the new name of your location.</p>
-                    <input id="tbxModal" name="name" class="add-location-form-input" type="text" ng-model="tbxModal" placeholder="e.g. The Little Pizza" required>
+                    <div class="image-modal-upload-container">
+                        <div class="indiv-img-wrap">
+                            <img ng-src="{{pageViewData.LocationPic}}" />
+                        </div>
+                        <div id="editImageHolder"></div>
+                        <div class="image-modal-upload-btn-container">
+                            <input id="hiddenImgInput" type="file">
+                            <i class="fa fa-upload fa-5x" ng-click="editLocationImageUpload()"></i>
+                            <p>Upload Location Image</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" ng-click="editLocationName(true, tbxModal)">Confirm</button>
+                    <button type="button" class="btn btn-default" ng-click="cancelModal()">Cancel</button>
+                    <button type="button" class="btn btn-default" ng-click="editLocationImage(true)">Confirm</button>
                 </div>
             </div>
         </di>

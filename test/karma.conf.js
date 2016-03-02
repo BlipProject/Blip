@@ -37,7 +37,6 @@ module.exports = function(config) {
       'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js',
       'bower_components/parsleyjs/dist/parsley.js',
       'bower_components/ammap3/ammap/ammap.js',
-      'bower_components/Croppie/croppie.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
