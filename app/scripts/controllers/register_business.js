@@ -134,13 +134,10 @@ angular.module('blipApp')
                 LocationPic: "images/busineses_dir/default/def.png"
             };
 
-            console.log($scope.locationData);
-
             var insertBus = $http.post('http://localhost/blip/app/phpCore/register_business.php', $scope.locationData)
                 .success(function(data, status, headers, config) {
-                    $scope.insertedID = parseInt(data.lastID);
+                    $scope.insertedID = data;
                     $scope.locationData.LocationID = $scope.insertedID;
-                    console.log($scope.locationData.LocationID);
                 })
                 .error(function(data, status, headers, config) {
                     console.log(status + ' - ' + 'Error');

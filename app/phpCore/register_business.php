@@ -27,7 +27,12 @@
 			"CALL RegisterLocation('$locationName', '$locationLat', '$locationLng', '$locationCity', '$locationDescription', '$locationCategory', '$locationNationality', '$locationUserId')")
 			or die("Query fail: " . mysqli_error($conn));
 
-	    return json_encode($insert->fetch_array(MYSQL_ASSOC),true);
+		while($row = $insert->fetch_array(MYSQL_ASSOC)) {
+            $lastId = $row['lastID'];
+	    }
+
+	    mkdir('../images/busineses_dir/'.$lastId, 0777, true);
+	    return $lastId;
 	}
 
 	echo ($businessData);
