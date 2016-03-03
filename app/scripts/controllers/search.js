@@ -10,22 +10,8 @@ angular.module('blipApp')
     'ResultPageState',
     '$location',
     '$rootScope',
-    'SessionService',
-    function($http, $scope, GeoLocationService, SearchServices, uiGmapGoogleMapApi, ResultPageState, $location, $rootScope, SessionService) {
+    function($http, $scope, GeoLocationService, SearchServices, uiGmapGoogleMapApi, ResultPageState, $location, $rootScope) {
 
-
-        $scope.session;
-        /*
-        Session.then(function(response){
-            $scope.session = response;
-            console.log(response.data);
-        });
-        console.log($scope.session);
-        */
-
-        SessionService.SessionService().then(function(data){
-            console.log(data);
-        })
 
         //Set button active in nav
         $rootScope.mobileNavPageActive = 0;
@@ -39,17 +25,15 @@ angular.module('blipApp')
         //Modify to show more/less results
         $scope.showAmountFilter = 30;
         //Stores users nationality to pass to server
-        //Hardcoded currently for testing -- 5221 == France
-        $scope.userNationality = 5221;
+        $scope.userNationality = parseInt($rootScope.userNatCookie);
         //Country name header
-        $scope.displayCountry = "France";
+        $scope.displayCountry = $rootScope.userNatCookie;
         var refreshData = false;
 
         //Called from Nationality dropdown in "settingsPannel.html" to set "userNationality"
         //Then calls getLocation and which passes new country to database sproc
         $scope.getLocationNewCountry = function(newCountry) {
             $rootScope.showLoadingAnimation = true;
-            console.log(newCountry);
             $scope.userNationality = newCountry;
             $scope.filterSearchResult = [];
             $rootScope.showLoadingAnimation = true;

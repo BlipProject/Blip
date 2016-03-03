@@ -39,10 +39,11 @@
 
 	    session_start();
 
-		$_SESSION['userId'] = $userId;
-		$_SESSION['userName'] = $userName;
-		$_SESSION['userNat'] = $userNat;
-		header('Location: /home.html#/');
+	    setcookie("userId", $userId, time() + (86400 * 30), "/");
+	    setcookie("userName", $userName, time() + (86400 * 30), "/");
+	    setcookie("userNat", $userNat, time() + (86400 * 30), "/");
+
+		header('Location: http://localhost:9000/home.html#/');
 		exit();
 	}
 	else
