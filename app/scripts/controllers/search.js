@@ -224,7 +224,7 @@ angular.module('blipApp')
                 case 'Other':
                     {
                         $scope.typeHeadClass = "result-header-other";
-                        $scope.setIconClass = "fa fa-ellipsis-h fa-lg";
+                        $scope.setIconClass = "fa fa-coffee fa-lg";
                         return "result-hover-button-other";
                     }
                 default:

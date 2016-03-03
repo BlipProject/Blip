@@ -8,7 +8,7 @@
         <!--Include mobile nav-->
         <div ng-include="'views/componants/mobileNav.html'" scope="" onload=""></div>
         <div class="container content-wrapper" ng-init="getLocation()">
-            <div class="content-left">
+            <div id="contentWrapper" class="content-left">
                 <!--includes search results-->
                 <div id="contentLeftError" class="contentLeftError-hide">
                     <h4 id="geolocationErrorMessage"></h4>
@@ -25,7 +25,8 @@
                     </div>
                 </div>
                 <div class="search-loading" ng-show="showLoadingAnimation == true">
-                    <p class="loading-image-text">blip</p><img class="animated rotateIn infinite" src="/images/loading/loading_icon.svg"></div>
+                    <p class="loading-image-text">blip</p><img class="animated rotateIn infinite" src="/images/loading/loading_icon.svg">
+                </div>
                 <div ng-include="'views/componants/searchResults.html'"></div>
             </div>
             <div class="content-right">
