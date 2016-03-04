@@ -5,7 +5,7 @@
 	left: 0 !important;
 	background-color: #fff;
 	border: none;
-	box-shadow: 0px 0px 10px 1px #bdc3c7;
+	@include box-shadow (0px 0px 10px 1px $box-shadow-colour);
 }
 
 .gm-style img{
@@ -16,9 +16,19 @@
 	width: 500px;
 	height: auto;
 	background-color: #fff;
+	position:relative;
+}
 
-	@media(max-width:$screen-sm){
-		width:100%;
+.marker-panel-x{
+	position:absolute;
+	height:35px;
+	width:35px;
+	top:5px;
+	right:5px;
+	background-color:#fff;
+	.fa{
+		line-height: 35px;
+		color: $bar-colour;
 	}
 }
 
@@ -59,13 +69,16 @@
 }
 
 .marker-panel-buttons{
-	width: 100%;
+	margin-top:5px;
+	width: 50%;
 	float: left;
 	padding: 2px;
 }
 
-.marker-panel-btn{
-	width: 100%;
+@media(max-width:$screen-sm){
+	.marker-panel-buttons, .marker-panel-image, .marker-panel-content-des, .marker-panel, .marker-panel-content{
+		width:100%;
+	}
 }
 
 /*.angular-google-map-container{

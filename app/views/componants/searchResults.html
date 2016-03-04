@@ -4,7 +4,7 @@ ng-class sets up classes for indiviual results based off result type
 -->
 <!--<div class="search-country-header">Displaying results for {{displayCountry}}</div>-->
 <div ng-repeat="venue in filterSearchResult | limitTo:showAmountFilter track by $index" class="">
-    <div class="result-wrapper">
+    <div class="result-wrapper" ng-class="{'last-result-wrapper': $last}">
         <!--Hidden div for on hover-->
         <div class="result-wrapper-hover">
             <div class="result-wrapper-hover-content">

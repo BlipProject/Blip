@@ -13,7 +13,6 @@
     	margin-top:120px;
     }
 
-
 	position:relative;
 	min-height:500px;
 }
@@ -36,7 +35,7 @@
 	//border-style:solid;
 	//border-width:0px 0px 1px 0px;
 	//border-color: $box-shadow-colour;
-	@include box-shadow (0px 1px 0px 0px $box-shadow-colour);
+	@include box-shadow (0px 1px 1px -1px $box-shadow-colour);
 
 	//transition out of scale effect on image
 	img{
@@ -62,8 +61,11 @@
 		opacity:1;
 		transition-delay:0s;
 		}
-
 	}
+}
+
+.last-result-wrapper{
+	margin-bottom:3px;
 }
 
 //.result-wrapper Hover Styling
