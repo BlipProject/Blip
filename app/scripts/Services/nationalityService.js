@@ -10,7 +10,7 @@
 //Variable data stores returned nationalities
 
 angular.module('blipApp')
-	.service('NationalityService',['$http', function ($http,data,$q) {
+	.factory('NationalityService',['$http', function ($http,data,$q) {
 		return{
 
 			///////////
@@ -21,10 +21,10 @@ angular.module('blipApp')
 			getNationalities: function(data){
 				return $http.post('http://localhost/blip/app/phpCore/get_nationalities.php', data)
 				.then(function(response) {
+					localStorage.cacheNat = JSON.stringify(response.data);
 					return response.data;
 				});
 			}
-
 		};
 	}]);
 

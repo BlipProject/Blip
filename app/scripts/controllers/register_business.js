@@ -11,10 +11,11 @@ angular.module('blipApp')
     .controller('RegisterBusinessCtrl', ['$http',
     '$scope',
     'NationalityService',
+    'CategoryService',
     'uiGmapGoogleMapApi',
     '$location',
     'ResultPageState',
-    function($http, $scope, NationalityService, uiGmapGoogleMapApi, $location, ResultPageState) {
+    function($http, $scope, NationalityService, CategoryService, uiGmapGoogleMapApi, $location, ResultPageState) {
         uiGmapGoogleMapApi.then(function(maps) {
 
             //Fix ._contains/._object is not a function
@@ -71,28 +72,22 @@ angular.module('blipApp')
             };
         });
 
-        ///////////
-        //IMPORTANT Change post URL to reletive link before build... '../phpCore/get_categories.php'
-        ///////////
-        //TESTING URL http://localhost/blip/app/phpCore/get_categories.php
-        $scope.loadCategories = function() {
-
-            var getCategories = $http.post('../phpCore/get_categories.php')
-                .success(function(data, status, headers, config) {
-                    $scope.categories = data;
-                    console.log(status + ' - ' + "Success");
-                })
-                .error(function(data, status, headers, config) {
-                    console.log(status + ' - ' + 'Error');
+        $scope.loadNationalities = function() {
+            if(localStorage.getItem("cacheNat") === null) {
+                NationalityService.getNationalities().then(function(data){
+                    $scope.nationalities = JSON.parse(localStorage.cacheNat)
                 });
+            }
+            else { $scope.nationalities = JSON.parse(localStorage.cacheNat) };
         };
 
-        $scope.loadNationalities = function() {
-
-            NationalityService.getNationalities().then(function(data){
-                $scope.nationalities = data;
-                console.log(JSON.stringify(data));
-            });
+        $scope.loadCategories = function() {
+            if(localStorage.getItem("cacheCat") === null) {
+                CategoryService.getCategories().then(function(data){
+                    $scope.categories = JSON.parse(localStorage.cacheCat)
+                });
+            }
+            else { $scope.categories = JSON.parse(localStorage.cacheCat) };
         };
 
         $scope.getCoordinates = function(locationAddress) {
