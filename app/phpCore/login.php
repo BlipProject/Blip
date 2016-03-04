@@ -36,9 +36,9 @@
 			$userName = $row[2];
 		}
 
+		session_start();
 
-
-	    setcookie("sessionId", session_id(), time() + (86400 * 30), "/");
+	    //setcookie("sessionId", session_id(), time() + (86400 * 30), "/");
 
 	    setcookie("userId", $userId, time() + (86400 * 30), "/");
 	    setcookie("userName", $userName, time() + (86400 * 30), "/");

@@ -40,6 +40,7 @@
 	//transition out of scale effect on image
 	img{
 		@include transition(all .5s ease);
+		//border:5px solid $main-brand-colour;
 	}
 
 	&:hover{
@@ -77,7 +78,7 @@
 	width:100%;
 	z-index: 2;
 	//'a' value controls opacity of hover box
-	background-color:rgba(22, 160, 133,1);
+	background-color:$main-brand-colour;
 	position: absolute;
 	left:0px;
 	top:0px;
