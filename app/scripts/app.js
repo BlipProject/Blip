@@ -103,14 +103,16 @@ angular
   //Show loading animation -- sets to false when results are returned from server
   $rootScope.showLoadingAnimation = true;
 
+
   function getCookie(name) {
-    var value = "; " + document.cookie;
-    var parts = value.split("; " + name + "=");
-    if (parts.length == 2) return parts.pop().split(";").shift();
+      var value = "; " + document.cookie;
+      var parts = value.split("; " + name + "=");
+      if (parts.length == 2) return parts.pop().split(";").shift();
   }
 
   $rootScope.userIdCookie = getCookie("userId");
   var userName = getCookie("userName");
   $rootScope.userNameCookie = userName.replace("+" , " ");
   $rootScope.userNatCookie = getCookie("userNat");
+
 });
