@@ -17,14 +17,19 @@
             </div>
         </div>
         <div class="marker-panel-image"><img class="img-responsive" ng-src="{{parameter.data.picture}}" /></div>
-        <div class="marker-panel-buttons">
-        	<button class="marker-panel-btn btn btn-default" ng-click="storeFocusedResult(parameter)">Visit Page</button>
-        	<button class="marker-panel-btn btn btn-default" ng-click="closeClick()">Close</button>
+        <div>
+            <div class="marker-panel-buttons">
+                <button class="button-main button-border-green" ng-click="storeFocusedResult(parameter)">Get Directions</button>
+            </div>
+            <div class="marker-panel-buttons">
+        	   <button class="button-main button-border-green" ng-click="storeFocusedResult(parameter)">Visit Page</button>
+           </div>
         </div>
+        <button class="marker-panel-x" ng-click="closeClick()"><i class="fa fa-times fa-3x"></i></button>
     </div>
 <!--<h3>{{parameter.data.name}}</h3>
 <h4>{{parameter.data.category}}</h4>
 <img src='{{parameter.data.picture}}' height='100px' width='150px'></img>
 <p>{{parameter.data.description}}</p>
 <button ng-click="storeFocusedResult(parameter)">Get There</button>-->
-</div> 
+</div>

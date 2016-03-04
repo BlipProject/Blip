@@ -45,7 +45,8 @@ angular.module('blipApp')
         //Stores users nationality to pass to server
         $scope.userNationality = parseInt($rootScope.userNatCookie);
         //Country name header
-        $scope.displayCountry = $rootScope.userNatCookie;
+        $scope.displayCountry = "Irish";
+        //Sets whether manual refresh of results was requested
         var refreshData = false;
 
         //Called from Nationality dropdown in "settingsPannel.html" to set "userNationality"

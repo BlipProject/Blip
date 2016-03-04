@@ -139,6 +139,15 @@ body.modal-open { overflow:inherit; padding-right:inherit !important; }
 	}
 }
 
+.button-main-red{
+	background-color: $bar-colour;
+	background-image: linear-gradient(#fff, #fff);
+	color: #fff;
+	&:hover{
+		color: $bar-colour;
+	}
+}
+
 //button border classes
 .button-border-green{
 	border: 1px solid $main-brand-colour;
