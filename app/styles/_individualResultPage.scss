@@ -142,3 +142,23 @@
 	background-color:rgba(255,255,255,0.7);
 	z-index:5;
 }
+
+//Ratings
+
+.indiv-ratings{
+	width: 100%;
+	float: left;
+}
+
+.review-btn{
+	float: left;
+	text-align: center;
+	position: relative;
+	cursor: pointer;
+
+	i{
+		position: absolute;
+		top: 50%;
+		transform:translate(0%,-50%);
+	}
+}

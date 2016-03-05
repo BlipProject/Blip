@@ -153,6 +153,10 @@ body.modal-open { overflow:inherit; padding-right:inherit !important; }
 	border: 1px solid $main-brand-colour;
 }
 
+.button-border-red{
+	border: 1px solid $bar-colour;
+}
+
 //button width classes
 .button-main-50{
 	width:50%;
