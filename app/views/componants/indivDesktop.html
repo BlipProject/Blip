@@ -1,14 +1,57 @@
 <div class="indiv-content">
 	<div class="indiv-details-column-dektop">
-                <label>Description</label>
-                <p>{{pageViewData.LocationDescription}}</p>
-                <label>Phone</label>
-                <p>{{pageViewData.LocationPhone}}</p>
-                <label>Website</label>
-                <p>{{pageViewData.LocationWebsite}}</p>
+        <label class="indiv-label">Description</label>
+        <p class="indiv-para">{{pageViewData.LocationDescription}}</p>
+        <label class="indiv-label">Phone</label>
+        <p class="indiv-para">(071) 914 1575</p>
+        <label class="indiv-label">Website</label>
+        <p class="indiv-para">www.websiteforblipteszt.com</p>
 	</div>
 	<div class="indiv-details-column-dektop">
-                <label>Opening Hours</label>
-                <p>{{pageViewData.LocationDescription}}</p>
+        <label class="indiv-label">Opening Hours</label>
+        <div>
+            <div class="opening-hours-added-time">
+                <label class="add-location-form-label">Monday:</label>
+                <p ng-show="openingHours[0].open == 'null'">Closed</p>
+                <p ng-show="openingHours[0].open != 'null'">{{openingHours[0].open}} - {{openingHours[0].close}}</p>
+            </div>
+            <div class="opening-hours-added-time">
+                <label class="add-location-form-label">Tuesday:</label>
+                <p ng-show="openingHours[1].open == 'null'">Closed</p>
+                <p ng-show="openingHours[1].open != 'null'">{{openingHours[1].open}} - {{openingHours[1].close}}</p>
+            </div>
+            <div class="opening-hours-added-time">
+                <label class="add-location-form-label">Wednesday:</label>
+                <p ng-show="openingHours[2].open == 'null'">Closed</p>
+                <p ng-show="openingHours[2].open != 'null'">{{openingHours[2].open}} - {{openingHours[2].close}}</p>
+            </div>
+            <div class="opening-hours-added-time">
+                <label class="add-location-form-label">Thursday:</label>
+                <p ng-show="openingHours[3].open == 'null'">Closed</p>
+                <p ng-show="openingHours[3].open != 'null'">{{openingHours[3].open}} - {{openingHours[3].close}}</p>
+            </div>
+            <div class="opening-hours-added-time">
+                <label class="add-location-form-label">Friday:</label>
+                <p ng-show="openingHours[4].open == 'null'">Closed</p>
+                <p ng-show="openingHours[4].open != 'null'">{{openingHours[4].open}} - {{openingHours[4].close}}</p>
+            </div>
+            <div class="opening-hours-added-time">
+                <label class="add-location-form-label">Saturday:</label>
+                <p ng-show="openingHours[5].open == 'null'">Closed</p>
+                <p ng-show="openingHours[5].open != 'null'">{{openingHours[5].open}} - {{openingHours[5].close}}</p>
+            </div>
+            <div class="opening-hours-added-time">
+                <label class="add-location-form-label">Sunday:</label>
+                <p ng-show="openingHours[6].open == 'null'">Closed</p>
+                <p ng-show="openingHours[6].open != 'null'">{{openingHours[6].open}} - {{openingHours[6].close}}</p>
+            </div>
+        </div>
+        <div>
+            <div class="indiv-social-links-wrap">
+                <div class="indiv-social-link indiv-social-link-f"><i class="fa fa-facebook fa-2x"></i></div>
+                <div class="indiv-social-link indiv-social-link-t"><i class="fa fa-twitter fa-2x"></i></div>
+                <div class="indiv-social-link indiv-social-link-i"><i class="fa fa-instagram fa-2x"></i></div>
+            </div>
+        </div>
 	</div>
 </div>
