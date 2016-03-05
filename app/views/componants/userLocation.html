@@ -13,7 +13,7 @@ ng-class sets up classes for indiviual results based off result type
                         <div ng-click="storeFocusedResult($index)"><i class="fa fa-eye fa-2x"></i><span>View</span></div>
                     </div>
                     <div class="user-location-hover-bar-option">
-                        <div><i class="fa fa-pencil-square-o fa-2x"></i><span>Edit</span></div>
+                        <div ng-click="editLocation($index)"><i class="fa fa-pencil-square-o fa-2x"></i><span>Edit</span></div>
                     </div>
                     <div class="user-location-hover-bar-option">
                         <div ng-click="confirmDeleteLocation($index)"><i class="fa fa-trash fa-2x"></i><span>Delete</span></div>

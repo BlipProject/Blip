@@ -8,9 +8,12 @@ angular.module('blipApp')
         $scope.nationalities = {};
 
         function loadNationalities(){
-            NationalityService.getNationalities().then(function(data){
-                $scope.nationalities = data;
-            });
+            if(localStorage.getItem("cacheNat") === null) {
+                NationalityService.getNationalities().then(function(data){
+                    $scope.nationalities = JSON.parse(data)
+                });
+            }
+            else { $scope.nationalities = JSON.parse(localStorage.cacheNat) };
         };
 
         $scope.init = loadNationalities();

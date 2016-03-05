@@ -13,6 +13,7 @@ angular.module('blipApp')
     '$rootScope',
     function(ResultPageState, $location, $http, $scope, $timeout, uiGmapGoogleMapApi, uiGmapIsReady, GeoLocationService, SearchServices, $rootScope) {
 
+        $scope.currentPath = $location.path();
         //Set button active in nav
         $rootScope.mobileNavPageActive = 1;
 

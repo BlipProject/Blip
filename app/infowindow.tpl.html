@@ -19,10 +19,10 @@
         <div class="marker-panel-image"><img class="img-responsive" ng-src="{{parameter.data.picture}}" /></div>
         <div>
             <div class="marker-panel-buttons">
-                <button class="button-main button-border-green" ng-click="storeFocusedResult(parameter)">Get Directions</button>
+                <button class="button-main button-border-green" ng-click="storeFocusedResult(parameter,1)">Get Directions</button>
             </div>
             <div class="marker-panel-buttons">
-        	   <button class="button-main button-border-green" ng-click="storeFocusedResult(parameter)">Visit Page</button>
+        	   <button class="button-main button-border-green" ng-click="storeFocusedResult(parameter,0)">Visit Page</button>
            </div>
         </div>
         <button class="marker-panel-x" ng-click="closeClick()"><i class="fa fa-times fa-3x"></i></button>

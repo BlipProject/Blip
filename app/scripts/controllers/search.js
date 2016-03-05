@@ -13,24 +13,7 @@ angular.module('blipApp')
     function($http, $scope, GeoLocationService, SearchServices, uiGmapGoogleMapApi, ResultPageState, $location, $rootScope) {
 
 
-        function getCookie(name) {
-            var value = "; " + document.cookie;
-            var parts = value.split("; " + name + "=");
-            if (parts.length == 2) return parts.pop().split(";").shift();
-        }
-            /*
-            $rootScope.userIdCookie = getCookie("userId");
-            var userName = getCookie("userName");
-            $rootScope.userNameCookie = userName.replace("+" , " ");
-            $rootScope.userNatCookie = getCookie("userNat");
-            */
-        var sessionId = getCookie("PHPSESSID");
-        console.log(sessionId);
-        var callSearch = $http.post('http://localhost/blip/app/phpCore/session.php', sessionId)
-            .success(function(data, status, headers, config) {
-            console.log(status);
-        });
-
+        $scope.currentPath = $location.path();
         //Set button active in nav
         $rootScope.mobileNavPageActive = 0;
         //Close mobile-navigation menu on page load
@@ -140,6 +123,7 @@ angular.module('blipApp')
         //Takes 1 argument ([current coordinates])
         var returnSearchResults = function(geoData) {
             var cachedResult={};
+            $rootScope.showLoadingAnimation = true;
             if(localStorage.getItem("cacheResults") !== null)
                 cachedResult = JSON.parse(localStorage.cacheResults);
             else{
@@ -160,14 +144,13 @@ angular.module('blipApp')
                 SearchServices.getLocationResults(geoData).then(function(data) {
                     $scope.searchResult = data;
                     $scope.filterSearchResult = $scope.searchResult;
-                    $rootScope.showLoadingAnimation = false;
                 });
             }
             else{
                 $scope.searchResult = cachedResult.data;
                 $scope.filterSearchResult = $scope.searchResult;
-                $rootScope.showLoadingAnimation = false;
             }
+            $rootScope.showLoadingAnimation = false;
         };
 
         //Called from front-end to set filtered results and set active class on button
@@ -185,11 +168,15 @@ angular.module('blipApp')
                 angular.forEach($scope.searchResult, function(value) {
                     if (value.CategoryName === filter) {
                         $scope.filterSearchResult.push(value);
+                        $rootScope.showLoadingAnimation = false;
                     }
                 });
             } else {
                 $scope.filterSearchResult = $scope.searchResult;
+                $rootScope.showLoadingAnimation = false;
             }
+
+
         };
 
         //Sets active class on selected filter button
@@ -239,9 +226,12 @@ angular.module('blipApp')
 
         //On hover button click calls the 'ResultPage Factory' to store the pages state
         //Then redirects to page for that result
-        $scope.storeFocusedResult = function(index) {
+        $scope.storeFocusedResult = function(index, stateType) {
             ResultPageState.SetPageState($scope.filterSearchResult[index]);
-            $location.path('LocationView');
+            if(stateType === 0)
+                $location.path('LocationView');
+            else
+                $location.path('LocationView?scrollTo=map');
         };
 
         $scope.init = getFilter('All');

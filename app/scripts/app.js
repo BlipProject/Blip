@@ -78,6 +78,11 @@ angular
         controller: 'VisitedLocationsCtrl',
         controllerAs: 'visitedLocations'
       })
+      .when('/accountSettings', {
+        templateUrl: 'views/accountSettings.html',
+        controller: 'AccountSettingsCtrl',
+        controllerAs: 'accountSettings'
+      })
       .otherwise({
         redirectTo: 'home.html'
       });
@@ -89,7 +94,7 @@ angular
         libraries: 'weather,geometry,visualization'
     });
 })
-.run(function($rootScope) {
+.run(function($rootScope, $location, $anchorScroll, $routeParams) {
   //Set state for mobile nav.
   //Hide on launch
   //Show on button click in nav.html
@@ -103,7 +108,13 @@ angular
   //Show loading animation -- sets to false when results are returned from server
   $rootScope.showLoadingAnimation = true;
 
+  //Anchor link routing
+  $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
+    $location.hash($routeParams.scrollTo);
+    $anchorScroll();
+  });
 
+  //Cookie Controls
   function getCookie(name) {
       var value = "; " + document.cookie;
       var parts = value.split("; " + name + "=");

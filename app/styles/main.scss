@@ -29,6 +29,7 @@ $fa-font-path: "../bower_components/componants-font-awesome/fonts/";
 @import "_mapView.scss";
 @import "_userLocations.scss";
 @import "_visitedLocations.scss";
+@import "_accountSettings.scss";
 
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
@@ -151,6 +152,10 @@ body.modal-open { overflow:inherit; padding-right:inherit !important; }
 //button border classes
 .button-border-green{
 	border: 1px solid $main-brand-colour;
+}
+
+.button-border-red{
+	border: 1px solid $bar-colour;
 }
 
 //button width classes

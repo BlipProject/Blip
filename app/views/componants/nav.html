@@ -56,5 +56,9 @@ TOP NAV
         $("#nav-logo-list").mouseout(function(){
             $("#nav-logo").attr("src","/images/logo.png");
         });
+
+        setInterval(function(){
+          $('.active').removeClass('active');//remove class active
+        },1000);
     });
 </script>

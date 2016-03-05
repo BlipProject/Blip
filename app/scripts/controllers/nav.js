@@ -37,7 +37,7 @@ angular.module('blipApp')
                     $location.path('userLocations');
                     break;
                 case "Account Settings":
-                    $location.path('registerbusiness');
+                    $location.path('accountSettings');
                     break;
                 case "Logout":
                     $location.path('registerbusiness');

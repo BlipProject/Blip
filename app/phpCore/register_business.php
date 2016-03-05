@@ -6,8 +6,6 @@
 	$conn = db_connect();
 	//Start Script
 
-
-	echo("Script Called ( . )( . )");
 	//Input variables from Angular
 	$location = json_decode(file_get_contents("php://input"));
 	$locationName = $location->LocationName;
@@ -20,15 +18,23 @@
 	$locationUserId = $location->UserID;
 
 
-	$businessData = insertBusiness($locationName, $locationLat, $locationLng, $locationCity, $blocationDescription, $locationCategory, $locationNationality, $locationUserId);
+	$businessData = insertBusiness($locationName, $locationLat, $locationLng, $locationCity, $locationDescription, $locationCategory, $locationNationality, $locationUserId);
 
-	function insertBusiness($locationName, $locationLat, $locationLng, $locationCity, $blocationDescription, $locationCategory, $locationNationality, $locationUserId) {
+	function insertBusiness($locationName, $locationLat, $locationLng, $locationCity, $locationDescription, $locationCategory, $locationNationality, $locationUserId) {
 		global $conn;
 
 		$insert = mysqli_query($conn,
 			"CALL RegisterLocation('$locationName', '$locationLat', '$locationLng', '$locationCity', '$locationDescription', '$locationCategory', '$locationNationality', '$locationUserId')")
 			or die("Query fail: " . mysqli_error($conn));
+
+		while($row = $insert->fetch_array(MYSQL_ASSOC)) {
+            $lastId = $row['lastID'];
+	    }
+
+	    mkdir('../images/busineses_dir/'.$lastId, 0777, true);
+	    return $lastId;
 	}
 
+	echo ($businessData);
 	mysqli_close($conn);
 ?>

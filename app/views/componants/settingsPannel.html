@@ -5,8 +5,8 @@ Return to mobile and toggle to fix
 -->
 <div ng-controller="SettingsPannel" ng-init="getNationalities()">
     <!--includes filter buttons at top of page-->
-    <div ng-include="'views/componants/quickButtons.html'"></div>
-    <div ng-include="'views/settingsPanelModules/pageSettings.html'"></div>
+    <div ng-show="currentPath === '/searchResult' || currentPath === '/map'" ng-include="'views/componants/quickButtons.html'"></div>
+    <div ng-show="currentPath === '/searchResult' || currentPath === '/map'" ng-include="'views/settingsPanelModules/pageSettings.html'"></div>
     <div ng-include="'views/settingsPanelModules/profileModule.html'"></div>
     <div ng-include="'views/componants/footer.html'"></div>
 </div>

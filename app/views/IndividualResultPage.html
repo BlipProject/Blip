@@ -11,7 +11,20 @@
                 <!--Picks border colour based on type of venue is displayed i.e 'Bar'-->
                 <div ng-class="{'indiv-divider-bar': pageViewData.CategoryName == 'Bar','indiv-divider-res': pageViewData.CategoryName == 'Restaurant','indiv-divider-shop': pageViewData.CategoryName == 'Supermarket','indiv-divider-other': pageViewData.CategoryName == 'Other'}" class="indiv-divider"></div>
                 <div class="indiv-img-wrap">
-                    <img ng-src="{{pageViewData.LocationPic}}" />
+                    <div class="edit-location-hover" ng-show="editLocation == true">
+                        <div class="edit-location-hover-header-options">
+                            <div class="user-location-hover-bar-option">
+                                <div ng-click="editLocationName()"><i class="fa fa-trademark fa-3x"></i><span>Edit Name</span></div>
+                            </div>
+                            <div class="user-location-hover-bar-option">
+                                <div ng-click="editLocationCategory()"><i class="fa fa-ellipsis-h fa-3x"></i><span>Edit Category</span></div>
+                            </div>
+                            <div class="user-location-hover-bar-option">
+                                <div ng-click="editLocationImage()"><i class="fa fa-picture-o fa-3x"></i><span>Edit Picture</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="{{pageViewData.LocationPic}}" />
                     <div class="indiv-page-header">
                         <h2>{{pageViewData.LocationName}}</h2>
                     </div>
@@ -19,29 +32,22 @@
                 <!--Picks border colour based on type of venue is displayed i.e 'Bar' == red-->
                 <div ng-class="{'indiv-divider-bar': pageViewData.CategoryName == 'Bar','indiv-divider-res': pageViewData.CategoryName == 'Restaurant','indiv-divider-shop': pageViewData.CategoryName == 'Supermarket','indiv-divider-other': pageViewData.CategoryName == 'Other'}" class="indiv-divider"></div>
             </div>
-            <div id="info" class="indiv-content">
-                <div  class="indiv-description">
-                    <p>{{pageViewData.CategoryName}}</p>
-                    <hr/>
-                    <p>{{pageViewData.City}}</p>
-                    <hr/>
-                    <p>{{pageViewData.LocationDescription}}</p>
-                    <hr/>
-                    <button class="button-main button-border-green">Phone Now</button>
-                    <hr/>
-                    <button class="button-main button-border-green">Visit Website</button>
-                </div>
-                <div class="indiv-time">
-
-                </div>
-                <!--<div ng-include="'views/componants/review.html'"></div>-->
+            <a id="info"></a>
+            <div class="indiv-content">
+                <!--Desktop View-->
+                <div ng-include="'views/componants/indivDesktop.html'"></div>
+                <a id="map-anchor"></a>
                 <div class="indiv-map-wrap">
-                <div id="map" style="width:100%; height: 100%"></div>
-                <div id="arrowContainer"><img id="centreRing" class="hidden-md hidden-lg" src="/images/navIcons/userRing.svg"></div>
-                <div id="arrowContainer"><img id="navArrow" class="hidden-md hidden-lg" src="images/navIcons/venueHeading.svg"></div>
-                <div id="arrowContainer"><img id="userArrow" class="hidden-md hidden-lg" src="images/navIcons/userHeading.svg"></div>
-                <div id="testDistance" class="indiv-map-distance"></div>
+                    <div id="map" style="width:100%; height: 100%"></div>
+                    <div id="arrowContainer"><img id="centreRing" class="hide-desktop" src="/images/navIcons/userRing.svg"></div>
+                    <div id="arrowContainer"><img id="navArrow" class="hide-desktop" src="images/navIcons/venueHeading.svg"></div>
+                    <div id="arrowContainer"><img id="userArrow" class="hide-desktop" src="images/navIcons/userHeading.svg"></div>
+                    <div id="testDistance" class="indiv-map-distance"></div>
+                </div>
             </div>
+            <a id="ratings"></a>
+            <div class="indiv-ratings">
+                <div ng-include="'views/componants/review.html'"></div>
             </div>
         </div>
         <div class="content-right">
@@ -50,6 +56,45 @@
                 <div ng-include="'views/componants/settingsPannel.html'"></div>
             </div>
         </div>
+    </div>
+    <!--TextBox Modal-->
+    <div id="textBoxModal" class="modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Please enter the new name of your location.</p>
+                    <input id="tbxModal" name="name" class="add-location-form-input" type="text" ng-model="tbxModal" placeholder="e.g. The Little Pizza" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="cancelModal()">Cancel</button>
+                    <button type="button" class="btn btn-default" ng-click="editLocationName(true, tbxModal)">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Image Modal-->
+    <div id="imageModal" class="modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="image-modal-upload-container">
+                        <div class="indiv-img-wrap">
+                            <img ng-src="{{pageViewData.LocationPic}}" />
+                        </div>
+                        <div id="editImageHolder"></div>
+                        <div class="image-modal-upload-btn-container">
+                            <input id="hiddenImgInput" type="file">
+                            <i class="fa fa-upload fa-5x" ng-click="editLocationImageUpload()"></i>
+                            <p>Upload Location Image</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="cancelModal()">Cancel</button>
+                    <button type="button" class="btn btn-default" ng-click="editLocationImage(true)">Confirm</button>
+                </div>
+            </div>
+        </di>
     </div>
 </div>
 <!--Directive for google maps api-->

@@ -4,6 +4,56 @@ angular.module('blipApp')
     .controller('IndividualResultPageCtrl', ['ResultPageState', '$scope','$anchorScroll','$location', function(ResultPageState, $scope, $anchorScroll, $location) {
 
     	$scope.pageViewData = ResultPageState.GetPageState();
+    	//$scope.editLocation = ResultPageState.GetEditState();
+    	console.log($scope.pageViewData);
+    	$scope.editLocation = true;
+    	$scope.uploader;
+
+    	$scope.cancelModal = function() {
+    		$(".modal").modal('hide');
+    	};
+
+    	$scope.editLocationName = function(update, name) {
+
+    		if(update == true) {
+    			$scope.pageViewData.LocationName = name;
+    			$("#textBoxModal").modal('hide');
+    		}
+    		else {
+    			$("#textBoxModal").modal('show');
+    			$scope.tbxModal = $scope.pageViewData.LocationName;
+    		}
+    	};
+
+    	$scope.editLocationImage = function(update) {
+
+    		console.log($scope.pageViewData.LocationID);
+    		if(update == true) {
+    			$("#imageModal").modal('hide');
+    		}
+    		else {
+    			$("#imageModal").modal('show');
+    		}
+    	};
+
+    	$scope.editLocationImageUpload = function() {
+
+    		$("#hiddenImgInput").trigger('click');
+
+    		$("#hiddenImgInput").change(function() {
+
+    			if(this.files && this.files[0]) {
+				$("#editImageHolder").removeClass("hide");
+				var reader = new FileReader();
+
+    				reader.onload = function(e) {
+    					$scope.pageViewData.LocationPic = e.target.result
+    					$scope.$apply();
+    				}
+    				reader.readAsDataURL(this.files[0]);
+				};
+    		});
+    	};
 
     	$scope.scrollTo = function(id) {
 			$location.hash(id);
@@ -223,10 +273,10 @@ angular.module('blipApp')
 	                }
 	            }
 
-	            setTimeout(function(){
-			  		initLocationProcedure();
-				}, 1000);
 
+	            if($(window).width() < 960){
+			  		initLocationProcedure();
+				};
 
 	            //Toggle controls for map -- mobile --
 	            /*
