@@ -1,13 +1,17 @@
 <?php
+session_id($_POST["sessionId"]);
 session_start();
 
-//Create array to store session variables
-$currentSession = array();
+echo $_POST["sessionId"];
+$userId = $_SESSION['userId'];
+$userName = $_SESSION['userName'];
+$userNat = $_SESSION['userNat'];
 
-//Expose only session details required
-$currentSession['id'] = $_SESSION['userId'];
-$currentSession['name'] = $_SESSION['userName'];
-$currentSession['Nat'] = $_SESSION['userNat'];
+$sessions = array();
 
-//header('Content-Type: application/json');
-echo json_encode($currentSession,true);
+$sessions['Id'] = $userId;
+$sessions['Name'] = $userName;
+$sessions['Nat'] = $userNat;
+
+header('Content-Type: application/json');
+echo json_encode($sessions);

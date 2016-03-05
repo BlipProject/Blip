@@ -36,18 +36,20 @@
 			$userName = $row[2];
 		}
 
+		session_start();
 
-	    session_start();
+	    //setcookie("sessionId", session_id(), time() + (86400 * 30), "/");
 
-		$_SESSION['userId'] = $userId;
-		$_SESSION['userName'] = $userName;
-		$_SESSION['userNat'] = $userNat;
-		header('Location: /home.html#/');
+	    setcookie("userId", $userId, time() + (86400 * 30), "/");
+	    setcookie("userName", $userName, time() + (86400 * 30), "/");
+	    setcookie("userNat", $userNat, time() + (86400 * 30), "/");
+
+		header('Location: http://localhost:9000/home.html#/');
 		exit();
 	}
 	else
 	{
-		 echo "pasword incorect";
+		 header('Location: http://localhost:9000?reject=1');
 	}
 	//Return to Frontend
 

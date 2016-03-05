@@ -122,14 +122,50 @@ body.modal-open { overflow:inherit; padding-right:inherit !important; }
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
 	background-size: 0% 100%;
-	transition: background-size .5s, color .5s;
 }
 
 .button-main:hover {
+	transition: background-size .5s, color .5s;
 	background-size: 100% 100%;
 	color: #fff;
 }
 
+.button-main-green{
+	background-color: $main-brand-colour;
+	background-image: linear-gradient(#fff, #fff);
+	color: #fff;
+	&:hover{
+		color: $main-brand-colour;
+	}
+}
+
+.button-main-red{
+	background-color: $bar-colour;
+	background-image: linear-gradient(#fff, #fff);
+	color: #fff;
+	&:hover{
+		color: $bar-colour;
+	}
+}
+
+//button border classes
 .button-border-green{
-	border: 2px solid $main-brand-colour;
+	border: 1px solid $main-brand-colour;
+}
+
+.button-border-red{
+	border: 1px solid $bar-colour;
+}
+
+//button width classes
+.button-main-50{
+	width:50%;
+}
+.button-main-70{
+	width:70%;
+}
+
+//button height classes
+.button-tall{
+	height:60px;
 }

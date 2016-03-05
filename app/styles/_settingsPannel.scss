@@ -132,6 +132,7 @@
 		color: #ecf0f1;
 
 		&:hover{
+			@include transition(all .5s ease);
 			color:$main-brand-colour;
 			cursor: pointer;
 		}

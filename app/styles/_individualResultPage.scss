@@ -5,7 +5,7 @@
 	width:100%;
 	overflow: hidden;
 	height:auto;
-
+	padding-top:3px;
 	@media (max-width: $screen-sm){
 		margin-top:50px;
 	}
@@ -254,4 +254,24 @@
     	color: $main-brand-colour;
     	cursor: pointer
     }
+}
+
+//Ratings
+
+.indiv-ratings{
+	width: 100%;
+	float: left;
+}
+
+.review-btn{
+	float: left;
+	text-align: center;
+	position: relative;
+	cursor: pointer;
+
+	i{
+		position: absolute;
+		top: 50%;
+		transform:translate(0%,-50%);
+	}
 }

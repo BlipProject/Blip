@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('blipApp')
-    .controller('SettingsPannel', ['$scope', '$http', 'NationalityService', 'SideBarPageInView', function($scope, $http, NationalityService, SideBarPageInView) {
+    .controller('SettingsPannel', ['$scope', '$http', 'NationalityService', '$rootScope', function($scope, $http, NationalityService, $rootScope) {
 
+
+    	$scope.userName = $rootScope.userNameCookie;
         $scope.nationalities = {};
 
         function loadNationalities(){

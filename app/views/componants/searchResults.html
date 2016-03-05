@@ -4,14 +4,14 @@ ng-class sets up classes for indiviual results based off result type
 -->
 <!--<div class="search-country-header">Displaying results for {{displayCountry}}</div>-->
 <div ng-repeat="venue in filterSearchResult | limitTo:showAmountFilter track by $index" class="">
-    <div class="result-wrapper">
+    <div class="result-wrapper" ng-class="{'last-result-wrapper': $last}">
         <!--Hidden div for on hover-->
         <div class="result-wrapper-hover">
             <div class="result-wrapper-hover-content">
                 <p>{{venue.LocationName}}</p>
                 <!--breaks if a class directive (even an empty one) is not present-->
                 <div class="" ng-class="setResultClass(venue.CategoryName)">
-                    <button class="button-main" ng-click="storeFocusedResult($index)">Visit Page</button>
+                    <button class="button-main button-main-50" ng-click="storeFocusedResult($index)">Visit Page</button>
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@ ng-class sets up classes for indiviual results based off result type
             </div>
             <div class="result-content-aux-info hidden-xs">
                 <div class="aux-city">
-                    <p>Address : {{venue.City}}</p>
+                    <p>{{venue.City}}</p>
                 </div>
                 <div class="aux-distance">
                     <p>Distance : {{venue.distance | number : 1}}km</p>
@@ -38,6 +38,6 @@ ng-class sets up classes for indiviual results based off result type
                 <p>Distance : {{venue.distance | number : 1}}km</p>
             </div>
         </div>
-        <button class="btn btn-default col-xs-12 hidden-sm hidden-md hidden-lg" ng-click="storeFocusedResult($index)">Visit Page</button>
+        <button class="button-main button-border-green hidden-sm hidden-md hidden-lg" ng-click="storeFocusedResult($index)">Visit Page</button>
     </div>
 </div>

@@ -10,22 +10,26 @@ angular.module('blipApp')
     'ResultPageState',
     '$location',
     '$rootScope',
-    'SessionService',
-    function($http, $scope, GeoLocationService, SearchServices, uiGmapGoogleMapApi, ResultPageState, $location, $rootScope, SessionService) {
+    function($http, $scope, GeoLocationService, SearchServices, uiGmapGoogleMapApi, ResultPageState, $location, $rootScope) {
 
 
-        $scope.session;
-        /*
-        Session.then(function(response){
-            $scope.session = response;
-            console.log(response.data);
+        function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+        }
+            /*
+            $rootScope.userIdCookie = getCookie("userId");
+            var userName = getCookie("userName");
+            $rootScope.userNameCookie = userName.replace("+" , " ");
+            $rootScope.userNatCookie = getCookie("userNat");
+            */
+        var sessionId = getCookie("PHPSESSID");
+        console.log(sessionId);
+        var callSearch = $http.post('http://localhost/blip/app/phpCore/session.php', sessionId)
+            .success(function(data, status, headers, config) {
+            console.log(status);
         });
-        console.log($scope.session);
-        */
-
-        SessionService.SessionService().then(function(data){
-            console.log(data);
-        })
 
         //Set button active in nav
         $rootScope.mobileNavPageActive = 0;
@@ -39,17 +43,16 @@ angular.module('blipApp')
         //Modify to show more/less results
         $scope.showAmountFilter = 30;
         //Stores users nationality to pass to server
-        //Hardcoded currently for testing -- 5221 == France
-        $scope.userNationality = 5221;
+        $scope.userNationality = parseInt($rootScope.userNatCookie);
         //Country name header
-        $scope.displayCountry = "France";
+        $scope.displayCountry = "Irish";
+        //Sets whether manual refresh of results was requested
         var refreshData = false;
 
         //Called from Nationality dropdown in "settingsPannel.html" to set "userNationality"
         //Then calls getLocation and which passes new country to database sproc
         $scope.getLocationNewCountry = function(newCountry) {
             $rootScope.showLoadingAnimation = true;
-            console.log(newCountry);
             $scope.userNationality = newCountry;
             $scope.filterSearchResult = [];
             $rootScope.showLoadingAnimation = true;
@@ -224,7 +227,7 @@ angular.module('blipApp')
                 case 'Other':
                     {
                         $scope.typeHeadClass = "result-header-other";
-                        $scope.setIconClass = "fa fa-ellipsis-h fa-lg";
+                        $scope.setIconClass = "fa fa-coffee fa-lg";
                         return "result-hover-button-other";
                     }
                 default:
