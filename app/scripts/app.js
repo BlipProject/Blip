@@ -78,6 +78,11 @@ angular
         controller: 'VisitedLocationsCtrl',
         controllerAs: 'visitedLocations'
       })
+      .when('/accountSettings', {
+        templateUrl: 'views/accountSettings.html',
+        controller: 'AccountSettingsCtrl',
+        controllerAs: 'accountSettings'
+      })
       .otherwise({
         redirectTo: 'home.html'
       });
@@ -110,9 +115,9 @@ angular
       if (parts.length == 2) return parts.pop().split(";").shift();
   }
 
-  $rootScope.userIdCookie = getCookie("userId");
-  var userName = getCookie("userName");
-  $rootScope.userNameCookie = userName.replace("+" , " ");
-  $rootScope.userNatCookie = getCookie("userNat");
+  //$rootScope.userIdCookie = getCookie("userId");
+  //var userName = getCookie("userName");
+  //$rootScope.userNameCookie = userName.replace("+" , " ");
+  //$rootScope.userNatCookie = getCookie("userNat");
 
 });
