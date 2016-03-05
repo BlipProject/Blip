@@ -1,9 +1,14 @@
 'use strict';
 
 angular.module('blipApp')
-    .controller('IndividualResultPageCtrl', ['ResultPageState', '$scope', function(ResultPageState, $scope) {
+    .controller('IndividualResultPageCtrl', ['ResultPageState', '$scope','$anchorScroll','$location', function(ResultPageState, $scope, $anchorScroll, $location) {
 
     	$scope.pageViewData = ResultPageState.GetPageState();
+
+    	$scope.scrollTo = function(id) {
+			$location.hash(id);
+			$anchorScroll();
+		}
 
     }])
     .directive('watchLocation',['ResultPageState', function(ResultPageState) {
@@ -218,9 +223,13 @@ angular.module('blipApp')
 	                }
 	            }
 
+	            setTimeout(function(){
+			  		initLocationProcedure();
+				}, 1000);
+
 
 	            //Toggle controls for map -- mobile --
-
+	            /*
 	            //Check if screen is less than 960px
 	            //Hides map if on mobile screen
 	            if($(window).width() < 960){
@@ -245,6 +254,7 @@ angular.module('blipApp')
 				//Sets class on toggle button [btn-danger/btn-success]
 				//Sets scroll [0 == noramal, 145 == scrolled to top]
 				//Initiates map
+
 				function mapToggle(rClass,aClass,scroll,htmlMsg){
 					$("#btnToggleMap").removeClass(rClass).addClass(aClass).html(htmlMsg);
 						setBtnClass = aClass;
@@ -261,6 +271,7 @@ angular.module('blipApp')
 			        	}
 			        	return false;
 				}
+				*/
 			}
     	};
   	}]);
