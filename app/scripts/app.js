@@ -78,6 +78,11 @@ angular
         controller: 'VisitedLocationsCtrl',
         controllerAs: 'visitedLocations'
       })
+      .when('/accountSettings', {
+        templateUrl: 'views/accountSettings.html',
+        controller: 'AccountSettingsCtrl',
+        controllerAs: 'accountSettings'
+      })
       .otherwise({
         redirectTo: 'home.html'
       });
