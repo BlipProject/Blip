@@ -1,0 +1,22 @@
+.account-settings{
+	@extend .add-location-form;
+}
+
+.account-settings-details{
+	width: 100%;
+	height: auto;
+	float: left;
+	padding: 20px;
+}
+
+.account-settings-image{
+	width: 200px;
+	height: 200px;
+	float: left;
+	margin-right: 20px;
+}
+
+.account-settings-details-wrap{
+	float: left;
+	margin-right: 20px;
+}

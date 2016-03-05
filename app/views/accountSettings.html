@@ -1,0 +1,31 @@
+<div ng-controller="AccountSettingsCtrl">
+	<div ng-include="'views/componants/mobileNav.html'" scope="" onload=""></div>
+	<div class="container add-location-content-wrapper">
+		<div class="content-left">
+			<div class="account-settings">
+				<div class="add-location-form-header">
+	                <div>
+	                    <p>Account Settings</p>
+	                </div>
+	            </div>
+	            <div class="account-settings-details">
+	            	<img class="account-settings-image" src="http://www.realtimearts.net/data/images/art/46/4640_profile_nilssonpolias.jpg">
+	            	<div class="account-settings-details-wrap">
+	            		<label>Name</label>
+		        		<p>Pierre Smith</p>
+		        		<label>Nationality</label>
+		        		<p>French</p>
+		        		<label>Email</label>
+		        		<p>pierre_smith13@gmail.com</p>
+		        	</div>
+	            </div>
+			</div>
+		</div>
+		<div class="content-right">
+			<!--includes settings pannel-->
+            <div class="settings-pannel-wrapper">
+                <div ng-include="'views/componants/settingsPannel.html'"></div>
+            </div>
+		</div>
+	</div>
+</div>
