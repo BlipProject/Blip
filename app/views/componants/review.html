@@ -1,3 +1,4 @@
+
 <div ng-controller="ReviewCtrl">
     <label for="tbxReviewTitle" class="add-location-form-label">Title</label>
     <input id="tbxReviewTitle" name="title" class="add-location-form-input" ng-class="{'reg-form-error-outline' : submitted && add_location_form.title.$invalid || add_location_form.title.$dirty && add_location_form.title.$invalid}" type="text" ng-model="locationName" placeholder="e.g. Wonderful experience" required>
@@ -12,17 +13,17 @@
         <label class="reg-form-error-label">Comment is required!</label>
     </div>
     <div>
-        <div class="button-main button-main-green button-border-green button-main-50 review-btn">
+        <div ng-click="addComment(1)" class="button-main button-main-green button-border-green button-main-50 review-btn">
             <i class="fa fa-thumbs-up fa-2x"></i>
         </div>
-        <div class="button-main button-main-red button-border-red button-main-50 review-btn">
+        <div ng-click="addComment(0)" class="button-main button-main-red button-border-red button-main-50 review-btn">
             <i class="fa fa-thumbs-down fa-2x"></i>
         </div>
     </div>
-</div>
 
+<!--
 <div class="form-left" ng-controller="ReviewCtrl">
- 			<button  id="up"  class="btn btn-success" ng-click='thumbUp(userId, locationId)'>
+            <button  id="up"  class="btn btn-success" ng-click='thumbUp(userId, locationId)'>
             <i id="countUp" class="fa fa-thumbs-up  fa-6"></i>
             </button>
             <button id="down"  class="btn btn-danger" ng-click='thumbDown(userId, locationId)'>
@@ -56,16 +57,67 @@
 
             </form>
             </div>
-			<div><lable>Comments</lable></div>
+            <div><lable>Comments</lable></div>
 
             <div class="scrollabletextbox" id="usersName" name="note"></div>
 
 
 </div>
-
-
-
-
-
-
-
+-->
+<!--
+<div class="form-left" ng-controller="ReviewCtrl">
+    <button id="up" class="button-main button-main-green button-border-green button-main-50 review-btn" ng-click='thumbUp(userId, locationId)'>
+        <i id="countUp" class="fa fa-thumbs-up  fa-6"></i>
+    </button>
+    <button id="down" class="button-main button-main-red button-border-red button-main-50 review-btn" ng-click='thumbDown(userId, locationId)'>
+        <i id="countDown" class="fa fa-thumbs-down  fa-6"></i>
+    </button>
+    <div id="addingComments">
+        <button class="btn btn-danger" id='noComment'>No Thanks</button>
+        <form class="form-left" role="form" name="commentForm">
+            <div class="form-field">
+                <label class="form-label">User ID get from sesion/now 311 or 321</label>
+                <input placeholder="id" type="text" name="id" ng-model="userId" ng-minlength="3" required/>
+                <span ng-show="registrationForm.name.$dirty && registrationForm.name.$error.required">Required</span>
+            </div>
+            <div class="form-field">
+                <label class="form-label">Would you like to leave a comment ?</label>
+                <input placeholder="Title" type="text" name="title" ng-model="userTitle" ng-minlength="3" required/>
+                <span ng-show="registrationForm.name.$dirty && registrationForm.name.$error.required">Required</span>
+                <span ng-show="registrationForm.name.$dirty &&    registrationForm.name.$error.minlength">Minimum 3 characters</span>
+            </div>
+            <div class="form-field">
+                <input placeholder="Write your comment here" type="text" name="comment" ng-model="userComment" ng-minlength="3" ng-maxlength="100" required/>
+                <span ng-show="registrationForm.comment.$dirty &&    registrationForm.comment.$error.minlength">Minimum 3 characters</span>
+                <span ng-show="registrationForm.comment.$dirty &&    registrationForm.comment.$error.maxlength">Maximum 100 characters</span>
+                <span ng-show="registrationForm.comment.$dirty && registrationForm.comment.$error.required">Required</span>
+            </div>
+            <div>
+                <button type="submit" class="bus-reg-button bus-reg-button-yes" ng-disabled="registrationForm.$invalid" ng-click='addComment(userId, userTitle, userComment)'>Submit comment</button>
+            </div>
+        </form>
+    </div>
+    -->
+    <div>
+        <div ng-repeat="comment in comments track by $index">
+            <div class="comment-wrap" ng-if="commentError == false">
+                <div class="comment-head">
+                    <div class="comment-title">
+                        <p>{{comment.CommentTitle}}</p>
+                    </div>
+                    <div class="comment-user">
+                        <p>{{comment.RateDate}}</p>
+                        <p>{{comment.UserName}}</p>
+                        <img src="{{comment.ProfilePic}}"/>
+                    </div>
+                </div>
+                <div class="comment-body-text">
+                    <p>{{comment.CommentText}}</p>
+                     <i ng-show="comment.ThumbsUp == 1" class="fa fa-thumbs-up fa-2x"></i>
+                    <i ng-show="comment.ThumbsUp == 0" class="fa fa-thumbs-down fa-2x"></i>
+                    <a ng-click="translateComments($index)">Translate into {{comment.UserNationality}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

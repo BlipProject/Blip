@@ -5,7 +5,6 @@ angular.module('blipApp')
 
     	$scope.pageViewData = ResultPageState.GetPageState();
     	//$scope.editLocation = ResultPageState.GetEditState();
-    	console.log($scope.pageViewData);
     	$scope.editLocation = true;
     	$scope.uploader;
 
