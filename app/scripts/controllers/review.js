@@ -6,7 +6,7 @@
          //get language id from session
          var language = 'ar';
          //get user id from session
-         var userId = 321;
+         var userId = 361;
          $scope.pageViewData = ResultPageState.GetPageState();
          console.log($scope.pageViewData);
          var locationId = $scope.pageViewData.LocationID;
@@ -133,8 +133,9 @@
                     }
                     else {
                         $scope.comments = data;
-                        console.log($scope.comments);
                         $scope.commentError = false;
+                        checkReviewSet($scope.comments);
+                        console.log($scope.thumbsDownCount);
                     }
                  })
                  .error(function(data, status, headers, config) {
@@ -142,14 +143,13 @@
                  });
          };
 
-         $scope.addComment = function(rating) {
-             var title = document.getElementById('tbxReviewTitle');
-             var comment = document.getElementById('tblkReviewComment');
-
-             var data = { userId: userId, userTitle: title, userComment: comment, locationId: locationId, tUp: rating };
+         $scope.addComment = function(rating,commentTitle,commentText) {
+             var data = { userId: userId, userTitle: commentTitle, userComment: commentText, locationId: locationId, tUp: rating };
+             console.log(data);
              var getComments = $http.post('http://localhost/blip/app/phpCore/sendReview.php', data)
                  .success(function(data, status, headers, config) {
                      $scope.getComments();
+                     checkReviewSet($scope.comments);
                  })
                  .error(function(data, status, headers, config) {
                      //console.log('Error');
@@ -157,6 +157,22 @@
 
          };
 
+         $scope.ifReview = true;
+         $scope.thumbsUpCount = 0;
+         $scope.thumbsDownCount = 0;
+
          $scope.init = $scope.getComments();
+
+         function checkReviewSet(reviews){
+            for(var i = 0; i < reviews.length; i++){
+                if(reviews[i].ThumbsUp == 0)
+                    $scope.thumbsUpCount++;
+                else
+                    $scope.thumbsDownCount++;
+
+                if(reviews[i].UserID == userId)
+                    $scope.ifReview = false;
+            }
+         }
 
      }]); // end controller
