@@ -341,30 +341,28 @@ angular.module('blipApp')
 
         $scope.getFilter = function(filter) {
             if (filter !== "All") {
-                $scope.filterSearchResult = [];
+                //$scope.filterSearchResult = [];
                 $scope.markers = [];
                 angular.forEach(searchResult, function(value, key) {
                     if (value.CategoryName === filter) {
-                        $scope.filterSearchResult.push(value);
-
+                        //$scope.filterSearchResult.push(value);
                         var marker = makeMarker(value, key);
                         $scope.markers.push(marker);
                         $scope.addMarkerClickFunction($scope.markers);
-
                     }
                 });
-
-            } else {
-                $scope.filterSearchResult = searchResult;
+                console.log($scope.markers);
+            }
+            else {
+                //$scope.filterSearchResult = searchResult;
+                //$scope.markers = [];
                 angular.forEach(searchResult, function(value, key) {
                     var marker = makeMarker(value, key);
-
                     $scope.markers.push(marker);
                 });
 
                 $scope.addMarkerClickFunction($scope.markers);
-
-
+                console.log($scope.markers);
             }
 
 

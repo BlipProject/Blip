@@ -61,39 +61,38 @@ angular.module('blipApp')
 
     }])
     .directive('watchLocation',['ResultPageState', function(ResultPageState) {
-
-    	//Stores data pulled from the 'ResultPageState' factory
-    	var pageViewData = ResultPageState.GetPageState();
-
-    	//Set correct icon for venue type
-    	var venueIcon;
-    	function setMarkerStyle(){
-    		switch(pageViewData.CategoryName){
-	    		case "Bar":{
-	    			venueIcon = "/images/map_icons/bar_icon.png";
-	    			break;
-	    		}
-	    		case "Restaurant":{
-	    			venueIcon = "/images/map_icons/resturant_icon.png";
-	    			break;
-	    		}
-	    		case "Supermarket":{
-	    			venueIcon = "/images/map_icons/shopping_icon.png";
-	    			break;
-	    		}
-	    		case "Other":{
-	    			venueIcon = "/images/map_icons/other_icon.png";
-	    			break;
-	    		}
-	    	}
-	    }
-
-  		return {
+		return {
     		restrict: 'E',
     		replace: true,
     		scope: true,
 
 			link:function(scope, element, attributes){
+
+				//Stores data pulled from the 'ResultPageState' factory
+		    	var pageViewData = ResultPageState.GetPageState();
+
+		    	//Set correct icon for venue type
+		    	var venueIcon;
+		    	function setMarkerStyle(){
+		    		switch(pageViewData.CategoryName){
+			    		case "Bar":{
+			    			venueIcon = "/images/map_icons/bar_icon.png";
+			    			break;
+			    		}
+			    		case "Restaurant":{
+			    			venueIcon = "/images/map_icons/resturant_icon.png";
+			    			break;
+			    		}
+			    		case "Supermarket":{
+			    			venueIcon = "/images/map_icons/shopping_icon.png";
+			    			break;
+			    		}
+			    		case "Other":{
+			    			venueIcon = "/images/map_icons/other_icon.png";
+			    			break;
+			    		}
+			    	}
+			    }
 
 				var map,
                 currentPositionMarker,
@@ -136,7 +135,7 @@ angular.module('blipApp')
 	            	}
 	            	else if(type === 'desktop'){
 	            		map = new google.maps.Map(document.getElementById('map'), {
-		                   zoom: 10,
+		                   zoom: 14,
 		                   center: coordinatesVenue,
 		                   mapTypeId: google.maps.MapTypeId.ROADMAP
 		                 });
