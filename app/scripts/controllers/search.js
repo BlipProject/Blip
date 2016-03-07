@@ -32,6 +32,7 @@ angular.module('blipApp')
         //Sets whether manual refresh of results was requested
         var refreshData = false;
 
+
         //Called from Nationality dropdown in "settingsPannel.html" to set "userNationality"
         //Then calls getLocation and which passes new country to database sproc
         $scope.getLocationNewCountry = function(newCountry) {
@@ -46,6 +47,7 @@ angular.module('blipApp')
         //Calls geoServices to return the current coordinates
         //navigator must be passed to service (dont no why ??)
         $scope.getLocation = function() {
+            $rootScope.showLoadingAnimation = true;
             GeoLocationService.getGeoCoordinates(navigator).then(function(data) {
                 data.nationality = $scope.userNationality;
                 data.showLimit = $scope.showAmountFilter;
@@ -90,7 +92,6 @@ angular.module('blipApp')
 
         //Gets the coordinates of a manualy entered text address using reverse Geo Coding
         function manualLocation(locationAddress) {
-
             $scope.geodata = {};
             $scope.queryResults = {};
             $scope.queryError = {};
@@ -165,6 +166,7 @@ angular.module('blipApp')
         //If search result matches the filter button it gets pushed into 'filterSearchResult' array
         //else 'filterSearchResult' equals the content that was origionaly returned from the server
         var getFilter = function(filter) {
+            $rootScope.showLoadingAnimation = true;
             if (filter !== "All") {
                 $scope.filterSearchResult = [];
                 angular.forEach($scope.searchResult, function(value) {
