@@ -28,6 +28,8 @@ angular.module('blipApp')
             }
         });
 
+
+
         //Close mobile-navigation menu on page load
         $rootScope.toggleNavClass = $rootScope.animateOut;
         //Stores geolocation data to send to php script
@@ -35,6 +37,11 @@ angular.module('blipApp')
         //Store search result returned from server
         var searchResult = "";
         $scope.map;
+        //Store search result returned from server
+        $scope.searchResult = "";
+        var refreshData = false;
+
+
 
         if($rootScope.tempNewCountry === 0)
             $scope.userNationality = parseInt($rootScope.userNatCookie);
@@ -189,6 +196,59 @@ angular.module('blipApp')
         };
 
 
+
+        var getLocationResults = function(geoData) {
+            var cachedResult={};
+            //$rootScope.showLoadingAnimation = true;
+            if(localStorage.getItem("cacheResults") !== null)
+                cachedResult = JSON.parse(localStorage.cacheResults);
+            else{
+                cachedResult.date = 0;
+            }
+
+
+            if(refreshData === true){
+                cachedResult.date = 0;
+            }
+
+            refreshData = false;
+
+            //Check if cached results is older than 5 mins
+            //If yes recall searchSearvices for updated results
+            if(Date.now() - cachedResult.date > 300000 )
+            {
+                SearchServices.getLocationResults(geoData).then(function(data) {
+                    searchResult = data;
+                    console.log(searchResult);
+                    angular.forEach(data, function(value, key) {
+
+                        var marker = makeMarker(value, key);
+
+                        $scope.markers.push(marker);
+                    });
+
+                    $scope.addMarkerClickFunction($scope.markers);
+
+                    $scope.filterSearchResult = searchResult;
+                    console.log(status + ' - ' + "Success");
+                });
+
+            }
+            else{
+                searchResult = cachedResult.data;
+                $scope.filterSearchResult = $scope.searchResult;
+
+                angular.forEach(searchResult, function(value, key) {
+                    var marker = makeMarker(value, key);
+
+                    $scope.markers.push(marker);
+                });
+
+                $scope.addMarkerClickFunction($scope.markers);
+            }
+        };
+
+        /*
         //IMPORTANT Change post URL to reletive link before build... '../phpCore/search.php'
         ///////////
         //TESTING URL http://localhost/blip/app/phpCore/search.php
@@ -216,7 +276,8 @@ angular.module('blipApp')
                 });
 
 
-};
+        };
+        */
 
 
 
