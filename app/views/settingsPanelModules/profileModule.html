@@ -2,7 +2,7 @@
     <div class="profile-module-header">
         <div class="pull-left">
             <p class="profile-name">{{userName}}</p>
-            <p class="profile-nat">French</p>
+            <p class="profile-nat">{{userCountry}}</p>
         </div>
         <div class="pull-right"><img class="profile-picture" src="http://www.realtimearts.net/data/images/art/46/4640_profile_nilssonpolias.jpg"></div>
     </div>
@@ -22,8 +22,8 @@
     <div class="profile-module-header">
         <div class="pull-left"><img class="profile-picture" src="http://www.realtimearts.net/data/images/art/46/4640_profile_nilssonpolias.jpg"></div>
         <div class="pull-left">
-            <p class="profile-name">Pierre Smith</p>
-            <p class="profile-nat">French</p>
+            <p class="profile-name">{{userName}}</p>
+            <p class="profile-nat">{{userCountry}}</p>
         </div>
         <div class="profile-dropdown-caret-wrapper pull-right"><i class="profile-dropdown-caret fa fa-caret-down fa-2x"></i></div>
         <select class="profile-dropdown" ng-model="ProfileOptions" ng-change="ProfileOptionSelected(ProfileOptions)">

@@ -38,7 +38,7 @@ angular.module('blipApp')
             $rootScope.showLoadingAnimation = true;
             $scope.userNationality = newCountry;
             $scope.filterSearchResult = [];
-            $rootScope.showLoadingAnimation = true;
+            //$rootScope.showLoadingAnimation = true;
             refreshData = true;
             $scope.getLocation();
         };
@@ -123,7 +123,7 @@ angular.module('blipApp')
         //Takes 1 argument ([current coordinates])
         var returnSearchResults = function(geoData) {
             var cachedResult={};
-            $rootScope.showLoadingAnimation = true;
+            //$rootScope.showLoadingAnimation = true;
             if(localStorage.getItem("cacheResults") !== null)
                 cachedResult = JSON.parse(localStorage.cacheResults);
             else{
@@ -144,13 +144,15 @@ angular.module('blipApp')
                 SearchServices.getLocationResults(geoData).then(function(data) {
                     $scope.searchResult = data;
                     $scope.filterSearchResult = $scope.searchResult;
+                    $rootScope.showLoadingAnimation = false;
                 });
+
             }
             else{
                 $scope.searchResult = cachedResult.data;
                 $scope.filterSearchResult = $scope.searchResult;
+                $rootScope.showLoadingAnimation = false;
             }
-            $rootScope.showLoadingAnimation = false;
         };
 
         //Called from front-end to set filtered results and set active class on button
@@ -168,15 +170,13 @@ angular.module('blipApp')
                 angular.forEach($scope.searchResult, function(value) {
                     if (value.CategoryName === filter) {
                         $scope.filterSearchResult.push(value);
-                        $rootScope.showLoadingAnimation = false;
                     }
                 });
             } else {
                 $scope.filterSearchResult = $scope.searchResult;
-                $rootScope.showLoadingAnimation = false;
+
             }
-
-
+            $rootScope.showLoadingAnimation = false;
         };
 
         //Sets active class on selected filter button

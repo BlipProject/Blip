@@ -67,25 +67,26 @@ angular.module('blipApp')
 
     	//Set correct icon for venue type
     	var venueIcon;
-    	switch(pageViewData.CategoryName){
-    		case "Bar":{
-    			venueIcon = "/images/map_icons/bar_icon.png";
-    			break;
-    		}
-    		case "Restaurant":{
-    			venueIcon = "/images/map_icons/resturant_icon.png";
-    			break;
-    		}
-    		case "Supermarket":{
-    			venueIcon = "/images/map_icons/shopping_icon.png";
-    			break;
-    		}
-    		case "Other":{
-    			venueIcon = "/images/map_icons/other_icon.png";
-    			break;
-    		}
-
-    	}
+    	function setMarkerStyle(){
+    		switch(pageViewData.CategoryName){
+	    		case "Bar":{
+	    			venueIcon = "/images/map_icons/bar_icon.png";
+	    			break;
+	    		}
+	    		case "Restaurant":{
+	    			venueIcon = "/images/map_icons/resturant_icon.png";
+	    			break;
+	    		}
+	    		case "Supermarket":{
+	    			venueIcon = "/images/map_icons/shopping_icon.png";
+	    			break;
+	    		}
+	    		case "Other":{
+	    			venueIcon = "/images/map_icons/other_icon.png";
+	    			break;
+	    		}
+	    	}
+	    }
 
   		return {
     		restrict: 'E',
@@ -104,8 +105,8 @@ angular.module('blipApp')
                 //venue heading
                 heading;
 
-                //var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
                 var coordinatesVenue = {lat: parseFloat(pageViewData.MapLat), lng: parseFloat(pageViewData.MapLong)};
+
 
                 //Check if mobile or desktop
                 //Load appropriate map
@@ -115,6 +116,7 @@ angular.module('blipApp')
 	            	});
 				}
 				else {
+					setMarkerStyle();
 					initializeMap('desktop');
 				}
 
@@ -135,7 +137,7 @@ angular.module('blipApp')
 	            	else if(type === 'desktop'){
 	            		map = new google.maps.Map(document.getElementById('map'), {
 		                   zoom: 10,
-		                   center: mapCenter,
+		                   center: coordinatesVenue,
 		                   mapTypeId: google.maps.MapTypeId.ROADMAP
 		                 });
 

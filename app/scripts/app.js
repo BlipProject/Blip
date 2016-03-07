@@ -125,5 +125,7 @@ angular
   var userName = getCookie("userName");
   $rootScope.userNameCookie = userName.replace("+" , " ");
   $rootScope.userNatCookie = getCookie("userNat");
+  $rootScope.userCountryCookie = getCookie("userCountry");
+  $rootScope.userCountryCodeCookie = getCookie("userCountryCode");
 
 });

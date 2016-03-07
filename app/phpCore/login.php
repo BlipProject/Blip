@@ -34,6 +34,8 @@
 			$userId = $row[0];
 			$userNat = $row[1];
 			$userName = $row[2];
+			$userCountry = $row[10];
+			$userCountryCode = $row[11];
 		}
 
 		session_start();
@@ -43,6 +45,8 @@
 	    setcookie("userId", $userId, time() + (86400 * 30), "/");
 	    setcookie("userName", $userName, time() + (86400 * 30), "/");
 	    setcookie("userNat", $userNat, time() + (86400 * 30), "/");
+	    setcookie("userCountry", $userCountry, time() + (86400 * 30), "/");
+	    setcookie("userCountryCode", $userCountryCode, time() + (86400 * 30), "/");
 
 		header('Location: http://localhost:9000/home.html#/');
 		exit();

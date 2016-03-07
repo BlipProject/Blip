@@ -5,6 +5,7 @@ angular.module('blipApp')
 
 
     	$scope.userName = $rootScope.userNameCookie;
+        $scope.userCountry = $rootScope.userCountryCookie;
         $scope.nationalities = {};
 
         function loadNationalities(){

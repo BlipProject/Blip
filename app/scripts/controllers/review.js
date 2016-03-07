@@ -4,107 +4,23 @@
 
          var tUp;
          //get language id from session
-         var language = 'ar';
+         var language = $rootScope.userCountryCodeCookie;
+         $scope.userCountry = $rootScope.userCountryCookie;
          //get user id from session
-         var userId = 361;
+         var userId = $rootScope.userIdCookie;
+         $scope.userNat = $rootScope.userNatCookie;
          $scope.pageViewData = ResultPageState.GetPageState();
-         console.log($scope.pageViewData);
+
          var locationId = $scope.pageViewData.LocationID;
          $scope.comments = {};
 
-         /*
-         $(document).ready(function() {
-             $("#noComment").click(function() // when no comment is clicked
-                 {
-                     document.getElementById("addingComments").className = "";
-                     document.getElementById("addingComments").className += "ng-hide";
-                     $.ajax({
-                         url: 'http://localhost/blip/app/phpCore/sendReview.php', //the script to call to get data
-                         data: { userId: userId, userTitle: '', userComment: '', locationId, tUp }, //you can insert url argumnets here to pass to review.php
-                         type: 'get',
-                         success: function(data) {
-                             location.reload();
-                         }
-                     }); // end ajax
-                 }); // end click no comment
+         //Controls whether to show comment submit box
+         $scope.ifReview = true;
+         //Stores count of rateUp/rateDown
+         $scope.thumbsUpCount=0;
+         $scope.thumbsDownCount=0;
 
-             $scope.addComment = function(userId, userTitle, userComment) {
-                 $.ajax({
-                     url: 'http://localhost/blip/app/phpCore/sendReview.php', //the script to call to get data
-                     data: { userId: userId, userTitle: userTitle, userComment: userComment, locationId, tUp }, //insert url argumnets here to pass to sendReview.php
-                     type: 'get',
-                     success: function(data) {
-                         location.reload();
-                     }
-                 }); // end ajax
-             }; //end angular scope
 
-             $.ajax({
-                 url: 'http://localhost/blip/app/phpCore/getReview.php', //the script to call to get data
-                 data: { locationId: locationId, userId: userId }, //you can insert url argumnets here to pass to review.php
-                 type: 'get', //for example "get"
-                 dataType: 'json', //data format
-                 success: function(data) //on recieve of reply
-                     {
-                         $('#countUp').html(data[0].ThumbsUp);
-                         $('#countDown').html(data[0].ThumbsDown);
-                         //$('#usersName').html(data[0].AllComments);
-                         var counterUp = data[0].ThumbsUp;
-                         var counterDown = data[0].ThumbsDown;
-                         // check was user voting or not
-                         if (data[0].UserVoted == 1) {
-                             $("#up").prop("disabled", true);
-                             $("#down").prop("disabled", true);
-                         }
-                         $("#up").click(function() { // add one into thumb up  and disable btns
-                             counterUp++;
-                             $("#countUp").text(counterUp);
-                             $("#up").prop("disabled", true);
-                             $("#down").prop("disabled", true);
-                             document.getElementById("addingComments").className += "";
-                             document.getElementById("addingComments").className += "ng-show";
-                             tUp = true;
-                         }); // end thumb down
-
-                         $("#down").click(function() { // add one into thumb down and disable btns
-                             counterDown++;
-                             $("#countDown").text(counterDown);
-                             $("#up").prop("disabled", true);
-                             $("#down").prop("disabled", true);
-                             document.getElementById("addingComments").className += "";
-                             document.getElementById("addingComments").className += "ng-show";
-                             tUp = false;
-                         }); // end thumb down
-                     }
-             }).complete(function() {
-                 getComments();
-
-             }); // end ajax
-         }); //end ready function
-         var allComments = "";
-         /*
-         function getComments() {
-             $.ajax({
-                 url: 'http://localhost/blip/app/phpCore/getComments.php',
-                 data: { locationId: locationId, userId: userId },
-                 type: 'get',
-                 dataType: 'json',
-                 success: function(data) {
-                     allComments = data;
-                     $scope.comments = data;
-                     console.log(data);
-                     //$('#usersName').append(JSON.stringify(data));
-                 }
-             })
-
-             .complete(function() {
-                 for (var i = 0; i < allComments.length; i++) {
-                     translateComments(allComments[i]);
-                 }
-             }); // end ajax
-
-         } //end get comments
-         */
          $scope.translateComments = function(index) {
              var comment = $scope.comments[index];
 
@@ -127,23 +43,21 @@
              console.log(data);
              var getComments = $http.post('http://localhost/blip/app/phpCore/getComments.php', data)
                  .success(function(data, status, headers, config) {
-                    if(data.hasOwnProperty('error')){
-                        console.log(data.error.code);
-                        $scope.commentError = true;
-                    }
-                    else {
-                        $scope.comments = data;
-                        $scope.commentError = false;
-                        checkReviewSet($scope.comments);
-                        console.log($scope.thumbsDownCount);
-                    }
+                     if (data.hasOwnProperty('error')) {
+                         console.log(data.error.code);
+                         $scope.commentError = true;
+                     } else {
+                         $scope.comments = data;
+                         $scope.commentError = false;
+                         checkReviewSet($scope.comments);
+                     }
                  })
                  .error(function(data, status, headers, config) {
                      //console.log(error);
                  });
          };
 
-         $scope.addComment = function(rating,commentTitle,commentText) {
+         $scope.addComment = function(rating, commentTitle, commentText) {
              var data = { userId: userId, userTitle: commentTitle, userComment: commentText, locationId: locationId, tUp: rating };
              console.log(data);
              var getComments = $http.post('http://localhost/blip/app/phpCore/sendReview.php', data)
@@ -157,22 +71,50 @@
 
          };
 
-         $scope.ifReview = true;
-         $scope.thumbsUpCount = 0;
-         $scope.thumbsDownCount = 0;
 
          $scope.init = $scope.getComments();
 
-         function checkReviewSet(reviews){
-            for(var i = 0; i < reviews.length; i++){
-                if(reviews[i].ThumbsUp == 0)
+        function checkReviewSet(reviews) {
+            $scope.thumbsUpCount = 0;
+            $scope.thumbsDownCount = 0;
+            for (var i = 0; i < reviews.length; i++) {
+                if (reviews[i].ThumbsUp == 1)
                     $scope.thumbsUpCount++;
                 else
                     $scope.thumbsDownCount++;
 
-                if(reviews[i].UserID == userId)
+                if (reviews[i].UserID == userId)
                     $scope.ifReview = false;
             }
-         }
+            starRating();
+        }
+
+        //When called calculates a star rating based of number of thumbsup/thumbsdown comments
+        function starRating(){
+            //Calculate maximum score possible (total * 5 stars)
+            var topRating = ($scope.thumbsUpCount + $scope.thumbsDownCount) * 5;
+            //Calcumalte value of thumbs up and thumbs down
+            var ratingsAdded = ($scope.thumbsUpCount * 5) + ($scope.thumbsDownCount * 1);
+            //Caculate rating value
+            var rating = (ratingsAdded/topRating).toFixed(1);
+            var repeatNum;
+            var starRating="";
+
+            if(rating === 1 || rating == .9)
+                repeatNum = 5;
+            else if (rating == .8 || rating == .7)
+                repeatNum = 4;
+            else if (rating == .6 || rating == .5)
+                repeatNum = 3;
+            else if (rating == .4 || rating == .3)
+                $srepeatNum = 2;
+            else if (rating == .2 || .1)
+                repeatNum = 1;
+
+            for(var i = 0; i < repeatNum; i++){
+                starRating+='<i class="fa fa-star fa-2x"></i>';
+            }
+            document.getElementById('starRating').innerHTML = starRating;
+        };
 
      }]); // end controller
