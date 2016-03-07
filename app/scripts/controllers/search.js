@@ -27,19 +27,23 @@ angular.module('blipApp')
         $scope.showAmountFilter = 30;
         //Stores users nationality to pass to server
         //Check if nationality has been manually changed
+
         if($rootScope.tempNewCountry === 0)
             $scope.userNationality = parseInt($rootScope.userNatCookie);
         else
             $scope.userNationality = $rootScope.tempNewCountry;
+
         //Country name header
-        $scope.displayCountry = "Irish";
+        $scope.displayCountry = $rootScope.userCountryCookie;
         //Sets whether manual refresh of results was requested
         var refreshData = false;
 
 
         //Called from Nationality dropdown in "settingsPannel.html" to set "userNationality"
         //Then calls getLocation and which passes new country to database sproc
-        $scope.getLocationNewCountry = function(newCountry) {
+        $scope.getLocationNewCountry = function(newCountry,countryName) {
+            $rootScope.showCountryHeader = false;
+            $scope.displayCountry = countryName;
             $rootScope.showLoadingAnimation = true;
             $rootScope.tempNewCountry = parseInt(newCountry);
             $scope.userNationality = $rootScope.tempNewCountry;
@@ -52,6 +56,7 @@ angular.module('blipApp')
         //Calls geoServices to return the current coordinates
         //navigator must be passed to service (dont no why ??)
         $scope.getLocation = function() {
+            $rootScope.showCountryHeader = false;
             $rootScope.showLoadingAnimation = true;
             GeoLocationService.getGeoCoordinates(navigator).then(function(data) {
                 data.nationality = $scope.userNationality;
@@ -150,6 +155,7 @@ angular.module('blipApp')
                 SearchServices.getLocationResults(geoData).then(function(data) {
                     $scope.searchResult = data;
                     $scope.filterSearchResult = $scope.searchResult;
+                    $rootScope.showCountryHeader = true;
                     $rootScope.showLoadingAnimation = false;
                 });
 
@@ -157,6 +163,7 @@ angular.module('blipApp')
             else{
                 $scope.searchResult = cachedResult.data;
                 $scope.filterSearchResult = $scope.searchResult;
+                $rootScope.showCountryHeader = true;
                 $rootScope.showLoadingAnimation = false;
             }
         };
@@ -183,6 +190,7 @@ angular.module('blipApp')
                 $scope.filterSearchResult = $scope.searchResult;
 
             }
+            $rootScope.showCountryHeader = true;
             $rootScope.showLoadingAnimation = false;
         };
 

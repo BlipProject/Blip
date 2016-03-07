@@ -107,6 +107,7 @@ angular
 
     //Show loading animation -- sets to false when results are returned from server
     $rootScope.showLoadingAnimation = true;
+    $rootScope.showCountryHeader = false;
 
     //Anchor link routing
     $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {

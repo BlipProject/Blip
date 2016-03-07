@@ -41,7 +41,8 @@ angular.module('blipApp')
         $scope.searchResult = "";
         var refreshData = false;
 
-
+        //Country name header
+        $scope.displayCountry = $rootScope.userCountryCookie;
 
         if($rootScope.tempNewCountry === 0)
             $scope.userNationality = parseInt($rootScope.userNatCookie);
@@ -50,7 +51,8 @@ angular.module('blipApp')
 
         $scope.control = {};
 
-        $scope.getLocationNewCountry = function(newCountry) {
+        $scope.getLocationNewCountry = function(newCountry,countryName) {
+            $scope.displayCountry = countryName;
             $rootScope.tempNewCountry = parseInt(newCountry);
             $scope.userNationality = $rootScope.tempNewCountry;
             console.log("New country - " + newCountry + " - set");

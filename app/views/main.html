@@ -4,11 +4,15 @@
         <div class="quick-filter-wrapper hidden-md hidden-lg">
             <!--includes filter buttons at top of page-->
             <div ng-include="'views/componants/quickButtons.html'"></div>
+            <div ng-show="showCountryHeader === true" class="search-header"><p>Displaying {{displayCountry}} Results</p></div>
         </div>
         <!--Include mobile nav-->
         <div ng-include="'views/componants/mobileNav.html'" scope="" onload=""></div>
         <div class="container content-wrapper" ng-init="getLocation()">
             <div id="contentWrapper" class="content-left">
+                <div class="hidden-xs hidden-sm">
+                    <div ng-show="showCountryHeader === true" class="search-header"><p>Displaying {{displayCountry}} Results</p></div>
+                </div>
                 <!--includes search results-->
                 <div id="contentLeftError" class="contentLeftError-hide">
                     <h4 id="geolocationErrorMessage"></h4>

@@ -18,4 +18,6 @@ angular.module('blipApp')
         };
 
         $scope.init = loadNationalities();
+
+
     }]);
