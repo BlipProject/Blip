@@ -54,6 +54,7 @@ angular.module('blipApp')
             $rootScope.tempNewCountry = parseInt(newCountry);
             $scope.userNationality = $rootScope.tempNewCountry;
             console.log("New country - " + newCountry + " - set");
+            refreshData = true;
             $scope.getLocation();
         };
 
