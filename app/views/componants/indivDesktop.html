@@ -1,11 +1,17 @@
 <div class="indiv-content">
 	<div class="indiv-details-column-dektop">
-        <label class="indiv-label">Description</label>
-        <p class="indiv-para">{{pageViewData.LocationDescription}}</p>
-        <label class="indiv-label">Phone</label>
-        <p class="indiv-para">(071) 914 1575</p>
-        <label class="indiv-label">Website</label>
-        <p class="indiv-para">www.websiteforblipteszt.com</p>
+        <div ng-show="pageViewData.LocationDescription != null">
+            <label class="indiv-label">Description</label>
+            <p class="indiv-para">{{pageViewData.LocationDescription}}</p>
+        </div>
+        <div ng-show="pageViewData.PhoneNo != null">
+            <label class="indiv-label">Phone</label>
+            <p class="indiv-para" type="tel">{{pageViewData.PhoneNo}}</p>
+        </div>
+        <div ng-show="pageViewData.Website != null">
+            <label class="indiv-label">Website</label>
+            <p class="indiv-para"><a target="_blank" href="{{pageViewData.Website}}">Visit Website</a></p>
+        </div>
         <div class="rating-wrap">
             <span id="starRating"></span>
         </div>

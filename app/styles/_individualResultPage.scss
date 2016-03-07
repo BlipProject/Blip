@@ -271,6 +271,7 @@
 	height: auto;
 	float: left;
 	padding: 5px;
+	color: $font-colour;
 
 	@media (max-width: $screen-sm){
 		width: 100%;
@@ -286,6 +287,12 @@
 
 .indiv-para{
 	font-size: 14px;
+	color: $font-colour;
+
+	a{
+		cursor: pointer;
+		color: $font-colour;
+	}
 }
 
 .indiv-social-links-wrap{
