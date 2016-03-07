@@ -35,11 +35,17 @@ angular.module('blipApp')
         //Store search result returned from server
         var searchResult = "";
         $scope.map;
-        $scope.userNationality = $rootScope.userNatCookie;
+
+        if($rootScope.tempNewCountry === 0)
+            $scope.userNationality = parseInt($rootScope.userNatCookie);
+        else
+            $scope.userNationality = $rootScope.tempNewCountry;
+
         $scope.control = {};
 
         $scope.getLocationNewCountry = function(newCountry) {
-            $scope.userNationality = newCountry;
+            $rootScope.tempNewCountry = parseInt(newCountry);
+            $scope.userNationality = $rootScope.tempNewCountry;
             console.log("New country - " + newCountry + " - set");
             $scope.getLocation();
         };

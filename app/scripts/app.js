@@ -124,8 +124,11 @@ angular
   $rootScope.userIdCookie = getCookie("userId");
   var userName = getCookie("userName");
   $rootScope.userNameCookie = userName.replace("+" , " ");
+
   $rootScope.userNatCookie = getCookie("userNat");
   $rootScope.userCountryCookie = getCookie("userCountry");
-  $rootScope.userCountryCodeCookie = getCookie("userCountryCode");
+  //Sores temp value for user country // Reset on new visit
+  $rootScope.tempNewCountry = 0;
 
+  $rootScope.userCountryCodeCookie = getCookie("userCountryCode");
 });

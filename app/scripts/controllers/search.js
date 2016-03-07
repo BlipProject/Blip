@@ -26,7 +26,11 @@ angular.module('blipApp')
         //Modify to show more/less results
         $scope.showAmountFilter = 30;
         //Stores users nationality to pass to server
-        $scope.userNationality = parseInt($rootScope.userNatCookie);
+        //Check if nationality has been manually changed
+        if($rootScope.tempNewCountry === 0)
+            $scope.userNationality = parseInt($rootScope.userNatCookie);
+        else
+            $scope.userNationality = $rootScope.tempNewCountry;
         //Country name header
         $scope.displayCountry = "Irish";
         //Sets whether manual refresh of results was requested
@@ -37,7 +41,8 @@ angular.module('blipApp')
         //Then calls getLocation and which passes new country to database sproc
         $scope.getLocationNewCountry = function(newCountry) {
             $rootScope.showLoadingAnimation = true;
-            $scope.userNationality = newCountry;
+            $rootScope.tempNewCountry = parseInt(newCountry);
+            $scope.userNationality = $rootScope.tempNewCountry;
             $scope.filterSearchResult = [];
             //$rootScope.showLoadingAnimation = true;
             refreshData = true;
