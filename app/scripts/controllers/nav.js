@@ -1,7 +1,11 @@
 'use strict';
 
 angular.module('blipApp')
-    .controller('NavCtrl', ['$scope', '$rootScope', '$location', function($scope, $rootScope, $location) {
+    .controller('NavCtrl', ['$scope', '$rootScope', '$location','CookieService', function($scope, $rootScope, $location, CookieService) {
+
+
+        CookieService.checkCookie;
+
         //Store animate in/out classes for mobile nav
         $rootScope.toggleNavClass = $rootScope.animateOut;
 

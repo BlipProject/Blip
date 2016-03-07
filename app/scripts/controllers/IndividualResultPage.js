@@ -4,7 +4,6 @@ angular.module('blipApp')
     .controller('IndividualResultPageCtrl', ['ResultPageState', '$scope','$anchorScroll','$location', function(ResultPageState, $scope, $anchorScroll, $location) {
 
     	$scope.pageViewData = ResultPageState.GetPageState();
-    	console.log($scope.pageViewData);
     	//$scope.editLocation = ResultPageState.GetEditState();
     	$scope.editLocation = true;
     	$scope.uploader;
@@ -159,7 +158,6 @@ angular.module('blipApp')
 	                        pos.coords.latitude,
 	                        pos.coords.longitude
 	                    ));
-	                console.log(pos);
 
 	                //Initaly set Rotation, Distance, and Pillyline
 	                setUserRotation(pos);

@@ -4,7 +4,7 @@
 
          var tUp;
          //get language id from session
-         var language = $rootScope.userCountryCodeCookie;
+         var language = ($rootScope.userCountryCodeCookie).toLowerCase();
          $scope.userCountry = $rootScope.userCountryCookie;
          //get user id from session
          var userId = $rootScope.userIdCookie;
@@ -27,7 +27,6 @@
              var data = { language: language, comment: comment.CommentText, title: comment.CommentTitle };
              var getComments = $http.post('http://localhost/blip/app/phpCore/translate.php', data)
                  .success(function(data, status, headers, config) {
-                     console.log(data);
                      $scope.comments[index].CommentText = data.comment[0];
                      $scope.comments[index].CommentTitle = data.title[0];
                  })
@@ -40,11 +39,9 @@
 
          $scope.getComments = function() {
              var data = { locationId: locationId, userId: userId };
-             console.log(data);
              var getComments = $http.post('http://localhost/blip/app/phpCore/getComments.php', data)
                  .success(function(data, status, headers, config) {
                      if (data.hasOwnProperty('error')) {
-                         console.log(data.error.code);
                          $scope.commentError = true;
                      } else {
                          $scope.comments = data;

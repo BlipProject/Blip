@@ -95,40 +95,49 @@ angular
     });
 })
 .run(function($rootScope, $location, $anchorScroll, $routeParams) {
-  //Set state for mobile nav.
-  //Hide on launch
-  //Show on button click in nav.html
-  $rootScope.animateIn = 'm-nav-wrapper-show animated slideInLeft';
-  $rootScope.animateOut = 'animated slideOutLeft';
-  $rootScope.toggleNavClass = $rootScope.animateOut;
+    //Set state for mobile nav.
+    //Hide on launch
+    //Show on button click in nav.html
+    $rootScope.animateIn = 'm-nav-wrapper-show animated slideInLeft';
+    $rootScope.animateOut = 'animated slideOutLeft';
+    $rootScope.toggleNavClass = $rootScope.animateOut;
 
-  //COntrols what icon to show what page user is on
-  $rootScope.mobileNavPageActive = 0;
+    //COntrols what icon to show what page user is on
+    $rootScope.mobileNavPageActive = 0;
 
-  //Show loading animation -- sets to false when results are returned from server
-  $rootScope.showLoadingAnimation = true;
+    //Show loading animation -- sets to false when results are returned from server
+    $rootScope.showLoadingAnimation = true;
 
-  //Anchor link routing
-  $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
-    $location.hash($routeParams.scrollTo);
-    $anchorScroll();
-  });
+    //Anchor link routing
+    $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
+      $location.hash($routeParams.scrollTo);
+      $anchorScroll();
+    });
 
-  //Cookie Controls
-  function getCookie(name) {
-      var value = "; " + document.cookie;
-      var parts = value.split("; " + name + "=");
-      if (parts.length == 2) return parts.pop().split(";").shift();
-  }
+    //Cookie Controls
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+    }
+    if(document.cookie)
+    {
+      if( getCookie("userId") === null || getCookie("userName") === null || getCookie("userNat") === null || getCookie("userCountry") === null || getCookie("userCountryCode") === null){
+        window.location = "/index.html";
+      }
+      else{
+        $rootScope.userIdCookie = getCookie("userId");
+        var userName = getCookie("userName");
+        $rootScope.userNameCookie = userName.replace("+" , " ");
 
-  $rootScope.userIdCookie = getCookie("userId");
-  var userName = getCookie("userName");
-  $rootScope.userNameCookie = userName.replace("+" , " ");
+        $rootScope.userNatCookie = getCookie("userNat");
+        $rootScope.userCountryCookie = getCookie("userCountry");
+        //Sores temp value for user country // Reset on new visit
+        $rootScope.tempNewCountry = 0;
 
-  $rootScope.userNatCookie = getCookie("userNat");
-  $rootScope.userCountryCookie = getCookie("userCountry");
-  //Sores temp value for user country // Reset on new visit
-  $rootScope.tempNewCountry = 0;
-
-  $rootScope.userCountryCodeCookie = getCookie("userCountryCode");
+        $rootScope.userCountryCodeCookie = getCookie("userCountryCode");
+      }
+    }
+    else
+      window.location = "/index.html";
 });
