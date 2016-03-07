@@ -100,7 +100,7 @@
             var repeatNum;
             var starRating="";
 
-            if(rating === 1 || rating == .9)
+            if(rating == 1 || rating == .9)
                 repeatNum = 5;
             else if (rating == .8 || rating == .7)
                 repeatNum = 4;
@@ -108,7 +108,7 @@
                 repeatNum = 3;
             else if (rating == .4 || rating == .3)
                 $srepeatNum = 2;
-            else if (rating == .2 || .1)
+            else if (rating == .2 || rating == .1)
                 repeatNum = 1;
 
             for(var i = 0; i < repeatNum; i++){
