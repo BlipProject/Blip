@@ -376,7 +376,7 @@ a#map-anchor{
 .comment-title{
 	@extend .indiv-label;
 	font-size:16px;
-	width:45%;
+	width:95%;
 	float:left;
 	height:30px;
 	line-height:20px;
@@ -393,7 +393,7 @@ a#map-anchor{
 }
 
 .rating-pos{
-	color:$pos;
+	color:$main-brand-colour;
 }
 
 .rating-neg{

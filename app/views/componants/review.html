@@ -27,12 +27,12 @@
         <div ng-repeat="comment in comments track by $index">
             <div class="comment-wrap" ng-if="commentError == false">
                 <div class="comment-head">
+                    <div class="comment-title">
+                        <p>{{comment.CommentTitle}}</p>
+                    </div>
                     <div class="thumb-block">
                         <i ng-show="comment.ThumbsUp == 1" class="fa fa-thumbs-up rating-pos"></i>
                         <i ng-show="comment.ThumbsUp == 0" class="fa fa-thumbs-down rating-neg"></i>
-                    </div>
-                    <div class="comment-title">
-                        <p>{{comment.CommentTitle}}</p>
                     </div>
                 </div>
                 <div class="comment-body-text">

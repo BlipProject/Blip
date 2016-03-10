@@ -33,7 +33,6 @@ $fa-font-path: "../bower_components/componants-font-awesome/fonts/";
 
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-@import "components-font-awesome/scss/font-awesome.scss";
 // endbower
 
 
@@ -103,7 +102,8 @@ body.modal-open { overflow:inherit; padding-right:inherit !important; }
 }
 
 .btn:hover, .btn:focus {
-	background-color: #27ae60;
+	background-color: $main-brand-colour;
+	color: #ecf0f1;
 }
 
 .btn > * {
