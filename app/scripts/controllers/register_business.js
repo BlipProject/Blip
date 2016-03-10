@@ -17,6 +17,7 @@ angular.module('blipApp')
     'ResultPageState',
     function($http, $scope, NationalityService, CategoryService, uiGmapGoogleMapApi, $location, ResultPageState) {
 
+        $scope.currentPath = $location.path();
         //Store categories and nationalities for dropdowns
         $scope.categories = "";
         $scope.nationalities = "";

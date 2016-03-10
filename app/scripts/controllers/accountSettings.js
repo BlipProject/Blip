@@ -4,7 +4,10 @@ angular.module('blipApp')
   .controller('AccountSettingsCtrl', ['$http',
   	'$scope',
   	'$rootScope',
-  	function ($http, $scope, $rootScope) {
+    '$location',
+  	function ($http, $scope, $rootScope, $location) {
+
+      $scope.currentPath = $location.path();
 
   		$scope.loadNationalities = function() {
             if(localStorage.getItem("cacheNat") === null) {
