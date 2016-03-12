@@ -63,25 +63,25 @@ angular.module('blipApp')
                     {
                         $scope.typeHeadClass = "result-header-bar";
                         $scope.setIconClass = "fa fa-glass fa-lg";
-                        return "result-hover-button-bar";
+                        return "";
                     }
                 case 'Restaurant':
                     {
                         $scope.typeHeadClass = "result-header-restaurant";
                         $scope.setIconClass = 'fa fa-cutlery fa-lg';
-                        return "result-hover-button-restaurant";
+                        return "";
                     }
                 case 'Supermarket':
                     {
                         $scope.typeHeadClass = "result-header-shop";
                         $scope.setIconClass = 'fa fa-shopping-cart fa-lg';
-                        return "result-hover-button-shop";
+                        return "";
                     }
                 case 'Other':
                     {
                         $scope.typeHeadClass = "result-header-other";
                         $scope.setIconClass = "fa fa-ellipsis-h fa-lg";
-                        return "result-hover-button-other";
+                        return "";
                     }
                 default:
                     {
