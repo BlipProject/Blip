@@ -14,7 +14,6 @@
 	$title = $review->title;
 	$text = $review->text;
 	$rating = decbin($review->rating);
-	var_dump("rating" . $rating);
 
 	$update = updateReview($locationID, $userID, $title, $text, $rating);
 

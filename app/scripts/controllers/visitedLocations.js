@@ -18,15 +18,21 @@ angular.module('blipApp')
 		};
 
 		$scope.getVisitedLocations = function() {
-			$http.post('http://localhost/blip/app/phpCore/get_visited_locations.php', user)
-				.then(function(response)
-				{
-					$scope.visitedLocations = response.data;
-					$scope.filterVisitedLocations = $scope.visitedLocations;
-					console.log($scope.visitedLocations);
-				    $scope.showLoadingAnimation = false;
-				    $(".visited-locations").removeClass("hide");
-				});
+
+            if(localStorage.getItem("cacheVisit") === null) {
+                $http.post('http://localhost/blip/app/phpCore/get_visited_locations.php', user)
+                .then(function(response)
+                {
+                    $scope.visitedLocations = response.data;
+                    $scope.filterVisitedLocations = $scope.visitedLocations;
+
+                    localStorage.cacheVisit = JSON.stringify($scope.filterVisitedLocations);
+                });
+            }
+            else{ $scope.filterVisitedLocations = JSON.parse(localStorage.cacheVisit)}
+
+            $scope.showLoadingAnimation = false;
+            $(".visited-locations").removeClass("hide");
 		};
 
         $scope.editReview = function(location, user, index) {
@@ -50,8 +56,6 @@ angular.module('blipApp')
                 rating: rate
             };
 
-            console.log($scope.review);
-
             var update = $http.post('http://localhost/blip/app/phpCore/update_review.php', $scope.review)
                 .success(function(data, status, headers, config) {
                     console.log(status + ' - ' + 'Success');
@@ -65,6 +69,8 @@ angular.module('blipApp')
             $scope.filterVisitedLocations[$scope.index].CommentTitle = $scope.review.title;
             $scope.filterVisitedLocations[$scope.index].CommentText = $scope.review.text;
             $scope.filterVisitedLocations[$scope.index].ThumbsUp = $scope.review.rating;
+
+            localStorage.cacheVisit = JSON.stringify($scope.filterVisitedLocations)
         };
 
         $scope.setFilterSetClass = function(filter, index) {
@@ -131,7 +137,7 @@ angular.module('blipApp')
 
         $scope.init = getFilter('All');
 	}])
-	.directive('profileMap', [function() {
+	.directive('profileMap', ['$rootScope', function($rootScope) {
 
 		return {
 			restrict: 'E',
@@ -145,9 +151,20 @@ angular.module('blipApp')
 					var map = new AmCharts.AmMap();
 					map.pathToImages = "bower_components/ammap3/images/";
 
+                    var userVisitedCountries = $rootScope.userVisitedCookie.split("-");
+                    var areas = [];
+
+                    for(var i=0;i<userVisitedCountries.length; i++) {
+                        var country = {
+                            id: userVisitedCountries[i],
+                        }
+                        areas.push(country);
+                    }
+
+                    console.log(areas);
 					var dataProvider = {
 						map: "worldHigh",
-						areas: [{id:"IE"},{id:"PL"},{id:"CA"},{id:"RU"},{id:"DZ"},{id:"BR"},{id:"GF"},{id:"PG"},{id:"RO"},{id:"PO"},{id:"IN"},{id:"FR"}],
+						areas: areas,
 					};
 
 					map.dataProvider = dataProvider;

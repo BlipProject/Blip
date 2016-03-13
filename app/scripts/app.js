@@ -137,6 +137,7 @@ angular
         $rootScope.tempNewCountry = 0;
 
         $rootScope.userCountryCodeCookie = getCookie("userCountryCode");
+        $rootScope.userVisitedCookie = getCookie("userVisited");
       }
     }
     else

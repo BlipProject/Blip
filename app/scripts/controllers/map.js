@@ -384,7 +384,6 @@ $scope.storeFocusedResult = function(currentmarker) {
                 distance : currentmarker.data.distance,
                 City : currentmarker.data.city,
                 CategoryName: currentmarker.data.category
-
             };
             ResultPageState.SetPageState(data);
             console.log(data.LocationID);
