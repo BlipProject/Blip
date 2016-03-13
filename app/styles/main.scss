@@ -1,7 +1,6 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 $fa-font-path: "../bower_components/componants-font-awesome/fonts/";
 
-
 //DO NOT import any styles before "customVariables"
 @import "_customVariables";
 
@@ -11,7 +10,6 @@ $fa-font-path: "../bower_components/componants-font-awesome/fonts/";
 @import "_animate.scss";
 
 @import "_global.scss";
-@import "_simple-sidebar.scss";
 @import "_quickFilterButtons.scss";
 @import "_searchResultDisplay.scss";
 @import "_footer.scss";
@@ -169,4 +167,9 @@ body.modal-open { overflow:inherit; padding-right:inherit !important; }
 //button height classes
 .button-tall{
 	height:60px;
+}
+
+.form-control:focus{
+	border-color:#16a085 !important;
+	box-shadow: inset 0 0px 0px #16a085, 0 0 8px #16a085 !important;
 }

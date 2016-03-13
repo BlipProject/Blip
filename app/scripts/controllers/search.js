@@ -34,7 +34,7 @@ angular.module('blipApp')
             $scope.userNationality = $rootScope.tempNewCountry;
 
         //Country name header
-        $scope.displayCountry = $rootScope.userCountryCookie;
+        $scope.displayCountry = $rootScope.userCountryCodeCookie;
         //Sets whether manual refresh of results was requested
         var refreshData = false;
 

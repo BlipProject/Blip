@@ -381,7 +381,13 @@
 	float:left;
 	text-align:center;
 }
-
+/*
+@media(max-width:$screen-sm){
+	.search-country-header{
+		margin:0px;
+	}
+}
+*/
 #resultHeader{
 	p{
 

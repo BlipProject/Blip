@@ -13,43 +13,51 @@
                     <div class="add-location-form-details">
                         <div class="add-location-form-details-field">
                             <span class="hidden-xs hidden-sm"><i class="fa fa-trademark fa-3x"></i></span>
-                            <label for="tbxName" class="add-location-form-label">Name</label>
-                            <input id="tbxName" name="name" class="add-location-form-input" ng-class="{'reg-form-error-outline' : submitted && add_location_form.name.$invalid || add_location_form.name.$dirty && add_location_form.name.$invalid}" type="text" ng-model="locationName" placeholder="e.g. The Little Pizza" required>
-                            <div class="reg-form-error-message" ng-show="submitted && add_location_form.name.$invalid || add_location_form.name.$dirty && add_location_form.name.$invalid">
-                                <span><i class="fa fa-exclamation-triangle fa-lg"></i></span>
-                                <label class="reg-form-error-label">Name is required!</label>
-                            </div>
+                            <fieldset class="form-group">
+                                <label for="tbxName" class="add-location-form-label">Name</label>
+                                <input id="tbxName" name="name" class="add-location-form-input form-control" ng-class="{'reg-form-error-outline' : submitted && add_location_form.name.$invalid || add_location_form.name.$dirty && add_location_form.name.$invalid}" type="text" ng-model="locationName" placeholder="e.g. The Little Pizza" required>
+                                <div class="reg-form-error-message" ng-show="submitted && add_location_form.name.$invalid || add_location_form.name.$dirty && add_location_form.name.$invalid">
+                                    <span><i class="fa fa-exclamation-triangle fa-lg"></i></span>
+                                    <label class="reg-form-error-label">Name is required!</label>
+                                </div>
+                            </fieldset>
                         </div>
                         <div class="add-location-form-details-field" ng-init="loadNationalities()">
                             <span class="hidden-xs hidden-sm"><i class="fa fa-globe fa-3x"></i></span>
-                            <label for="lstNat" class="add-location-form-label">Nationality</label>
-                            <select id="lstNat" name="nat" class="add-location-form-input" ng-class="{'reg-form-error-outline' : submitted && add_location_form.nat.$invalid || add_location_form.nat.$dirty && add_location_form.nat.$invalid}" ng-model="locationNationality" ng-options="option.NationalityName for option in nationalities track by option.NationalityID" required>
-                                <option value="" disabled selected>Select Nationality</option>
-                            </select>
-                            <div class="reg-form-error-message" ng-show="submitted && add_location_form.nat.$invalid || add_location_form.nat.$dirty && add_location_form.nat.$invalid">
-                                <span><i class="fa fa-exclamation-triangle fa-lg"></i></span>
-                                <label class="reg-form-error-label">Nationality is required!</label>
-                            </div>
+                            <fieldset class="form-group">
+                                <label for="lstNat" class="add-location-form-label">Nationality</label>
+                                <select id="lstNat" name="nat" class="add-location-form-input form-control" ng-class="{'reg-form-error-outline' : submitted && add_location_form.nat.$invalid || add_location_form.nat.$dirty && add_location_form.nat.$invalid}" ng-model="locationNationality" ng-options="option.NationalityName for option in nationalities track by option.NationalityID" required>
+                                    <option value="" disabled selected>Select Nationality</option>
+                                </select>
+                                <div class="reg-form-error-message" ng-show="submitted && add_location_form.nat.$invalid || add_location_form.nat.$dirty && add_location_form.nat.$invalid">
+                                    <span><i class="fa fa-exclamation-triangle fa-lg"></i></span>
+                                    <label class="reg-form-error-label">Nationality is required!</label>
+                                </div>
+                            </fieldset>
                         </div>
                         <div class="add-location-form-details-field" ng-init="loadCategories()">
                             <span class="hidden-xs hidden-sm"><i class="fa fa-ellipsis-h fa-3x"></i></span>
-                            <label for="lstCat" class="add-location-form-label">Category</label>
-                            <select id="lstCat" name="cat" class="add-location-form-input" ng-class="{'reg-form-error-outline' : submitted && add_location_form.cat.$invalid || add_location_form.cat.$dirty && add_location_form.cat.$invalid}" ng-model="locationCategory" ng-options="option.CategoryName for option in categories track by option.CategoryID" required>
-                                <option value="" disabled selected>Select Category</option>
-                            </select>
-                            <div class="reg-form-error-message" ng-show="submitted && add_location_form.cat.$invalid || add_location_form.cat.$dirty && add_location_form.cat.$invalid">
-                                <span><i class="fa fa-exclamation-triangle fa-lg"></i></span>
-                                <label class="reg-form-error-label">Category is required!</label>
-                            </div>
+                            <fieldset class="form-group">
+                                <label for="lstCat" class="add-location-form-label">Category</label>
+                                <select id="lstCat" name="cat" class="add-location-form-input form-control" ng-class="{'reg-form-error-outline' : submitted && add_location_form.cat.$invalid || add_location_form.cat.$dirty && add_location_form.cat.$invalid}" ng-model="locationCategory" ng-options="option.CategoryName for option in categories track by option.CategoryID" required>
+                                    <option value="" disabled selected>Select Category</option>
+                                </select>
+                                <div class="reg-form-error-message" ng-show="submitted && add_location_form.cat.$invalid || add_location_form.cat.$dirty && add_location_form.cat.$invalid">
+                                    <span><i class="fa fa-exclamation-triangle fa-lg"></i></span>
+                                    <label class="reg-form-error-label">Category is required!</label>
+                                </div>
+                            </fieldset>
                         </div>
                         <div class="add-location-form-details-field-description">
                             <span class="hidden-xs hidden-sm"><i class="fa fa-align-left fa-3x"></i></span>
-                            <label for="tblkDes" class="add-location-form-label">Description</label>
-                            <textarea id="tblkDes" name="des" class="add-location-textarea" ng-class="{'reg-form-error-outline' : submitted && add_location_form.des.$invalid || add_location_form.des.$dirty && add_location_form.des.$invalid}" maxlength="145" ng-model="locationDescription" placeholder="e.g. Family friendly, tradiontal Italian pizzeria" required></textarea>
-                            <div class="reg-form-error-message" ng-show="submitted && add_location_form.des.$invalid || add_location_form.des.$dirty && add_location_form.des.$invalid">
-                                <span><i class="fa fa-exclamation-triangle fa-lg"></i></span>
-                                <label class="reg-form-error-label">Description is required!</label>
-                            </div>
+                            <fieldset class="form-group">
+                                <label for="tblkDes" class="add-location-form-label">Description</label>
+                                <textarea id="tblkDes" name="des" class="add-location-textarea form-control" ng-class="{'reg-form-error-outline' : submitted && add_location_form.des.$invalid || add_location_form.des.$dirty && add_location_form.des.$invalid}" maxlength="145" ng-model="locationDescription" placeholder="e.g. Family friendly, tradiontal Italian pizzeria" required></textarea>
+                                <div class="reg-form-error-message" ng-show="submitted && add_location_form.des.$invalid || add_location_form.des.$dirty && add_location_form.des.$invalid">
+                                    <span><i class="fa fa-exclamation-triangle fa-lg"></i></span>
+                                    <label class="reg-form-error-label">Description is required!</label>
+                                </div>
+                            </fieldset>
                         </div>
                     </div>
                     <div class="add-location-form-header">
@@ -66,16 +74,18 @@
                             </ui-gmap-google-map>
                         </div>
                         <div>
-                            <label for="tbxAddress" class="add-location-form-label">Address</label>
-                            <input id="tbxAddress" name="address" class="add-location-form-input" ng-class="{'reg-form-error-outline' : submitted && add_location_form.address.$invalid || add_location_form.address.$dirty && add_location_form.address.$invalid}" type="text" ng-model="locationAddress" ng-change="getCoordinates(locationAddress)" required>
-                            <div class="reg-form-error-message" ng-show="submitted && add_location_form.address.$invalid || add_location_form.address.$dirty && add_location_form.address.$invalid">
-                                <span><i class="fa fa-exclamation-triangle fa-lg"></i></span>
-                                <label class="reg-form-error-label">Address is required!</label>
-                            </div>
+                            <fieldset class="form-group">
+                                <label for="tbxAddress" class="add-location-form-label">Address</label>
+                                <input id="tbxAddress" name="address" class="add-location-form-input form-control" ng-class="{'reg-form-error-outline' : submitted && add_location_form.address.$invalid || add_location_form.address.$dirty && add_location_form.address.$invalid}" type="text" ng-model="locationAddress" ng-change="getCoordinates(locationAddress)" required>
+                                <div class="reg-form-error-message" ng-show="submitted && add_location_form.address.$invalid || add_location_form.address.$dirty && add_location_form.address.$invalid">
+                                    <span><i class="fa fa-exclamation-triangle fa-lg"></i></span>
+                                    <label class="reg-form-error-label">Address is required!</label>
+                                </div>
+                            </fieldset>
                         </div>
                     </div>
-                    <div class="bus-reg-buttons-container">
-                        <input type="submit" class="button-main button-border-green"
+                    <div class="bus-reg-buttons-container text-center">
+                        <input type="submit" class="button-main button-border-green button-main-50"
                         value="Add Location" ng-click="submitted=true"></input>
                         <!--Quickly show modal-->
                         <button onclick="showModal()" style="opacity: 0"></button>
