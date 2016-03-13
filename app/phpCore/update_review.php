@@ -13,8 +13,8 @@
 	$userID = (int)$review->userID;
 	$title = $review->title;
 	$text = $review->text;
-	$rating = $review->rating;
-	var_dump($title);
+	$rating = decbin($review->rating);
+	var_dump("rating" . $rating);
 
 	$update = updateReview($locationID, $userID, $title, $text, $rating);
 
@@ -22,7 +22,7 @@
 		global $conn;
 
 		$updateQuery = mysqli_query($conn,
-	    	"CALL UpdateReview('$locationID', '$userID', '$title', '$text', '$rating')") or die("Query fail: " . mysqli_error($conn));
+	    	"CALL UpdateReview('$locationID', '$userID', '$title', '$text', $rating)") or die("Query fail: " . mysqli_error($conn));
 	}
 
 	mysqli_close($conn);

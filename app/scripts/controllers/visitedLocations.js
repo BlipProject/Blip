@@ -62,7 +62,9 @@ angular.module('blipApp')
                 
             $("#myModal").modal('hide');
 
-            //$scope.getVisitedLocations();
+            $scope.filterVisitedLocations[$scope.index].CommentTitle = $scope.review.title;
+            $scope.filterVisitedLocations[$scope.index].CommentText = $scope.review.text;
+            $scope.filterVisitedLocations[$scope.index].ThumbsUp = $scope.review.rating;
         };
 
         $scope.setFilterSetClass = function(filter, index) {
