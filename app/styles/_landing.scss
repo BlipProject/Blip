@@ -144,6 +144,19 @@ body{
 	}
 }
 
+body.modal-open .container{
+    -webkit-filter: blur(1px);
+    -moz-filter: blur(1px);
+    -o-filter: blur(1px);
+    -ms-filter: blur(1px);
+    filter: blur(1px);
+}
+
+.landing-modal .modal{
+	top: 20% !important;
+	padding: 0px !important;
+}
+
 @media (min-width: $screen-md) and (max-width: $screen-lg){
 	.landing-form{
 		height:80vh;

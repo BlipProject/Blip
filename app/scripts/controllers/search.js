@@ -34,7 +34,7 @@ angular.module('blipApp')
             $scope.userNationality = $rootScope.tempNewCountry;
 
         //Country name header
-        $scope.displayCountry = $rootScope.userCountryCookie;
+        $scope.displayCountry = $rootScope.userCountryCodeCookie;
         //Sets whether manual refresh of results was requested
         var refreshData = false;
 
@@ -43,6 +43,7 @@ angular.module('blipApp')
         //Then calls getLocation and which passes new country to database sproc
         $scope.getLocationNewCountry = function(newCountry,countryName) {
             $rootScope.showCountryHeader = false;
+            $scope.activeFilter = 0;
             $scope.displayCountry = countryName;
             $rootScope.showLoadingAnimation = true;
             $rootScope.tempNewCountry = parseInt(newCountry);
@@ -166,6 +167,7 @@ angular.module('blipApp')
                 $rootScope.showCountryHeader = true;
                 $rootScope.showLoadingAnimation = false;
             }
+
         };
 
         //Called from front-end to set filtered results and set active class on button

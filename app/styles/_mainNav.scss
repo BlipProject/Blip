@@ -16,3 +16,40 @@
 	background-color:#16a085 !important;
 }
 */
+
+.header{
+	.logo{
+		margin:auto;
+		width:60px;
+		height:60px;
+		padding:5px;
+		z-index:-10;
+	}
+
+	span{
+		height:50px;
+		width:50px;
+	}
+
+	a{
+		display:block;
+		height:50px;
+		width:50px;
+		-webkit-transition: background-image 0.2s ease-in-out;
+		transition: background-image 0.2s ease-in-out;
+		background-image:url('/images/logo.png');
+		background-repeat: no-repeat;
+		background-size:cover;
+	}
+
+	a:hover{
+		display:block;
+		height:50px;
+		width:50px;
+		-webkit-transition: background-image 0.2s ease-in-out;
+		transition: background-image 0.2s ease-in-out;
+		background-image:url('/images/logoHover.png');
+		background-repeat: no-repeat;
+		background-size:cover;
+	}
+}

@@ -4,15 +4,20 @@
         <div class="quick-filter-wrapper hidden-md hidden-lg">
             <!--includes filter buttons at top of page-->
             <div ng-include="'views/componants/quickButtons.html'"></div>
+        </div>
+        <div class="hidden-md hidden-lg">
             <div ng-show="showCountryHeader === true" class="search-header"><p>Displaying {{displayCountry}} Results</p></div>
         </div>
         <!--Include mobile nav-->
         <div ng-include="'views/componants/mobileNav.html'" scope="" onload=""></div>
         <div class="container content-wrapper" ng-init="getLocation()">
+            <div class="hidden-xs hidden-sm">
+                <div ng-show="showCountryHeader === true" class="search-header"><p>Displaying {{displayCountry}} Results</p></div>
+            </div>
             <div id="contentWrapper" class="content-left">
-                <div class="hidden-xs hidden-sm">
+                <!--<div class="hidden-xs hidden-sm">
                     <div ng-show="showCountryHeader === true" class="search-header"><p>Displaying {{displayCountry}} Results</p></div>
-                </div>
+                </div>-->
                 <!--includes search results-->
                 <div id="contentLeftError" class="contentLeftError-hide">
                     <h4 id="geolocationErrorMessage"></h4>
@@ -21,7 +26,7 @@
                     <div class="manual-location">
                         <label for="manualLocationEntry">Enter Your Current Location</label>
                         <div class="input-group">
-                        <input id="manualLocationEntry" type="text" class="form-control" placeholder="i.e. Sligo, Ireland">
+                        <input id="manualLocationEntry" type="text" class="form-control" placeholder="i.e. Sligo, Ireland" required>
                             <span class="input-group-btn">
                                 <button ng-click="manualSearch()" class="btn btn-default" type="button">Search</button>
                             </span>
