@@ -106,8 +106,6 @@ angular.module('blipApp')
         }
 
         $scope.deleteLocation = function() {
-            console.log($scope.indexToDelete);
-            console.log($scope.filterUserLocations[$scope.indexToDelete]);
             $http.post('http://localhost/blip/app/phpCore/delete_location.php', $scope.filterUserLocations[$scope.indexToDelete])
                 .then(function(response)
                 {

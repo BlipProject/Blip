@@ -21,7 +21,7 @@ ng-class sets up classes for indiviual results based off result type
                 </div>
             </div>
         </div>
-        <div class="result-header" ng-class="typeHeadClass">{{venue.LocationName}}<span ng-class="setIconClass" class="pull-right location-icon"></span></div>
+        <div class="result-header" ng-class="typeHeadClass">{{venue.LocationName | limitTo:32}}<span ng-class="setIconClass" class="pull-right location-icon"></span></div>
         <div class="user-location-address">
             <span>{{venue.City}}</span>
         </div>

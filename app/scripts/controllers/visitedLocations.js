@@ -3,8 +3,9 @@
 angular.module('blipApp')
 	.controller('VisitedLocationsCtrl', ['$http', 
 	'$scope',
+    '$rootScope',
     '$location',
-	function($http, $scope, $location) {
+	function($http, $scope, $rootScope, $location) {
 
         $scope.currentPath = $location.path();
         
@@ -13,7 +14,7 @@ angular.module('blipApp')
 		$scope.showLoadingAnimation = true;
 
 		var user = {
-			ID: 321
+			ID: parseInt($rootScope.userIdCookie),
 		};
 
 		$scope.getVisitedLocations = function() {
@@ -27,6 +28,42 @@ angular.module('blipApp')
 				    $(".visited-locations").removeClass("hide");
 				});
 		};
+
+        $scope.editReview = function(location, user, index) {
+            $("#myModal").modal('show');
+            $scope.commentTitle = $scope.filterVisitedLocations[index].CommentTitle;
+            $scope.commentText = $scope.filterVisitedLocations[index].CommentText;
+            $scope.index = index;
+        };
+
+        $scope.cancelEdit = function() {
+            $("#myModal").modal('hide');
+        };
+
+        $scope.updateReview = function(rate, title, text) {
+
+            $scope.review = { 
+                locID:  $scope.filterVisitedLocations[$scope.index].LocationID,
+                userID: $rootScope.userIdCookie,
+                title: title,
+                text: text,
+                rating: rate
+            };
+
+            console.log($scope.review);
+
+            var update = $http.post('http://localhost/blip/app/phpCore/update_review.php', $scope.review)
+                .success(function(data, status, headers, config) {
+                    console.log(status + ' - ' + 'Success');
+                })
+                .error(function(data, status, headers, config) {
+                    console.log(status + ' - ' + 'Error');
+                });
+                
+            $("#myModal").modal('hide');
+
+            //$scope.getVisitedLocations();
+        };
 
         $scope.setFilterSetClass = function(filter, index) {
             getFilter(filter);
