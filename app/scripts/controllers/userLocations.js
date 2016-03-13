@@ -7,6 +7,8 @@ angular.module('blipApp')
         'ResultPageState', 
         function($http, $scope, $location, ResultPageState) {
 
+        $scope.currentPath = $location.path();
+
 		$scope.userLocations = "";
         $scope.filterUserLocations = [];
         $scope.showLoadingAnimation = true;

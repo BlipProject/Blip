@@ -3,8 +3,11 @@
 angular.module('blipApp')
 	.controller('VisitedLocationsCtrl', ['$http', 
 	'$scope',
-	function($http, $scope) {
+    '$location',
+	function($http, $scope, $location) {
 
+        $scope.currentPath = $location.path();
+        
 		$scope.visitedLocations = "";
 		$scope.filterVisitedLocations = [];
 		$scope.showLoadingAnimation = true;
