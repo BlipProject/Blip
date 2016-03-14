@@ -36,7 +36,7 @@
 			$userName = $row[2];
 			$userVisited = $row[9];
 			$userCountry = $row[11];
-			$userCountryCode = $row[10];
+			$userCountryCode = $row[12];
 		}
 
 		session_start();

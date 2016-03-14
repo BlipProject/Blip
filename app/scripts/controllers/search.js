@@ -6,11 +6,12 @@ angular.module('blipApp')
     '$scope',
     'GeoLocationService',
     'SearchServices',
+    'CountryService',
     'uiGmapGoogleMapApi',
     'ResultPageState',
     '$location',
     '$rootScope',
-    function($http, $scope, GeoLocationService, SearchServices, uiGmapGoogleMapApi, ResultPageState, $location, $rootScope) {
+    function($http, $scope, GeoLocationService, SearchServices, CountryService, uiGmapGoogleMapApi, ResultPageState, $location, $rootScope) {
 
 
         $scope.currentPath = $location.path();
@@ -34,7 +35,7 @@ angular.module('blipApp')
             $scope.userNationality = $rootScope.tempNewCountry;
 
         //Country name header
-        $scope.displayCountry = $rootScope.userCountryCodeCookie;
+        $scope.displayCountry = $rootScope.userCountryCookie;
         //Sets whether manual refresh of results was requested
         var refreshData = false;
 
@@ -60,6 +61,7 @@ angular.module('blipApp')
             $rootScope.showCountryHeader = false;
             $rootScope.showLoadingAnimation = true;
             GeoLocationService.getGeoCoordinates(navigator).then(function(data) {
+                CountryService.checkCountry(data);
                 data.nationality = $scope.userNationality;
                 data.showLimit = $scope.showAmountFilter;
                 returnSearchResults(data);
