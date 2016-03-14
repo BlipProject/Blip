@@ -56,6 +56,7 @@ angular.module('blipApp')
 
     	$scope.scrollTo = function(id) {
 			$location.hash(id);
+			console.log(id);
 			$anchorScroll();
 		}
 

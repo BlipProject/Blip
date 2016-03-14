@@ -9,12 +9,19 @@
 //--
 .content-wrapper{
 	margin-top:90px;
+	margin-bottom:40px;
 	@media(max-width:$screen-sm){
     	margin-top:120px;
     }
 
 	position:relative;
 	min-height:500px;
+}
+
+.sh-wrap{
+	float:left;
+	width:100%;
+	padding:0px 5px;
 }
 
 .search-header{
@@ -393,5 +400,25 @@
 
 		height:auto;
 		float:left;
+	}
+}
+
+//Search foot header
+.foot-header{
+	text-align:center;
+	margin-top:20px;
+	width:70%;
+	float:left;
+	border-top: 5px solid $main-brand-colour;
+	img{
+		width:100px;
+		height: 100px;
+		margin-top: 10px;
+	}
+}
+
+@media(max-width:$screen-sm){
+	.foot-header{
+		width:100%;
 	}
 }

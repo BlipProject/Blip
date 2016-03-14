@@ -50,7 +50,21 @@ body{
 		font-size:$fontHeading;
 	}
 	min-height: 100%;
+
+	//Set selection highlight volour on all text
+	p::selection,
+	h1::selection,
+	h2::selection,
+	h3::selection,
+	h4::selection,
+	a::selection,
+	label::selection {
+		background-color: $main-brand-colour;
+		color: #fff;
+	}
+
 }
+
 
 body.modal-open { overflow:inherit; padding-right:inherit !important; }
 
