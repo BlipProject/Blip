@@ -5,7 +5,7 @@
             <!--includes filter buttons at top of page-->
             <div ng-include="'views/componants/quickButtons.html'"></div>
         </div>
-        <div class="hidden-md hidden-lg">
+        <div class="hidden-md hidden-lg sh-wrap">
             <div ng-show="showCountryHeader === true" class="search-header"><p>Displaying {{displayCountry}} Results</p></div>
         </div>
         <!--Include mobile nav-->
@@ -38,6 +38,7 @@
                 </div>
                 <div ng-include="'views/componants/searchResults.html'"></div>
             </div>
+            <div  class="foot-header" ng-show="showLoadingAnimation == false"><img src="images/blip_logo_foot.png"></div>
             <div class="content-right">
                 <!--includes settings pannel-->
                 <div class="settings-pannel-wrapper">

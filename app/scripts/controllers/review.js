@@ -6,6 +6,7 @@
          //get language id from session
 
          var language = ($rootScope.userCountryCodeCookie).toLowerCase();
+         console.log(language);
          $scope.userCountry = $rootScope.userCountryCookie;
          //get user id from session
          var userId = $rootScope.userIdCookie;

@@ -1,0 +1,47 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Confirm Email</title>
+
+	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="styles/confirmEmail.css">
+</head>
+<body>
+
+<div class="confirm-wrap">
+	<div class="hidden-logo">
+        <img class="landing-logo" src="images/landingLogoStroked.png" />
+    </div>
+	<div class="confirm-content-wrap">
+		<div class="confirm-content">
+			<h2>Thanks <span id="name"></span></h2>
+			<p>A confirmation link has been sent to</p>
+			<p id="email"></p>
+			<a href="index.html"><button class="button-main button-main-green button-border-green" >Login</button></a>
+		</div>
+	</div>
+</div>
+
+<script>
+	function getParameterByName(name, url) {
+	    if (!url) url = window.location.href;
+	    	url = url.toLowerCase(); // This is just to avoid case sensitiveness
+	    name = name.replace(/[\[\]]/g, "\\$&").toLowerCase();// This is just to avoid case sensitiveness for query parameter name
+	    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+	        results = regex.exec(url);
+	    if (!results) return null;
+	    if (!results[2]) return '';
+	    return decodeURIComponent(results[2].replace(/\+/g, " "));
+	}
+
+	var name = getParameterByName('name');
+	var nameCap = name.charAt(0).toUpperCase() + name.substr(1);
+	var email = getParameterByName('email');
+
+	document.getElementById('name').innerHTML = nameCap;
+	document.getElementById('email').innerHTML = email;
+</script>
+
+</body>
+</html>

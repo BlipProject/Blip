@@ -24,12 +24,6 @@
 		$conn = db_connect();
 		$move = mysqli_query($conn,
        		"Call MoveIntoUsersArtur('$userEmail')") or die("Query fail: " . mysqli_error($conn));
-
- 		echo "Account activated. We are going to redirect You now into Blip. Have fun!";
-
- 		//LOCALHOST
- 		header( "refresh:3;url = http://localhost:9000/#/" );
- 		//header( "refresh:3;url = http://bliptest.azurewebsites.net/#/" );
 	}
 	else
 	{
@@ -38,3 +32,42 @@
 
 	mysqli_close($conn);
 ?>
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Account Activated</title>
+
+	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="../styles/confirmEmail.css">
+</head>
+<body>
+
+<div class="confirm-wrap">
+	<div class="hidden-logo">
+        <img class="landing-logo" src="../images/landingLogoStroked.png" />
+    </div>
+	<div class="confirm-content-wrap">
+		<div class="confirm-content">
+			<h2>Account Succesfully Activated</h2>
+			<p>You can now login with the username <?php echo $userEmail ?></p>
+			<p>You will automatically be redirected in <span id="count">10</span>s</p>
+			<br/>
+			<a href="index.html"><button class="button-main button-main-green button-border-green" >Login</button></a>
+		</div>
+	</div>
+</div>
+
+<script>
+	var time = 10;
+	window.setInterval(countDown, 1000);
+
+	function countDown(){
+		time-=1;
+		document.getElementById('count').innerHTML = time;
+
+		if(time === 0)
+			window.location = "/index.html";
+	}
+</script>

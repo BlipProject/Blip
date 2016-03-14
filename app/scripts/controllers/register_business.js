@@ -15,7 +15,11 @@ angular.module('blipApp')
     'uiGmapGoogleMapApi',
     '$location',
     'ResultPageState',
-    function($http, $scope, NationalityService, CategoryService, uiGmapGoogleMapApi, $location, ResultPageState) {
+    '$rootScope',
+    function($http, $scope, NationalityService, CategoryService, uiGmapGoogleMapApi, $location, ResultPageState,$rootScope) {
+
+        //Close mobile-navigation menu on page load
+        $rootScope.toggleNavClass = $rootScope.animateOut;
 
         $scope.currentPath = $location.path();
         //Store categories and nationalities for dropdowns

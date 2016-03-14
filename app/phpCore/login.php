@@ -34,6 +34,9 @@
 			$userId = $row[0];
 			$userNat = $row[1];
 			$userName = $row[2];
+			$userPic = $row[5];
+			$userEmail = $row[7];
+			$userView = $row[8];
 			$userVisited = $row[9];
 			$userCountry = $row[11];
 			$userCountryCode = $row[12];
@@ -46,9 +49,12 @@
 	    setcookie("userId", $userId, time() + (86400 * 30), "/");
 	    setcookie("userName", $userName, time() + (86400 * 30), "/");
 	    setcookie("userNat", $userNat, time() + (86400 * 30), "/");
+	    setcookie("userPic", $userPic, time() + (86400 * 30), "/");
 	    setcookie("userCountry", $userCountry, time() + (86400 * 30), "/");
 	    setcookie("userCountryCode", $userCountryCode, time() + (86400 * 30), "/");
 	    setcookie("userVisited", $userVisited, time() + (86400 * 30), "/");
+	    setcookie("userEmail", $userEmail, time() + (86400 * 30), "/");
+	    setcookie("userView", $userView, time() + (86400 * 30), "/");
 
 		header('Location: http://localhost:9000/home.html#/');
 		exit();

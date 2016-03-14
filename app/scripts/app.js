@@ -102,6 +102,9 @@ angular
     $rootScope.animateOut = 'animated slideOutLeft';
     $rootScope.toggleNavClass = $rootScope.animateOut;
 
+    //Clear result cache on login
+    //localStorage.removeItem(cacheResults);
+
     //COntrols what icon to show what page user is on
     $rootScope.mobileNavPageActive = 0;
 
@@ -133,11 +136,29 @@ angular
 
         $rootScope.userNatCookie = getCookie("userNat");
         $rootScope.userCountryCookie = getCookie("userCountry");
+
+        var userPic = getCookie("userPic");
+
+        //http://jsperf.com/benchmarking-js-replaceall
+        //Replace all instances of char(s) in a string
+        String.prototype.replaceAll = function(search, replacement) {
+            var target = this;
+            return target.split(search).join(replacement);
+        };
+
+
+        $rootScope.userPic = userPic.replaceAll('%2F', '/');
+        console.log($rootScope.userPic);
         //Sores temp value for user country // Reset on new visit
         $rootScope.tempNewCountry = 0;
 
         $rootScope.userCountryCodeCookie = getCookie("userCountryCode");
         $rootScope.userVisitedCookie = getCookie("userVisited");
+
+        var userEmail = getCookie("userEmail");
+        $rootScope.userEmailCookie = userEmail.replaceAll('%40', '@');
+
+        $rootScope.userViewCookie = getCookie("userView");
       }
     }
     else

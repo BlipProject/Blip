@@ -8,11 +8,12 @@
  * Controller of the blipApp
  */
 angular.module('blipApp')
-    .controller('UserRegistrationCtrl', ['$http', '$scope', function($http, $scope) {
+    .controller('UserRegistrationCtrl', ['$http', '$scope', '$rootScope', function($http, $scope, $rootScope) {
         $scope.pageHeading = "User Registration";
 
 
-
+        //Close mobile-navigation menu on page load
+        $rootScope.toggleNavClass = $rootScope.animateOut;
 
 
         //to do  if element is valid do progressrar##################
