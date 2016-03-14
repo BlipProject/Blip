@@ -61,6 +61,7 @@ angular.module('blipApp')
             $rootScope.showCountryHeader = false;
             $rootScope.showLoadingAnimation = true;
             GeoLocationService.getGeoCoordinates(navigator).then(function(data) {
+                //Country services checks if the user is in a new location, if new adds it
                 CountryService.checkCountry(data);
                 data.nationality = $scope.userNationality;
                 data.showLimit = $scope.showAmountFilter;
