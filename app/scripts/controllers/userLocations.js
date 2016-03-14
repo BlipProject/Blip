@@ -27,11 +27,9 @@ angular.module('blipApp')
                 {
                     $scope.userLocations = response.data;
                     $scope.filterUserLocations = $scope.userLocations;
-
+                    $scope.showLoadingAnimation = false;
                     localStorage.cacheUserLocs = JSON.stringify($scope.filterUserLocations);
                 });
-
-            $scope.showLoadingAnimation = false;
 		};
 
         //Called from front-end to set filtered results and set active class on button
