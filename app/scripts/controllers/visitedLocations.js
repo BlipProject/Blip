@@ -1,14 +1,17 @@
 'use strict';
 
 angular.module('blipApp')
-	.controller('VisitedLocationsCtrl', ['$http', 
+	.controller('VisitedLocationsCtrl', ['$http',
 	'$scope',
     '$rootScope',
     '$location',
 	function($http, $scope, $rootScope, $location) {
 
+        //Close mobile-navigation menu on page load
+        $rootScope.toggleNavClass = $rootScope.animateOut;
+
         $scope.currentPath = $location.path();
-        
+
 		$scope.visitedLocations = "";
 		$scope.filterVisitedLocations = [];
 		$scope.showLoadingAnimation = true;
@@ -48,7 +51,7 @@ angular.module('blipApp')
 
         $scope.updateReview = function(rate, title, text) {
 
-            $scope.review = { 
+            $scope.review = {
                 locID:  $scope.filterVisitedLocations[$scope.index].LocationID,
                 userID: $rootScope.userIdCookie,
                 title: title,
@@ -63,7 +66,7 @@ angular.module('blipApp')
                 .error(function(data, status, headers, config) {
                     console.log(status + ' - ' + 'Error');
                 });
-                
+
             $("#myModal").modal('hide');
 
             $scope.filterVisitedLocations[$scope.index].CommentTitle = $scope.review.title;

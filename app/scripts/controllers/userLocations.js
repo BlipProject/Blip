@@ -1,11 +1,15 @@
 'use strict';
 
 angular.module('blipApp')
-	.controller('UserLocationsCTRL', ['$http', 
+	.controller('UserLocationsCTRL', ['$http',
         '$scope',
         '$location',
-        'ResultPageState', 
-        function($http, $scope, $location, ResultPageState) {
+        'ResultPageState',
+        '$rootScope',
+        function($http, $scope, $location, ResultPageState, $rootScope) {
+
+        //Close mobile-navigation menu on page load
+        $rootScope.toggleNavClass = $rootScope.animateOut;
 
         $scope.currentPath = $location.path();
 

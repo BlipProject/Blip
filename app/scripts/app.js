@@ -102,6 +102,9 @@ angular
     $rootScope.animateOut = 'animated slideOutLeft';
     $rootScope.toggleNavClass = $rootScope.animateOut;
 
+    //Clear result cache on login
+    //localStorage.removeItem(cacheResults);
+
     //COntrols what icon to show what page user is on
     $rootScope.mobileNavPageActive = 0;
 
