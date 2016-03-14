@@ -30,7 +30,7 @@ angular.module('blipApp')
 
         //Redirect to the correct page when an option is selected in the mobile profile dropdown
         $scope.ProfileOptionSelected = function(ProfileOption) {
-            switch(ProfileOption.substring(2)) {
+            switch(ProfileOption) {
                 case "Home":
                     $location.path('searchResult');
                     break;
