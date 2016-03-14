@@ -4,25 +4,25 @@
             <p class="profile-name">{{userName}}</p>
             <p class="profile-nat">{{userCountry}}</p>
         </div>
-        <div class="pull-right"><img class="profile-picture" src="http://www.realtimearts.net/data/images/art/46/4640_profile_nilssonpolias.jpg"></div>
+        <div class="pull-right"><img class="profile-picture" src="{{userPic}}"></div>
     </div>
     <div class="profile-menu-container">
         <div class="options-group">
                 <a class="detail-field" ng-class="{true: 'detail-field-active'}[currentPath === '/searchResult' || currentPath === '/map']" href="#/searchResult"><i class="detail-icon fa fa-home"></i>Home</a>
-                <a class="detail-field" ng-class="{true: 'detail-field-active'}[currentPath === '/visitedLocations']" href="#/visitedLocations"><i class="detail-icon fa fa-globe"></i>Visited locations</a>         
-                <a class="detail-field" ng-class="{true: 'detail-field-active'}[currentPath === '/registerbusiness']" href="#/registerbusiness"><i class="detail-icon fa fa-plus"></i>Add location</a>     
+                <a class="detail-field" ng-class="{true: 'detail-field-active'}[currentPath === '/visitedLocations']" href="#/visitedLocations"><i class="detail-icon fa fa-globe"></i>Visited locations</a>
+                <a class="detail-field" ng-class="{true: 'detail-field-active'}[currentPath === '/registerbusiness']" href="#/registerbusiness"><i class="detail-icon fa fa-plus"></i>Add location</a>
                 <a class="detail-field" ng-class="{true: 'detail-field-active'}[currentPath === '/userLocations']" href="#/userLocations"><i class="detail-icon fa fa-briefcase"></i>My locations</a>
                 <a class="detail-field" ng-class="{true: 'detail-field-active'}[currentPath === '/accountSettings']" href="#/accountSettings"><i class="detail-icon fa fa-cog"></i>Account Settings</a>
                 <a class="detail-field" href="#/registerbusiness"><i class="detail-icon fa fa-sign-out"></i>Logout</a>
         </div>
         <div class="options-group">
-           
+
         </div>
     </div>
 </div>
 <div class="hidden-md hidden-lg">
     <div class="profile-module-header">
-        <div class="pull-left"><img class="profile-picture" src="http://www.realtimearts.net/data/images/art/46/4640_profile_nilssonpolias.jpg"></div>
+        <div class="pull-left"><img class="profile-picture" src="{{userPic}}"></div>
         <div class="pull-left">
             <p class="profile-name">{{userName}}</p>
             <p class="profile-nat">{{userCountry}}</p>

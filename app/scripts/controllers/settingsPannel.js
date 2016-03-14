@@ -7,6 +7,7 @@ angular.module('blipApp')
     	$scope.userName = $rootScope.userNameCookie;
         $scope.userCountry = $rootScope.userCountryCookie;
         $scope.nationalities = {};
+        $scope.userPic = $rootScope.userPic;
 
         function loadNationalities(){
             if(localStorage.getItem("cacheNat") === null) {

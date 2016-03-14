@@ -133,6 +133,19 @@ angular
 
         $rootScope.userNatCookie = getCookie("userNat");
         $rootScope.userCountryCookie = getCookie("userCountry");
+
+        var userPic = getCookie("userPic");
+
+        //http://jsperf.com/benchmarking-js-replaceall
+        //Replace all instances of char(s) in a string
+        String.prototype.replaceAll = function(search, replacement) {
+            var target = this;
+            return target.split(search).join(replacement);
+        };
+
+
+        $rootScope.userPic = userPic.replaceAll('%2F', '/');
+        console.log($rootScope.userPic);
         //Sores temp value for user country // Reset on new visit
         $rootScope.tempNewCountry = 0;
 
