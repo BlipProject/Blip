@@ -3,30 +3,11 @@
 	require_once 'blip_4815162342_108.php';
 	$conn = db_connect();
 
-	//$user = json_decode(file_get_contents("php://input"));
 	$userName= $_POST["nameReg"];
 	$userCountry = (int)$_POST["countryReg"];
 	$userEmail = $_POST["emailReg"];
 	$userPassword = $_POST["passwordReg"];
-	/*
-	$conn = mysqli_connect($servername, $username, $password, $db);
-	$get = mysqli_query($conn,
-	       "CALL CheckUsername('$mail')") or die("Query fail: " . mysqli_error($conn));
 
-	$msg = "";
-	while ($row = mysqli_fetch_row($get))
-	{
-		$msg = $row[0];
-	}
-
-	if($msg == "ok")
-	{
-		*/
-
-	echo $userName;
-	echo $userCountry;
-	echo $userEmail;
-	echo $userPassword;
 
 	$cost =10;
 	$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
@@ -82,13 +63,11 @@
 	//http://localhost/blip/app/phpCore/activationUser.php?lkjhgv=$userEmail&asxcv=$activationCode
 	$mail->WordWrap = 200;
 	$mail->Send();
-	/*
-	}
-	else
-	{
-		echo $msg;
-	}
 
-	*/
+	$query_string = "name={$userName}&email={$userEmail}";
+	$url = "Location: http://localhost:9000/confirmEmail.html?" . $query_string;
+
+	header($url);
+
 	$conn->close();
 ?>
