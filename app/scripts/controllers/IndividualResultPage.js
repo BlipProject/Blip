@@ -15,7 +15,6 @@ angular.module('blipApp')
 
     	$scope.originalPic = $scope.pageViewData.LocationPic;
     	$scope.nationalities = JSON.parse(localStorage.cacheNat);
-    	$scope.categories = JSON.parse(localStorage.cacheCat);
     	$scope.locationNat = { NationalityID: $scope.pageViewData.NationalityID };
     	$scope.locationCat = { CategoryID: $scope.pageViewData.Category };
 
@@ -31,6 +30,15 @@ angular.module('blipApp')
 	            sunday: "Closed"
 	        };
 	    }
+
+	    $scope.loadCategories = function() {
+            if(localStorage.getItem("cacheCat") === null) {
+                CategoryService.getCategories().then(function(data){
+                    $scope.categories = JSON.parse(localStorage.cacheCat)
+                });
+            }
+            else { $scope.categories = JSON.parse(localStorage.cacheCat) };
+        };
 
     	$scope.cancelModal = function(clear) {
     		if(clear === true) {$scope.pageViewData = $scope.originalLocation;}
