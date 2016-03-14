@@ -154,8 +154,12 @@ angular.module('blipApp')
 					var map = new AmCharts.AmMap();
 					map.pathToImages = "bower_components/ammap3/images/";
 
-                    var userVisitedCountries = $rootScope.userVisitedCookie.split("-");
+                    var userVisitedCountries = [];
                     var areas = [];
+
+                    if($rootScope.userVisitedCookie != undefined) {
+                        userVisitedCountries = $rootScope.userVisitedCookie.split("-");
+                    }
 
                     for(var i=0;i<userVisitedCountries.length; i++) {
                         var country = {
@@ -164,7 +168,6 @@ angular.module('blipApp')
                         areas.push(country);
                     }
 
-                    console.log(areas);
 					var dataProvider = {
 						map: "worldHigh",
 						areas: areas,
