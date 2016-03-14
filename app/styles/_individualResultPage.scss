@@ -174,18 +174,10 @@
 
 //Edit Location Elements Styling
 
-.edit-location-hover{
-	visibility:hidden;
-	opacity: 0;
-	@include transition(visibility 0s ease 0.4s, opacity 0.4s ease);
-	height:100%;
+.edit-location{
+	height:100px;
 	width:100%;
-	z-index: 2;
-	//'a' value controls opacity of hover box
-	background-color:rgba(22, 160, 133,1);
-	position: absolute;
-	left:0px;
-	top:0px;
+	color: $main-brand-colour;
 }
 
 .edit-location-hover-visible{
@@ -203,6 +195,10 @@
 	width: 60%;
 	height: 100%;
 	margin: auto;
+
+	div{
+		color: $main-brand-colour;
+	}
 }
 
 #imageModal{
@@ -232,17 +228,162 @@
 .image-modal-upload-btn-container{
 	width: 100%;
 	height: auto;
-	margin-top: 50px;
+	margin-top: 20px;
 
     input[type="file"]{
     	position: absolute;
     	visibility: hidden;
+    }
+    span{
+    	font-style: italic;
+    	font-weight: 300;
+    	color: $main-brand-colour;
     }
 
     i:hover{
     	color: $main-brand-colour;
     	cursor: pointer
     }
+}
+
+#detailsModal{
+	top: 20% !important;
+
+	@media(min-width:$screen-md){
+		.modal-dialog {
+			width: 900px;
+		}
+	}
+}
+
+.modal-content-column{
+	width: 50%;
+	float: left;
+	padding: 5px;
+}
+
+.modal-label{
+	width: 100%;
+	font-size: 14px;
+	text-align: left;
+	font-weight: normal;
+}
+
+//Opening Hours
+.opening-hours{
+	width:100%;
+}
+
+.opening-hours-day-tabs-mobile{
+	@media(min-width:$screen-md){
+		width:100%;
+		height:34px;
+		margin-bottom:15px;
+
+		div{
+			float:left;
+			text-align:center;
+			height:34px;
+			line-height:30px;
+		}
+		div:hover{
+			@media(min-width:$screen-md){
+				background-color:$main-brand-colour;
+				color:#fff;
+				cursor:pointer;
+			}
+		}
+	}
+
+	@media(max-width:$screen-sm){
+		width:100%;
+		height:68px;
+		margin-bottom:15px;
+
+		div{
+			float:left;
+			text-align:center;
+			height:34px;
+			line-height:30px;
+		}
+	}
+}
+
+.opening-hours-day-top{
+	@media(min-width:$screen-md){
+		width:14%;
+		border-width:1px 0px;
+		border-style:solid;
+		border-color:$main-brand-colour;
+	}
+
+	@media(max-width:$screen-sm){
+		width:33.3%;
+		border-width:1px 0px;
+		border-style:solid;
+		border-color:$main-brand-colour;
+	}
+}
+
+.opening-hours-day-bottom{
+	@media(min-width:$screen-md){
+		width:14%;
+		border-width:1px 0px;
+		border-style:solid;
+		border-color:$main-brand-colour;
+	}
+
+	@media(max-width:$screen-sm){
+		width:25%;
+		border-width:0px 0px 1px 0px;;
+		border-style:solid;
+		border-color:$main-brand-colour;
+	}
+}
+
+.opening-hours-day-selected{
+	background-color:$main-brand-colour;
+	color:#fff;
+}
+
+.opening-hours-time-capsule{
+	width:100%;
+}
+
+.opening-hours-time-input{
+	width:50%;
+	float:left;
+	padding-right:8px;
+
+	label{
+		float:left;
+		width:50%;
+		height:34px;
+		line-height:32px;
+	}
+	input[type="time"]{
+		float:left;
+		width:50%;
+		height:34px;
+	}
+
+	@media(max-width:$screen-sm){
+		width:100%;
+	}
+}
+
+.opening-hours-added-time{
+	width:100%;
+	height:34px;
+
+	label{
+		float:left;
+		width:50%;
+	}
+	p{
+		float:left;
+		width:50%;
+	}
 }
 
 //Ratings
