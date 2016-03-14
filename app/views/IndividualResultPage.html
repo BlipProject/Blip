@@ -35,11 +35,10 @@
                 <!--Picks border colour based on type of venue is displayed i.e 'Bar' == red-->
                 <div ng-class="{'indiv-divider-bar': pageViewData.CategoryName == 'Bar','indiv-divider-res': pageViewData.CategoryName == 'Restaurant','indiv-divider-shop': pageViewData.CategoryName == 'Supermarket','indiv-divider-other': pageViewData.CategoryName == 'Other'}" class="indiv-divider"></div>
             </div>
-            <a id="info"></a>
             <div class="indiv-content">
                 <!--Desktop View-->
                 <div ng-include="'views/componants/indivDesktop.html'"></div>
-                <a id="map-anchor"></a>
+                <span class="anchor" name="map-anchor" id="map-anchor"></span>
                 <div class="indiv-map-wrap">
                     <hr/>
                     <label class="indiv-label">Location</label>
@@ -210,3 +209,8 @@
 </div>
 <!--Directive for google maps api-->
 <watch-location></watch-location>
+
+
+<script>
+
+</script>

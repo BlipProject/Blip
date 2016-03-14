@@ -68,6 +68,6 @@
 		document.getElementById('count').innerHTML = time;
 
 		if(time === 0)
-			window.location = "/index.html";
+			window.location = "http://localhost:9000/blip/app/index.html";
 	}
 </script>

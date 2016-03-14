@@ -52,4 +52,24 @@
 		background-repeat: no-repeat;
 		background-size:cover;
 	}
+
+	.logo-mobile{
+		text-align: left;
+		font-family: $fontFamilyHeading;
+		font-size: 30px;
+		color:#fff;
+		line-height: 50px;
+	}
 }
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff !important;
+}
+
+.navbar-toggle:focus {}
+
+.navbar-toggle:focus .icon-bar {};
+
+.navbar-toggle:hover .icon-bar {
+	color:#16a085 !important;
+};
