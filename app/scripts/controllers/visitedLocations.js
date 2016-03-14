@@ -3,8 +3,9 @@
 angular.module('blipApp')
 	.controller('VisitedLocationsCtrl', ['$http', 
 	'$scope',
+    '$rootScope',
     '$location',
-	function($http, $scope, $location) {
+	function($http, $scope, $rootScope, $location) {
 
         $scope.currentPath = $location.path();
         
@@ -13,20 +14,64 @@ angular.module('blipApp')
 		$scope.showLoadingAnimation = true;
 
 		var user = {
-			ID: 321
+			ID: parseInt($rootScope.userIdCookie),
 		};
 
 		$scope.getVisitedLocations = function() {
-			$http.post('http://localhost/blip/app/phpCore/get_visited_locations.php', user)
-				.then(function(response)
-				{
-					$scope.visitedLocations = response.data;
-					$scope.filterVisitedLocations = $scope.visitedLocations;
-					console.log($scope.visitedLocations);
-				    $scope.showLoadingAnimation = false;
-				    $(".visited-locations").removeClass("hide");
-				});
+
+            if(localStorage.getItem("cacheVisit") === null) {
+                $http.post('http://localhost/blip/app/phpCore/get_visited_locations.php', user)
+                .then(function(response)
+                {
+                    $scope.visitedLocations = response.data;
+                    $scope.filterVisitedLocations = $scope.visitedLocations;
+
+                    localStorage.cacheVisit = JSON.stringify($scope.filterVisitedLocations);
+                });
+            }
+            else{ $scope.filterVisitedLocations = JSON.parse(localStorage.cacheVisit)}
+
+            $scope.showLoadingAnimation = false;
+            $(".visited-locations").removeClass("hide");
 		};
+
+        $scope.editReview = function(location, user, index) {
+            $("#myModal").modal('show');
+            $scope.commentTitle = $scope.filterVisitedLocations[index].CommentTitle;
+            $scope.commentText = $scope.filterVisitedLocations[index].CommentText;
+            $scope.index = index;
+        };
+
+        $scope.cancelEdit = function() {
+            $("#myModal").modal('hide');
+        };
+
+        $scope.updateReview = function(rate, title, text) {
+
+            $scope.review = { 
+                locID:  $scope.filterVisitedLocations[$scope.index].LocationID,
+                userID: $rootScope.userIdCookie,
+                title: title,
+                text: text,
+                rating: rate
+            };
+
+            var update = $http.post('http://localhost/blip/app/phpCore/update_review.php', $scope.review)
+                .success(function(data, status, headers, config) {
+                    console.log(status + ' - ' + 'Success');
+                })
+                .error(function(data, status, headers, config) {
+                    console.log(status + ' - ' + 'Error');
+                });
+                
+            $("#myModal").modal('hide');
+
+            $scope.filterVisitedLocations[$scope.index].CommentTitle = $scope.review.title;
+            $scope.filterVisitedLocations[$scope.index].CommentText = $scope.review.text;
+            $scope.filterVisitedLocations[$scope.index].ThumbsUp = $scope.review.rating;
+
+            localStorage.cacheVisit = JSON.stringify($scope.filterVisitedLocations)
+        };
 
         $scope.setFilterSetClass = function(filter, index) {
             getFilter(filter);
@@ -63,25 +108,25 @@ angular.module('blipApp')
                     {
                         $scope.typeHeadClass = "result-header-bar";
                         $scope.setIconClass = "fa fa-glass fa-lg";
-                        return "result-hover-button-bar";
+                        return "";
                     }
                 case 'Restaurant':
                     {
                         $scope.typeHeadClass = "result-header-restaurant";
                         $scope.setIconClass = 'fa fa-cutlery fa-lg';
-                        return "result-hover-button-restaurant";
+                        return "";
                     }
                 case 'Supermarket':
                     {
                         $scope.typeHeadClass = "result-header-shop";
                         $scope.setIconClass = 'fa fa-shopping-cart fa-lg';
-                        return "result-hover-button-shop";
+                        return "";
                     }
                 case 'Other':
                     {
                         $scope.typeHeadClass = "result-header-other";
                         $scope.setIconClass = "fa fa-ellipsis-h fa-lg";
-                        return "result-hover-button-other";
+                        return "";
                     }
                 default:
                     {
@@ -92,7 +137,7 @@ angular.module('blipApp')
 
         $scope.init = getFilter('All');
 	}])
-	.directive('profileMap', [function() {
+	.directive('profileMap', ['$rootScope', function($rootScope) {
 
 		return {
 			restrict: 'E',
@@ -106,9 +151,20 @@ angular.module('blipApp')
 					var map = new AmCharts.AmMap();
 					map.pathToImages = "bower_components/ammap3/images/";
 
+                    var userVisitedCountries = $rootScope.userVisitedCookie.split("-");
+                    var areas = [];
+
+                    for(var i=0;i<userVisitedCountries.length; i++) {
+                        var country = {
+                            id: userVisitedCountries[i],
+                        }
+                        areas.push(country);
+                    }
+
+                    console.log(areas);
 					var dataProvider = {
 						map: "worldHigh",
-						areas: [{id:"IE"},{id:"PL"},{id:"CA"},{id:"RU"},{id:"DZ"},{id:"BR"},{id:"GF"},{id:"PG"},{id:"RO"},{id:"PO"},{id:"IN"},{id:"FR"}],
+						areas: areas,
 					};
 
 					map.dataProvider = dataProvider;

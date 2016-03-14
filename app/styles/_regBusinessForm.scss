@@ -113,39 +113,6 @@
 	width:100%;
 }
 
-.bus-reg-button{
-	height:34px;
-	width:50%;
-	float:right;
-	margin:10px;
-	outline: 0;
-	border:none;
-	color:#fff;
-	border-radius:0px;
-	position:relative;
-
-	@media(max-width:$screen-sm){
-		margin:0px;
-		width:50%;
-	}
-}
-
-.bus-reg-button-yes{
-	background-color:$reg-button-yes-colour;
-
-	&:hover{
-		background-color:$reg-button-yes-colour-hover;
-	}
-}
-
-.bus-reg-button-no{
-	background-color:$reg-button-no-colour;
-
-	&:hover{
-		background-color:$reg-button-no-colour-hover;
-	}
-}
-
 .add-location-form-map{
 	height:350px;
 

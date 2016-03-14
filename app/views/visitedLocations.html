@@ -24,5 +24,29 @@
             </div>
         </div>
 	</div>
+	<div id="myModal" class="modal" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-body">
+                   	<label class="add-location-form-label">Title</label>
+                	<input id="tbxReviewTitle" name="name" class="add-location-form-input" type="text" ng-model="commentTitle" required>
+                	<label class="add-location-form-label">Comment</label>
+                	<textarea ng-model="commentText" id="tblkReviewComment" name="comment" class="add-location-textarea" ng-class="{'reg-form-error-outline' : submitted && add_location_form.comment.$invalid || add_location_form.comment.$dirty && add_location_form.comment.$invalid}" maxlength="145" required></textarea>
+                </div>
+                <div class="modal-footer">
+                    <div ng-click="updateReview(0,commentTitle,commentText)" class="button-main button-main-red button-border-red button-main-50 review-btn">
+		                <i class="fa fa-thumbs-down fa-2x"></i>
+		            </div>
+                    <div ng-click="updateReview(1,commentTitle,commentText)" class="button-main button-main-green button-border-green button-main-50 review-btn">
+		                <i class="fa fa-thumbs-up fa-2x"></i>
+		            </div>
+		            <hr>
+		            <button type="button" class="button-main button-main-green button-border-green" ng-click="cancelEdit()">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 <profile-map></profile-map>

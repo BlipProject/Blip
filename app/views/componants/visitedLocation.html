@@ -8,15 +8,31 @@ ng-class sets up classes for indiviual results based off result type
         <div class="result-wrapper-hover">
             <div class="result-wrapper-hover-content user-location-wrapper-hover-content">
                 <!--breaks if a class directive (even an empty one) is not present-->
-                <div class="" ng-class="setResultClass(venue.CategoryName)">
-                    <button ng-click="editReview($index)">Edit Review</button>
+                <div class="visited-loc-hover" ng-class="setResultClass(venue.CategoryName)">
+                    <div>
+                        <button class="button-main button-main-50" ng-click="editReview(venue.LocationID, venue.UserID, $index)">Edit Review</button>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="result-header" ng-class="typeHeadClass">{{venue.LocationName}}<span ng-class="setIconClass" class="pull-right location-icon"></span></div>
-        <div class="user-location-address">
-            <span>{{venue.City}}</span>
+        <div class="visited-loc-content">
+            <div class="visited-loc-details">
+                <p>{{venue.City}} - {{venue.RateDate}}</p>
+            </div>
+            <div class="comment-head">
+                <div class="thumb-block">
+                    <i ng-show="venue.ThumbsUp == 1" class="fa fa-thumbs-up rating-pos"></i>
+                    <i ng-show="venue.ThumbsUp == 0" class="fa fa-thumbs-down rating-neg"></i>
+                </div>
+                <div class="comment-title">
+                    <p>{{venue.CommentTitle}}</p>
+                </div>
+            </div>
+            <div class="comment-body-text">
+                <p>{{venue.CommentText}}</p>
+            </div>
         </div>
-        <button class="btn btn-default col-xs-12 hidden-sm hidden-md hidden-lg" ng-click="editReview($index)">Edit Review</button>
+        <button class="button-main button-border-green hidden-sm hidden-md hidden-lg" ng-click="editReview($index)">Edit Review</button>
     </div>
 </div>

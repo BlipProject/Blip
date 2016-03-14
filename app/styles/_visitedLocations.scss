@@ -11,3 +11,29 @@
 		display: none !important;
 	}
 }
+
+.visited-loc-hover{
+	width: 100%;
+	height: 100%;
+	position: relative;
+
+	div{
+		width: 100%;
+		position: absolute;
+	    top: 50%;
+	    right: 0px;
+	    transform: translate(0%, -50%);
+	}
+}
+
+.visited-loc-content{
+	width: 100%;
+	height: auto;
+	float: left;
+	padding: 10px 10px 0px 10px;
+}
+
+.visited-loc-details{
+	width: 100%;
+	text-align: right;
+}

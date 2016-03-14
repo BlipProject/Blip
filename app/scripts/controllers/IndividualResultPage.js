@@ -12,18 +12,6 @@ angular.module('blipApp')
     		$(".modal").modal('hide');
     	};
 
-    	$scope.editLocationName = function(update, name) {
-
-    		if(update == true) {
-    			$scope.pageViewData.LocationName = name;
-    			$("#textBoxModal").modal('hide');
-    		}
-    		else {
-    			$("#textBoxModal").modal('show');
-    			$scope.tbxModal = $scope.pageViewData.LocationName;
-    		}
-    	};
-
     	$scope.editLocationImage = function(update) {
 
     		console.log($scope.pageViewData.LocationID);
@@ -52,6 +40,18 @@ angular.module('blipApp')
     				reader.readAsDataURL(this.files[0]);
 				};
     		});
+    	};
+
+    	$scope.editLocationDetails = function(update, name) {
+
+    		if(update == true) {
+    			$scope.pageViewData.LocationName = name;
+    			$("#detailsModal").modal('hide');
+    		}
+    		else {
+    			$("#detailsModal").modal('show');
+    			$scope.tbxModal = $scope.pageViewData.LocationName;
+    		}
     	};
 
     	$scope.scrollTo = function(id) {

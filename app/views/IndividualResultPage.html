@@ -14,13 +14,13 @@
                     <div class="edit-location-hover" ng-show="editLocation == true">
                         <div class="edit-location-hover-header-options">
                             <div class="user-location-hover-bar-option">
-                                <div ng-click="editLocationName()"><i class="fa fa-trademark fa-3x"></i><span>Edit Name</span></div>
-                            </div>
-                            <div class="user-location-hover-bar-option">
-                                <div ng-click="editLocationCategory()"><i class="fa fa-ellipsis-h fa-3x"></i><span>Edit Category</span></div>
-                            </div>
-                            <div class="user-location-hover-bar-option">
                                 <div ng-click="editLocationImage()"><i class="fa fa-picture-o fa-3x"></i><span>Edit Picture</span></div>
+                            </div>
+                            <div class="user-location-hover-bar-option">
+                                <div ng-click="editLocationDetails()"><i class="fa fa-info fa-3x"></i><span>Edit Details</span></div>
+                            </div>
+                            <div class="user-location-hover-bar-option">
+                                <div ng-click="editLocationAddress()"><i class="fa fa-map-marker fa-3x"></i><span>Edit Location</span></div>
                             </div>
                         </div>
                     </div>
@@ -61,21 +61,6 @@
             </div>
         </div>
     </div>
-    <!--TextBox Modal-->
-    <div id="textBoxModal" class="modal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <p>Please enter the new name of your location.</p>
-                    <input id="tbxModal" name="name" class="add-location-form-input" type="text" ng-model="tbxModal" placeholder="e.g. The Little Pizza" required>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" ng-click="cancelModal()">Cancel</button>
-                    <button type="button" class="btn btn-default" ng-click="editLocationName(true, tbxModal)">Confirm</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <!--Image Modal-->
     <div id="imageModal" class="modal" role="dialog">
         <div class="modal-dialog">
@@ -98,7 +83,26 @@
                     <button type="button" class="btn btn-default" ng-click="editLocationImage(true)">Confirm</button>
                 </div>
             </div>
-        </di>
+        </div>
+    </div>
+    <!--Details Modal-->
+    <div id="detailsModal" class="modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <label class="add-location-form-label">Name</label>
+                    <input id="tbxModal" name="name" class="add-location-form-input" type="text" ng-model="tbxModal" placeholder="e.g. The Little Pizza" required>
+                    <label class="add-location-form-label">Name</label>
+                    <input id="tbxModal" name="name" class="add-location-form-input" type="text" ng-model="tbxModal" placeholder="e.g. The Little Pizza" required>
+                    <label class="add-location-form-label">Name</label>
+                    <input id="tbxModal" name="name" class="add-location-form-input" type="text" ng-model="tbxModal" placeholder="e.g. The Little Pizza" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="cancelModal()">Cancel</button>
+                    <button type="button" class="btn btn-default" ng-click="editLocationName(true, tbxModal)">Confirm</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!--Directive for google maps api-->

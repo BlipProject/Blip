@@ -10,7 +10,7 @@
 //Variable data stores returned coordinates
 
 angular.module('blipApp')
-	.service('GeoLocationService', function ($q) {
+	.service('GeoLocationService', function ($q, $rootScope, $http) {
 		return{
 			getGeoCoordinates: function(navigator){
 				var deferred = $q.defer();
