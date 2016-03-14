@@ -7,23 +7,26 @@
     <div ng-include="'views/componants/mobileNav.html'" scope="" onload=""></div>
     <div class="container indiv-wrapper">
         <div class="content-left animated fadeIn">
+            <div class="edit-location" ng-show="editLocation == true">
+                <div class="edit-location-hover-header-options">
+                    <div class="user-location-hover-bar-option">
+                        <div ng-click="editLocationImage()"><i class="fa fa-picture-o fa-3x"></i><span>Edit Picture</span></div>
+                    </div>
+                    <div class="user-location-hover-bar-option">
+                        <div ng-click="editLocationDetails()"><i class="fa fa-info fa-3x"></i><span>Edit Details</span></div>
+                    </div>
+                    <div class="user-location-hover-bar-option">
+                        <div ng-click="editLocationAddress()"><i class="fa fa-map-marker fa-3x"></i><span>Edit Location</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" ng-show="editLocation == true">
+                <button type="button" class="button-main button-border-green button-main-50" ng-click="updateLocation()">Update Location</button>
+            </div>
             <div class="indiv-header-wrapper">
                 <!--Picks border colour based on type of venue is displayed i.e 'Bar'-->
                 <div ng-class="{'indiv-divider-bar': pageViewData.CategoryName == 'Bar','indiv-divider-res': pageViewData.CategoryName == 'Restaurant','indiv-divider-shop': pageViewData.CategoryName == 'Supermarket','indiv-divider-other': pageViewData.CategoryName == 'Other'}" class="indiv-divider"></div>
                 <div class="indiv-img-wrap">
-                    <div class="edit-location-hover" ng-show="editLocation == true">
-                        <div class="edit-location-hover-header-options">
-                            <div class="user-location-hover-bar-option">
-                                <div ng-click="editLocationImage()"><i class="fa fa-picture-o fa-3x"></i><span>Edit Picture</span></div>
-                            </div>
-                            <div class="user-location-hover-bar-option">
-                                <div ng-click="editLocationDetails()"><i class="fa fa-info fa-3x"></i><span>Edit Details</span></div>
-                            </div>
-                            <div class="user-location-hover-bar-option">
-                                <div ng-click="editLocationAddress()"><i class="fa fa-map-marker fa-3x"></i><span>Edit Location</span></div>
-                            </div>
-                        </div>
-                    </div>
                     <img src="{{pageViewData.LocationPic}}" />
                     <div class="indiv-page-header">
                         <h2>{{pageViewData.LocationName}}</h2>
@@ -46,8 +49,8 @@
                     <div id="testDistance" class="indiv-map-distance hidden-md hidden-lg"></div>
                 </div>
             </div>
-            <a name="ratings"></a>
-            <div class="indiv-ratings">
+            <a id="ratings"></a>
+            <div class="indiv-ratings" ng-hide="editLocation == true">
                 <hr/>
                 <label class="indiv-label">Reviews</label>
                 <div ng-include="'views/componants/review.html'"></div>
@@ -74,6 +77,7 @@
                             <input id="hiddenImgInput" type="file">
                             <i class="fa fa-upload fa-5x" ng-click="editLocationImageUpload()"></i>
                             <p>Upload Location Image</p>
+                            <p><span>Optimal size 800x200px</span></p>
                         </div>
                     </div>
                 </div>
@@ -89,16 +93,108 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <label class="add-location-form-label">Name</label>
-                    <input id="tbxModal" name="name" class="add-location-form-input" type="text" ng-model="tbxModal" placeholder="e.g. The Little Pizza" required>
-                    <label class="add-location-form-label">Name</label>
-                    <input id="tbxModal" name="name" class="add-location-form-input" type="text" ng-model="tbxModal" placeholder="e.g. The Little Pizza" required>
-                    <label class="add-location-form-label">Name</label>
-                    <input id="tbxModal" name="name" class="add-location-form-input" type="text" ng-model="tbxModal" placeholder="e.g. The Little Pizza" required>
+                    <div class="modal-content-column">
+                        <label for="name" class="modal-label">Name</label>
+                        <input id="tbxName" name="name" class="add-location-form-input form-control"  type="text" ng-model="pageViewData.LocationName" required>
+
+                        <label for="name" class="modal-label">Nationality</label>
+                        <select id="lstNat" name="nat" class="add-location-form-input form-control" ng-class="{'reg-form-error-outline' : submitted && add_location_form.nat.$invalid || add_location_form.nat.$dirty && add_location_form.nat.$invalid}" ng-model="locationNat" ng-options="option.NationalityName for option in nationalities track by option.NationalityID" required>
+                            <option value="" disabled selected>Select Nationality</option>
+                        </select>
+
+                        <label for="name" class="modal-label">Category</label>
+                        <select id="lstCat" name="cat" class="add-location-form-input form-control" ng-class="{'reg-form-error-outline' : submitted && add_location_form.cat.$invalid || add_location_form.cat.$dirty && add_location_form.cat.$invalid}" ng-model="locationCat" ng-options="option.CategoryName for option in categories track by option.CategoryID" required>
+                            <option value="" disabled selected>Select Category</option>
+                        </select>
+
+                        <label for="name" class="modal-label">Description</label>
+                        <textarea id="tblkDes" name="des" class="add-location-textarea form-control" ng-class="{'reg-form-error-outline' : submitted && add_location_form.des.$invalid || add_location_form.des.$dirty && add_location_form.des.$invalid}" maxlength="145" ng-model="pageViewData.LocationDescription" rows="3" required></textarea>
+
+                        <label for="name" class="modal-label">Website</label>
+                        <input id="tbxWebsite" name="name" class="add-location-form-input form-control" type="text" ng-model="pageViewData.Website" required>
+
+                        <label for="name" class="modal-label">Phone</label>
+                        <input id="tbxPhone" name="name" class="add-location-form-input form-control" type="text" ng-model="pageViewData.PhoneNo" required>
+                    </div>
+                    <div class="modal-content-column">
+                        <label class="modal-label">Opening Hours</label>
+                        <div class="opening-hours">
+                            <div class="opening-hours-day-tabs-mobile">
+                                <div ng-click="setDayClass($event)" class="opening-hours-day-top">Mon</div>
+                                <div ng-click="setDayClass($event)" class="opening-hours-day-top">Tue</div>
+                                <div ng-click="setDayClass($event)" class="opening-hours-day-top">Wed</div>
+                                <div ng-click="setDayClass($event)" class="opening-hours-day-bottom">Thu</div>
+                                <div ng-click="setDayClass($event)" class="opening-hours-day-bottom">Fri</div>
+                                <div ng-click="setDayClass($event)" class="opening-hours-day-bottom">Sat</div>
+                                <div ng-click="setDayClass($event)" class="opening-hours-day-bottom">Sun</div>
+                            </div>
+                            <div class="opening-hours-time-capsule">
+                                <div class="opening-hours-time-input">
+                                    <label class="modal-label">From</label>
+                                    <input type="time" class="form-control" ng-model="openTime">
+                                </div>
+                                <div class="opening-hours-time-input">
+                                    <label class="modal-label">To</label>
+                                    <input type="time" class="form-control" ng-model="closeTime">
+                                </div>
+                            </div>
+                            <input type="button" class="button-main button-border-green" ng-click="addOpeningHours(openTime, closeTime)" value="Add Hours">
+                           <div class="opening-hours-times">
+                                <div class="opening-hours-added-time">
+                                    <label class="modal-label">Monday:</label>
+                                    <p ng-show="openingHours[0].open == 'null'">Closed</p>
+                                    <p ng-show="openingHours[0].open != 'null'">{{openingHours.mon}}</p>
+                                </div>
+                                <div class="opening-hours-added-time">
+                                    <label class="modal-label">Tuesday:</label>
+                                    <p ng-show="openingHours[1].open == 'null'">Closed</p>
+                                    <p ng-show="openingHours[1].open != 'null'">{{openingHours.tue}}</p>
+                                </div>
+                                <div class="opening-hours-added-time">
+                                    <label class="modal-label">Wednesday:</label>
+                                    <p ng-show="openingHours[2].open == 'null'">Closed</p>
+                                    <p ng-show="openingHours[2].open != 'null'">{{openingHours.wed}}</p>
+                                </div>
+                                <div class="opening-hours-added-time">
+                                    <label class="modal-label">Thursday:</label>
+                                    <p ng-show="openingHours[3].open == 'null'">Closed</p>
+                                    <p ng-show="openingHours[3].open != 'null'">{{openingHours.thu}}</p>
+                                </div>
+                                <div class="opening-hours-added-time">
+                                    <label class="modal-label">Friday:</label>
+                                    <p ng-show="openingHours[4].open == 'null'">Closed</p>
+                                    <p ng-show="openingHours[4].open != 'null'">{{openingHours.fri}}</p>
+                                </div>
+                                <div class="opening-hours-added-time">
+                                    <label class="modal-label">Saturday:</label>
+                                    <p ng-show="openingHours[5].open == 'null'">Closed</p>
+                                    <p ng-show="openingHours[5].open != 'null'">{{openingHours.sat}}</p>
+                                </div>
+                                <div class="opening-hours-added-time">
+                                    <label class="modal-label">Sunday:</label>
+                                    <p ng-show="openingHours[6].open == 'null'">Closed</p>
+                                    <p ng-show="openingHours[6].open != 'null'">{{openingHours.sunday}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" ng-click="cancelModal()">Cancel</button>
                     <button type="button" class="btn btn-default" ng-click="editLocationName(true, tbxModal)">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Location Modal-->
+    <div id="locationModal" class="modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="cancelModal()">Cancel</button>
+                    <button type="button" class="btn btn-default" ng-click="editLocationImage(true)">Confirm</button>
                 </div>
             </div>
         </div>

@@ -1,20 +1,37 @@
 'use strict';
 
 angular.module('blipApp')
-    .controller('IndividualResultPageCtrl', ['ResultPageState', '$scope','$anchorScroll','$location', function(ResultPageState, $scope, $anchorScroll, $location) {
+    .controller('IndividualResultPageCtrl', ['$http', 'ResultPageState', '$scope','$anchorScroll','$location', function($http, ResultPageState, $scope, $anchorScroll, $location) {
 
     	$scope.pageViewData = ResultPageState.GetPageState();
     	//$scope.editLocation = ResultPageState.GetEditState();
     	$scope.editLocation = true;
-    	$scope.uploader;
+    	console.log($scope.pageViewData);
+
+    	$scope.originalPic = $scope.pageViewData.LocationPic;
+    	$scope.nationalities = JSON.parse(localStorage.cacheNat);
+    	$scope.categories = JSON.parse(localStorage.cacheCat);
+    	$scope.locationNat = { NationalityID: $scope.pageViewData.NationalityID };
+    	$scope.locationCat = { CategoryID: $scope.pageViewData.Category };
+
+    	if($scope.pageViewData.OpeningHours != null) { $scope.openingHours = JSON.parse($scope.pageViewData.OpeningHours); }
+    	else {
+	    	$scope.openingHours = {
+	            mon: "Closed",
+	            tue: "Closed",
+	            wed: "Closed",
+	            thu: "Closed",
+	            fri: "Closed",
+	            sat: "Closed",
+	            sunday: "Closed"
+	        };
+	    }
 
     	$scope.cancelModal = function() {
     		$(".modal").modal('hide');
     	};
 
     	$scope.editLocationImage = function(update) {
-
-    		console.log($scope.pageViewData.LocationID);
     		if(update == true) {
     			$("#imageModal").modal('hide');
     		}
@@ -53,6 +70,88 @@ angular.module('blipApp')
     			$scope.tbxModal = $scope.pageViewData.LocationName;
     		}
     	};
+
+    	$scope.editLocationAddress = function() {
+
+    	};
+
+    	$scope.updateLocation = function() {
+
+    		if($scope.pageViewData.LocationPic !== $scope.originalPic) {
+    			var imgData = {
+                    location: $scope.pageViewData.LocationID,
+                    img: $scope.pageViewData.LocationPic.split(',')[1]
+                }
+                $http.post('http://localhost/blip/app/phpCore/upload_image_location.php', imgData);
+                $scope.pageViewData.LocationPic = "images/busineses_dir/" + $scope.pageViewData.LocationID + "/" + $scope.pageViewData.LocationID + "_Thumb.png";
+    		}
+
+    		var location = {
+    			id: $scope.pageViewData.LocationID,
+    			name: $scope.pageViewData.LocationName,
+    			lat: parseFloat($scope.pageViewData.MapLat),
+    			lng: parseFloat($scope.pageViewData.MapLong),
+    			city: $scope.pageViewData.City,
+    			des: $scope.pageViewData.LocationDescription,
+    			cat: $scope.pageViewData.Category,
+    			pic: $scope.pageViewData.LocationPic,
+    			phone: $scope.pageViewData.PhoneNo,
+    			web: $scope.pageViewData.Website,
+    			hours: JSON.stringify($scope.openingHours),
+    			nat: $scope.pageViewData.NationalityID
+    		}
+
+    		console.log(location);
+    		$http.post('http://localhost/blip/app/phpCore/update_location.php', location)
+    	};
+
+
+    	$scope.setDayClass = function(event) {
+            if ($(event.target).hasClass("opening-hours-day-selected")) {
+                $(event.target).removeClass("opening-hours-day-selected");
+            } else {
+                $(event.target).addClass("opening-hours-day-selected");
+            }
+        };
+
+        $scope.addOpeningHours = function(openTime, closeTime) {
+
+            if (openTime !== undefined || closeTime !== undefined) {
+                var format = String(openTime).slice(16, 21) + " - " + String(closeTime).slice(16, 21);
+                console.log(format);
+                loopSelectedDays(format);
+            } else {
+                loopSelectedDays("Closed");
+            }
+        };
+
+        var loopSelectedDays = function(formated) {
+            $('.opening-hours-day-selected').each(function(i, obj) {
+                switch (obj.innerHTML) {
+                    case "Mon":
+                        $scope.openingHours.mon = formated;
+                        break;
+                    case "Tue":
+                        $scope.openingHours.tue = formated;
+                        break;
+                    case "Wed":
+                        $scope.openingHours.wed = formated;
+                        break;
+                    case "Thu":
+                        $scope.openingHours.thu = formated;
+                        break;
+                    case "Fri":
+                        $scope.openingHours.fri = formated;
+                        break;
+                    case "Sat":
+                        $scope.openingHours.sat = formated;
+                        break;
+                    case "Sun":
+                        $scope.openingHours.sunday = formated;
+                        break;
+                }
+            });
+        };
 
     	$scope.scrollTo = function(id) {
 			$location.hash(id);

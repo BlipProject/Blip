@@ -154,6 +154,11 @@ angular
 
         $rootScope.userCountryCodeCookie = getCookie("userCountryCode");
         $rootScope.userVisitedCookie = getCookie("userVisited");
+
+        var userEmail = getCookie("userEmail");
+        $rootScope.userEmailCookie = userEmail.replaceAll('%40', '@');
+
+        $rootScope.userViewCookie = getCookie("userView");
       }
     }
     else
