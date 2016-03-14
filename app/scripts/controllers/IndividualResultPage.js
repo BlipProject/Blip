@@ -278,6 +278,7 @@ angular.module('blipApp')
 			  		initLocationProcedure();
 				};
 
+
 	            //Toggle controls for map -- mobile --
 	            /*
 	            //Check if screen is less than 960px
