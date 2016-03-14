@@ -3,32 +3,52 @@
 	<div class="container add-location-content-wrapper">
 		<div class="content-left">
 			<div class="account-settings">
-				<form name="update_profile_form" novalidate ng-submit="update_profile_form.$valid && updateProfile()">
+				<form name="update_profile_form" novalidate ng-submit="update_profile_form.$valid && updateProfile(userName, userNat, userEmail, userDefaultView)">
 					<div class="add-location-form-header">
 	                	<div>
 	                    	<p>Account Settings</p>
 	                	</div>
 	            	</div>
 		            <div class="account-settings-details">
-		            	<div class="account-settings-image-wrap">
+		            	<div class="account-settings-image-wrap hidden-xs hidden-sm">
 		            		<label for="imgProfile" class="add-location-form-label">Profile Picture</label>
-		            		<img id="imgProfile" class="account-settings-image" src="http://www.realtimearts.net/data/images/art/46/4640_profile_nilssonpolias.jpg">
+		            		<div class="user-image">
+            			        <div class="result-wrapper-hover">
+            			        	<div class="user-image-hover">
+            			        		<input id="hiddenImgInput" type="file" name="fileToUpload" accept="image/*">
+            			        		<i class="fa fa-upload fa-5x" ng-click="uploadImg()"></i>
+            			        		<p>Upload Profile Picture</p>
+            			        	</div>
+						        </div>
+		            			<img id="imgProfile" class="account-settings-image" src="{{userPic}}">
+		            		</div>
 		            	</div>
 		            	<div class="account-settings-info-wrap">
 		            		<label for="tbxName" class="add-location-form-label">Name</label>
-		                    <input id="tbxName" name="name" class="add-location-form-input" ng-class="{'reg-form-error-outline' : submitted && update_profile_form.name.$invalid || update_profile_form.name.$dirty && update_profile_form.name.$invalid}" type="text" ng-model="locationName" required>
+		                    <input id="tbxName" name="name" class="add-location-form-input" ng-class="{'reg-form-error-outline' : submitted && update_profile_form.name.$invalid || update_profile_form.name.$dirty && update_profile_form.name.$invalid}" type="text" ng-model="userName" required>
+		                    <div class="reg-form-error-message" ng-show="submitted && update_profile_form.name.$invalid || update_profile_form.name.$dirty && update_profile_form.name.$invalid">
+                                <span><i class="fa fa-exclamation-triangle fa-lg"></i></span>
+                                <label class="reg-form-error-label">Name is required!</label>
+                            </div>
+
 		                    <label for="lstNat" class="add-location-form-label">Nationality</label>
-		                    <select id="lstNat" name="nat" class="add-location-form-input" ng-init="loadNationalities()" ng-class="{'reg-form-error-outline' : submitted && update_profile_form.nat.$invalid || update_profile_form.nat.$dirty && update_profile_form.nat.$invalid}" ng-model="locationNationality" ng-options="option.NationalityName for option in nationalities track by option.NationalityID" required>
-		                        <option value="" disabled selected>Select Nationality</option>
+		                    <select id="lstNat" name="nat" class="add-location-form-input" ng-init="loadNationalities()" ng-class="{'reg-form-error-outline' : submitted && update_profile_form.nat.$invalid || update_profile_form.nat.$dirty && update_profile_form.nat.$invalid}" ng-model="userNat" ng-options="option.NationalityName for option in nationalities track by option.NationalityID" required>
+		                        <option value="" disabled>Select Nationality</option>
 		                    </select>
-			        		<label for="tbxName" class="add-location-form-label">Email</label>
-		                    <input id="tbxName" name="name" class="add-location-form-input" ng-class="{'reg-form-error-outline' : submitted && update_profile_form.name.$invalid || update_profile_form.name.$dirty && update_profile_form.name.$invalid}" type="text" ng-model="locationName" required>
+
+			        		<label for="tbxEmail" class="add-location-form-label">Email</label>
+		                    <input id="tbxEmail" name="email" class="add-location-form-input" ng-class="{'reg-form-error-outline' : submitted && update_profile_form.email.$invalid || update_profile_form.email.$dirty && update_profile_form.email.$invalid}" type="text" ng-model="userEmail" required>
+		                    <div class="reg-form-error-message" ng-show="submitted && update_profile_form.email.$invalid || update_profile_form.email.$dirty && update_profile_form.email.$invalid">
+                                <span><i class="fa fa-exclamation-triangle fa-lg"></i></span>
+                                <label class="reg-form-error-label">Email is required!</label>
+                            </div>
+
 		                    <hr>
-		                    <label for="lstNat" class="add-location-form-label">Default Nationality</label>
-		                    <select id="lstNat" name="nat" class="add-location-form-input" ng-class="{'reg-form-error-outline' : submitted && update_profile_form.nat.$invalid || update_profile_form.nat.$dirty && update_profile_form.nat.$invalid}" ng-model="locationNationality" ng-options="option.NationalityName for option in nationalities track by option.NationalityID" required>
-		                        <option value="" disabled selected>Select Nationality</option>
+
+		                    <label for="lstDefView" class="add-location-form-label">Default View</label>
+		                    <select id="lstDefView" name="defnat" class="add-location-form-input" ng-class="{'reg-form-error-outline' : submitted && update_profile_form.defnat.$invalid || update_profile_form.defnat.$dirty && update_profile_form.defnat.$invalid}" ng-model="userDefaultView" ng-options="option.view for option in viewsList track by option.id" required>
+		                        <option value="" disabled>Select Default View</option>
 		                    </select>
-		                    <label for="lstNat" class="add-location-form-label">Default View</label>
 		                    <hr>
 		                    <input type="submit" class="button-main button-main-green button-main-50 button-border-green pull-right"
                         value="Update Profile" ng-click="submitted=true"></input>
