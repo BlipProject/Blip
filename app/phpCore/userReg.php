@@ -30,6 +30,7 @@
 		$db_pass = $row[0];
 		$db_salt = $row[1];
 	}
+
 	require("mailer/PHPMailerAutoload.php");
 	ini_set("SMTP","ssl://smtp.gmail.com");
 	ini_set("smtp_port","465");
@@ -41,23 +42,21 @@
 	$mail->Password = $db_pass;
 	$mail->Port = "465";
 	$mail->isSMTP();
+	$mail->isHTML(true);
 	$mail->AddAddress($userEmail);
-	$mail->Subject  = "Email verification";
+	$mail->Subject  = "Email Verification";
 	$mail->Body     = "
-	Thanks for signing up!
+	<h1>Thanks for signing up!</h1>
 
-	Your account has been created.
-	Please verify your email and get started using your Website account.
-	Please click this link to activate your account:
-	<a href='http://bliptest.azurewebsites.net/#phpCore/activationUser.php?lkjhgv=$userEmail&asxcv=$activationCode'>Click Here To Verify Your Account</a>
+	<p>An account has been created for you on Bilp.</p>
+	<p>To comple your registration please verify you email address by click in the link below.</p>
+	<br/>
+	<a href='http://localhost/blip/app/phpCore/activationUser.php?lkjhgv=$userEmail&asxcv=$activationCode'>Verify Account</a>
+	<br/>
+	<p>If you did not register, please delete this email.</p>
 
 
-
-
-
-	Regards
-
-	Blip Team
+	<p>Blip Team</p>
 	";
 	//WORK ON LOCALHOST IF U CTRL+V .this into email body
 	//http://localhost/blip/app/phpCore/activationUser.php?lkjhgv=$userEmail&asxcv=$activationCode
