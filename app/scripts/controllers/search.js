@@ -248,6 +248,7 @@ angular.module('blipApp')
         //Then redirects to page for that result
         $scope.storeFocusedResult = function(index, stateType) {
             ResultPageState.SetPageState($scope.filterSearchResult[index]);
+            ResultPageState.SetEditState(false);
             if(stateType === 0)
                 $location.path('LocationView');
             else

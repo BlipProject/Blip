@@ -201,7 +201,7 @@
 	}
 }
 
-#imageModal{
+#imageModal, #detailsModal, #locationModal{
 	top: 20% !important;
 
 	@media(min-width:$screen-md){
@@ -244,16 +244,6 @@
     	color: $main-brand-colour;
     	cursor: pointer
     }
-}
-
-#detailsModal{
-	top: 20% !important;
-
-	@media(min-width:$screen-md){
-		.modal-dialog {
-			width: 900px;
-		}
-	}
 }
 
 .modal-content-column{

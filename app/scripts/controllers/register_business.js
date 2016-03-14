@@ -135,7 +135,7 @@ angular.module('blipApp')
                 CategoryID: parseInt(locationCategory.CategoryID),
                 CategoryName: locationCategory.CategoryName,
                 LocationDescription: locationDescription,
-                UserID: 311,
+                UserID: parseInt($rootScope.userIdCookie),
                 LocationPic: "images/busineses_dir/default/def.png"
             };
 
@@ -153,8 +153,11 @@ angular.module('blipApp')
 
         $scope.viewNewLocation = function() {
             ResultPageState.SetPageState($scope.locationData);
-            $location.path('LocationView');
+            ResultPageState.SetEditState(true);
+            localStorage.removeItem("cacheUserLocs");
             $('#myModal').modal('hide');
+            
+            $location.path('LocationView');
         };
 
     }]);

@@ -1,12 +1,17 @@
 'use strict';
 
 angular.module('blipApp')
-    .controller('IndividualResultPageCtrl', ['$http', 'ResultPageState', '$scope','$anchorScroll','$location', function($http, ResultPageState, $scope, $anchorScroll, $location) {
+    .controller('IndividualResultPageCtrl', ['$http', 
+    	'$scope',
+    	'ResultPageState', 
+    	'uiGmapGoogleMapApi',
+    	'$anchorScroll',
+    	'$location', 
+    	function($http, $scope, ResultPageState, uiGmapGoogleMapApi, $anchorScroll, $location) {
 
     	$scope.pageViewData = ResultPageState.GetPageState();
-    	//$scope.editLocation = ResultPageState.GetEditState();
-    	$scope.editLocation = true;
-    	console.log($scope.pageViewData);
+    	$scope.editLocation = ResultPageState.GetEditState();
+    	$scope.originalLocation = ResultPageState.GetPageState();
 
     	$scope.originalPic = $scope.pageViewData.LocationPic;
     	$scope.nationalities = JSON.parse(localStorage.cacheNat);
@@ -27,17 +32,13 @@ angular.module('blipApp')
 	        };
 	    }
 
-    	$scope.cancelModal = function() {
+    	$scope.cancelModal = function(clear) {
+    		if(clear === true) {$scope.pageViewData = $scope.originalLocation;}
     		$(".modal").modal('hide');
     	};
 
-    	$scope.editLocationImage = function(update) {
-    		if(update == true) {
-    			$("#imageModal").modal('hide');
-    		}
-    		else {
-    			$("#imageModal").modal('show');
-    		}
+    	$scope.openModal = function(modalID) {
+    		$(modalID).modal('show');
     	};
 
     	$scope.editLocationImageUpload = function() {
@@ -59,7 +60,7 @@ angular.module('blipApp')
     		});
     	};
 
-    	$scope.editLocationDetails = function(update, name) {
+    	$scope.editLocationDetails = function(update) {
 
     		if(update == true) {
     			$scope.pageViewData.LocationName = name;
@@ -71,8 +72,13 @@ angular.module('blipApp')
     		}
     	};
 
-    	$scope.editLocationAddress = function() {
-
+    	$scope.editLocationAddress = function(update) {
+    		if(update == true) {
+    			$("#locationModal").modal('hide');
+    		}
+    		else {
+    			$("#locationModal").modal('show');
+    		}
     	};
 
     	$scope.updateLocation = function() {
@@ -101,8 +107,9 @@ angular.module('blipApp')
     			nat: $scope.pageViewData.NationalityID
     		}
 
-    		console.log(location);
     		$http.post('http://localhost/blip/app/phpCore/update_location.php', location)
+    		localStorage.removeItem("cacheUserLocs");
+    		$location.path('userLocations');
     	};
 
 
@@ -118,7 +125,6 @@ angular.module('blipApp')
 
             if (openTime !== undefined || closeTime !== undefined) {
                 var format = String(openTime).slice(16, 21) + " - " + String(closeTime).slice(16, 21);
-                console.log(format);
                 loopSelectedDays(format);
             } else {
                 loopSelectedDays("Closed");
@@ -153,9 +159,90 @@ angular.module('blipApp')
             });
         };
 
+        $("#locationModal").on("shown.bs.modal", function () { 
+
+	        uiGmapGoogleMapApi.then(function(maps) {
+
+	            //Fix ._contains/._object is not a function
+	            //Caused by using old version of lodash, installed by bower
+	            if( typeof _.contains === 'undefined' ) {
+	                _.contains = _.includes;
+	            }
+	            if( typeof _.object === 'undefined' ) {
+	                _.object = _.zipObject;
+	            }
+
+	            //Data for the map marker
+	            $scope.addLocationMapMarker = {
+	                id: 5,
+	                coords: {
+	                	latitude: $scope.pageViewData.MapLat,
+	                	longitude: $scope.pageViewData.MapLong
+	                }
+	            };
+
+
+	            $scope.map = {
+	                center: {
+	                    latitude: $scope.pageViewData.MapLat,
+	                    longitude: $scope.pageViewData.MapLong
+	                },
+	                zoom: 16,
+	                events: {
+	                    click: function(mapModel, eventName, originalEventArgs) {
+	                        var e = originalEventArgs[0];
+	                        $scope.addLocationMapMarker.coords.latitude = e.latLng.lat();
+	                        $scope.addLocationMapMarker.coords.longitude = e.latLng.lng();
+	                        $scope.pageViewData.MapLat = e.latLng.lat();
+	                        $scope.pageViewData.MapLong = e.latLng.lng();
+	                        $scope.$apply();
+
+	                        var latlng = {lat: parseFloat(e.latLng.lat()), lng: parseFloat(e.latLng.lng())};
+
+	                        var geocoder = new google.maps.Geocoder;
+	                        geocoder.geocode({'location': latlng}, function(results, status) {
+	                            $scope.pageViewData.City = results[0].formatted_address;
+	                            $scope.$apply();
+	                        });
+	                    }
+	                },
+	                options: {
+	                    draggable: $scope.isDraggable
+	                }
+	            };
+
+	            $scope.getCoordinates = function(locationAddress) {
+
+	                $scope.geodata = {};
+	                $scope.queryResults = {};
+	                $scope.queryError = {};
+
+	                $scope.address = locationAddress;
+
+	                $http.get('https://maps.googleapis.com/maps/api/geocode/json?address='
+	                + $scope.address + '&key=AIzaSyCn9zl42b2gnUt92A7v_OcAJB4OUem-zbM').then(function(_results) {
+
+	                    $scope.queryResults = _results.data.results;
+	                    $scope.geodata = $scope.queryResults[0].geometry;
+
+	                    var locationLatLng = $scope.queryResults[0].geometry.location;
+
+	                    $scope.map.center.latitude = locationLatLng.lat;
+	                    $scope.map.center.longitude = locationLatLng.lng;
+	                    $scope.addLocationMapMarker.coords.latitude = locationLatLng.lat;
+	                    $scope.addLocationMapMarker.coords.longitude = locationLatLng.lng;
+	                    $scope.pageViewData.MapLat = locationLatLng.lat;
+	                    $scope.pageViewData.MapLong = locationLatLng.lng;
+	                },
+	                function error(_error) {
+	                    $scope.queryError = _error;
+	                })
+	            };
+	        });
+    	});
+
     	$scope.scrollTo = function(id) {
 			$location.hash(id);
-			console.log(id);
 			$anchorScroll();
 		}
 

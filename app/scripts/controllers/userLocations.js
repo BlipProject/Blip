@@ -18,17 +18,20 @@ angular.module('blipApp')
         $scope.showLoadingAnimation = true;
 
 		var user = {
-			ID: 311
+			ID: parseInt($rootScope.userIdCookie),
 		};
 
 		$scope.getUserLocations = function() {
-			$http.post('http://localhost/blip/app/phpCore/get_user_locations.php', user)
-				.then(function(response)
-				{
-					$scope.userLocations = response.data;
+            $http.post('http://localhost/blip/app/phpCore/get_user_locations.php', user)
+                .then(function(response)
+                {
+                    $scope.userLocations = response.data;
                     $scope.filterUserLocations = $scope.userLocations;
-                    $scope.showLoadingAnimation = false;
-				});
+
+                    localStorage.cacheUserLocs = JSON.stringify($scope.filterUserLocations);
+                });
+
+            $scope.showLoadingAnimation = false;
 		};
 
         //Called from front-end to set filtered results and set active class on button
@@ -126,6 +129,7 @@ angular.module('blipApp')
 
         $scope.storeFocusedResult = function(index) {
             ResultPageState.SetPageState($scope.filterUserLocations[index]);
+            ResultPageState.SetEditState(false);
             $location.path('LocationView');
         };
 

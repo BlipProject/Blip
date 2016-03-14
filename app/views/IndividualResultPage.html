@@ -10,13 +10,13 @@
             <div class="edit-location" ng-show="editLocation == true">
                 <div class="edit-location-hover-header-options">
                     <div class="user-location-hover-bar-option">
-                        <div ng-click="editLocationImage()"><i class="fa fa-picture-o fa-3x"></i><span>Edit Picture</span></div>
+                        <div ng-click="openModal('#imageModal')"><i class="fa fa-picture-o fa-3x"></i><span>Edit Picture</span></div>
                     </div>
                     <div class="user-location-hover-bar-option">
-                        <div ng-click="editLocationDetails()"><i class="fa fa-info fa-3x"></i><span>Edit Details</span></div>
+                        <div ng-click="openModal('#detailsModal')"><i class="fa fa-info fa-3x"></i><span>Edit Details</span></div>
                     </div>
                     <div class="user-location-hover-bar-option">
-                        <div ng-click="editLocationAddress()"><i class="fa fa-map-marker fa-3x"></i><span>Edit Location</span></div>
+                        <div ng-click="openModal('#locationModal')"><i class="fa fa-map-marker fa-3x"></i><span>Edit Location</span></div>
                     </div>
                 </div>
             </div>
@@ -83,8 +83,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" ng-click="cancelModal()">Cancel</button>
-                    <button type="button" class="btn btn-default" ng-click="editLocationImage(true)">Confirm</button>
+                    <button type="button" class="btn btn-default" ng-click="cancelModal(true)">Cancel</button>
+                    <button type="button" class="btn btn-default" ng-click="cancelModal()">Confirm</button>
                 </div>
             </div>
         </div>
@@ -181,8 +181,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" ng-click="cancelModal()">Cancel</button>
-                    <button type="button" class="btn btn-default" ng-click="editLocationName(true, tbxModal)">Confirm</button>
+                    <button type="button" class="btn btn-default" ng-click="cancelModal(true)">Cancel</button>
+                    <button type="button" class="btn btn-default" ng-click="cancelModal()">Confirm</button>
                 </div>
             </div>
         </div>
@@ -192,10 +192,17 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
+                    <div class="add-location-form-map">
+                        <ui-gmap-google-map center='map.center' zoom='map.zoom' events="map.events" options="map.options">
+                            <ui-gmap-marker coords='addLocationMapMarker.coords' idKey='addLocationMapMarker.id' options="{icon: '/images/map_icons/your_location_icon.png'}" dorebuildall="true"></ui-gmap-marker>
+                        </ui-gmap-google-map>
+                    </div>
+                    <label for="tbxAddress" class="modal-label">Address</label>
+                    <input id="tbxAddress" name="address" class="add-location-form-input form-control" ng-class="{'reg-form-error-outline' : submitted && add_location_form.address.$invalid || add_location_form.address.$dirty && add_location_form.address.$invalid}" type="text" ng-model="pageViewData.City" ng-change="getCoordinates(pageViewData.City)" required>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" ng-click="cancelModal()">Cancel</button>
-                    <button type="button" class="btn btn-default" ng-click="editLocationImage(true)">Confirm</button>
+                    <button type="button" class="btn btn-default" ng-click="cancelModal(true)">Cancel</button>
+                    <button type="button" class="btn btn-default" ng-click="cancelModal()">Confirm</button>
                 </div>
             </div>
         </div>
