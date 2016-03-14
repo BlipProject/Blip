@@ -14,7 +14,7 @@ angular.module('blipApp')
         $scope.userName = $rootScope.userNameCookie;
         $scope.originalPic = $rootScope.userPic;
         $scope.userPic = $rootScope.userPic;
-        $scope.userNat = { NationalityName: $rootScope.userCountryCookie, NationalityID: $rootScope.userNatCookie };
+        $scope.userNat = { NationalityID: $rootScope.userNatCookie };
         $scope.userEmail = $rootScope.userEmailCookie;
 
         if($rootScope.userViewCookie !== undefined) { $scope.userDefaultView = { id: $rootScope.userViewCookie }; }
@@ -58,10 +58,6 @@ angular.module('blipApp')
                 email: userEmail,
                 view: userView.id,
             }
-            console.log(user);
             $http.post('http://localhost/blip/app/phpCore/update_user.php', user)
-                .then(function(response)
-                {
-                });
         };
   }]);

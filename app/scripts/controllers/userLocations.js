@@ -27,7 +27,6 @@ angular.module('blipApp')
 				{
 					$scope.userLocations = response.data;
                     $scope.filterUserLocations = $scope.userLocations;
-                    console.log($scope.filterUserLocations);
                     $scope.showLoadingAnimation = false;
 				});
 		};
